@@ -2,7 +2,7 @@
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Switch } from "./ui/switch";
 
@@ -12,9 +12,9 @@ export function UserBox(){
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="border border-primary rounded-full">
+            <DropdownMenuTrigger className="border border-input rounded-full">
                 <Avatar>
-                    {/* <AvatarImage src="https://github.com/shadcn.png"/> */}
+                    <AvatarImage src="https://github.com/shadcn.png"/>
                     <AvatarFallback>POP</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>

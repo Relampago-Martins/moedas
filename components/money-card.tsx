@@ -30,7 +30,7 @@ export function Money(){
                 <span className="flex item-center justify-center text-card-foreground mt-2">
                     <span className="text-2xl font-semibold text-muted-foreground">R$ 100,00</span>
                 </span>
-                </CardContent>
+            </CardContent>
         </a>
     </Card>
     )
