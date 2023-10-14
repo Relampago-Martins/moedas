@@ -1,14 +1,16 @@
+import { Money } from "@/components/money-card";
+import { Spent } from "@/components/spents-card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { ModeToggle } from "@/components/ui/theme-button";
+import { UserBox } from "@/components/user-box";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export default function Home() {
     return (
-        <main>
+        <main className="min-h-screen flex flex-col">
             <div className="flex px-6 py-3 items-center justify-between border-b">
                 <div className="flex items-center gap-3">
-                    <div className="text-xl text-primary">
+                    <div className="text-xl text-violet-400">
                         MyFinance
                     </div>
                     <Separator orientation="vertical" className="h-6 bg-muted-foreground"/>
@@ -22,8 +24,12 @@ export default function Home() {
                             <GitHubLogoIcon className="h-4 w-4" />
                         </a>
                     </Button>
-                    <ModeToggle/>
+                    <UserBox/>       
                 </div>
+            </div>
+            <div className="flex-1 flex flex-wrap flex-row p-6 gap-6 bg-primary">
+                <Money/>
+                <Spent/>
             </div>
         </main>
     )
