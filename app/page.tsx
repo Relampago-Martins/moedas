@@ -1,5 +1,5 @@
 import { Money } from "@/components/money-card";
-import { Spent } from "@/components/spents-card";
+import { Transactions } from "@/components/transactions-card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { UserBox } from "@/components/user-box";
@@ -30,9 +30,13 @@ export default function Home() {
             <div className="flex-1 p-6 bg-primary">
                 <div className="flex flex-wrap flex-row gap-6">
                     <Money/>
-                    <Spent/>
+                    <Transactions/>
                 </div>
             </div>
         </main>
     )
+}
+
+export const metadata = {
+    title: 'MyFinance',
 }
