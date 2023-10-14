@@ -27,9 +27,11 @@ export default function Home() {
                     <UserBox/>       
                 </div>
             </div>
-            <div className="flex-1 flex flex-wrap flex-row p-6 gap-6 bg-primary">
-                <Money/>
-                <Spent/>
+            <div className="flex-1 p-6 bg-primary">
+                <div className="flex flex-wrap flex-row gap-6">
+                    <Money/>
+                    <Spent/>
+                </div>
             </div>
         </main>
     )
