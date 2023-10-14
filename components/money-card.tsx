@@ -1,4 +1,5 @@
 'use client'
+import { Wallet } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PieChart } from "react-minimal-pie-chart";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -9,7 +10,10 @@ export function Money(){
     <Card className="h-[15.5rem] w-[15rem] hover:scale-105 transition-transform ease-out flex-grow md:flex-grow-0">
         <a href="#">
             <CardHeader className="pb-3">
-                <CardTitle>My Money</CardTitle>
+                <CardTitle className="flex flex-row gap-2">
+                    <Wallet/>
+                    Wallet
+                </CardTitle>
                 <CardDescription>*****</CardDescription>
             </CardHeader>
             <CardContent>
