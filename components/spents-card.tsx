@@ -38,7 +38,7 @@ export function Spent(){
         },
     ]
     return (
-        <Card className="flex-1 h-[15.5rem] flex flex-col">
+        <Card className="h-[15.5rem] w-full flex flex-col grow basis-64">
             <CardHeader className="pb-3">
                 <CardTitle>My Monthly Spent</CardTitle>
             </CardHeader>
