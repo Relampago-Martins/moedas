@@ -1,2 +1,3 @@
-# MyFinanceAPI
-Projeto para controlar rendas, despesas, dividas, etc 
+# Moedas-API
+
+Projeto para controlar rendas, despesas, dividas, etc
