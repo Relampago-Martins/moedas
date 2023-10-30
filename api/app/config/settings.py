@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import environ
-import os
 from pathlib import Path
 
 env = environ.Env(DEBUG=(bool, False))
@@ -27,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
@@ -41,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'my_finance.apps.MyFinanceConfig',
+    'moedas.apps.MoedasConfig',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -98,6 +97,12 @@ DATABASES = {
     }
 }
 
+if DEBUG:
+    DATABASES['default'].update({
+        'OPTIONS': {
+            'options': '-c search_path=dev'
+        },
+    })
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -147,3 +152,9 @@ CSRF_TRUSTED_ORIGINS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}

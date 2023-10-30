@@ -2,6 +2,7 @@
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Switch } from "./ui/switch";
@@ -21,6 +22,9 @@ export function UserBox(){
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Generic User</DropdownMenuLabel>
                 <DropdownMenuSeparator/>
+                <DropdownMenuItem>
+                    <Link className="flex justify-center w-full" href="/login">Login</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={event => event.preventDefault()}>
                     <div className="flex flex-row gap-3 items-center">
                         <SunIcon className="h-4 w-4 transition-all" />
