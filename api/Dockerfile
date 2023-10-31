@@ -10,6 +10,3 @@ WORKDIR /var/app
 COPY ./app /var/app
 
 RUN pip3 install -r requirements.txt
-
-# Definir o comando de entrada para iniciar o servidor
-# CMD ["python3", "manage.py", "runserver", "0.0.0.0:80"]
