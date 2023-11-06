@@ -145,7 +145,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://api.moedas.app',
     'http://moedas.app',
     'http://localhost',
-    'http://8499d504e940f006497084f1d5bad969.balena-devices.com'
+    'https://8499d504e940f006497084f1d5bad969.balena-devices.com'
 ]
 CORS_ORIGIN_WHITELIST = [
     'http://moedas.app',
