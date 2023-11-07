@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import environ
+import os
 from pathlib import Path
+import environ
 
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env()
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,17 +141,18 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = [
+    'https://moedas.app',
     'http://api.moedas.app',
-    'http://moedas.app',
     'http://localhost',
     'https://8499d504e940f006497084f1d5bad969.balena-devices.com',
     'http://8499d504e940f006497084f1d5bad969.balena-devices.com'
 ]
 CORS_ORIGIN_WHITELIST = [
-    'http://moedas.app',
+    'https://moedas.app',
     'http://localhost',
     'http://api.moedas.app',
 ]

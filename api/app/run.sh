@@ -1,3 +1,10 @@
 #!/bin/bash
 
-python3 manage.py runserver 0.0.0.0:8001
+if [ "$DEBUG" = "true" ]; then
+    echo "DEBUG = true"
+    python3 manage.py runserver 0.0.0.0:80
+else
+    echo "DEBUG = false"
+    python3 manage.py collectstatic --noinput
+    gunicorn  -b 0.0.0.0:80 --reload config.wsgi
+fi
