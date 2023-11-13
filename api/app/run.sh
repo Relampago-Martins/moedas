@@ -6,5 +6,6 @@ if [ "$DEBUG" = "true" ]; then
 else
     echo "DEBUG = false"
     python3 manage.py collectstatic --noinput
-    gunicorn  -b 0.0.0.0:80 --reload config.wsgi
+    python3 manage.py migrate
+    gunicorn -b 0.0.0.0:80 --reload config.wsgi
 fi
