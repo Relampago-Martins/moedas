@@ -1,12 +1,11 @@
-FROM ubuntu:22.04
-
-RUN apt update && apt full-upgrade -y \
-    python3 python3-pip
-
-COPY requirements.txt /var/app/requirements.txt
+# Use uma imagem base do Ubuntu para ARM (substitua "buster" pelo nome apropriado)
+# FROM balenalib/raspberrypi4-64-debian-python:latest
+FROM python:latest
 
 WORKDIR /var/app
 
-COPY ./app /var/app
+COPY requirements.txt ./
 
-RUN pip3 install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./app /var/app

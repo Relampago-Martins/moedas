@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+
+ROOT_URL = settings.ROOT_URL
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('moedas.urls')),
+    path(f'{ROOT_URL}admin/', admin.site.urls),
+    path(f'{ROOT_URL}', include('moedas.urls')),
 ]

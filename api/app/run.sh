@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ "$DEBUG" = "true" ]; then
+python3 manage.py migrate
+if [ "$DEBUG" = "True" ]; then
     echo "DEBUG = true"
     python3 manage.py runserver 0.0.0.0:80
 else

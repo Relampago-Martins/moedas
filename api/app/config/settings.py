@@ -60,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
-
+ROOT_URL = env('ROOT_URL')
 
 TEMPLATES = [
     {
@@ -85,10 +85,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
     'default': {
         'ENGINE': env('DB_ENGINE'),
         'NAME': env('DB_NAME'),
@@ -96,15 +92,11 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
+        'OPTIONS': {
+            'options': '-c search_path=public'
+        },
     }
 }
-
-if DEBUG:
-    DATABASES['default'].update({
-        'OPTIONS': {
-            'options': '-c search_path=dev'
-        },
-    })
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -140,14 +132,14 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = f'{ROOT_URL}static/'
 STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = [
     'https://moedas.app',
     'http://api.moedas.app',
-    'http://localhost',
+    'http://localhost:8080',
     'https://8499d504e940f006497084f1d5bad969.balena-devices.com',
     'http://8499d504e940f006497084f1d5bad969.balena-devices.com'
 ]
