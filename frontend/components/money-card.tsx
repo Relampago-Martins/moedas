@@ -12,7 +12,7 @@ export function Money(){
             <CardHeader className="pb-3">
                 <CardTitle className="flex flex-row gap-2">
                     <Wallet/>
-                    Wallet
+                    Carteira
                 </CardTitle>
                 <CardDescription>*****</CardDescription>
             </CardHeader>
