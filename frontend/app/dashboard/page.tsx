@@ -1,9 +1,11 @@
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { GitHubLogoIcon } from "@radix-ui/react-icons"
-import Link from "next/link"
+import { Money } from "@/components/money-card";
+import { Transactions } from "@/components/transactions-card";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { UserBox } from "@/components/user-box";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
-export default function Home() {
+export default function Dashboard() {
     return (
         <main className="min-h-screen flex flex-col">
             <div className="flex px-6 py-3 items-center justify-between border-b">
@@ -22,15 +24,13 @@ export default function Home() {
                             <GitHubLogoIcon className="h-4 w-4" />
                         </a>
                     </Button>
-                    <Button asChild variant="outline"  size="icon" className="px-6">
-                        <Link href="/login">
-                            Login
-                        </Link>
-                    </Button>
+                    <UserBox/>       
                 </div>
             </div>
             <div className="flex-1 p-6 bg-primary">
                 <div className="flex flex-wrap flex-row gap-6">
+                    <Money/>
+                    <Transactions/>
                 </div>
             </div>
         </main>
@@ -38,5 +38,5 @@ export default function Home() {
 }
 
 export const metadata = {
-    title: 'Moedas Landing Page',
+    title: 'Moedas Dashboard',
 }

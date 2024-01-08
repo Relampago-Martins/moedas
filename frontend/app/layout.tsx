@@ -1,8 +1,13 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
+import i18next from 'i18next';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import * as z from "zod";
+import { zodI18nMap } from 'zod-i18n-map';
+import translation from 'zod-i18n-map/locales/pt/zod.json';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,3 +37,15 @@ export default function RootLayout({children, ...props}: {
     </html>
   )
 }
+
+/** 
+ * definindo a linguagem da engine de validação dos formulários
+ * */ 
+i18next.init({
+  lng: "pt",
+  resources: {
+      pt: { zod: translation },
+  },
+});
+z.setErrorMap(zodI18nMap);
+/**/

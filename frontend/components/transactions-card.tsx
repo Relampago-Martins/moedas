@@ -40,7 +40,7 @@ export function Transactions(){
             <CardHeader className="pb-3">
                 <CardTitle className="flex flex-row gap-2">
                     <Receipt/>
-                    Monthly Transactions
+                    Transações mensais
                 </CardTitle>
             </CardHeader>
             <CardContent>
