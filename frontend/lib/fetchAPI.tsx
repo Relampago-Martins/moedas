@@ -1,6 +1,6 @@
 'use server';
-import { RegisterForm } from "@/types/auth";
 import axios, { AxiosResponse } from "axios";
+import { RegisterForm } from "../types/auth";
 
 const API_URL = process.env.API_URL
 

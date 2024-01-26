@@ -1,7 +1,6 @@
 'use client';
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { LoginForm } from "@/types/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
@@ -9,6 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import BeatLoader from "react-spinners/BeatLoader";
 import { loginForm } from "../../lib/zodForms";
+import { LoginForm } from "../../types/auth";
 import { Input } from "../ui/input";
 
 export default function LoginForm() {

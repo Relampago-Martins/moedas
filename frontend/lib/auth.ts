@@ -1,9 +1,9 @@
-import { MySession, MyUser } from "@/types/auth";
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
+import { MySession, MyUser } from "../types/auth";
 import { getUser, login, loginGoogle } from "./fetchAPI";
 
 const API_URL = process.env.API_URL
