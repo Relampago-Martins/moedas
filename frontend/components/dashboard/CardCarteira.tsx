@@ -2,9 +2,9 @@
 import { Wallet } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PieChart } from "react-minimal-pie-chart";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export function Money(){
+export function CardCarteira(){
     const { theme } = useTheme();
     return (
     <Card className="h-[15.5rem] w-[15rem] hover:scale-105 transition-transform ease-out flex-grow md:flex-grow-0">
