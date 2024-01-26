@@ -1,10 +1,10 @@
 import { Receipt } from "lucide-react";
-import { Transaction, columns } from "./spents/columns";
-import { DataTable } from "./spents/data-table";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { ScrollArea } from "./ui/scroll-area";
+import { Transaction, columns } from "../spents/columns";
+import { DataTable } from "../spents/data-table";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { ScrollArea } from "../ui/scroll-area";
 
-export function Transactions(){
+export function TabelaTransacoes(){
     const data: Transaction[] =  [
         {
             id: "728ed52f",

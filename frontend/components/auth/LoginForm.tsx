@@ -1,17 +1,21 @@
 'use client';
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { LoginForm } from "@/types/Auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Input } from "./ui/input";
-import { login } from "./utils/auth";
-import { loginForm } from "./utils/zodForms";
-
+import BeatLoader from "react-spinners/BeatLoader";
+import { loginForm } from "../../lib/zodForms";
+import { LoginForm } from "../../types/auth";
+import { Input } from "../ui/input";
 
 export default function LoginForm() {
-    const [invalid, setInvalid] = useState(false)
+    const [responseError, setResponseError] = useState<string | undefined>(undefined)
+    const [loading, setLoading] = useState(false)
+    const router = useRouter()
+
     const form = useForm<LoginForm>({
         resolver: zodResolver(loginForm),
         defaultValues: {
@@ -20,10 +24,25 @@ export default function LoginForm() {
         },
     })
 
+    const handleSubmit = async (val: LoginForm) => {
+        setLoading(true)
+        const signInResponse = await signIn("credentials", {
+            username: val.username,
+            password: val.password,
+            redirect: false,
+        })
+        if (signInResponse && !signInResponse?.error){
+            router.push('/dashboard')
+        }else{
+            setResponseError('Usuário ou senha inválidos')
+        }
+        setLoading(false)
+    }
+
     return (
         <Form {...form}>
             <form className="flex flex-col gap-4"
-                onSubmit={form.handleSubmit((val) => login(val, setInvalid))} >
+                onSubmit={form.handleSubmit(handleSubmit)} >
                 <FormField 
                     control={form.control} 
                     name="username"
@@ -33,7 +52,7 @@ export default function LoginForm() {
                         <FormControl>
                             <Input {...field} />
                         </FormControl>
-                        <FormMessage/>
+                        <FormMessage></FormMessage>
                         </FormItem>
                     )}
                 />
@@ -46,12 +65,16 @@ export default function LoginForm() {
                         <FormControl>
                             <Input type="password" {...field} />
                         </FormControl>
-                        <FormMessage/>
+                        <FormMessage></FormMessage>
                         </FormItem>
                     )}
                 />
-                {invalid && <FormMessage>Usuário ou senha inválidos</FormMessage>}
-                <Button type="submit" className="mt-4">Entrar</Button>
+                {!!responseError &&  <FormMessage>{responseError}</FormMessage>}
+
+                <Button type="submit" className="gap-2">
+                    {loading ? "Entrando" : "Entrar"}
+                    <BeatLoader loading={loading} size={6} color="white" />
+                </Button>
             </form>
         </Form>
     )
