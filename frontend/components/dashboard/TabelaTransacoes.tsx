@@ -1,8 +1,8 @@
 import { Receipt } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../../shared/ui/card";
+import { ScrollArea } from "../../shared/ui/scroll-area";
 import { Transaction, columns } from "../spents/columns";
 import { DataTable } from "../spents/data-table";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { ScrollArea } from "../ui/scroll-area";
 
 export function TabelaTransacoes(){
     const data: Transaction[] =  [

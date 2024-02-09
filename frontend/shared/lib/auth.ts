@@ -3,10 +3,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
-import { MySession, MyUser } from "../types/auth";
+import { MySession, MyUser } from "../../types/auth";
 import { getUser, login, loginGoogle } from "./fetchAPI";
 
-const API_URL = process.env.API_URL
 
 export const authConfig: NextAuthOptions = {
     providers: [
@@ -43,7 +42,7 @@ export const authConfig: NextAuthOptions = {
     ],
 
     callbacks: {
-        async jwt({ token, user, account, profile,}) {
+        async jwt({ token, user, account, profile}) {
             // console.log("jwt", token, user, account, profile)
             if (account?.provider === 'google') {
                 await loginGoogle({
@@ -55,6 +54,11 @@ export const authConfig: NextAuthOptions = {
                 })
                 .catch(err => {})
             }
+            
+            if ((user as MyUser)?.token){
+                token.apiKey = (user as MyUser).token
+            }
+
             return token
         },
         async session({ session, token, user } ) {

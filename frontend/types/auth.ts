@@ -1,4 +1,4 @@
-import { loginForm, registerForm } from "@/lib/zodForms";
+import { loginForm, registerForm } from "@/shared/lib/zodForms";
 import { Session, User } from "next-auth";
 import * as z from "zod";
 
