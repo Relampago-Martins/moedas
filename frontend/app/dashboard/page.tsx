@@ -1,10 +1,8 @@
-import TesteLogin from "@/components/auth/TesteLogin";
-import { CardCarteira } from "@/components/dashboard/CardCarteira";
-import { TabelaTransacoes } from "@/components/dashboard/TabelaTransacoes";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { UserBox } from "@/components/user-box";
-import { loginIsRequiredServer } from "@/lib/auth";
+import { CardSaldo } from "@/features/card-saldo/ui";
+import { loginIsRequiredServer } from "@/shared/lib/auth";
+import { Button } from "@/shared/ui/button";
+import { Separator } from "@/shared/ui/separator";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export default async function Dashboard() {
@@ -12,13 +10,13 @@ export default async function Dashboard() {
 
     return (
         <main className="min-h-screen flex flex-col">
-            <div className="flex px-6 py-3 items-center justify-between border-b">
+            <div className="flex px-6 py-3 items-center justify-between border-b bg-primary dark:bg-transparent">
                 <div className="flex items-center gap-3">
-                    <div className="text-xl text-violet-400">
+                    <div className="text-xl text-secondary font-semibold">
                         Moedas
                     </div>
-                    <Separator orientation="vertical" className="h-6 bg-muted-foreground"/>
-                    <span className="text-sm text-muted-foreground">
+                    <Separator orientation="vertical" className="h-6 bg-secondary"/>
+                    <span className="text-sm text-secondary">
                         Conheça o seu dinheiro
                     </span>
                 </div>
@@ -31,11 +29,12 @@ export default async function Dashboard() {
                     <UserBox/>       
                 </div>
             </div>
-            <div className="flex-1 p-6 bg-primary">
+            <div className="flex-1 p-6 bg-background">
                 <div className="flex flex-wrap flex-row gap-6">
-                    <CardCarteira/>
-                    <TabelaTransacoes/>
-                    <TesteLogin/>
+                    {/* <CardCarteira/> */}
+                    <CardSaldo/>
+                    {/* <TabelaTransacoes/> */}
+                    {/* <TesteLogin/> */}
                 </div>
             </div>
         </main>

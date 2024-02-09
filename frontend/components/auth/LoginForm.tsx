@@ -1,15 +1,15 @@
 'use client';
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Button } from "@/shared/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import BeatLoader from "react-spinners/BeatLoader";
-import { loginForm } from "../../lib/zodForms";
+import { loginForm } from "../../shared/lib/zodForms";
+import { Input } from "../../shared/ui/input";
 import { LoginForm } from "../../types/auth";
-import { Input } from "../ui/input";
 
 export default function LoginForm() {
     const [responseError, setResponseError] = useState<string | undefined>(undefined)
@@ -48,11 +48,11 @@ export default function LoginForm() {
                     name="username"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>Usuário</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage></FormMessage>
+                            <FormLabel>Usuário</FormLabel>
+                            <FormControl>
+                                <Input {...field} />
+                            </FormControl>
+                            <FormMessage></FormMessage>
                         </FormItem>
                     )}
                 />
@@ -61,11 +61,11 @@ export default function LoginForm() {
                     name="password"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>Senha</FormLabel>
-                        <FormControl>
-                            <Input type="password" {...field} />
-                        </FormControl>
-                        <FormMessage></FormMessage>
+                            <FormLabel>Senha</FormLabel>
+                            <FormControl>
+                                <Input type="password" {...field} />
+                            </FormControl>
+                            <FormMessage></FormMessage>
                         </FormItem>
                     )}
                 />

@@ -1,9 +1,9 @@
-import { authConfig } from "@/lib/auth";
+import { authConfig } from "@/shared/lib/auth";
 import { getServerSession } from "next-auth";
+import { Avatar, AvatarFallback, AvatarImage } from "../shared/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../shared/ui/dropdown-menu";
 import LogoutBtn from "./auth/LogoutBtn";
 import ThemeToggle from "./themeToggle";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 
 export async function UserBox(){

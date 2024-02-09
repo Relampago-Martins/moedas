@@ -2,12 +2,13 @@
 import { Wallet } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PieChart } from "react-minimal-pie-chart";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../shared/ui/card";
 
 export function CardCarteira(){
     const { theme } = useTheme();
     return (
-    <Card className="h-[15.5rem] w-[15rem] hover:scale-105 transition-transform ease-out flex-grow md:flex-grow-0">
+    <Card className="h-[15.5rem] w-[15rem]
+    hover:scale-105 transition-transform ease-out flex-grow md:flex-grow-0">
         <a href="#">
             <CardHeader className="pb-3">
                 <CardTitle className="flex flex-row gap-2">
@@ -35,7 +36,9 @@ export function CardCarteira(){
                     />
                 </div>
                 <span className="flex item-center justify-center text-card-foreground mt-2">
-                    <span className="text-2xl font-semibold text-muted-foreground">R$ 100,00</span>
+                    <span className="text-2xl font-semibold text-muted-foreground">
+                        R$ 100,00
+                    </span>
                 </span>
             </CardContent>
         </a>
