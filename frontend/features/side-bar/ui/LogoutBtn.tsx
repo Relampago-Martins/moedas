@@ -1,6 +1,5 @@
 'use client';
 import { signOut } from "next-auth/react";
-import Link from "next/link";
 
 export default function LogoutBtn() {
 
@@ -9,9 +8,10 @@ export default function LogoutBtn() {
     }
 
     return (
-        <Link className="flex justify-center w-full" href="#" onClick={onClick}>
+        <button className="flex justify-center w-full"
+            onClick={onClick}>
             Sair
-        </Link>
+        </button>
     )
 }
         

@@ -1,12 +1,12 @@
 import { authConfig } from "@/shared/lib/auth";
 import { getServerSession } from "next-auth";
-import { Avatar, AvatarFallback, AvatarImage } from "../shared/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../shared/ui/dropdown-menu";
-import LogoutBtn from "./auth/LogoutBtn";
-import ThemeToggle from "./themeToggle";
+import ThemeToggle from "../../../components/themeToggle";
+import { Avatar, AvatarFallback, AvatarImage } from "../../../shared/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../../../shared/ui/dropdown-menu";
+import LogoutBtn from "./LogoutBtn";
 
 
-export async function UserBox(){
+export async function UserMenu(){
     const session = await getServerSession(authConfig);
     const siglaNome = session?.user?.name?.split(' ').map((n: string) => n[0]).join('') || undefined;
 
