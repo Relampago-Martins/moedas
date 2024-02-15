@@ -1,0 +1,59 @@
+.root{
+    background-color: var(--primary-foreground) !important;
+    border-color: var(--input) !important;
+
+    .ps-sidebar-container {
+        background-color: var(--primary-foreground) !important;
+    }
+
+    .trigger{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .header{
+        margin: .875rem auto .5rem auto;
+    }
+    .content{
+        .item{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 50px;
+            cursor: pointer;
+            background-color: var(--input) !important;
+            
+        }
+        .ps-menu-button{
+            transition: all .2s ease;
+            padding: 0;
+            margin: .875rem 1.25rem;
+            color: var(--foreground);
+            border-radius: var(--radius);
+            height: 2.5rem;
+            
+            &:hover{
+                color: var(--primary);
+                transform: scale(1.06);
+                background-color: var(--accent) !important;
+            }
+        }
+    }
+    .footer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+        height: 100%;
+        margin: 1.25rem auto;
+    }
+
+    .ps-sidebar-container{
+        display: flex;
+        flex-direction: column;
+    }
+}

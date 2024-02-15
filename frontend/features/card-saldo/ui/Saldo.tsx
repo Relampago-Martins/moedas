@@ -1,4 +1,4 @@
-import { BsChevronRight } from "react-icons/bs";
+import { BsBarChartFill, BsChevronRight } from "react-icons/bs";
 import { mascaraDinheiro } from "../lib/saldo";
 import './ui.scss';
 
@@ -14,8 +14,9 @@ export function Saldo(props: SaldoProps) {
                 {mascaraDinheiro(props.valor)}
             </div>
             <div className="flex align-center text-sm opacity-65 gap-1">
+                <BsBarChartFill className="h-3 self-center"/>
                 Saldo atual
-                <BsChevronRight className="h-3 w-4 self-center"/>
+                <BsChevronRight className="h-3 self-center"/>
             </div>
         </div>
     )

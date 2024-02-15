@@ -13,7 +13,6 @@ export function CardSaldo(props: CardSaldoProps) {
     return (
         <Card className="h-[15.5rem] flex-grow max-w-[26.5rem]">
             <CardContent className="flex flex-col h-full pt-6 gap-4 justify-between">
-                    
                     <SelectMes/>
                     <Saldo valor={20000}/>
                     {/* <div className="text-sm opacity-65">
