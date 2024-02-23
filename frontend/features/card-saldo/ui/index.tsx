@@ -9,7 +9,6 @@ export function CardSaldo(props: CardSaldoProps) {
     return (
         <Card className="max-w-full flex-grow">
             <CardContent className="flex h-full flex-col justify-between gap-4 pt-6">
-                {/* <SelectMes/> */}
                 <MonthPickerInput />
                 <Saldo valor={20000} />
             </CardContent>
