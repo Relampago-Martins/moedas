@@ -1,25 +1,32 @@
+import { CardBalanco } from "@/features/card-balanco/ui";
 import { CardSaldo } from "@/features/card-saldo/ui";
 import { SideBar } from "@/features/side-bar/ui";
 import { OuterProvider, OuterTrigger } from "@/features/side-bar/ui/NavBar";
 import { loginIsRequiredServer } from "@/shared/lib/auth";
+import { FaBars } from "react-icons/fa6";
+
 
 export default async function Dashboard() {
     await loginIsRequiredServer()
 
     return (
-        <main className="min-h-screen flex flex-row h-full">
+        <main className="min-h-screen flex flex-row h-full bg-background">
             <OuterProvider>
                 <SideBar/>
                 <div className="flex flex-col">
-                    <OuterTrigger
-                        className="sm:hidden block pt-2 pl-7 text-lg font-semibold hover:cursor-pointer">
-                            Moedas
-                    </OuterTrigger>
-                    <div className="flex flex-wrap flex-row flex-1 gap-6 p-6 pt-2 bg-background">
-                            {/* <CardCarteira/> */}
-                            <CardSaldo/>
-                            {/* <TabelaTransacoes/> */}
-                            {/* <TesteLogin/> */}
+                    <div 
+                        className="flex items-center gap-2 md:hidden pt-2 px-7 text-primary">
+                        <OuterTrigger className="hover:cursor-pointer">
+                            <FaBars className="text-lg"/>
+                        </OuterTrigger>
+                        <span className="text-lg font-semibold">Moedas</span>
+                    </div>
+                    <div className="flex flex-wrap flex-row gap-6 p-6 pt-2">
+                        <CardSaldo/>
+                        {/* <CardContas/> */}
+                    </div>
+                    <div className="flex flex-wrap flex-row gap-6 p-6 pt-2">
+                        <CardBalanco/>
                     </div>
                 </div>
             </OuterProvider>

@@ -18,7 +18,7 @@ function NavBar({children, ...props}: RootProps){
 
     return (
         <NavBarContext.Provider value={{open, setOpen}}>
-            <Sidebar collapsed={!open} breakPoint="sm" toggled={toggled}
+            <Sidebar collapsed={!open} breakPoint="md" toggled={toggled}
                 onBackdropClick={() => setToggled(false)}
                 {...props} className={`root ${props.className}`} >
                 {children}
@@ -74,7 +74,7 @@ type ItemProps = MenuItemProps & {
 }
 function NavBarItem({children, className, ...props}: ItemProps){
     return (
-        <MenuItem {...props} className={`${className} text-sm font-medium opacity-95`}>
+        <MenuItem {...props} className={`${className} text-sm font-medium opacity-85`}>
             {children}
         </MenuItem>
     )

@@ -6,32 +6,21 @@
         background-color: var(--primary-foreground) !important;
     }
 
-    .trigger{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
     .header{
-        margin: .875rem auto .5rem auto;
-    }
-    .content{
-        .item{
+        margin: .875rem 1.25rem .5rem 1.25rem;
+        .trigger{
             display: flex;
             flex-direction: row;
-            align-items: center;
             justify-content: center;
-            width: 100%;
-            height: 50px;
+            align-items: center;
             cursor: pointer;
-            background-color: var(--input) !important;
-            
         }
+    }
+    .content{
         .ps-menu-button{
             transition: all .2s ease;
             padding: 0;
-            margin: .875rem 1.25rem;
+            margin: 1rem 1.25rem;
             color: var(--foreground);
             border-radius: var(--radius);
             height: 2.5rem;
@@ -41,13 +30,21 @@
                 transform: scale(1.06);
                 background-color: var(--accent) !important;
             }
+            &.ps-active{
+                border-width: .0625rem;
+                color: var(--primary);
+                border-color: var(--primary) !important;
+            }
+            .ps-menu-icon{
+                margin-right: 0.25rem;
+            }
         }
     }
     .footer{
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: end;
+        justify-content: flex-end;
         height: 100%;
         margin: 1.25rem auto;
     }
