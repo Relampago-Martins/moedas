@@ -1,15 +1,15 @@
 'use client';
 import { Button } from '@/shared/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import { Calendar as CalendarIcon } from 'lucide-react';
-import { useState } from 'react';
-import { mesOptions } from '../lib/selectMes';
 import {
     CalendarContent,
     CalendarHeader,
     MonthBtn,
     MonthCalendar,
-} from './MonthCalendar';
+} from '@/shared/ui/custom/MonthCalendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
+import { Calendar as CalendarIcon } from 'lucide-react';
+import { useState } from 'react';
+import { mesOptions } from '../lib/selectMes';
 
 export function MonthPickerInput() {
     const [monthData, setMonthData] = useState<MonthData>({
@@ -20,9 +20,10 @@ export function MonthPickerInput() {
         year: monthData.year,
         month: monthData.month,
     });
+    const [popoverOpen, setPopoverOpen] = useState(false);
 
     return (
-        <Popover>
+        <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
             <PopoverTrigger asChild>
                 <Button
                     variant={'outline'}
@@ -57,7 +58,7 @@ export function MonthPickerInput() {
                         {mesOptions.map((option) => (
                             <MonthBtn
                                 key={option.value}
-                                value={option.value}
+                                month={option.value}
                                 selected={
                                     option.value === monthDataSelecting.month
                                 }
@@ -70,6 +71,7 @@ export function MonthPickerInput() {
                                         year: monthDataSelecting.year,
                                         month: value,
                                     });
+                                    setPopoverOpen(false);
                                 }}
                             >
                                 {option.abrev}

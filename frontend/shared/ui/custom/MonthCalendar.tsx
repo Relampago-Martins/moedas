@@ -49,22 +49,20 @@ function CalendarHeader({ year, setYear }: CalendarHeaderProps) {
 }
 
 type MonthInputProps = {
-    value: number;
+    month: number;
     children?: React.ReactNode;
     onChange?: (value: number) => void;
     selected?: boolean;
 };
-function MonthBtn({ value, children, onChange, selected }: MonthInputProps) {
-    const handleClick = () => {
-        onChange?.(value);
-    };
-
+function MonthBtn({ month, children, onChange, selected }: MonthInputProps) {
     return (
         <Button
             variant={'ghost'}
             size={'sm'}
             className={`h-10 w-12 ${selected ? 'bg-primary text-white hover:bg-primary hover:text-white' : ''}`}
-            onClick={handleClick}
+            onClick={() => {
+                onChange?.(month);
+            }}
         >
             {children}
         </Button>

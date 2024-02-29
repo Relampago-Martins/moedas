@@ -3,11 +3,13 @@ import { MonthPickerInput } from './MonthPickerInput';
 import { Saldo } from './Saldo';
 import './ui.scss';
 
-type CardSaldoProps = {};
+type CardSaldoProps = {
+    className?: string;
+};
 
-export function CardSaldo(props: CardSaldoProps) {
+export function CardSaldo({ className }: CardSaldoProps) {
     return (
-        <Card className="max-w-full flex-grow">
+        <Card className={className}>
             <CardContent className="flex h-full flex-col justify-between gap-4 pt-6">
                 <MonthPickerInput />
                 <Saldo valor={20000} />

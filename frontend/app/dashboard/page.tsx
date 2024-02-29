@@ -1,39 +1,51 @@
-import { CardBalanco } from "@/features/card-balanco/ui";
-import { CardSaldo } from "@/features/card-saldo/ui";
-import { SideBar } from "@/features/side-bar/ui";
-import { OuterProvider, OuterTrigger } from "@/features/side-bar/ui/NavBar";
-import { loginIsRequiredServer } from "@/shared/lib/auth";
-import { FaBars } from "react-icons/fa6";
-
+import { CardBalanco } from '@/features/card-balanco/ui';
+import { CardContas } from '@/features/card-contas/ui';
+import { CardSaldo } from '@/features/card-saldo/ui';
+import { SideBar } from '@/features/side-bar/ui';
+import { OuterProvider, OuterTrigger } from '@/features/side-bar/ui/NavBar';
+import { loginIsRequiredServer } from '@/shared/lib/auth';
+import { FaBars } from 'react-icons/fa6';
+import './ui.scss';
 
 export default async function Dashboard() {
-    await loginIsRequiredServer()
+    await loginIsRequiredServer();
 
     return (
-        <main className="min-h-screen flex flex-row h-full bg-background">
+        <main className="flex h-full min-h-screen w-full flex-row bg-background">
             <OuterProvider>
-                <SideBar/>
-                <div className="flex flex-col">
-                    <div 
-                        className="flex items-center gap-2 md:hidden pt-2 px-7 text-primary">
-                        <OuterTrigger className="hover:cursor-pointer">
-                            <FaBars className="text-lg"/>
+                <SideBar />
+                <div className="w-full">
+                    <div className="border-b border-gray-200 px-7 py-2 text-primary md:hidden">
+                        <OuterTrigger className="flex items-center gap-4 hover:cursor-pointer">
+                            <FaBars className="text-lg" />
+                            <span className="text-lg font-semibold">
+                                Moedas
+                            </span>
                         </OuterTrigger>
-                        <span className="text-lg font-semibold">Moedas</span>
                     </div>
-                    <div className="flex flex-wrap flex-row gap-6 p-6 pt-2">
-                        <CardSaldo/>
-                        {/* <CardContas/> */}
-                    </div>
-                    <div className="flex flex-wrap flex-row gap-6 p-6 pt-2">
-                        <CardBalanco/>
+                    <div
+                        className="
+                        grid grid-cols-12 gap-4 p-6 pt-4 lg:grid-cols-10 xl:grid-cols-12"
+                    >
+                        <CardSaldo
+                            className="
+                            col-span-12 lg:col-span-4 lg:row-start-1 xl:col-start-2"
+                        />
+                        <CardBalanco
+                            className="
+                            col-span-12 lg:col-span-4 xl:col-start-2"
+                        />
+                        <CardContas
+                            className="
+                            col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-1"
+                        />
                     </div>
                 </div>
             </OuterProvider>
         </main>
-    )
+    );
 }
 
 export const metadata = {
     title: 'Moedas Dashboard',
-}
+};
