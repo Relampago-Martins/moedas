@@ -6,9 +6,14 @@ import {
     MonthBtn,
     MonthCalendar,
 } from '@/shared/ui/custom/MonthCalendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import {
+    Overlay,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from '@/shared/ui/popover';
 import { useState } from 'react';
+import { BsChevronDown } from 'react-icons/bs';
 import { mesOptions } from '../lib/selectMes';
 
 export function MonthPickerInput() {
@@ -23,14 +28,14 @@ export function MonthPickerInput() {
     const [popoverOpen, setPopoverOpen] = useState(false);
 
     return (
-        <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+        <Popover open={popoverOpen} onOpenChange={setPopoverOpen} modal={true}>
+            {popoverOpen && <Overlay />}
             <PopoverTrigger asChild>
                 <Button
-                    variant={'outline'}
+                    variant={'ghost'}
                     size={'sm'}
-                    className="h-8 justify-start text-left font-normal"
+                    className="h-8 justify-start px-0 text-left font-normal hover:bg-inherit"
                 >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
                     <span>
                         {`${
                             mesOptions.find(
@@ -38,6 +43,7 @@ export function MonthPickerInput() {
                             )?.label
                         } ${monthData.year}`}
                     </span>
+                    <BsChevronDown className="ml-2 h-4" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-64">

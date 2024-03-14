@@ -1,6 +1,7 @@
 import { CardBalanco } from '@/features/card-balanco/ui';
 import { CardContas } from '@/features/card-contas/ui';
 import { CardSaldo } from '@/features/card-saldo/ui';
+import { MonthPicker } from '@/features/month-picker/ui';
 import { SideBar } from '@/features/side-bar/ui';
 import { OuterProvider, OuterTrigger } from '@/features/side-bar/ui/NavBar';
 import { loginIsRequiredServer } from '@/shared/lib/auth';
@@ -15,7 +16,7 @@ export default async function Dashboard() {
             <OuterProvider>
                 <SideBar />
                 <div className="w-full">
-                    <div className="border-b border-gray-200 px-7 py-2 text-primary md:hidden">
+                    <div className="flex flex-row justify-between border-b border-gray-200 px-7 py-2 text-primary md:hidden">
                         <OuterTrigger className="flex items-center gap-4 hover:cursor-pointer">
                             <FaBars className="text-lg" />
                             <span className="text-lg font-semibold">
@@ -27,9 +28,10 @@ export default async function Dashboard() {
                         className="
                         grid grid-cols-12 gap-4 p-6 pt-4 lg:grid-cols-10 xl:grid-cols-12"
                     >
+                        <MonthPicker className="col-span-12 lg:col-span-10 xl:col-start-2" />
                         <CardSaldo
                             className="
-                            col-span-12 lg:col-span-4 lg:row-start-1 xl:col-start-2"
+                            col-span-12 lg:col-span-4 lg:row-start-2 xl:col-start-2"
                         />
                         <CardBalanco
                             className="
@@ -37,7 +39,7 @@ export default async function Dashboard() {
                         />
                         <CardContas
                             className="
-                            col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-1"
+                            col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2"
                         />
                     </div>
                 </div>

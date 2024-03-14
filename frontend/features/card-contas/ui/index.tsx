@@ -11,7 +11,10 @@ export function CardContas({ className }: CardContasProps) {
                 <h1>Contas</h1>
             </CardHeader>
             <CardContent>
-                <p>Contas</p>
+                <p>Banco do brasil</p>
+                <p>Itaú</p>
+                <p>Nubank</p>
+                <p>Caixa</p>
             </CardContent>
         </Card>
     );

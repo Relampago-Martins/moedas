@@ -1,6 +1,7 @@
 .root{
     background-color: var(--primary-foreground) !important;
     border-color: var(--input) !important;
+    z-index: 10 !important;
 
     .ps-sidebar-container {
         background-color: var(--primary-foreground) !important;
