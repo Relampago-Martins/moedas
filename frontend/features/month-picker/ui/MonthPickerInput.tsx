@@ -46,7 +46,7 @@ export function MonthPickerInput() {
                     <BsChevronDown className="ml-2 h-4" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-64">
+            <PopoverContent className="mx-4 w-64">
                 <MonthCalendar>
                     <CalendarHeader
                         year={monthDataSelecting.year}

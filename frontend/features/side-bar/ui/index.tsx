@@ -1,8 +1,7 @@
 'client side';
 import { Separator } from '@/shared/ui/separator';
-import { BsFlagFill, BsGrid1X2Fill } from 'react-icons/bs';
+import { BsFlagFill, BsGrid1X2Fill, BsSafe2Fill } from 'react-icons/bs';
 import { FaArrowRightArrowLeft, FaBars, FaGear, FaPlus } from 'react-icons/fa6';
-import { GiCash } from 'react-icons/gi';
 import {
     NavBar,
     NavBarContent,
@@ -37,7 +36,7 @@ export function SideBar() {
                 <NavBarItem icon={<BsFlagFill className="text-sm" />}>
                     Progresso
                 </NavBarItem>
-                <NavBarItem icon={<GiCash className="text-lg" />}>
+                <NavBarItem icon={<BsSafe2Fill className="text-lg" />}>
                     Patrimônio
                 </NavBarItem>
                 <NavBarItem

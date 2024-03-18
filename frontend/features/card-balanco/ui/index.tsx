@@ -20,7 +20,7 @@ export function CardBalanco({ className }: CardBalancoProps) {
             >
                 <FaChartSimple className="text-lg" />
                 <span className="text-base">Balanço Mensal</span>
-                <BsChevronRight className="mt-0 self-center text-sm" />
+                <BsChevronRight className="text-sm" />
             </CardHeader>
             <CardContent className="flex flex-row justify-center gap-4 pb-0">
                 <GraficoBalanco />

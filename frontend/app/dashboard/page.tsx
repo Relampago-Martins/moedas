@@ -1,5 +1,5 @@
 import { CardBalanco } from '@/features/card-balanco/ui';
-import { CardContas } from '@/features/card-contas/ui';
+import { CardGastos } from '@/features/card-gastos/ui';
 import { CardSaldo } from '@/features/card-saldo/ui';
 import { MonthPicker } from '@/features/month-picker/ui';
 import { SideBar } from '@/features/side-bar/ui';
@@ -37,7 +37,7 @@ export default async function Dashboard() {
                             className="
                             col-span-12 lg:col-span-4 xl:col-start-2"
                         />
-                        <CardContas
+                        <CardGastos
                             className="
                             col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2"
                         />
