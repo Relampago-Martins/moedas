@@ -1,4 +1,4 @@
-type Categoria = 'Eletrônicos' | 'Alimentação' | 'Serviços';
+export type Categoria = 'Eletrônicos' | 'Alimentação' | 'Serviços';
 
 type Gasto = {
     name: string;
@@ -18,7 +18,7 @@ export const gastos: Gasto[] = [
 ]
 
 
-export const map_catergotia_cor:MapCategoriaCor = {
+export const map_catergotia_cor: MapCategoriaCor = {
     'Eletrônicos': '#8884d8',
     'Alimentação': '#82ca9d',
     'Serviços': '#ffc658',
