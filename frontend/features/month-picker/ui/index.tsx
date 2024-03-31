@@ -3,7 +3,7 @@ import { getUser } from '@/shared/lib/fetchAPI';
 import { MySession } from '@/types/auth';
 import { getServerSession } from 'next-auth';
 import { MonthPickerInput } from './MonthPickerInput';
-import { Saudacao } from './saudacao';
+import { Saudacao } from './Saudacao';
 
 type PropsMonthPicker = {
     className?: string;
