@@ -2,8 +2,8 @@ import { authConfig } from '@/shared/lib/auth';
 import { getUser } from '@/shared/lib/fetchAPI';
 import { MySession } from '@/types/auth';
 import { getServerSession } from 'next-auth';
-import { getBoasVindas } from '../lib/greets';
 import { MonthPickerInput } from './MonthPickerInput';
+import { Saudacao } from './saudacao';
 
 type PropsMonthPicker = {
     className?: string;
@@ -17,9 +17,7 @@ export async function MonthPicker(props: PropsMonthPicker) {
         <div
             className={`flex items-center justify-between gap-4 ${props.className}`}
         >
-            <div className="text-xl font-medium opacity-90 ">
-                {getBoasVindas()}, {user.data.first_name || user.data.username}
-            </div>
+            <Saudacao user={user.data} />
             <MonthPickerInput />
         </div>
     );
