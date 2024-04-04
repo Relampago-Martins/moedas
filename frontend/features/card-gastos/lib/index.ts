@@ -70,7 +70,7 @@ export const categorias: Categoria[] = [
 * @param isActive
 */
 export function calcColor(cor: Categoria['cor'], isActive: boolean) {
-    if (isActive) { return cor + 70 }
+    if (isActive) { return cor + 40 }
     return cor;
 }
 

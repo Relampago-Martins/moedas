@@ -17,22 +17,25 @@ export const renderActiveShape = (props: any) => {
 
     return (
         <g>
-            {/* <text
+            <text
                 className="porcentagem"
                 x={cx}
                 y={cy}
-                dy={8}
+                dy={6}
+                dx={2}
                 textAnchor="middle"
                 fill={fill}
             >
                 {`${(percent * 100).toFixed(2)}%`}
-            </text> */}
+            </text>
             <Sector
                 cx={cx}
                 cy={cy}
                 outerRadius={outerRadius + 4}
                 startAngle={startAngle}
                 endAngle={endAngle}
+                // make it a dunut chart
+                innerRadius={innerRadius + 4}
                 fill={fill}
                 onMouseOver={(event) => {
                     event.currentTarget.style.cursor = 'pointer';
