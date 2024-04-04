@@ -2,14 +2,8 @@
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { ScrollArea } from '@/shared/ui/scroll-area';
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-} from '@/shared/ui/select';
 import { useContext, useMemo } from 'react';
+import { MagicMotion } from 'react-magic-motion';
 import { Categoria, Gasto } from '../lib';
 import { GastosContext } from '../lib/context';
 
@@ -19,8 +13,7 @@ type GastosListaProps = {
 };
 
 export function GastosLista({ gastos, categorias }: GastosListaProps) {
-    const { categoriaSelecionada, setCategoriaSelecionada } =
-        useContext(GastosContext);
+    const { categoriaSelecionada } = useContext(GastosContext);
     const gastosOrdendos = useMemo(() => {
         return gastos
             .sort((a, b) => b.valor - a.valor)
@@ -34,52 +27,24 @@ export function GastosLista({ gastos, categorias }: GastosListaProps) {
 
     return (
         <div className="flex w-52 flex-col gap-4">
-            <Select
-                value={categoriaSelecionada}
-                onValueChange={setCategoriaSelecionada}
-            >
-                <SelectTrigger>
-                    <div className="flex justify-between p-2">
-                        <div>
-                            {
-                                categorias.find(
-                                    (categoria) =>
-                                        categoria.nome === categoriaSelecionada,
-                                )?.icone
-                            }
-                        </div>
-                        <div>{categoriaSelecionada}</div>
-                    </div>
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        <SelectItem value="todos">Todas categorias</SelectItem>
-                        {categorias.map((categoria) => (
-                            <SelectItem
-                                key={categoria.nome}
-                                value={categoria.nome}
-                            >
-                                {categoria.label}
-                            </SelectItem>
-                        ))}
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
             <ScrollArea className="h-40 pr-3">
-                <div className="flex flex-col gap-3">
-                    {gastosOrdendos
-                        .filter(
-                            (gasto) =>
-                                categoriaSelecionada === 'todos' ||
-                                gasto.categoria?.nome === categoriaSelecionada,
-                        )
-                        .map((gasto) => (
-                            <ItemGasto
-                                key={`${gasto.categoria}-${gasto.nome}`}
-                                gasto={gasto}
-                            />
-                        ))}
-                </div>
+                <MagicMotion>
+                    <div className="flex flex-col gap-3">
+                        {gastosOrdendos
+                            .filter(
+                                (gasto) =>
+                                    categoriaSelecionada === 'todos' ||
+                                    gasto.categoria?.nome ===
+                                        categoriaSelecionada,
+                            )
+                            .map((gasto) => (
+                                <ItemGasto
+                                    key={`${gasto.categoria?.nome}-${gasto.nome}`}
+                                    gasto={gasto}
+                                />
+                            ))}
+                    </div>
+                </MagicMotion>
             </ScrollArea>
         </div>
     );

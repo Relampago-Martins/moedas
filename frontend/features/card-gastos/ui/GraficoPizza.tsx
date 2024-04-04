@@ -15,9 +15,14 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
         useContext(GastosContext);
     const [activeIndex, setActiveIndex] = useState(-1);
     const onPieEnter = useCallback(
-        (_: any, index: number) => {
-            setActiveIndex(index);
-            setCategoriaSelecionada(data[index].categoria.nome);
+        (newIndex: number, oldIndex: number) => {
+            if (oldIndex === newIndex) {
+                setActiveIndex(-1);
+                setCategoriaSelecionada('todos');
+                return;
+            }
+            setActiveIndex(newIndex);
+            setCategoriaSelecionada(data[newIndex].categoria.nome);
         },
         [setActiveIndex],
     );
@@ -38,14 +43,18 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                 dataKey="valor"
                 activeIndex={activeIndex}
                 activeShape={renderActiveShape}
+                shapeRendering={'geometricPrecision'}
                 startAngle={90}
                 endAngle={-270}
                 isAnimationActive={true}
-                onFocus={onPieEnter}
+                onFocus={(_, index) => onPieEnter(index, activeIndex)}
             >
                 {data.map((entry, index) => (
                     <Cell
                         key={`cell-${index}`}
+                        onMouseOver={(event) => {
+                            event.currentTarget.style.cursor = 'pointer';
+                        }}
                         fill={calcColor(
                             entry.categoria.cor,
                             activeIndex >= 0 && activeIndex !== index,

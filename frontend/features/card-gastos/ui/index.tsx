@@ -4,6 +4,7 @@ import { categorias, gastos, getGastosPorCategoria } from '../lib';
 import { GastosConteudo } from './GastosConteudo';
 import { GastosLista } from './GastosLista';
 import { GraficoPizza } from './GraficoPizza';
+import { SelectCategoria } from './SelectCategoria';
 
 type CardGastosProps = {
     className?: string;
@@ -19,8 +20,9 @@ export function CardGastos({ className }: CardGastosProps) {
                 <span className="text-base font-semibold">Gastos do mês</span>
                 <BsChevronRight className="mt-0 self-center text-sm" />
             </CardHeader>
-            <CardContent className="flex flex-row flex-wrap justify-center">
+            <CardContent className="flex flex-row flex-wrap justify-center gap-4">
                 <GastosConteudo>
+                    <SelectCategoria categorias={categorias} />
                     <GraficoPizza data={gastosPorCategoria} />
                     <GastosLista gastos={gastos} categorias={categorias} />
                 </GastosConteudo>

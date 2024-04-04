@@ -34,6 +34,9 @@ export const renderActiveShape = (props: any) => {
                 startAngle={startAngle}
                 endAngle={endAngle}
                 fill={fill}
+                onMouseOver={(event) => {
+                    event.currentTarget.style.cursor = 'pointer';
+                }}
             />
         </g>
     );
