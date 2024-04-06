@@ -44,7 +44,6 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                 activeIndex={activeIndex}
                 activeShape={renderActiveShape}
                 shapeRendering={'geometricPrecision'}
-                // make it a donut chart
                 innerRadius={35}
                 outerRadius={80}
                 startAngle={90}

@@ -31,11 +31,11 @@ export const renderActiveShape = (props: any) => {
             <Sector
                 cx={cx}
                 cy={cy}
-                outerRadius={outerRadius + 4}
-                startAngle={startAngle}
-                endAngle={endAngle}
+                outerRadius={outerRadius + 5}
+                startAngle={startAngle - 2}
+                endAngle={endAngle + 2}
                 // make it a dunut chart
-                innerRadius={innerRadius + 4}
+                innerRadius={innerRadius + 5}
                 fill={fill}
                 onMouseOver={(event) => {
                     event.currentTarget.style.cursor = 'pointer';

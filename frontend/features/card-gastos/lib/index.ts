@@ -27,13 +27,13 @@ export const categorias: Categoria[] = [
     {
         nome: 'eletronicos',
         cor: '#8884d8',
-        icone: '📱',
+        icone: 'computer',
         label: 'Eletrônicos',
     },
     {
         nome: 'alimentacao',
         cor: '#82ca9d',
-        icone: '🍔',
+        icone: 'pizza',
         label: 'Alimentação',
     },
     {
@@ -88,3 +88,4 @@ export function getGastosPorCategoria(gastos: Gasto[], categorias: Categoria[]) 
         return { categoria, valor: somaValorGatos};
     });
 }
+

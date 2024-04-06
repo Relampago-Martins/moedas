@@ -20,11 +20,16 @@ export function CardGastos({ className }: CardGastosProps) {
                 <span className="text-base font-semibold">Gastos do mês</span>
                 <BsChevronRight className="mt-0 self-center text-sm" />
             </CardHeader>
-            <CardContent className="flex flex-row flex-wrap justify-center gap-4">
+            <CardContent className="flex flex-wrap justify-center">
                 <GastosConteudo>
-                    <SelectCategoria categorias={categorias} />
                     <GraficoPizza data={gastosPorCategoria} />
-                    <GastosLista gastos={gastos} categorias={categorias} />
+                    <div className="flex flex-col gap-4">
+                        <SelectCategoria
+                            categorias={categorias}
+                            gastosPorCategoria={gastosPorCategoria}
+                        />
+                        <GastosLista gastos={gastos} categorias={categorias} />
+                    </div>
                 </GastosConteudo>
             </CardContent>
         </Card>
