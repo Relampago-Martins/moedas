@@ -6,7 +6,6 @@ import {
     SelectItem,
 } from '@/shared/ui/select';
 
-import { numberToCurrency } from '@/shared/lib/utils';
 import { Icon, SelectTrigger } from '@radix-ui/react-select';
 import { ChevronDown } from 'lucide-react';
 import { useContext } from 'react';
@@ -36,15 +35,14 @@ export function SelectCategoria({
             value={categoriaSelecionada}
             onValueChange={setCategoriaSelecionada}
         >
-            <SelectTrigger>
+            <SelectTrigger className="flex select-none items-center justify-between">
                 <TriggerContent
                     categoria={gastoCategoriaSelecionada?.categoria}
-                    valorTotal={gastoCategoriaSelecionada?.valor || 0}
                 />
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
-                    <SelectItem value="todos">Todas categorias</SelectItem>
+                    <SelectItem value="todos">---</SelectItem>
                     {categorias.map((categoria) => (
                         <SelectItem key={categoria.nome} value={categoria.nome}>
                             {categoria.label}
@@ -58,19 +56,27 @@ export function SelectCategoria({
 
 type ItemGastoProps = {
     categoria: Categoria | undefined;
-    valorTotal: number;
 };
-function TriggerContent({ categoria, valorTotal }: ItemGastoProps) {
+function TriggerContent({ categoria }: ItemGastoProps) {
+    const iconeGasto = IconeGasto(categoria?.icone);
+
     return (
-        <div className="flex items-center justify-start gap-2">
-            <div style={{ color: categoria ? categoria.cor : 'inherit' }}>
-                {IconeGasto(categoria?.icone || '')}
+        <>
+            <div className="flex items-center gap-2">
+                {iconeGasto ? (
+                    <div
+                        style={{ color: categoria ? categoria.cor : 'inherit' }}
+                    >
+                        {iconeGasto}
+                    </div>
+                ) : null}
+                <span className="font-medium">
+                    {categoria ? categoria.label : 'Total'}
+                </span>
             </div>
-            <span>{categoria ? categoria.label : 'Todas categorias'}</span>
-            {numberToCurrency(valorTotal)}
             <Icon asChild>
-                <ChevronDown className="h-4 w-4 opacity-50" />
+                <ChevronDown className="h-4 w-4" />
             </Icon>
-        </div>
+        </>
     );
 }

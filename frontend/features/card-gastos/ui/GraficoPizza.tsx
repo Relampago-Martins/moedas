@@ -3,7 +3,7 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';
 import { Categoria, calcColor } from '../lib/index';
-import { renderActiveShape } from './GraphShape';
+import { FatiaAtiva, FatiaInativa } from './GraphFatia';
 
 export type GraficoPizzaProps = {
     data: { categoria: Categoria; valor: number }[];
@@ -42,9 +42,10 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                 data={data}
                 dataKey="valor"
                 activeIndex={activeIndex}
-                activeShape={renderActiveShape}
+                activeShape={FatiaAtiva}
+                inactiveShape={FatiaInativa}
                 shapeRendering={'geometricPrecision'}
-                innerRadius={35}
+                innerRadius={50}
                 outerRadius={80}
                 startAngle={90}
                 endAngle={-270}

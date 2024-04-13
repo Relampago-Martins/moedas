@@ -1,22 +1,22 @@
 'use client';
 import { ReactNode, useState } from 'react';
 import { Categoria } from '../lib';
-import { GastosContext } from '../lib/context';
+import { GastosContext as Context } from '../lib/context';
 
 type GastosConteudoProps = {
     children?: ReactNode;
 };
 
-export function GastosConteudo({ children }: GastosConteudoProps) {
+export function GastosContext({ children }: GastosConteudoProps) {
     const [categoriaSelecionada, setCategoriaSelecionada] = useState<
         Categoria['nome'] | 'todos'
     >('todos');
 
     return (
-        <GastosContext.Provider
+        <Context.Provider
             value={{ categoriaSelecionada, setCategoriaSelecionada }}
         >
             {children}
-        </GastosContext.Provider>
+        </Context.Provider>
     );
 }

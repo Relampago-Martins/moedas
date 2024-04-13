@@ -21,7 +21,7 @@ export function SideBar() {
                     className="select-none text-lg font-bold text-primary opacity-90"
                     icon={<div className="rounded-lg bg-input px-2">M</div>}
                 >
-                    <span className="w-full">Moedas</span>
+                    <span className={`w-full`}>Moedas</span>
                     <FaBars className="hidden text-lg md:block" />
                 </NavBarTrigger>
             </NavBarHeader>

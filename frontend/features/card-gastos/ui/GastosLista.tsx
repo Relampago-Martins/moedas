@@ -1,6 +1,5 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
-import { Button } from '@/shared/ui/button';
 import { ScrollArea } from '@/shared/ui/scroll-area';
 import { useContext, useMemo } from 'react';
 import { MagicMotion } from 'react-magic-motion';
@@ -26,10 +25,10 @@ export function GastosLista({ gastos, categorias }: GastosListaProps) {
     }, [gastos, categorias]);
 
     return (
-        <div className="flex w-52 flex-col gap-4">
+        <div className=" flex-col gap-4">
             <ScrollArea className="h-60 pr-3">
                 <MagicMotion>
-                    <div className="flex flex-col gap-3">
+                    <div className="flex w-52 flex-col gap-3">
                         {gastosOrdendos
                             .filter(
                                 (gasto) =>
@@ -60,9 +59,8 @@ type ItemGastoProps = {
 
 function ItemGasto({ gasto }: ItemGastoProps) {
     return (
-        <Button
-            variant={'ghost'}
-            className="flex flex-col items-start rounded-sm border-l-4 px-4 py-6"
+        <button
+            className="flex w-full flex-col items-start rounded-sm border-l-4 px-4 py-2"
             style={{ borderColor: gasto.categoria?.cor }}
             onMouseOver={(event) => {
                 event.currentTarget.style.backgroundColor = gasto.categoria
@@ -73,10 +71,12 @@ function ItemGasto({ gasto }: ItemGastoProps) {
                 event.currentTarget.style.backgroundColor = 'transparent';
             }}
         >
-            <div className="text-base font-medium">{gasto.nome}</div>
+            <div className="w-full truncate text-start text-base">
+                {gasto.nome}
+            </div>
             <div className="text-sm opacity-70">
                 {numberToCurrency(gasto.valor)}
             </div>
-        </Button>
+        </button>
     );
 }

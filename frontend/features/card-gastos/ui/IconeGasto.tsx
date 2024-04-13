@@ -1,4 +1,11 @@
-import { Computer, Pizza } from 'lucide-react';
+import {
+    BookOpen,
+    Car,
+    Computer,
+    Pizza,
+    StickyNote,
+    Ticket,
+} from 'lucide-react';
 
 /**
  * Recebe uma string com o nome de um icone e
@@ -7,13 +14,21 @@ import { Computer, Pizza } from 'lucide-react';
  * @param icone
  * @returns JSX.Element
  */
-export function IconeGasto(iconeName: string) {
+export function IconeGasto(iconeName: string | undefined) {
     switch (iconeName) {
         case 'computer':
             return <Computer />;
         case 'pizza':
             return <Pizza />;
+        case 'car':
+            return <Car />;
+        case 'service':
+            return <Ticket />;
+        case 'education':
+            return <BookOpen />;
+        case 'other':
+            return <StickyNote />;
         default:
-            return <div />;
+            return;
     }
 }

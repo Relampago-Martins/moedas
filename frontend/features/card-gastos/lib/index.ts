@@ -13,7 +13,7 @@ export type Gasto = {
 
 export const gastos: Gasto[] = [
     {nome: 'Iphone 11', valor: 250.2, categoria: 'eletronicos'},
-    {nome: 'Hamburguer do Sula', valor: 35.11, categoria: 'alimentacao'},
+    {nome: 'Hamburguer do Sulawdwdhih', valor: 35.11, categoria: 'alimentacao'},
     {nome: 'Café do Starbucks', valor: 25.99, categoria: 'alimentacao'},
     {nome: 'Spotify', valor: 19.99 , categoria: 'servicos'},
     {nome: 'Uber', valor: 20.00, categoria: 'transporte'},
@@ -39,25 +39,25 @@ export const categorias: Categoria[] = [
     {
         nome: 'servicos',
         cor: '#ffc658',
-        icone: '💻',
+        icone: 'service',
         label: 'Serviços',
     },
     {
         nome: 'transporte',
         cor: '#ff7f0e',
-        icone: '🚗',
+        icone: 'car',
         label: 'Transporte',
     },
     {
         nome: 'educacao',
         cor: '#60a5fa',
-        icone: '📚',
+        icone: 'education',
         label: 'Educação',
     },
     {
         nome: 'outros',
         cor: '#cbd5e1',
-        icone: '🤷',
+        icone: 'other',
         label: 'Outros',
     },
 ];
