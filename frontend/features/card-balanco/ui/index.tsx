@@ -2,7 +2,7 @@ import { CardTransacao } from '@/features/card-balanco/ui/CardTransacao';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import { Separator } from '@/shared/ui/separator';
-import { BsChevronRight, BsGraphDown, BsGraphUp } from 'react-icons/bs';
+import { BsChevronRight } from 'react-icons/bs';
 import { FaChartSimple } from 'react-icons/fa6';
 import { balancoMes } from '../lib/data';
 import { FooterContent } from './FooterContent';
@@ -27,14 +27,12 @@ export function CardBalanco({ className }: CardBalancoProps) {
                 <div className="flex flex-col gap-1">
                     <CardTransacao className="gap-3 text-green-600">
                         <div className="flex flex-row items-center gap-2">
-                            <BsGraphUp />
                             Receitas
                         </div>
                         <div>{numberToCurrency(balancoMes.Receitas)}</div>
                     </CardTransacao>
                     <CardTransacao className="gap-3 text-rose-600">
                         <div className="flex flex-row items-center gap-2">
-                            <BsGraphDown />
                             Gastos
                         </div>
                         <div>{numberToCurrency(balancoMes.Gastos)}</div>

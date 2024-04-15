@@ -29,9 +29,6 @@ export function FooterContent() {
                             {`Parabéns! Você economizou 
                             ${numberToCurrency(totalEconomizado)} este mês.`}
                         </span>
-                        {/* <span className="w-fit self-center text-gray-500">
-                            1 dia restante
-                        </span> */}
                     </div>
                 </div>
             </CollapsibleContent>

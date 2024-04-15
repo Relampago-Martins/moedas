@@ -26,7 +26,7 @@ export function GastosLista({ gastos, categorias }: GastosListaProps) {
 
     return (
         <div className=" flex-col gap-4">
-            <ScrollArea className="h-60 pr-3">
+            <ScrollArea className="h-44 pr-3">
                 <MagicMotion>
                     <div className="flex w-52 flex-col gap-3">
                         {gastosOrdendos

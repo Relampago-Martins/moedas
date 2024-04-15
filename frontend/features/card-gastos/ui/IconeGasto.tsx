@@ -2,11 +2,15 @@ import {
     BookOpen,
     Car,
     Computer,
+    LucideProps,
     Pizza,
     StickyNote,
     Ticket,
 } from 'lucide-react';
 
+type IconeGastoProps = {
+    iconeName: string | undefined;
+} & LucideProps;
 /**
  * Recebe uma string com o nome de um icone e
  * retorna o icone correspondente.
@@ -14,21 +18,27 @@ import {
  * @param icone
  * @returns JSX.Element
  */
-export function IconeGasto(iconeName: string | undefined) {
+export function IconeGasto({ iconeName, ...props }: IconeGastoProps) {
+    let Icone;
     switch (iconeName) {
         case 'computer':
-            return <Computer />;
+            Icone = Computer;
+            break;
         case 'pizza':
-            return <Pizza />;
+            Icone = Pizza;
+            break;
         case 'car':
-            return <Car />;
+            Icone = Car;
+            break;
         case 'service':
-            return <Ticket />;
+            Icone = Ticket;
+            break;
         case 'education':
-            return <BookOpen />;
+            Icone = BookOpen;
+            break;
         case 'other':
-            return <StickyNote />;
-        default:
-            return;
+            Icone = StickyNote;
+            break;
     }
+    return Icone ? <Icone {...props} /> : null;
 }

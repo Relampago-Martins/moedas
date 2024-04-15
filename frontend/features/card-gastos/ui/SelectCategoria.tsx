@@ -11,7 +11,6 @@ import { ChevronDown } from 'lucide-react';
 import { useContext } from 'react';
 import { Categoria } from '../lib';
 import { GastosContext } from '../lib/context';
-import { IconeGasto } from './IconeGasto';
 
 type SelectCategoriaProps = {
     categorias: Categoria[];
@@ -30,6 +29,11 @@ export function SelectCategoria({
     const gastoCategoriaSelecionada = gastosPorCategoria.find(
         (gasto) => gasto.categoria.nome === categoriaSelecionada,
     );
+    const totalGastos = gastosPorCategoria.reduce(
+        (acc, gasto) => acc + gasto.valor,
+        0,
+    );
+    console.log('totalGastos', totalGastos, gastoCategoriaSelecionada);
     return (
         <Select
             value={categoriaSelecionada}
@@ -38,6 +42,10 @@ export function SelectCategoria({
             <SelectTrigger className="flex select-none items-center justify-between">
                 <TriggerContent
                     categoria={gastoCategoriaSelecionada?.categoria}
+                    porcentagem={
+                        (gastoCategoriaSelecionada?.valor || totalGastos) /
+                        totalGastos
+                    }
                 />
             </SelectTrigger>
             <SelectContent>
@@ -56,23 +64,17 @@ export function SelectCategoria({
 
 type ItemGastoProps = {
     categoria: Categoria | undefined;
+    porcentagem: number;
 };
-function TriggerContent({ categoria }: ItemGastoProps) {
-    const iconeGasto = IconeGasto(categoria?.icone);
-
+function TriggerContent({ categoria, porcentagem }: ItemGastoProps) {
     return (
         <>
             <div className="flex items-center gap-2">
-                {iconeGasto ? (
-                    <div
-                        style={{ color: categoria ? categoria.cor : 'inherit' }}
-                    >
-                        {iconeGasto}
-                    </div>
-                ) : null}
                 <span className="font-medium">
                     {categoria ? categoria.label : 'Total'}
                 </span>
+                <span className="text-xs">•</span>
+                <span>{`${(porcentagem * 100).toFixed(0)}%`}</span>
             </div>
             <Icon asChild>
                 <ChevronDown className="h-4 w-4" />
