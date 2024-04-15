@@ -1,47 +1,53 @@
-import TesteLogin from "@/components/auth/TesteLogin";
-import { CardCarteira } from "@/components/dashboard/CardCarteira";
-import { TabelaTransacoes } from "@/components/dashboard/TabelaTransacoes";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { UserBox } from "@/components/user-box";
-import { loginIsRequiredServer } from "@/lib/auth";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { CardBalanco } from '@/features/card-balanco/ui';
+import { CardGastos } from '@/features/card-gastos/ui';
+import { CardSaldo } from '@/features/card-saldo/ui';
+import { MonthPicker } from '@/features/month-picker/ui';
+import { SideBar } from '@/features/side-bar/ui';
+import { OuterProvider, OuterTrigger } from '@/features/side-bar/ui/NavBar';
+import { loginIsRequiredServer } from '@/shared/lib/auth';
+import { FaBars } from 'react-icons/fa6';
+import './ui.scss';
 
 export default async function Dashboard() {
-    await loginIsRequiredServer()
+    await loginIsRequiredServer();
 
     return (
-        <main className="min-h-screen flex flex-col">
-            <div className="flex px-6 py-3 items-center justify-between border-b">
-                <div className="flex items-center gap-3">
-                    <div className="text-xl text-violet-400">
-                        Moedas
+        <main className="flex h-full min-h-screen w-full flex-row bg-background">
+            <OuterProvider>
+                <SideBar />
+                <div className="w-full">
+                    <div className="flex flex-row justify-between border-b border-gray-200 px-7 py-2 text-primary md:hidden">
+                        <OuterTrigger className="flex items-center gap-4 hover:cursor-pointer">
+                            <FaBars className="text-lg" />
+                            <span className="text-lg font-semibold">
+                                Moedas
+                            </span>
+                        </OuterTrigger>
                     </div>
-                    <Separator orientation="vertical" className="h-6 bg-muted-foreground"/>
-                    <span className="text-sm text-muted-foreground">
-                        Conheça o seu dinheiro
-                    </span>
+                    <div
+                        className="
+                        grid grid-cols-12 gap-4 p-6 pt-4 lg:grid-cols-10 xl:grid-cols-12"
+                    >
+                        <MonthPicker className="col-span-12 lg:col-span-10 xl:col-start-2" />
+                        <CardSaldo
+                            className="
+                            col-span-12 lg:col-span-4 lg:row-start-2 xl:col-start-2"
+                        />
+                        <CardBalanco
+                            className="
+                            col-span-12 lg:col-span-4 xl:col-start-2"
+                        />
+                        <CardGastos
+                            className="
+                            col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2"
+                        />
+                    </div>
                 </div>
-                <div className="flex items-center gap-3">
-                    <Button asChild variant="outline"  size="icon">
-                        <a target="_blank" href="https://github.com/Relampago-Martins">
-                            <GitHubLogoIcon className="h-4 w-4" />
-                        </a>
-                    </Button>
-                    <UserBox/>       
-                </div>
-            </div>
-            <div className="flex-1 p-6 bg-primary">
-                <div className="flex flex-wrap flex-row gap-6">
-                    <CardCarteira/>
-                    <TabelaTransacoes/>
-                    <TesteLogin/>
-                </div>
-            </div>
+            </OuterProvider>
         </main>
-    )
+    );
 }
 
 export const metadata = {
     title: 'Moedas Dashboard',
-}
+};

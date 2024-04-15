@@ -1,0 +1,45 @@
+/* */
+.cardTransicao{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .25rem .5rem;
+    border-radius: var(--radius);
+
+    opacity: .9;
+}
+
+/* Para fazer o collapse ter uma animação suave */
+.CollapsibleMotion{
+    overflow: hidden;
+}
+.CollapsibleMotion[data-state='open'] {
+    animation: slideDown 300ms ease-out;
+}
+.CollapsibleMotion[data-state='closed'] {
+    animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-collapsible-content-height);
+    }
+}
+  
+@keyframes slideUp {
+    from {
+        height: var(--radix-collapsible-content-height);
+    }
+    to {
+        height: 0;
+    }
+}
+
+/* Para tirar o outline do gráfico */
+.recharts-layer path {
+    outline: none !important;
+}

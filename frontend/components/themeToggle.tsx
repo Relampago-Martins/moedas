@@ -1,7 +1,7 @@
 'use client';
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Switch } from "./ui/switch";
+import { Switch } from "../shared/ui/switch";
 
 
 export default function ThemeToggle() {
