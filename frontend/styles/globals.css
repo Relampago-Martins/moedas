@@ -6,7 +6,7 @@
 @layer base {
   :root {
     --background: #f1f5f9;
-    --foreground: #18181b;
+    --foreground: #0f172a;
     
     --primary: #7c3aed;
     --primary-foreground: #fafafa;
@@ -15,10 +15,10 @@
     --secondary-foreground: #AC85F0;
 
     --card: #ffffff;
-    --card-foreground: #18181b;
+    --card-foreground: #0f172a;
     
     --popover: #ffffff;
-    --popover-foreground: #18181b;
+    --popover-foreground: #0f172a;
     
     --muted:#e5e7eb;
     --muted-foreground:#6b7280;

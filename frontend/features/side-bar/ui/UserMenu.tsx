@@ -24,6 +24,12 @@ export async function UserMenu(){
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem>
+                    Editar perfil
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                    Notificações
+                </DropdownMenuItem>
+                <DropdownMenuItem>
                     <LogoutBtn/>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="justify-center">

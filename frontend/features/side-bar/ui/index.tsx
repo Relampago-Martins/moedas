@@ -1,38 +1,57 @@
 'client side';
-import { Separator } from "@/shared/ui/separator";
-import { BsFlagFill, BsGrid1X2Fill } from "react-icons/bs";
-import { FaPlus } from "react-icons/fa6";
-import { GiCash } from "react-icons/gi";
-import { NavBar, NavBarContent, NavBarFooter, NavBarHeader, NavBarItem, NavBarTrigger } from "./NavBar";
-import { UserMenu } from "./UserMenu";
+import { Separator } from '@/shared/ui/separator';
+import { BsFlagFill, BsGrid1X2Fill, BsSafe2Fill } from 'react-icons/bs';
+import { FaArrowRightArrowLeft, FaBars, FaGear, FaPlus } from 'react-icons/fa6';
+import {
+    NavBar,
+    NavBarContent,
+    NavBarFooter,
+    NavBarHeader,
+    NavBarItem,
+    NavBarTrigger,
+} from './NavBar';
+import { Notification } from './Notification';
+import { UserMenu } from './UserMenu';
 
-export function SideBar(){
+export function SideBar() {
     return (
         <NavBar transitionDuration={600}>
             <NavBarHeader>
-                <NavBarTrigger className="text-lg font-semibold"
-                    icon={<div>M</div>}>
-                    Moedas
+                <NavBarTrigger
+                    className="select-none text-lg font-bold text-primary opacity-90"
+                    icon={<div className="rounded-lg bg-input px-2">M</div>}
+                >
+                    <span className={`w-full`}>Moedas</span>
+                    <FaBars className="hidden text-lg md:block" />
                 </NavBarTrigger>
             </NavBarHeader>
-            <Separator className="w-[80%] self-center"/>
+            <Separator className="w-[85%] self-center" />
             <NavBarContent>
-                <NavBarItem icon={ <FaPlus className="h-4 w-4"/> }>
-                    Add transferência
+                <NavBarItem icon={<FaPlus className="text-sm" />}>
+                    Novo
                 </NavBarItem>
-                <NavBarItem icon={ <BsGrid1X2Fill className="h-4 w-4"/> }>
+                <NavBarItem active icon={<BsGrid1X2Fill className="text-sm" />}>
                     Início
                 </NavBarItem>
-                <NavBarItem icon={ <BsFlagFill className="h-4 w-4"/> }>
+                <NavBarItem icon={<BsFlagFill className="text-sm" />}>
                     Progresso
                 </NavBarItem>
-                <NavBarItem icon={ <GiCash className="h-5 w-5"/> }>
+                <NavBarItem icon={<BsSafe2Fill className="text-lg" />}>
                     Patrimônio
+                </NavBarItem>
+                <NavBarItem
+                    icon={<FaArrowRightArrowLeft className="text-sm" />}
+                    suffix={<Notification>6</Notification>}
+                >
+                    Transferências
+                </NavBarItem>
+                <NavBarItem icon={<FaGear className="text-sm" />}>
+                    Configurações
                 </NavBarItem>
             </NavBarContent>
             <NavBarFooter>
-                <UserMenu/>
+                <UserMenu />
             </NavBarFooter>
         </NavBar>
-    )
+    );
 }

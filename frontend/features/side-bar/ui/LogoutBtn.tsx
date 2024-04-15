@@ -8,7 +8,7 @@ export default function LogoutBtn() {
     }
 
     return (
-        <button className="flex justify-center w-full"
+        <button className="flex w-full"
             onClick={onClick}>
             Sair
         </button>

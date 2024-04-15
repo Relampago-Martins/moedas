@@ -1,23 +1,22 @@
-import { BsBarChartFill, BsChevronRight } from "react-icons/bs";
-import { mascaraDinheiro } from "../lib/saldo";
+import { numberToCurrency } from '@/shared/lib/utils';
+import { BsChevronRight, BsWallet2 } from 'react-icons/bs';
 import './ui.scss';
 
 type SaldoProps = {
     valor: number;
-}
+};
 
 export function Saldo(props: SaldoProps) {
-
     return (
         <div className="saldo">
             <div className="text-2xl font-semibold text-secondary-foreground">
-                {mascaraDinheiro(props.valor)}
+                {numberToCurrency(props.valor)}
             </div>
-            <div className="flex align-center text-sm opacity-65 gap-1">
-                <BsBarChartFill className="h-3 self-center"/>
+            <div className="align-center flex gap-1 text-sm opacity-65">
+                <BsWallet2 className="h-3 self-center" />
                 Saldo atual
-                <BsChevronRight className="h-3 self-center"/>
+                <BsChevronRight className="h-3 self-center" />
             </div>
         </div>
-    )
+    );
 }
