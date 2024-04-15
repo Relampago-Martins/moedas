@@ -40,7 +40,7 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
     }, [categoriaSelecionada]);
     return (
         <div className="relative h-fit">
-            <PieChart width={250} height={250} className="z-10 -mx-3">
+            <PieChart width={250} height={250} className="z-[1] -mx-3">
                 <Pie
                     data={data}
                     dataKey="valor"
