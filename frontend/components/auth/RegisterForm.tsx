@@ -17,11 +17,11 @@ import {
     FormMessage,
 } from '../../shared/ui/form';
 import { Input } from '../../shared/ui/input';
+import { list2Ul } from '../../shared/ui/utils';
 import {
     APIRegisterFormErrors,
     RegisterForm as RegisterFormType,
 } from '../../types/auth';
-import { list2Ul } from '../utils';
 
 export default function RegisterForm() {
     const [backendErrors, setBackendErrors] = useState<APIRegisterFormErrors>(

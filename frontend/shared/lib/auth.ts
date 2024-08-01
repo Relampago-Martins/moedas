@@ -1,8 +1,7 @@
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { MySession, MyUser } from "../../types/auth";
 import { getUser, login, loginGoogle } from "./fetchAPI";
 
@@ -79,14 +78,14 @@ export async function loginIsRequiredServer(){
     if (!session) return redirect('/login')
 }
 
-export async function loginIsRequiredClient(){
-    if (typeof window !== 'undefined'){
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const session = useSession()
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const router = useRouter()
-        if (!session) {
-            router.push('/login')
-        }
-    }
-}
+// export async function loginIsRequiredClient(){
+//     if (typeof window !== 'undefined'){
+//         // eslint-disable-next-line react-hooks/rules-of-hooks
+//         const session = useSession()
+//         // eslint-disable-next-line react-hooks/rules-of-hooks
+//         const router = useRouter()
+//         if (!session) {
+//             router.push('/login')
+//         }
+//     }
+// }

@@ -1,7 +1,6 @@
-'client side';
 import { Separator } from '@/shared/ui/separator';
 import { BsFlagFill, BsGrid1X2Fill, BsSafe2Fill } from 'react-icons/bs';
-import { FaArrowRightArrowLeft, FaBars, FaGear, FaPlus } from 'react-icons/fa6';
+import { FaArrowRightArrowLeft, FaBars, FaGear } from 'react-icons/fa6';
 import {
     NavBar,
     NavBarContent,
@@ -11,6 +10,7 @@ import {
     NavBarTrigger,
 } from './NavBar';
 import { Notification } from './Notification';
+import { NovoBtn } from './NovoBtn';
 import { UserMenu } from './UserMenu';
 
 export function SideBar() {
@@ -27,9 +27,7 @@ export function SideBar() {
             </NavBarHeader>
             <Separator className="w-[85%] self-center" />
             <NavBarContent>
-                <NavBarItem icon={<FaPlus className="text-sm" />}>
-                    Novo
-                </NavBarItem>
+                <NovoBtn />
                 <NavBarItem active icon={<BsGrid1X2Fill className="text-sm" />}>
                     Início
                 </NavBarItem>

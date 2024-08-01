@@ -1,118 +1,137 @@
-'use client'
-import { HTMLAttributes, ReactNode, useContext, useEffect, useState } from "react";
-import { Menu, MenuItem, MenuItemProps, MenuProps, Sidebar, SidebarProps } from 'react-pro-sidebar';
-import { NavBarContext, OuterNavBarContext } from "../lib/context";
+'use client';
+import {
+    HTMLAttributes,
+    ReactNode,
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
+import {
+    Menu,
+    MenuItem,
+    MenuItemProps,
+    MenuProps,
+    Sidebar,
+    SidebarProps,
+} from 'react-pro-sidebar';
+import { NavBarContext, OuterNavBarContext } from '../lib/context';
 import './ui.scss';
 
-
 type RootProps = SidebarProps & {
-    children: ReactNode
-    open?: boolean
-}
-function NavBar({children, ...props}: RootProps){
+    children: ReactNode;
+    open?: boolean;
+};
+function NavBar({ children, ...props }: RootProps) {
     const { toggled, setToggled } = useContext(OuterNavBarContext);
     const [open, setOpen] = useState<boolean>(props.open || false);
     useEffect(() => {
-        setOpen(true)
-    }, [toggled])
+        setOpen(true);
+    }, [toggled]);
 
     return (
-        <NavBarContext.Provider value={{open, setOpen}}>
-            <Sidebar collapsed={!open} breakPoint="md" toggled={toggled}
+        <NavBarContext.Provider value={{ open, setOpen }}>
+            <Sidebar
+                collapsed={!open}
+                breakPoint="md"
+                toggled={toggled}
                 onBackdropClick={() => setToggled(false)}
-                {...props} className={`root ${props.className}`} >
+                {...props}
+                className={`root ${props.className}`}
+            >
                 {children}
             </Sidebar>
         </NavBarContext.Provider>
-    )
+    );
 }
 
-function NavBarHeader({children, ...props}: {children: ReactNode}) {
-    return (
-        <div className={`header`}>
-            {children}
-        </div>
-    )
+function NavBarHeader({ children, ...props }: { children: ReactNode }) {
+    return <div className={`header`}>{children}</div>;
 }
 
 type NavBarTriggerProps = HTMLAttributes<HTMLDivElement> & {
-    children: ReactNode
-    icon?: ReactNode
-}
-function NavBarTrigger({children, className, ...props}: NavBarTriggerProps) {
+    children: ReactNode;
+    icon?: ReactNode;
+};
+function NavBarTrigger({ children, className, ...props }: NavBarTriggerProps) {
     const { open, setOpen } = useContext(NavBarContext);
     return (
-        <div className={`trigger ${className}`} {...props}
-            onClick={() => setOpen?.(!open)}>
+        <div
+            className={`trigger ${className}`}
+            {...props}
+            onClick={() => setOpen?.(!open)}
+        >
             {open ? children : props.icon}
         </div>
-    )
+    );
 }
 
-function NavBarFooter({children, ...props}: {children: ReactNode}) {
-    return (
-        <div className={`footer`}>
-            {children}
-        </div>
-    )
+function NavBarFooter({ children, ...props }: { children: ReactNode }) {
+    return <div className={`footer`}>{children}</div>;
 }
 
 type ContentProps = MenuProps & {
-    children: ReactNode
-}
+    children: ReactNode;
+};
 
-function NavBarContent({children, ...props}: ContentProps) {
+function NavBarContent({ children, ...props }: ContentProps) {
     return (
         <Menu className="content" {...props}>
             {children}
         </Menu>
-    )
+    );
 }
 
 type ItemProps = MenuItemProps & {
-    children: ReactNode
-}
-function NavBarItem({children, className, ...props}: ItemProps){
+    children: ReactNode;
+};
+function NavBarItem({ children, className, ...props }: ItemProps) {
     return (
-        <MenuItem {...props} className={`${className} text-sm font-medium opacity-85`}>
+        <MenuItem
+            {...props}
+            className={`${className} text-sm font-medium opacity-85`}
+        >
             {children}
         </MenuItem>
-    )
+    );
 }
 
-function OuterProvider({children}: {children: ReactNode}) {
+function OuterProvider({ children }: { children: ReactNode }) {
     const [toggled, setToggled] = useState<boolean>(false);
 
     return (
-        <OuterNavBarContext.Provider value={{toggled, setToggled}}>
+        <OuterNavBarContext.Provider value={{ toggled, setToggled }}>
             {children}
         </OuterNavBarContext.Provider>
-    )
+    );
 }
 
 type OuterTriggerProps = HTMLAttributes<HTMLDivElement> & {
-    children: ReactNode
-}
+    children: ReactNode;
+};
 
-function OuterTrigger({children, className, ...props}: OuterTriggerProps) {
+function OuterTrigger({ children, className, ...props }: OuterTriggerProps) {
     const { toggled, setToggled } = useContext(OuterNavBarContext);
     return (
-        <div className={`trigger ${className}`} {...props}
+        <div
+            className={`trigger ${className}`}
+            {...props}
             onClick={() => {
-                setToggled?.(!toggled)
-            }
-            }>
+                setToggled?.(!toggled);
+            }}
+        >
             {children}
         </div>
-    )
+    );
 }
 
-
 export {
-    NavBar, NavBarContent,
-    NavBarFooter, NavBarHeader,
+    NavBar,
+    NavBarContent,
+    NavBarFooter,
+    NavBarHeader,
     NavBarItem,
     NavBarTrigger,
-    OuterProvider, OuterTrigger
+    OuterProvider,
+    OuterTrigger
 };
 
