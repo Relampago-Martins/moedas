@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@/components/theme-provider';
+import { MobileHeader } from '@/entities/mobile-header';
 import { ModalNovo } from '@/features/modal-novo/ui';
 import { SideBar } from '@/features/side-bar/ui';
 import { inter } from '@/shared/lib/fonts';
@@ -34,7 +35,10 @@ export default function RootLayout({
                 >
                     <main className="flex h-full min-h-screen w-full flex-row bg-background">
                         <SideBar />
-                        {children}
+                        <div className="w-full">
+                            <MobileHeader />
+                            {children}
+                        </div>
                         <ModalNovo />
                     </main>
                 </ThemeProvider>

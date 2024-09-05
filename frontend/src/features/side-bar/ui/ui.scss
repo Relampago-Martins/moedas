@@ -20,6 +20,7 @@
     .content{
         .ps-menu-button{
             transition: all .2s ease;
+            position: relative;
             padding: 0;
             margin: 1rem 1.25rem;
             color: var(--foreground);
@@ -32,9 +33,7 @@
                 background-color: var(--accent) !important;
             }
             &.ps-active{
-                border-width: .0625rem;
                 color: var(--primary);
-                border-color: var(--primary) !important;
             }
             .ps-menu-icon{
                 margin-right: 0.25rem;
