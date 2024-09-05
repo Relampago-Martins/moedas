@@ -1,8 +1,8 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { inter } from '@/shared/lib/fonts';
-import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -11,13 +11,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
-    modal,
 }: {
     children: React.ReactNode;
-    modal?: React.ReactNode;
 }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <head>
                 <meta charSet="UTF-8" />
                 <meta
@@ -33,7 +31,6 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     {children}
-                    {modal}
                 </ThemeProvider>
                 <Analytics />
             </body>
