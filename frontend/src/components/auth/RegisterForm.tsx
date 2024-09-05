@@ -42,7 +42,6 @@ export default function RegisterForm() {
     const handleSubmit = async (registerData: RegisterFormType) => {
         setLoading(true);
         const resp = await register(registerData);
-        console.log(resp);
         if (resp.status === 204 || resp.status === 201 || resp.status === 200) {
             router.push('/login', {
                 message: 'Usuário cadastrado com sucesso',

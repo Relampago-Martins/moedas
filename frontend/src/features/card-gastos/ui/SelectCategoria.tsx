@@ -33,7 +33,6 @@ export function SelectCategoria({
         (acc, gasto) => acc + gasto.valor,
         0,
     );
-    console.log('totalGastos', totalGastos, gastoCategoriaSelecionada);
     return (
         <Select
             value={categoriaSelecionada}
@@ -52,7 +51,16 @@ export function SelectCategoria({
                 <SelectGroup>
                     <SelectItem value="todos">---</SelectItem>
                     {categorias.map((categoria) => (
-                        <SelectItem key={categoria.nome} value={categoria.nome}>
+                        <SelectItem
+                            key={categoria.nome}
+                            value={categoria.nome}
+                            icon={
+                                <div
+                                    className="h-4 w-4 rounded-full"
+                                    style={{ backgroundColor: categoria.cor }}
+                                />
+                            }
+                        >
                             {categoria.label}
                         </SelectItem>
                     ))}

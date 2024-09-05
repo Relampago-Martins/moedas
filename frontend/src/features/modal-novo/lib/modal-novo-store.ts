@@ -1,9 +1,5 @@
 import { create } from 'zustand';
-
-type ModalNovoStore = {
-    isOpen: boolean;
-    onOpenChange: (newState: boolean) => void;
-};
+import { ModalNovoStore } from './types';
 
 export const useModalNovoStore = create<ModalNovoStore>((set) => ({ 
     isOpen: false,
