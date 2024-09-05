@@ -1,4 +1,6 @@
 import { ThemeProvider } from '@/components/theme-provider';
+import { ModalNovo } from '@/features/modal-novo/ui';
+import { SideBar } from '@/features/side-bar/ui';
 import { inter } from '@/shared/lib/fonts';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
@@ -11,10 +13,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
-    modal,
 }: {
     children: React.ReactNode;
-    modal?: React.ReactNode;
 }) {
     return (
         <html lang="en">
@@ -32,8 +32,11 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {children}
-                    {modal}
+                    <main className="flex h-full min-h-screen w-full flex-row bg-background">
+                        <SideBar />
+                        {children}
+                        <ModalNovo />
+                    </main>
                 </ThemeProvider>
                 <Analytics />
             </body>

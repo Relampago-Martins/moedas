@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
 import { useContext } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { OuterNavBarContext } from '../lib/context';
@@ -8,13 +8,16 @@ import { NavBarItem } from './NavBar';
 
 export function NovoBtn() {
     const { setToggled } = useContext(OuterNavBarContext);
-    const router = useRouter();
+    const abrirModal = useModalNovoStore((state) => {
+        return () => state.onOpenChange(true);
+    });
+
     return (
         <NavBarItem
             icon={<FaPlus className="text-sm" />}
             onClick={() => {
                 setToggled?.(false);
-                router.push('/dashboard/novo');
+                abrirModal();
             }}
         >
             Novo

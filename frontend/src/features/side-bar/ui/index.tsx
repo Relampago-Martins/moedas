@@ -1,6 +1,12 @@
 import { Separator } from '@/shared/ui/separator';
+import Link from 'next/link';
 import { BsFlagFill, BsGrid1X2Fill, BsSafe2Fill } from 'react-icons/bs';
-import { FaArrowRightArrowLeft, FaBars, FaGear } from 'react-icons/fa6';
+import {
+    FaArrowRightArrowLeft,
+    FaBars,
+    FaBoltLightning,
+    FaGear,
+} from 'react-icons/fa6';
 import {
     NavBar,
     NavBarContent,
@@ -19,16 +25,21 @@ export function SideBar() {
             <NavBarHeader>
                 <NavBarTrigger
                     className="select-none text-lg font-bold text-primary opacity-90"
-                    icon={<div className="rounded-lg bg-input px-2">M</div>}
+                    icon={<div className="rounded-lg bg-input px-2">P</div>}
                 >
-                    <span className={`w-full`}>Moedas</span>
+                    <span className={`w-full`}>ProsperApp</span>
                     <FaBars className="hidden text-lg md:block" />
                 </NavBarTrigger>
             </NavBarHeader>
             <Separator className="w-[85%] self-center" />
             <NavBarContent>
                 <NovoBtn />
-                <NavBarItem active icon={<BsGrid1X2Fill className="text-sm" />}>
+
+                <NavBarItem
+                    component={<Link href="/dashboard" />}
+                    activeName="/dashboard"
+                    icon={<BsGrid1X2Fill className="text-sm" />}
+                >
                     Início
                 </NavBarItem>
                 <NavBarItem icon={<BsFlagFill className="text-sm" />}>
@@ -42,6 +53,13 @@ export function SideBar() {
                     suffix={<Notification>6</Notification>}
                 >
                     Transferências
+                </NavBarItem>
+                <NavBarItem
+                    activeName="/playground"
+                    icon={<FaBoltLightning className="text-sm" />}
+                    component={<Link href="/playground" />}
+                >
+                    PlayGround
                 </NavBarItem>
                 <NavBarItem icon={<FaGear className="text-sm" />}>
                     Configurações

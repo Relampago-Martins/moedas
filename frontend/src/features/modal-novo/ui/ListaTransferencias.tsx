@@ -6,7 +6,7 @@ import Link from 'next/link';
 export function ListaTransferencias() {
     return (
         <div className="flex flex-row justify-center gap-4">
-            <Link href="/dashboard/novo?step=gasto">
+            <Link href="/dashboard/?step=gasto">
                 <Card
                     className="flex h-[5.5rem] w-[6.5rem] cursor-pointer
                         flex-col items-center justify-center transition-transform

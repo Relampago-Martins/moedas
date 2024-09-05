@@ -1,4 +1,5 @@
 'use client';
+import { usePathname } from 'next/navigation';
 import {
     HTMLAttributes,
     ReactNode,
@@ -81,12 +82,16 @@ function NavBarContent({ children, ...props }: ContentProps) {
     );
 }
 
-type ItemProps = MenuItemProps & {
+type ItemProps = Omit<MenuItemProps, 'active'> & {
     children: ReactNode;
+    /* Name of the route that should be considered active*/
+    activeName?: string;
 };
-function NavBarItem({ children, className, ...props }: ItemProps) {
+function NavBarItem({ children, className, activeName, ...props }: ItemProps) {
+    const path = usePathname();
     return (
         <MenuItem
+            active={path === activeName}
             {...props}
             className={`${className} text-sm font-medium opacity-85`}
         >
@@ -132,6 +137,5 @@ export {
     NavBarItem,
     NavBarTrigger,
     OuterProvider,
-    OuterTrigger
+    OuterTrigger,
 };
-
