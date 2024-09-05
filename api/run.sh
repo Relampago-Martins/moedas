@@ -1,3 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-docker run -it --rm --name my-finance -v ./app:/var/app -p 8001:8001 my-finance
+V=$(git rev-parse --short HEAD)
+D=$(pwd)
+IMG=moedas
+PORT=8001
+
+while getopts p: flag
+do
+    case "${flag}" in
+        p) PORT=${OPTARG};;
+    esac
+done
+
+/usr/bin/docker run -i -t --rm -v $D/app:/var/app -p $PORT:80 --name=$IMG-$V $IMG:$V /bin/bash
