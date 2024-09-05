@@ -1,6 +1,7 @@
 import { Separator } from '@/shared/ui/separator';
+import { MotionConfig } from 'framer-motion';
 import Link from 'next/link';
-import { BsFlagFill, BsGrid1X2Fill, BsSafe2Fill } from 'react-icons/bs';
+import { BsFlagFill, BsGrid1X2Fill } from 'react-icons/bs';
 import {
     FaArrowRightArrowLeft,
     FaBars,
@@ -33,37 +34,46 @@ export function SideBar() {
             </NavBarHeader>
             <Separator className="w-[85%] self-center" />
             <NavBarContent>
-                <NovoBtn />
+                <MotionConfig>
+                    <NovoBtn />
 
-                <NavBarItem
-                    component={<Link href="/dashboard" />}
-                    activeName="/dashboard"
-                    icon={<BsGrid1X2Fill className="text-sm" />}
-                >
-                    Início
-                </NavBarItem>
-                <NavBarItem icon={<BsFlagFill className="text-sm" />}>
-                    Progresso
-                </NavBarItem>
-                <NavBarItem icon={<BsSafe2Fill className="text-lg" />}>
-                    Patrimônio
-                </NavBarItem>
-                <NavBarItem
-                    icon={<FaArrowRightArrowLeft className="text-sm" />}
-                    suffix={<Notification>6</Notification>}
-                >
-                    Transferências
-                </NavBarItem>
-                <NavBarItem
-                    activeName="/playground"
-                    icon={<FaBoltLightning className="text-sm" />}
-                    component={<Link href="/playground" />}
-                >
-                    PlayGround
-                </NavBarItem>
-                <NavBarItem icon={<FaGear className="text-sm" />}>
-                    Configurações
-                </NavBarItem>
+                    <NavBarItem
+                        component={<Link href="/dashboard" />}
+                        activeName="/dashboard"
+                        icon={<BsGrid1X2Fill className="text-sm" />}
+                    >
+                        Início
+                    </NavBarItem>
+                    <NavBarItem
+                        icon={<FaArrowRightArrowLeft className="text-sm" />}
+                        suffix={<Notification>6</Notification>}
+                        component={<Link href="/movimentacoes" />}
+                        activeName="/movimentacoes"
+                    >
+                        Movimentações
+                    </NavBarItem>
+                    <NavBarItem
+                        activeName="/plano-financeiro"
+                        icon={<BsFlagFill className="text-sm" />}
+                        component={<Link href="/plano-financeiro" />}
+                    >
+                        Plano financeiro
+                    </NavBarItem>
+                    <NavBarItem
+                        icon={<FaBoltLightning className="text-sm" />}
+                        component={<Link href="/playground" />}
+                        activeName="/playground"
+                    >
+                        PlayGround
+                    </NavBarItem>
+                    <NavBarItem
+                        icon={<FaGear className="text-sm" />}
+                        component={<Link href="/configuracoes" />}
+                        activeName="/configuracoes"
+                    >
+                        Configurações
+                    </NavBarItem>
+                </MotionConfig>
             </NavBarContent>
             <NavBarFooter>
                 <UserMenu />

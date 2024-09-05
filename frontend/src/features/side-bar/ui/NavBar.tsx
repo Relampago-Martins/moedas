@@ -1,12 +1,7 @@
 'use client';
+import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import {
-    HTMLAttributes,
-    ReactNode,
-    useContext,
-    useEffect,
-    useState,
-} from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import {
     Menu,
     MenuItem,
@@ -15,7 +10,7 @@ import {
     Sidebar,
     SidebarProps,
 } from 'react-pro-sidebar';
-import { NavBarContext, OuterNavBarContext } from '../lib/context';
+import { useSidebarStore } from '../lib/sidebar-store';
 import './ui.scss';
 
 type RootProps = SidebarProps & {
@@ -23,25 +18,30 @@ type RootProps = SidebarProps & {
     open?: boolean;
 };
 function NavBar({ children, ...props }: RootProps) {
-    const { toggled, setToggled } = useContext(OuterNavBarContext);
-    const [open, setOpen] = useState<boolean>(props.open || false);
-    useEffect(() => {
-        setOpen(true);
-    }, [toggled]);
+    const [toggled, collapsed, setToggled, setCollapsed] = useSidebarStore(
+        (state) => [
+            state.isToggled,
+            state.isCollapsed,
+            state.setToggled,
+            state.setCollapsed,
+        ],
+    );
 
     return (
-        <NavBarContext.Provider value={{ open, setOpen }}>
-            <Sidebar
-                collapsed={!open}
-                breakPoint="md"
-                toggled={toggled}
-                onBackdropClick={() => setToggled(false)}
-                {...props}
-                className={`root ${props.className}`}
-            >
-                {children}
-            </Sidebar>
-        </NavBarContext.Provider>
+        <Sidebar
+            toggled={toggled}
+            collapsed={collapsed}
+            breakPoint="md"
+            onBreakPoint={() => {
+                setCollapsed(false);
+                setToggled(false);
+            }}
+            onBackdropClick={() => setToggled(false)}
+            {...props}
+            className={`root ${props.className}`}
+        >
+            {children}
+        </Sidebar>
     );
 }
 
@@ -54,14 +54,38 @@ type NavBarTriggerProps = HTMLAttributes<HTMLDivElement> & {
     icon?: ReactNode;
 };
 function NavBarTrigger({ children, className, ...props }: NavBarTriggerProps) {
-    const { open, setOpen } = useContext(NavBarContext);
+    const [collapse, collapsed] = useSidebarStore((state) => [
+        state.collapse,
+        state.isCollapsed,
+    ]);
     return (
         <div
             className={`trigger ${className}`}
             {...props}
-            onClick={() => setOpen?.(!open)}
+            onClick={() => collapse()}
         >
-            {open ? children : props.icon}
+            {!collapsed ? children : props.icon}
+        </div>
+    );
+}
+
+type OuterTriggerProps = HTMLAttributes<HTMLDivElement> & {
+    children: ReactNode;
+};
+
+function NavBarOuterTrigger({
+    children,
+    className,
+    ...props
+}: OuterTriggerProps) {
+    const toggle = useSidebarStore((state) => state.toggle);
+    return (
+        <div
+            className={`trigger ${className}`}
+            {...props}
+            onClick={() => toggle()}
+        >
+            {children}
         </div>
     );
 }
@@ -87,45 +111,34 @@ type ItemProps = Omit<MenuItemProps, 'active'> & {
     /* Name of the route that should be considered active*/
     activeName?: string;
 };
-function NavBarItem({ children, className, activeName, ...props }: ItemProps) {
+function NavBarItem({
+    children,
+    className,
+    activeName,
+    onClick,
+    ...props
+}: ItemProps) {
+    const toogle = useSidebarStore((state) => state.toggle);
     const path = usePathname();
+    const isActive = path === activeName;
     return (
         <MenuItem
-            active={path === activeName}
-            {...props}
+            active={isActive}
             className={`${className} text-sm font-medium opacity-85`}
+            onClick={(e) => {
+                setTimeout(() => toogle(), 350);
+                onClick?.(e);
+            }}
+            {...props}
         >
+            {isActive && (
+                <motion.div
+                    layoutId="borda-menu-item"
+                    className="absolute inset-0 rounded-lg border border-primary"
+                />
+            )}
             {children}
         </MenuItem>
-    );
-}
-
-function OuterProvider({ children }: { children: ReactNode }) {
-    const [toggled, setToggled] = useState<boolean>(false);
-
-    return (
-        <OuterNavBarContext.Provider value={{ toggled, setToggled }}>
-            {children}
-        </OuterNavBarContext.Provider>
-    );
-}
-
-type OuterTriggerProps = HTMLAttributes<HTMLDivElement> & {
-    children: ReactNode;
-};
-
-function OuterTrigger({ children, className, ...props }: OuterTriggerProps) {
-    const { toggled, setToggled } = useContext(OuterNavBarContext);
-    return (
-        <div
-            className={`trigger ${className}`}
-            {...props}
-            onClick={() => {
-                setToggled?.(!toggled);
-            }}
-        >
-            {children}
-        </div>
     );
 }
 
@@ -135,7 +148,6 @@ export {
     NavBarFooter,
     NavBarHeader,
     NavBarItem,
+    NavBarOuterTrigger,
     NavBarTrigger,
-    OuterProvider,
-    OuterTrigger,
 };
