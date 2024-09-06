@@ -1,0 +1,15 @@
+meta {
+  name: get-gastos
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://172.18.100.153:8001/despesas/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}

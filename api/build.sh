@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-V=$(git rev-parse --short HEAD)
+V=$(<VERSION)
 IMG=moedas
 case $1 in
     no-cache)

@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 import environ
@@ -24,96 +25,95 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(",")
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'moedas.apps.MoedasConfig',
-    'corsheaders',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.apple',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "moedas.apps.MoedasConfig",
+    "corsheaders",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.apple",
+    "django_filters",
 ]
 
 SITE_ID = 1
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
-    'django.middleware.locale.LocaleMiddleware'
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
-ROOT_URLCONF = 'config.urls'
-ROOT_URL = env('ROOT_URL')
+ROOT_URLCONF = "config.urls"
+ROOT_URL = env("ROOT_URL")
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 if DEBUG:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': env('DB_ENGINE'),
-            'NAME': env('DB_NAME'),
-            'USER': env('DB_USER'),
-            'PASSWORD': env('DB_PASSWORD'),
-            'HOST': env('DB_HOST'),
-            'PORT': env('DB_PORT'),
-            'OPTIONS': {
-                'options': '-c search_path=public'
-            },
+        "default": {
+            "ENGINE": env("DB_ENGINE"),
+            "NAME": env("DB_NAME"),
+            "USER": env("DB_USER"),
+            "PASSWORD": env("DB_PASSWORD"),
+            "HOST": env("DB_HOST"),
+            "PORT": env("DB_PORT"),
+            "OPTIONS": {"options": "-c search_path=public"},
         }
     }
 
@@ -122,16 +122,16 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -140,15 +140,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('pt-br', 'Portuguese'),
+    ("en", "English"),
+    ("pt-br", "Portuguese"),
 ]
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = "pt-br"
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -158,57 +158,60 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = f'{ROOT_URL}static/'
-STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = f"{ROOT_URL}static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = [
-    'https://moedas.app',
-    'http://api.moedas.app',
-    'http://localhost:8080',
-    'https://8499d504e940f006497084f1d5bad969.balena-devices.com',
-    'http://8499d504e940f006497084f1d5bad969.balena-devices.com'
+    "https://moedas.app",
+    "http://api.moedas.app",
+    "http://localhost:8080",
+    "https://8499d504e940f006497084f1d5bad969.balena-devices.com",
+    "http://8499d504e940f006497084f1d5bad969.balena-devices.com",
 ]
 CORS_ORIGIN_WHITELIST = [
-    'https://moedas.app',
-    'http://localhost',
-    'http://api.moedas.app',
+    "https://moedas.app",
+    "http://localhost",
+    "http://api.moedas.app",
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        # adição da possibilidade de sessão pelo navegador
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
-APPEND_SLASH=False
+APPEND_SLASH = False
 
 
-GOOGLE_CALLBACK_URL = env('GOOGLE_CALLBACK_URL')
+GOOGLE_CALLBACK_URL = env("GOOGLE_CALLBACK_URL")
 
 # configurações allauth
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': env('GOOGLE_CLIENT_ID'),
-            'secret': env('GOOGLE_SECRET_KEY'),
+    "google": {
+        "APP": {
+            "client_id": env("GOOGLE_CLIENT_ID"),
+            "secret": env("GOOGLE_SECRET_KEY"),
         }
     }
 }
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 
 
-#configurações de email (servidor de email / smtp)
+# configurações de email (servidor de email / smtp)
 # neste caso estou usando o console do django para testar
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # EMAIL_HOST = 'smtp.example.com'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True

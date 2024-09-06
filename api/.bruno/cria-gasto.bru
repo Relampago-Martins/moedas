@@ -1,0 +1,24 @@
+meta {
+  name: cria-gasto
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://172.18.100.153:8001/despesas/
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}
+
+body:json {
+  {
+    "valor": 234.23,
+    "descricao": "Casaco Approve",
+    "categoria": "V",
+    "forma_pagamento": "deb"
+  }
+}
