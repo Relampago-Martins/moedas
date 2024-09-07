@@ -1,5 +1,5 @@
 'use client';
-import { register } from '@/shared/lib/fetchAPI';
+import { register } from '@/shared/api/fetchAPI';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';

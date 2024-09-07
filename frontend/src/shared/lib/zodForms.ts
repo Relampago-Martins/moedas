@@ -11,10 +11,8 @@ i18next.init({
     resources: {
         pt: { zod: translation },
     },
-  });
-  z.setErrorMap(zodI18nMap);
-  /**/
-
+});
+z.setErrorMap(zodI18nMap);
 
 export const loginForm = z.object({
     username: z.string().min(1, { message: "Usuário é obrigatório" }),
