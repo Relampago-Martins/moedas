@@ -1,10 +1,10 @@
 'use server';
 import axios, { AxiosResponse } from 'axios';
-import { APIUser, LoginData, RegisterForm } from '../../types/auth';
+import { APIUser, LoginForm, RegisterForm } from '../../types/auth';
 
 const API_URL = process.env.API_URL;
 
-export async function login(data: LoginData) {
+export async function login(data: LoginForm) {
     const response = await axios(`${API_URL}/dj-rest-auth/login/`, {
         method: 'post',
         headers: {

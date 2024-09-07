@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { redirect } from "next/navigation";
 import { MySession, MyUser } from "../../types/auth";
-import { getUser, login, loginGoogle } from "./fetchAPI";
+import { getUser, login, loginGoogle } from "../api/fetchAPI";
 
 
 export const authConfig: NextAuthOptions = {

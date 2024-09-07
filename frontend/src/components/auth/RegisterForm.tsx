@@ -1,12 +1,12 @@
 'use client';
-import { register } from '@/shared/lib/fetchAPI';
+import { register } from '@/shared/api/fetchAPI';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import BeatLoader from 'react-spinners/BeatLoader';
-import { registerForm } from '../../shared/lib/zodForms';
+import { registerForm } from '../../shared/lib/forms';
 import { Button } from '../../shared/ui/button';
 import {
     Form,
