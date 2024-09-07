@@ -19,11 +19,6 @@ export type MySession = Session & {
     apiKey: string,
 }
 
-export type LoginData = {
-    username: string | undefined;
-    password: string | undefined;
-};
-
 export type LoginForm = z.infer<typeof loginForm>
 
 export type RegisterForm = z.infer<typeof registerForm>

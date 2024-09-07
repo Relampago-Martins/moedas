@@ -1,5 +1,5 @@
+import { getUser } from '@/shared/api/fetchAPI';
 import { authConfig } from '@/shared/lib/auth';
-import { getUser } from '@/shared/lib/fetchAPI';
 import { MySession } from '@/types/auth';
 import { getServerSession } from 'next-auth';
 import { MonthPickerInput } from './MonthPickerInput';

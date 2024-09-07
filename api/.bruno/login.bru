@@ -1,0 +1,24 @@
+meta {
+  name: login
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost/api/dj-rest-auth/login/
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Connection: Keep-alive
+  Accept-Language: pt-br
+}
+
+body:json {
+  {
+    "username": "bgmartins",
+    "password": "{{senha}}"
+  }
+}

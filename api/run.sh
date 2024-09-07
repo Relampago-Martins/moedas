@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-V=$(git rev-parse --short HEAD)
+V=$(<VERSION)
 D=$(pwd)
 IMG=moedas
 PORT=8001

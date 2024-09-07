@@ -1,0 +1,15 @@
+meta {
+  name: congig-gastos
+  type: http
+  seq: 4
+}
+
+options {
+  url: http://localhost/api/despesas/
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}
