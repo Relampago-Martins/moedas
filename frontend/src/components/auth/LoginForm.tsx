@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import BeatLoader from 'react-spinners/BeatLoader';
-import { loginForm } from '../../shared/lib/zodForms';
+import { loginForm } from '../../shared/lib/forms';
 import { Input } from '../../shared/ui/input';
 import { LoginForm as LoginFormType } from '../../types/auth';
 

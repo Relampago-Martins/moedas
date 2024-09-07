@@ -15,10 +15,12 @@ export async function getDespesa(id: number){
 
 export async function criaDespesa(despesa: Despesa){
     const resp = await ApiClient.getInstance().post<Despesa>("/despesas/", despesa);
-    return resp.data;
+    return resp;
 }
 
 export async function getDespesaConfigs(){
-    const resp = await ApiClient.getInstance().get<DespesaConfig>("/despesas/configs/");
+    const resp = await ApiClient.getInstance().options<DespesaConfig>("/despesas/",{
+        cache: "force-cache",
+    });
     return resp.data;
 }

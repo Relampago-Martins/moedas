@@ -28,3 +28,13 @@ export const registerForm = z.object({
     message: "As senhas não coincidem",
     path: ["password2"],
 })
+
+export const despesa = z.object({
+    id: z.number().optional(),
+    descricao: z.string().min(1, { message: 'Descrição é obrigatória' }).max(255),
+    valor: z.string().min(1, { message: 'Valor é obrigatório' }),
+    data: z.string().optional(),
+    categoria: z.string().min(1, { message: 'Categoria é obrigatória' }),
+    forma_pagamento: z.string().min(1, { message: 'Categoria é obrigatória' }),
+    usuario: z.number().optional(),
+});

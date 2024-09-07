@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import BeatLoader from 'react-spinners/BeatLoader';
-import { registerForm } from '../../shared/lib/zodForms';
+import { registerForm } from '../../shared/lib/forms';
 import { Button } from '../../shared/ui/button';
 import {
     Form,
