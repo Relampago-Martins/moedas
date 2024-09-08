@@ -14,18 +14,14 @@ import { GastosContext } from '../lib/context';
 
 type SelectCategoriaProps = {
     categorias: Categoria[];
-    gastosPorCategoria: {
-        categoria: Categoria;
-        valor: number;
-    }[];
 };
 
-export function SelectCategoria({
-    categorias,
-    gastosPorCategoria,
-}: SelectCategoriaProps) {
-    const { categoriaSelecionada, setCategoriaSelecionada } =
-        useContext(GastosContext);
+export function SelectCategoria({ categorias }: SelectCategoriaProps) {
+    const {
+        categoriaSelecionada,
+        setCategoriaSelecionada,
+        gastosPorCategoria,
+    } = useContext(GastosContext);
     const gastoCategoriaSelecionada = gastosPorCategoria.find(
         (gasto) => gasto.categoria.nome === categoriaSelecionada,
     );

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { BsChevronRight, BsReceipt } from 'react-icons/bs';
-import { categorias, gastos, getGastosPorCategoria } from '../lib';
+import { categorias } from '../lib';
 import { GastosContext } from './GastosContext';
 import { GastosLista } from './GastosLista';
 import { GraficoPizza } from './GraficoPizza';
@@ -11,8 +11,6 @@ type CardGastosProps = {
 };
 
 export function CardGastos({ className }: CardGastosProps) {
-    const gastosPorCategoria = getGastosPorCategoria(gastos, categorias);
-
     return (
         <Card title="Gastos" className={className}>
             <CardHeader className="flex flex-row items-center gap-2 space-y-0 opacity-70">
@@ -22,13 +20,10 @@ export function CardGastos({ className }: CardGastosProps) {
             </CardHeader>
             <CardContent className="flex flex-wrap justify-center gap-4">
                 <GastosContext>
-                    <GraficoPizza data={gastosPorCategoria} />
+                    <GraficoPizza />
                     <div className="flex flex-col gap-4">
-                        <SelectCategoria
-                            categorias={categorias}
-                            gastosPorCategoria={gastosPorCategoria}
-                        />
-                        <GastosLista gastos={gastos} categorias={categorias} />
+                        <SelectCategoria categorias={categorias} />
+                        <GastosLista categorias={categorias} />
                     </div>
                 </GastosContext>
             </CardContent>

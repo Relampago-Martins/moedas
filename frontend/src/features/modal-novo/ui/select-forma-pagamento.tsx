@@ -32,7 +32,7 @@ const SelectFormaPagamento = React.forwardRef<
         <Select onValueChange={onChange} defaultValue={value}>
             <SelectTrigger>
                 <SelectValue
-                    placeholder="Forma de Pagamento X"
+                    placeholder="selecione uma forma de pag"
                     ref={ref}
                     {...props}
                 />

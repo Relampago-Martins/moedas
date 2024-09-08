@@ -11,14 +11,14 @@ import {
     FormMessage,
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { Despesa } from '@/types/models/despesa';
+import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { SelectCategoria } from './select-categoria';
 import { SelectFormaPagamento } from './select-forma-pagamento';
 
 export function CadastroGasto() {
-    const form = useForm<Despesa>({
+    const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: {
             descricao: '',
@@ -26,7 +26,7 @@ export function CadastroGasto() {
         },
     });
 
-    const onSubmit = async (data: Despesa) => {
+    const onSubmit = async (data: DespesaSchema) => {
         const resp = await criaDespesa(data);
         if (resp.status === 201) {
             alert('Despesa criada com sucesso');

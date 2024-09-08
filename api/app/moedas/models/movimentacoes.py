@@ -4,12 +4,14 @@ from datetime import date
 CATEGORIAS_DESPESA = (
     ("A", "Alimentação"),
     ("E", "Educação"),
+    ("ELET", "Eletrônicos"),
     ("L", "Lazer"),
     ("M", "Moradia"),
     ("S", "Saúde"),
     ("T", "Transporte"),
     ("O", "Outros"),
     ("V", "Vestuário"),
+    ("SERV", "Serviços"),
 )
 
 CATEGORIAS_RECEITA = (
@@ -59,7 +61,7 @@ class Despesa(Movimentacao):
     movimentacao_ptr = models.OneToOneField(
         Movimentacao, on_delete=models.CASCADE, parent_link=True, primary_key=True
     )
-    categoria = models.CharField(max_length=1, choices=CATEGORIAS_DESPESA)
+    categoria = models.CharField(max_length=4, choices=CATEGORIAS_DESPESA)
     forma_pagamento = models.CharField(max_length=4, choices=FORMAS_PAGAMENTO)
 
     def __str__(self):

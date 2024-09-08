@@ -3,19 +3,21 @@ import { numberToCurrency } from '@/shared/lib/utils';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';
-import { Categoria, calcColor } from '../lib/index';
+import { calcColor } from '../lib/index';
 import { FatiaAtiva, FatiaInativa } from './GraphFatia';
 import { IconeGasto } from './IconeGasto';
 import './style.scss';
 
 export type GraficoPizzaProps = {
-    data: { categoria: Categoria; valor: number }[];
     className?: string;
 };
 
-export function GraficoPizza({ data }: GraficoPizzaProps) {
-    const { categoriaSelecionada, setCategoriaSelecionada } =
-        useContext(GastosContext);
+export function GraficoPizza({}: GraficoPizzaProps) {
+    const {
+        categoriaSelecionada,
+        setCategoriaSelecionada,
+        gastosPorCategoria,
+    } = useContext(GastosContext);
     const [activeIndex, setActiveIndex] = useState(-1);
     const onPieClick = useCallback(
         (newIndex: number, oldIndex: number) => {
@@ -25,13 +27,15 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                 return;
             }
             setActiveIndex(newIndex);
-            setCategoriaSelecionada(data[newIndex].categoria.nome);
+            setCategoriaSelecionada(
+                gastosPorCategoria[newIndex].categoria.nome,
+            );
         },
         [setActiveIndex],
     );
     useEffect(() => {
         let indexSelected = -1;
-        data.forEach((entry, index) => {
+        gastosPorCategoria.forEach((entry, index) => {
             if (entry.categoria.nome === categoriaSelecionada) {
                 indexSelected = index;
             }
@@ -42,7 +46,7 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
         <div className="relative h-fit">
             <PieChart width={250} height={250} className="z-[1] -mx-3">
                 <Pie
-                    data={data}
+                    data={gastosPorCategoria}
                     dataKey="valor"
                     activeIndex={activeIndex}
                     activeShape={FatiaAtiva}
@@ -55,7 +59,7 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                     isAnimationActive={true}
                     onClick={(_, index) => onPieClick(index, activeIndex)}
                 >
-                    {data.map((entry, index) => (
+                    {gastosPorCategoria.map((entry, index) => (
                         <Cell
                             key={`cell-${index}`}
                             fill={calcColor(
@@ -70,18 +74,24 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                 {activeIndex < 0 ? (
                     <span className=" text-sm font-bold text-gray-500">
                         {numberToCurrency(
-                            data.reduce((acc, curr) => acc + curr.valor, 0),
+                            gastosPorCategoria.reduce(
+                                (acc, curr) => acc + curr.valor,
+                                0,
+                            ),
                         )}
                     </span>
                 ) : (
                     <>
                         <IconeGasto
-                            iconeName={data[activeIndex].categoria.icone}
+                            iconeName={
+                                gastosPorCategoria[activeIndex].categoria.icone
+                            }
                             width={35}
                             height={35}
                             style={{
                                 color: calcColor(
-                                    data[activeIndex].categoria.cor,
+                                    gastosPorCategoria[activeIndex].categoria
+                                        .cor,
                                     false,
                                 ),
                             }}
@@ -90,12 +100,15 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                             className="text-center text-sm font-normal"
                             style={{
                                 color: calcColor(
-                                    data[activeIndex].categoria.cor,
+                                    gastosPorCategoria[activeIndex].categoria
+                                        .cor,
                                     false,
                                 ),
                             }}
                         >
-                            {numberToCurrency(data[activeIndex].valor)}
+                            {numberToCurrency(
+                                gastosPorCategoria[activeIndex].valor,
+                            )}
                         </span>
                     </>
                 )}

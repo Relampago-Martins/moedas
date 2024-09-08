@@ -27,7 +27,7 @@ const SelectCategoria = React.forwardRef<
         <Select onValueChange={onChange} defaultValue={value}>
             <SelectTrigger>
                 <SelectValue
-                    placeholder="Forma de Pagamento X"
+                    placeholder="Selecione uma categoria"
                     ref={ref}
                     {...props}
                 />
