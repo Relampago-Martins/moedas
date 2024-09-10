@@ -33,7 +33,7 @@ export const despesa = z.object({
     id: z.number().optional(),
     data: z.string().optional(),
     descricao: z.string().min(1, { message: 'Descrição é obrigatória' }).max(255),
-    valor: z.string().min(1, { message: 'Valor é obrigatório' }),
+    valor: z.number().min(0.01, { message: 'Valor deve ser maior que 0' }),
     categoria: z.string().min(1, { message: 'Categoria é obrigatória' }),
     forma_pagamento: z.string().min(1, { message: 'Categoria é obrigatória' }),
 });

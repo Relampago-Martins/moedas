@@ -22,7 +22,7 @@ export function CardGastos({ className }: CardGastosProps) {
                 <GastosContext>
                     <GraficoPizza />
                     <div className="flex flex-col gap-4">
-                        <SelectCategoria categorias={categorias} />
+                        <SelectCategoria />
                         <GastosLista categorias={categorias} />
                     </div>
                 </GastosContext>

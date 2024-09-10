@@ -12,11 +12,10 @@ import { useContext } from 'react';
 import { Categoria } from '../lib';
 import { GastosContext } from '../lib/context';
 
-type SelectCategoriaProps = {
-    categorias: Categoria[];
-};
+// type SelectCategoriaProps = {
+// };
 
-export function SelectCategoria({ categorias }: SelectCategoriaProps) {
+export function SelectCategoria() {
     const {
         categoriaSelecionada,
         setCategoriaSelecionada,
@@ -46,7 +45,7 @@ export function SelectCategoria({ categorias }: SelectCategoriaProps) {
             <SelectContent>
                 <SelectGroup>
                     <SelectItem value="todos">---</SelectItem>
-                    {categorias.map((categoria) => (
+                    {gastosPorCategoria.map(({ categoria }) => (
                         <SelectItem
                             key={categoria.nome}
                             value={categoria.nome}

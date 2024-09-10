@@ -2,6 +2,7 @@
 import { criaDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { despesa } from '@/shared/lib/forms';
 import { Button } from '@/shared/ui/button';
+import { CurrencyInput } from '@/shared/ui/currency';
 import {
     Form,
     FormControl,
@@ -22,7 +23,7 @@ export function CadastroGasto() {
         resolver: zodResolver(despesa),
         defaultValues: {
             descricao: '',
-            valor: '',
+            valor: 0,
         },
     });
 
@@ -61,7 +62,10 @@ export function CadastroGasto() {
                         <FormItem>
                             <FormLabel>Valor</FormLabel>
                             <FormControl>
-                                <Input {...field} type="number" />
+                                <CurrencyInput
+                                    {...field}
+                                    placeholder="R$ 0,00"
+                                />
                             </FormControl>
                             <FormMessage></FormMessage>
                         </FormItem>

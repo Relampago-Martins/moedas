@@ -33,7 +33,7 @@ export const categorias: Categoria[] = [
         label: 'Eletrônicos',
     },
     {
-        nome: 'alimentacao',
+        nome: 'A',
         cor: '#82ca9d',
         icone: 'A',
         label: 'Alimentação',
@@ -101,7 +101,10 @@ export function calcColor(cor: Categoria['cor'], isActive: boolean) {
  * @returns `{ categoria: Categoria, valor: number  }`
  */
 export function getGastosPorCategoria(gastos: Despesa[], categorias: Categoria[]) {
-    return categorias.map(categoria => {
+    const categoriasUsadas = categorias.filter(cat=> {
+        return gastos.map(g=>g.categoria).includes(cat.nome)
+    }); 
+    return categoriasUsadas.map(categoria => {
         const somaValorGatos = gastos
             .filter(gasto => gasto.categoria === categoria.nome)
             .reduce((acumulador, gasto) => acumulador + gasto.valor, 0);
