@@ -14,15 +14,7 @@ FORMAS_PAGAMENTO = [
 ]
 
 # CATEGORIAS_DESPESA = (
-#     ("A", "Alimentação"),
-#     ("E", "Educação"),
-#     ("ELET", "Eletrônicos"),
-#     ("L", "Lazer"),
 #     ("M", "Moradia"),
-#     ("S", "Saúde"),
-#     ("T", "Transporte"),
-#     ("O", "Outros"),
-#     ("V", "Vestuário"),
 #     ("SERV", "Serviços"),
 # )
 

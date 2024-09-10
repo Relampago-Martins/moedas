@@ -4,8 +4,8 @@ from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_framework import viewsets
 from rest_framework import permissions
-from moedas.models import Despesa
-from moedas.serializers import DespesaSerializer
+from moedas.models import Despesa, Categoria
+from moedas.serializers import DespesaSerializer, CategoriaSerializer
 from moedas.filters import DespesaFilter
 
 
@@ -27,11 +27,7 @@ class DespesaViewSet(viewsets.ModelViewSet):
 
     queryset = Despesa.objects.all()
     serializer_class = DespesaSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    search_fields = ["descricao", "categoria", "forma_pagamento"]
-    ordering_fields = ["valor", "data"]
-    ordering = ["-data"]
-    filter_class = DespesaFilter
+    filterset_class = DespesaFilter
     # pagination_class = StandardResultsSetPagination
 
     def perform_create(self, serializer):
@@ -39,3 +35,20 @@ class DespesaViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+
+
+class CategotiaViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet para Categorias
+    """
+
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+    # pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        """
+        Lista as categorias base do sistema +
+        as categorias criadas pelo usuário logado
+        """
+        return self.queryset.filter(is_base=True)

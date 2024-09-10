@@ -2,7 +2,7 @@ from rest_framework import serializers
 from moedas.models import Categoria
 
 
-class CategoriaSerializer(serializers.Serializer):
+class CategoriaSerializer(serializers.ModelSerializer):
     """
     Serializer para Categorias
     """

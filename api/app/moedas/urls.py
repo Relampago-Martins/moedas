@@ -1,10 +1,11 @@
 from django.urls import include, path
 from django.utils.translation import gettext as _
 from rest_framework import routers
-from moedas.views import GoogleLogin, DespesaViewSet
+from moedas.views import GoogleLogin, DespesaViewSet, CategotiaViewSet
 
 router = routers.DefaultRouter()
 router.register(r"despesas", DespesaViewSet, basename="despesas")
+router.register(r"categorias", CategotiaViewSet, basename="categorias")
 
 urlpatterns = [
     path("", include(router.urls)),

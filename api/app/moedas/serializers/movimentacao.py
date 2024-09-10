@@ -4,7 +4,7 @@ from moedas.models import Despesa
 from moedas.models.movimentacao import FORMAS_PAGAMENTO
 
 
-class FormaPagSerializer(serializers.CharField):
+class FormaPagSerializer(serializers.ChoiceField):
     """
     Serializer para Formas de Pagamento
     """
@@ -27,4 +27,4 @@ class DespesaSerializer(serializers.ModelSerializer):
         read_only_fields = ["user"]
 
     categoria = CategoriaSerializer()
-    forma_pagamento = FormaPagSerializer()
+    forma_pagamento = FormaPagSerializer(choices=FORMAS_PAGAMENTO)

@@ -8,5 +8,6 @@ else
     echo "DEBUG = false"
     python3 manage.py collectstatic --noinput
     python3 manage.py migrate
+    python3 manage.py loaddata fixtures/despesas.json
     gunicorn -b 0.0.0.0:80 --reload config.wsgi
 fi
