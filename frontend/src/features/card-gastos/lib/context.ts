@@ -7,7 +7,7 @@ type GastosContext = {
     setCategoriaSelecionada: (categoria: Categoria['nome'] | 'todos') => void;
     gastos: Despesa[];
     setGastos: (gastos: Despesa[]) => void;
-    gastosPorCategoria: {
+    getGastosPorCategoria: () => {
         categoria : Categoria;
         valor: number;
     }[];
@@ -18,6 +18,6 @@ export const GastosContext = createContext<GastosContext>({
     categoriaSelecionada: 'todos',
     gastos: [],
     setGastos: () => {},
-    gastosPorCategoria: [],
     setCategoriaSelecionada: () => {},
+    getGastosPorCategoria: () => [],
 });

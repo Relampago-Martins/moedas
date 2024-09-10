@@ -32,7 +32,8 @@ export function GastosLista({ categorias }: GastosListaProps) {
                             .filter(
                                 (gasto) =>
                                     categoriaSelecionada === 'todos' ||
-                                    gasto.categoria === categoriaSelecionada,
+                                    gasto.categoria.value ===
+                                        categoriaSelecionada,
                             )
                             .map((gasto) => (
                                 <ItemGasto

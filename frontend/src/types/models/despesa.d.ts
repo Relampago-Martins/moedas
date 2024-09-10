@@ -6,9 +6,15 @@ export type Despesa = {
     id: number;
     descricao: string;
     valor: number;
-    categoria: string;
+    categoria: {
+        value: string;
+        label: string;
+    };
+    forma_pagamento: {
+        value: string;
+        label: string;
+    };
     data: string;
-    forma_pagamento: string;
     usuario: number;
 };
 export type DespesaPreview = Pick<Despesa, 'id' | 'descricao' | 'valor' | 'categoria'>;

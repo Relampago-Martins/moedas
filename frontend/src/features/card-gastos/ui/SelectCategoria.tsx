@@ -19,8 +19,9 @@ export function SelectCategoria() {
     const {
         categoriaSelecionada,
         setCategoriaSelecionada,
-        gastosPorCategoria,
+        getGastosPorCategoria,
     } = useContext(GastosContext);
+    const gastosPorCategoria = getGastosPorCategoria();
     const gastoCategoriaSelecionada = gastosPorCategoria.find(
         (gasto) => gasto.categoria.nome === categoriaSelecionada,
     );

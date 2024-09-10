@@ -13,7 +13,6 @@ export function GastosContext({ children }: GastosConteudoProps) {
         Categoria['nome'] | 'todos'
     >('todos');
     const [gastos, setGastos] = useState<Despesa[]>([]);
-    const gastosPorCategoria = getGastosPorCategoria(gastos, categorias);
 
     return (
         <Context.Provider
@@ -22,7 +21,8 @@ export function GastosContext({ children }: GastosConteudoProps) {
                 setCategoriaSelecionada,
                 gastos,
                 setGastos,
-                gastosPorCategoria,
+                getGastosPorCategoria: () =>
+                    getGastosPorCategoria(gastos, categorias),
             }}
         >
             {children}

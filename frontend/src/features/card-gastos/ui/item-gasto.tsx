@@ -10,7 +10,9 @@ type ItemGastoProps = {
 
 export function ItemGasto({ gasto }: ItemGastoProps) {
     const categoria: Categoria =
-        categorias.find((categoria) => categoria.nome === gasto.categoria) ||
+        categorias.find(
+            (categoria) => categoria.nome === gasto.categoria.value,
+        ) ||
         (categorias.find(
             (categoria) => categoria.nome === 'outros',
         ) as Categoria);

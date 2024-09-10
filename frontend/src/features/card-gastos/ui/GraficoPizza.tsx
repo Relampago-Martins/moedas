@@ -5,7 +5,6 @@ import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';
 import { calcColor } from '../lib/index';
 import { FatiaAtiva, FatiaInativa } from './GraphFatia';
-import { IconeGasto } from './IconeGasto';
 import './style.scss';
 
 export type GraficoPizzaProps = {
@@ -16,9 +15,10 @@ export function GraficoPizza({}: GraficoPizzaProps) {
     const {
         categoriaSelecionada,
         setCategoriaSelecionada,
-        gastosPorCategoria,
+        getGastosPorCategoria,
     } = useContext(GastosContext);
     const [activeIndex, setActiveIndex] = useState(-1);
+    const gastosPorCategoria = getGastosPorCategoria();
     const onPieClick = useCallback(
         (newIndex: number, oldIndex: number) => {
             if (oldIndex === newIndex) {
@@ -28,7 +28,7 @@ export function GraficoPizza({}: GraficoPizzaProps) {
             }
             setActiveIndex(newIndex);
             setCategoriaSelecionada(
-                gastosPorCategoria[newIndex].categoria.nome,
+                getGastosPorCategoria()[newIndex].categoria.nome,
             );
         },
         [setActiveIndex],
@@ -57,7 +57,10 @@ export function GraficoPizza({}: GraficoPizzaProps) {
                     startAngle={90}
                     endAngle={-270}
                     isAnimationActive={true}
-                    onClick={(_, index) => onPieClick(index, activeIndex)}
+                    onClick={(data, index) => {
+                        console.log('data', data, 'index', index);
+                        onPieClick(index, activeIndex);
+                    }}
                 >
                     {gastosPorCategoria.map((entry, index) => (
                         <Cell
@@ -81,36 +84,19 @@ export function GraficoPizza({}: GraficoPizzaProps) {
                         )}
                     </span>
                 ) : (
-                    <>
-                        <IconeGasto
-                            iconeName={
-                                gastosPorCategoria[activeIndex].categoria.icone
-                            }
-                            width={35}
-                            height={35}
-                            style={{
-                                color: calcColor(
-                                    gastosPorCategoria[activeIndex].categoria
-                                        .cor,
-                                    false,
-                                ),
-                            }}
-                        />
-                        <span
-                            className="text-center text-sm font-normal"
-                            style={{
-                                color: calcColor(
-                                    gastosPorCategoria[activeIndex].categoria
-                                        .cor,
-                                    false,
-                                ),
-                            }}
-                        >
-                            {numberToCurrency(
-                                gastosPorCategoria[activeIndex].valor,
-                            )}
-                        </span>
-                    </>
+                    <span
+                        className="text-center text-sm font-normal"
+                        style={{
+                            color: calcColor(
+                                gastosPorCategoria[activeIndex].categoria.cor,
+                                false,
+                            ),
+                        }}
+                    >
+                        {numberToCurrency(
+                            gastosPorCategoria[activeIndex].valor,
+                        )}
+                    </span>
                 )}
             </div>
         </div>
