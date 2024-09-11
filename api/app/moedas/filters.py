@@ -21,3 +21,13 @@ class DespesaFilter(filters.FilterSet):
 
     def filter_pesquisa(self, queryset, name, value):
         return queryset.filter(descricao__icontains=value)
+
+
+class CategoriaFilter(filters.FilterSet):
+    """
+    Filtro para Categorias
+    """
+
+    class Meta:
+        model = Categoria
+        fields = {"tipo": ["exact"]}

@@ -3,10 +3,9 @@ from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_framework import viewsets
-from rest_framework import permissions
 from moedas.models import Despesa, Categoria
 from moedas.serializers import DespesaSerializer, CategoriaSerializer
-from moedas.filters import DespesaFilter
+from moedas.filters import DespesaFilter, CategoriaFilter
 
 
 # Create your views here.
@@ -44,6 +43,7 @@ class CategotiaViewSet(viewsets.ModelViewSet):
 
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+    filterset_class = CategoriaFilter
     # pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):

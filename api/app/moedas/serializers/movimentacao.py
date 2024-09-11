@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from moedas.serializers.utils import MyPrimaryKeyRelatedField
 from moedas.serializers.categoria import CategoriaSerializer
-from moedas.models import Despesa
+from moedas.models import Despesa, Categoria
 from moedas.models.movimentacao import FORMAS_PAGAMENTO
 
 
@@ -11,8 +12,8 @@ class FormaPagSerializer(serializers.ChoiceField):
 
     def to_representation(self, value):
         return {
-            "value": value,
-            "label": dict(FORMAS_PAGAMENTO).get(value),
+            "sigla": value,
+            "nome": dict(FORMAS_PAGAMENTO).get(value),
         }
 
 
@@ -26,5 +27,7 @@ class DespesaSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ["user"]
 
-    categoria = CategoriaSerializer()
+    categoria = MyPrimaryKeyRelatedField(
+        queryset=Categoria.objects.all(), required=True, serializer=CategoriaSerializer
+    )
     forma_pagamento = FormaPagSerializer(choices=FORMAS_PAGAMENTO)

@@ -1,0 +1,19 @@
+meta {
+  name: get-gastos
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost/api/despesas/
+  body: multipartForm
+  auth: none
+}
+
+params:query {
+  : 
+}
+
+headers {
+  Authorization: token {{api_token}}
+}

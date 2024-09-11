@@ -1,0 +1,24 @@
+meta {
+  name: deleta-gasto
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://localhost/api/despesas/1/
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}
+
+body:json {
+  {
+    "valor": 234.23,
+    "descricao": "Casaco Approve",
+    "categoria": "A",
+    "forma_pagamento": "deb"
+  }
+}
