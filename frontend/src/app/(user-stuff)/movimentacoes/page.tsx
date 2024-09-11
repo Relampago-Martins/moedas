@@ -1,3 +1,4 @@
+import { ItemGasto } from '@/entities/item-gasto.tsx/ui';
 import { getDespesas } from '@/shared/api/endpoints/despesa-cli';
 import { Suspense } from 'react';
 
@@ -13,18 +14,9 @@ export default async function Page() {
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p>
             <Suspense fallback={<div>Carregando...</div>}>
-                <ul>
+                <ul className="flex flex-col gap-2">
                     {despesas.map((despesa) => (
-                        <li
-                            key={despesa.id}
-                            className="flex items-center gap-2"
-                        >
-                            <p>---&gt;</p>
-                            <p>{despesa.descricao}</p>
-                            <p>{despesa.valor}</p>
-                            <p>{despesa.categoria}</p>
-                            <p>{despesa.forma_pagamento}</p>
-                        </li>
+                        <ItemGasto key={despesa.id} gasto={despesa} />
                     ))}
                 </ul>
             </Suspense>

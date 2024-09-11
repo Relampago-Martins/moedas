@@ -1,13 +1,12 @@
+import { Categoria } from "@/types/models/categoria";
 import { createContext } from "react";
-import { Categoria } from ".";
 
 type GastosContext = {
-    categoriaSelecionada: Categoria['nome'] | 'todos';
-    setCategoriaSelecionada: (categoria: Categoria['nome'] | 'todos') => void;
+    categoriaSelecionada: Categoria | undefined;
+    setCategoriaSelecionada: (categoria?: Categoria) => void;
 }
 
-
 export const GastosContext = createContext<GastosContext>({
-    categoriaSelecionada: 'todos',
+    categoriaSelecionada: undefined,
     setCategoriaSelecionada: () => {},
 });

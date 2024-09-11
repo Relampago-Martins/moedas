@@ -1,13 +1,17 @@
 meta {
-  name: get-gastos
+  name: get-categorias
   type: http
-  seq: 2
+  seq: 1
 }
 
 get {
-  url: http://localhost/api/despesas/
+  url: http://localhost/api/categorias/?tipo=D
   body: multipartForm
   auth: none
+}
+
+params:query {
+  tipo: D
 }
 
 headers {

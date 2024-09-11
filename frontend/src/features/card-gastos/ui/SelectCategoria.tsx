@@ -6,44 +6,41 @@ import {
     SelectItem,
 } from '@/shared/ui/select';
 
+import { Categoria } from '@/types/models/categoria';
 import { Icon, SelectTrigger } from '@radix-ui/react-select';
 import { ChevronDown } from 'lucide-react';
 import { useContext } from 'react';
-import { Categoria } from '../lib';
 import { GastosContext } from '../lib/context';
 
 type SelectCategoriaProps = {
     categorias: Categoria[];
-    gastosPorCategoria: {
-        categoria: Categoria;
-        valor: number;
-    }[];
 };
 
-export function SelectCategoria({
-    categorias,
-    gastosPorCategoria,
-}: SelectCategoriaProps) {
+export function SelectCategoria({ categorias }: SelectCategoriaProps) {
     const { categoriaSelecionada, setCategoriaSelecionada } =
         useContext(GastosContext);
-    const gastoCategoriaSelecionada = gastosPorCategoria.find(
-        (gasto) => gasto.categoria.nome === categoriaSelecionada,
-    );
-    const totalGastos = gastosPorCategoria.reduce(
-        (acc, gasto) => acc + gasto.valor,
+
+    const gastosTotais = categorias.reduce(
+        (acc, categoria) => acc + categoria.total_gastos,
         0,
     );
+
     return (
         <Select
-            value={categoriaSelecionada}
-            onValueChange={setCategoriaSelecionada}
+            value={categoriaSelecionada?.sigla || 'todos'}
+            onValueChange={(value) => {
+                setCategoriaSelecionada(
+                    categorias.find((categoria) => categoria.sigla === value),
+                );
+            }}
         >
             <SelectTrigger className="flex select-none items-center justify-between">
                 <TriggerContent
-                    categoria={gastoCategoriaSelecionada?.categoria}
+                    categoria={categoriaSelecionada}
                     porcentagem={
-                        (gastoCategoriaSelecionada?.valor || totalGastos) /
-                        totalGastos
+                        categoriaSelecionada
+                            ? categoriaSelecionada.total_gastos / gastosTotais
+                            : 1
                     }
                 />
             </SelectTrigger>
@@ -52,8 +49,8 @@ export function SelectCategoria({
                     <SelectItem value="todos">---</SelectItem>
                     {categorias.map((categoria) => (
                         <SelectItem
-                            key={categoria.nome}
-                            value={categoria.nome}
+                            key={categoria.sigla}
+                            value={categoria.sigla}
                             icon={
                                 <div
                                     className="h-4 w-4 rounded-full"
@@ -61,7 +58,7 @@ export function SelectCategoria({
                                 />
                             }
                         >
-                            {categoria.label}
+                            {categoria.nome}
                         </SelectItem>
                     ))}
                 </SelectGroup>
@@ -79,7 +76,7 @@ function TriggerContent({ categoria, porcentagem }: ItemGastoProps) {
         <>
             <div className="flex items-center gap-2">
                 <span className="font-medium">
-                    {categoria ? categoria.label : 'Total'}
+                    {categoria ? categoria.nome : 'Total'}
                 </span>
                 <span className="text-xs">•</span>
                 <span>{`${(porcentagem * 100).toFixed(0)}%`}</span>

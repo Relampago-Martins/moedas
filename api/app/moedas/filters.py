@@ -1,6 +1,6 @@
 from django_filters import rest_framework as filters
 
-from moedas.models import Despesa
+from moedas.models import Despesa, Categoria
 
 
 class DespesaFilter(filters.FilterSet):
@@ -11,7 +11,23 @@ class DespesaFilter(filters.FilterSet):
     class Meta:
         model = Despesa
         fields = {
-            "descricao": ["icontains"],
-            "categoria": ["exact"],
             "forma_pagamento": ["exact"],
         }
+
+    pesquisa = filters.CharFilter(method="filter_pesquisa", label="Pesquisa")
+    categoria = filters.ModelChoiceFilter(
+        field_name="categoria", queryset=Categoria.objects.all()
+    )
+
+    def filter_pesquisa(self, queryset, name, value):
+        return queryset.filter(descricao__icontains=value)
+
+
+class CategoriaFilter(filters.FilterSet):
+    """
+    Filtro para Categorias
+    """
+
+    class Meta:
+        model = Categoria
+        fields = {"tipo": ["exact"]}

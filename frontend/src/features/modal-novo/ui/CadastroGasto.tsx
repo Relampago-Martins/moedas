@@ -2,6 +2,7 @@
 import { criaDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { despesa } from '@/shared/lib/forms';
 import { Button } from '@/shared/ui/button';
+import { CurrencyInput } from '@/shared/ui/currency';
 import {
     Form,
     FormControl,
@@ -11,22 +12,22 @@ import {
     FormMessage,
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { Despesa } from '@/types/models/despesa';
+import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { SelectCategoria } from './select-categoria';
 import { SelectFormaPagamento } from './select-forma-pagamento';
 
 export function CadastroGasto() {
-    const form = useForm<Despesa>({
+    const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: {
             descricao: '',
-            valor: '',
+            valor: 0,
         },
     });
 
-    const onSubmit = async (data: Despesa) => {
+    const onSubmit = async (data: DespesaSchema) => {
         const resp = await criaDespesa(data);
         if (resp.status === 201) {
             alert('Despesa criada com sucesso');
@@ -61,7 +62,10 @@ export function CadastroGasto() {
                         <FormItem>
                             <FormLabel>Valor</FormLabel>
                             <FormControl>
-                                <Input {...field} type="number" />
+                                <CurrencyInput
+                                    {...field}
+                                    placeholder="R$ 0,00"
+                                />
                             </FormControl>
                             <FormMessage></FormMessage>
                         </FormItem>

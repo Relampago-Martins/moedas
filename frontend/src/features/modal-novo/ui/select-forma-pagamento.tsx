@@ -7,12 +7,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/shared/ui/select';
-import { APIChoice, Despesa } from '@/types/models/despesa';
+import { APIChoice, DespesaSchema } from '@/types/models/despesa';
 import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 
 type SelectFormaPagamentoProps = ControllerRenderProps<
-    Despesa,
+    DespesaSchema,
     'forma_pagamento'
 >;
 const SelectFormaPagamento = React.forwardRef<
@@ -32,7 +32,7 @@ const SelectFormaPagamento = React.forwardRef<
         <Select onValueChange={onChange} defaultValue={value}>
             <SelectTrigger>
                 <SelectValue
-                    placeholder="Forma de Pagamento X"
+                    placeholder="selecione uma forma de pag"
                     ref={ref}
                     {...props}
                 />

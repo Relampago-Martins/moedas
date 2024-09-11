@@ -1,49 +1,51 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
+import { Categoria } from '@/types/models/categoria';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';
-import { Categoria, calcColor } from '../lib/index';
-import { FatiaAtiva, FatiaInativa } from './GraphFatia';
-import { IconeGasto } from './IconeGasto';
+import { calcColor } from '../lib/index';
 import './style.scss';
+import { FatiaAtiva, FatiaInativa } from './utils/GraphFatia';
 
 export type GraficoPizzaProps = {
-    data: { categoria: Categoria; valor: number }[];
     className?: string;
+    categorias: Categoria[];
 };
 
-export function GraficoPizza({ data }: GraficoPizzaProps) {
+export function GraficoPizza({ categorias }: GraficoPizzaProps) {
     const { categoriaSelecionada, setCategoriaSelecionada } =
         useContext(GastosContext);
     const [activeIndex, setActiveIndex] = useState(-1);
-    const onPieClick = useCallback(
-        (newIndex: number, oldIndex: number) => {
-            if (oldIndex === newIndex) {
-                setActiveIndex(-1);
-                setCategoriaSelecionada('todos');
-                return;
-            }
-            setActiveIndex(newIndex);
-            setCategoriaSelecionada(data[newIndex].categoria.nome);
-        },
-        [setActiveIndex],
-    );
+
     useEffect(() => {
         let indexSelected = -1;
-        data.forEach((entry, index) => {
-            if (entry.categoria.nome === categoriaSelecionada) {
+        categorias.forEach((entry, index) => {
+            if (entry.sigla === categoriaSelecionada?.sigla) {
                 indexSelected = index;
             }
         });
         setActiveIndex(indexSelected);
     }, [categoriaSelecionada]);
+
+    const onPieClick = useCallback(
+        (newIndex: number, oldIndex: number) => {
+            if (oldIndex === newIndex) {
+                setActiveIndex(-1);
+                setCategoriaSelecionada();
+                return;
+            }
+            setActiveIndex(newIndex);
+            setCategoriaSelecionada(categorias[newIndex]);
+        },
+        [activeIndex],
+    );
     return (
         <div className="relative h-fit">
             <PieChart width={250} height={250} className="z-[1] -mx-3">
                 <Pie
-                    data={data}
-                    dataKey="valor"
+                    data={categorias}
+                    dataKey="total_gastos"
                     activeIndex={activeIndex}
                     activeShape={FatiaAtiva}
                     inactiveShape={FatiaInativa}
@@ -53,13 +55,15 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                     startAngle={90}
                     endAngle={-270}
                     isAnimationActive={true}
-                    onClick={(_, index) => onPieClick(index, activeIndex)}
+                    onClick={(data, index) => {
+                        onPieClick(index, activeIndex);
+                    }}
                 >
-                    {data.map((entry, index) => (
+                    {categorias.map((entry, index) => (
                         <Cell
                             key={`cell-${index}`}
                             fill={calcColor(
-                                entry.categoria.cor,
+                                entry.cor,
                                 activeIndex >= 0 && activeIndex !== index,
                             )}
                         />
@@ -70,34 +74,26 @@ export function GraficoPizza({ data }: GraficoPizzaProps) {
                 {activeIndex < 0 ? (
                     <span className=" text-sm font-bold text-gray-500">
                         {numberToCurrency(
-                            data.reduce((acc, curr) => acc + curr.valor, 0),
+                            categorias.reduce(
+                                (acc, curr) => acc + curr.total_gastos,
+                                0,
+                            ),
                         )}
                     </span>
                 ) : (
-                    <>
-                        <IconeGasto
-                            iconeName={data[activeIndex].categoria.icone}
-                            width={35}
-                            height={35}
-                            style={{
-                                color: calcColor(
-                                    data[activeIndex].categoria.cor,
-                                    false,
-                                ),
-                            }}
-                        />
-                        <span
-                            className="text-center text-sm font-normal"
-                            style={{
-                                color: calcColor(
-                                    data[activeIndex].categoria.cor,
-                                    false,
-                                ),
-                            }}
-                        >
-                            {numberToCurrency(data[activeIndex].valor)}
-                        </span>
-                    </>
+                    <span
+                        className="text-center text-sm font-normal"
+                        style={{
+                            color: calcColor(
+                                categoriaSelecionada?.cor || '#000',
+                                false,
+                            ),
+                        }}
+                    >
+                        {numberToCurrency(
+                            categoriaSelecionada?.total_gastos || 0,
+                        )}
+                    </span>
                 )}
             </div>
         </div>
