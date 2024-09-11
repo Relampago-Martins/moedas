@@ -17,9 +17,8 @@ export function ModalNovo() {
     const urlParams = useSearchParams();
     const step = urlParams.get('step');
 
-    if (!isOpen) return;
     return (
-        <Dialog open={true} onOpenChange={onOpenChange}>
+        <Dialog open={isOpen} onOpenChange={onOpenChange}>
             <DialogContent className="flex flex-col items-center justify-center gap-5">
                 <DialogHeader>
                     <DialogTitle className="flex justify-between gap-4 text-primary">
