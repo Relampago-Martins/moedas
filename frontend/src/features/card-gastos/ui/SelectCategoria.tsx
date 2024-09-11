@@ -12,11 +12,12 @@ import { ChevronDown } from 'lucide-react';
 import { useContext } from 'react';
 import { GastosContext } from '../lib/context';
 
-// type SelectCategoriaProps = {
-// };
+type SelectCategoriaProps = {
+    categorias: Categoria[];
+};
 
-export function SelectCategoria() {
-    const { categoriaSelecionada, setCategoriaSelecionada, categorias } =
+export function SelectCategoria({ categorias }: SelectCategoriaProps) {
+    const { categoriaSelecionada, setCategoriaSelecionada } =
         useContext(GastosContext);
 
     const gastosTotais = categorias.reduce(

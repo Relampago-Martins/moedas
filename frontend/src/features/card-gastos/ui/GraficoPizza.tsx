@@ -1,6 +1,6 @@
 'use client';
-import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
 import { numberToCurrency } from '@/shared/lib/utils';
+import { Categoria } from '@/types/models/categoria';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';
@@ -10,22 +10,13 @@ import { FatiaAtiva, FatiaInativa } from './utils/GraphFatia';
 
 export type GraficoPizzaProps = {
     className?: string;
+    categorias: Categoria[];
 };
 
-export function GraficoPizza({}: GraficoPizzaProps) {
-    const {
-        categoriaSelecionada,
-        setCategoriaSelecionada,
-        categorias,
-        setCategorias,
-    } = useContext(GastosContext);
+export function GraficoPizza({ categorias }: GraficoPizzaProps) {
+    const { categoriaSelecionada, setCategoriaSelecionada } =
+        useContext(GastosContext);
     const [activeIndex, setActiveIndex] = useState(-1);
-
-    useEffect(() => {
-        getCategorias().then((categorias) => {
-            setCategorias(categorias.filter((c) => c.total_gastos > 0));
-        });
-    }, []);
 
     useEffect(() => {
         let indexSelected = -1;

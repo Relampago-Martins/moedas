@@ -1,25 +1,22 @@
 'use client';
 import { ItemGasto } from '@/entities/item-gasto.tsx/ui';
-import { getDespesas } from '@/shared/api/endpoints/despesa-cli';
 import { ScrollArea } from '@/shared/ui/scroll-area';
+import { Despesa } from '@/types/models/despesa';
 import { AnimatePresence } from 'framer-motion';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { GastosContext } from '../lib/context';
 
-export function GastosLista() {
-    const { categoriaSelecionada, despesas, setDespesas } =
-        useContext(GastosContext);
+type GastosListaProps = {
+    despesas: Despesa[];
+};
 
+export function GastosLista({ despesas }: GastosListaProps) {
+    const { categoriaSelecionada } = useContext(GastosContext);
     const despesasFiltradas = despesas.filter(
         (despesa) =>
             !categoriaSelecionada ||
             despesa.categoria.sigla === categoriaSelecionada.sigla,
     );
-    useEffect(() => {
-        getDespesas().then((despesas) => {
-            setDespesas(despesas);
-        });
-    }, []);
 
     return (
         <div className=" flex-col gap-4">
