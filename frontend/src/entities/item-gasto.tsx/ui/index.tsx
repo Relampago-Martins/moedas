@@ -2,33 +2,25 @@
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Despesa } from '@/types/models/despesa';
 import { motion } from 'framer-motion';
-import { Categoria, categorias } from '../lib';
 
 type ItemGastoProps = {
     gasto: Despesa;
+    prefixLayoutId?: string;
 };
 
-export function ItemGasto({ gasto }: ItemGastoProps) {
-    const categoria: Categoria =
-        categorias.find(
-            (categoria) => categoria.nome === gasto.categoria.value,
-        ) ||
-        (categorias.find(
-            (categoria) => categoria.nome === 'outros',
-        ) as Categoria);
-
+export function ItemGasto({ gasto, prefixLayoutId }: ItemGastoProps) {
     return (
         <motion.button
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
-            layoutId={`${gasto.categoria}-${gasto.descricao}`}
+            layoutId={`${prefixLayoutId}-${gasto.id}`}
             className="flex w-full flex-col items-start rounded-sm border-l-4 bg-card px-4 py-2 "
-            style={{ borderColor: categoria?.cor }}
+            style={{ borderColor: gasto.categoria.cor }}
             onMouseOver={(event) => {
                 if (gasto.categoria) {
                     event.currentTarget.style.backgroundColor =
-                        categoria.cor + '15';
+                        gasto.categoria.cor + '15';
                 }
             }}
             onMouseLeave={(event) => {

@@ -1,4 +1,4 @@
-import { ItemGasto } from '@/features/card-gastos/ui/item-gasto';
+import { ItemGasto } from '@/entities/item-gasto.tsx/ui';
 import { getDespesas } from '@/shared/api/endpoints/despesa-cli';
 import { Suspense } from 'react';
 

@@ -1,23 +1,21 @@
+import { Categoria } from "@/types/models/categoria";
 import { Despesa } from "@/types/models/despesa";
 import { createContext } from "react";
-import { Categoria } from ".";
 
 type GastosContext = {
-    categoriaSelecionada: Categoria['nome'] | 'todos';
-    setCategoriaSelecionada: (categoria: Categoria['nome'] | 'todos') => void;
-    gastos: Despesa[];
-    setGastos: (gastos: Despesa[]) => void;
-    getGastosPorCategoria: () => {
-        categoria : Categoria;
-        valor: number;
-    }[];
+    categoriaSelecionada: Categoria | undefined;
+    setCategoriaSelecionada: (categoria?: Categoria) => void;
+    despesas: Despesa[];
+    setDespesas: (gastos: Despesa[]) => void;
+    categorias: Categoria[];
+    setCategorias: (categorias: Categoria[]) => void;
 }
 
-
 export const GastosContext = createContext<GastosContext>({
-    categoriaSelecionada: 'todos',
-    gastos: [],
-    setGastos: () => {},
+    categoriaSelecionada: undefined,
     setCategoriaSelecionada: () => {},
-    getGastosPorCategoria: () => [],
+    despesas: [],
+    setDespesas: () => {},
+    categorias: [],
+    setCategorias: () => {},
 });
