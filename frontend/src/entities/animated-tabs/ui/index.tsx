@@ -1,5 +1,4 @@
 'use client';
-import { cn } from '@/shared/lib/utils';
 import { motion, MotionConfig } from 'framer-motion';
 import { useState } from 'react';
 
@@ -18,23 +17,26 @@ export function AnimatedTabs() {
                 {TABS.map((tab) => (
                     <motion.li
                         key={tab}
-                        className={cn(
-                            'relative cursor-pointer px-4 py-2',
-                            activeTab === tab
-                                ? 'text-gray-800'
-                                : 'text-gray-700',
-                        )}
+                        className="relative cursor-pointer px-4 py-2"
                         onFocus={() => setActiveTab(tab)}
                         onMouseOver={() => setActiveTab(tab)}
                         onMouseLeave={() => setActiveTab(tab)}
                     >
+                        <motion.span
+                            className={
+                                activeTab === tab
+                                    ? 'text-foreground'
+                                    : 'text-muted-foreground'
+                            }
+                        >
+                            {tab}
+                        </motion.span>
                         {activeTab === tab && (
                             <motion.div
                                 layoutId="tab-indicator"
-                                className="absolute inset-0 rounded-lg bg-black/5"
+                                className="absolute inset-0 rounded-lg bg-black/5 dark:bg-white/5"
                             />
                         )}
-                        {tab}
                     </motion.li>
                 ))}
             </motion.ul>

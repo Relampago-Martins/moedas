@@ -1,5 +1,5 @@
 'use client';
-import { getDespesaConfigs } from '@/shared/api/endpoints/despesa-cli';
+import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
 import {
     Select,
     SelectContent,
@@ -7,19 +7,20 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/shared/ui/select';
-import { APIChoice, Despesa } from '@/types/models/despesa';
+import { Categoria } from '@/types/models/categoria';
+import { DespesaSchema } from '@/types/models/despesa';
 import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 
-type SelectCategoriaProps = ControllerRenderProps<Despesa, 'categoria'>;
+type SelectCategoriaProps = ControllerRenderProps<DespesaSchema, 'categoria'>;
 const SelectCategoria = React.forwardRef<
     HTMLSelectElement,
     Omit<SelectCategoriaProps, 'ref'>
 >(({ onChange, value, ...props }, ref) => {
-    const [categorias, setCategorias] = React.useState<APIChoice[]>([]);
+    const [categorias, setCategorias] = React.useState<Categoria[]>([]);
     React.useEffect(() => {
-        getDespesaConfigs().then((data) => {
-            setCategorias(data.actions.POST.categoria.choices);
+        getCategorias('D').then((data) => {
+            setCategorias(data);
         });
     }, []);
 
@@ -27,15 +28,21 @@ const SelectCategoria = React.forwardRef<
         <Select onValueChange={onChange} defaultValue={value}>
             <SelectTrigger>
                 <SelectValue
-                    placeholder="Forma de Pagamento X"
+                    placeholder="Selecione uma categoria"
                     ref={ref}
                     {...props}
                 />
             </SelectTrigger>
             <SelectContent>
                 {categorias.map((categoria) => (
-                    <SelectItem key={categoria.value} value={categoria.value}>
-                        {categoria.display_name}
+                    <SelectItem key={categoria.sigla} value={categoria.sigla}>
+                        <div className="flex flex-row items-center gap-2">
+                            <div
+                                className="flex h-4 w-4 rounded-full"
+                                style={{ backgroundColor: categoria.cor }}
+                            />
+                            {categoria.nome}
+                        </div>
                     </SelectItem>
                 ))}
             </SelectContent>

@@ -1,34 +1,7 @@
 from django.db import models
+from moedas.models.utils import FORMAS_PAGAMENTO, TIPO
+from moedas.models.categoria import Categoria
 from datetime import date
-
-CATEGORIAS_DESPESA = (
-    ("A", "Alimentação"),
-    ("E", "Educação"),
-    ("L", "Lazer"),
-    ("M", "Moradia"),
-    ("S", "Saúde"),
-    ("T", "Transporte"),
-    ("O", "Outros"),
-    ("V", "Vestuário"),
-)
-
-CATEGORIAS_RECEITA = (
-    ("S", "Salário"),
-    ("O", "Outros"),
-)
-
-TIPO_MOVIMENTACAO = [
-    ("D", "Despesa"),
-    ("R", "Receita"),
-]
-
-FORMAS_PAGAMENTO = [
-    ("din", "Dinheiro"),
-    ("deb", "Cartão de Débito"),
-    ("cre", "Cartão de Crédito"),
-    ("pix", "Pix"),
-    ("out", "Outros"),
-]
 
 
 class Movimentacao(models.Model):
@@ -36,15 +9,21 @@ class Movimentacao(models.Model):
     Classe base para movimentações financeiras de um usuário
     """
 
-    user = models.ForeignKey("auth.User", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(
+        "auth.User", on_delete=models.CASCADE, null=True, related_name="movimentacoes"
+    )
     descricao = models.CharField(max_length=250)
     valor = models.DecimalField(max_digits=10, decimal_places=2)
+    categoria = models.ForeignKey(
+        Categoria, on_delete=models.CASCADE, null=True, blank=False
+    )
     data = models.DateField(
         default=date.today, help_text="Data da movimentação", null=True
     )
+    tipo = models.CharField(max_length=1, choices=TIPO, default="D")
 
     def __str__(self):
-        return self.nome
+        return self.descricao
 
 
 class Despesa(Movimentacao):
@@ -59,11 +38,11 @@ class Despesa(Movimentacao):
     movimentacao_ptr = models.OneToOneField(
         Movimentacao, on_delete=models.CASCADE, parent_link=True, primary_key=True
     )
-    categoria = models.CharField(max_length=1, choices=CATEGORIAS_DESPESA)
     forma_pagamento = models.CharField(max_length=4, choices=FORMAS_PAGAMENTO)
+    pago = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.nome
+        return self.descricao
 
     def save(self, *args, **kwargs):
         self.tipo = "D"  # Define o tipo como Despesa
@@ -82,7 +61,6 @@ class Receita(Movimentacao):
     movimentacao_ptr = models.OneToOneField(
         Movimentacao, on_delete=models.CASCADE, parent_link=True, primary_key=True
     )
-    categoria = models.CharField(max_length=1, choices=CATEGORIAS_RECEITA)
 
     def save(self, *args, **kwargs):
         self.tipo = "R"  # Define o tipo como Receita

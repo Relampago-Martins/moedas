@@ -1,0 +1,90 @@
+[
+    {
+        "model": "moedas.categoria",
+        "pk": "A",
+        "fields": {
+            "nome": "Alimentação",
+            "cor": "#36760D",
+            "icone": "faBurguer",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "E",
+        "fields": {
+            "nome": "Educação",
+            "cor": "#1B1DFF",
+            "icone": "faMortar",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "ELET",
+        "fields": {
+            "nome": "Eletrônicos",
+            "cor": "#144D03",
+            "icone": "faCpu",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "L",
+        "fields": {
+            "nome": "Lazer",
+            "cor": "#FFAE3A",
+            "icone": "fa",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "O",
+        "fields": {
+            "nome": "Outros",
+            "cor": "#7D7D7D",
+            "icone": "faBox",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "S",
+        "fields": {
+            "nome": "Saúde",
+            "cor": "#36A551",
+            "icone": "faHeart",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "T",
+        "fields": {
+            "nome": "Transporte",
+            "cor": "#D0FF1B",
+            "icone": "faCar",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "V",
+        "fields": {
+            "nome": "Vestuário",
+            "cor": "#FF4535",
+            "icone": "faTshirt",
+            "is_base": true,
+            "tipo": "D"
+        }
+    }
+]

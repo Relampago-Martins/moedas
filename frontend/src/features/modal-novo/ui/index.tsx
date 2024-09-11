@@ -26,7 +26,7 @@ export function ModalNovo() {
                         {step === 'gasto' ? (
                             <>
                                 <BsArrowLeft onClick={() => router.back()} />
-                                <span>Cadastro de Gastos</span>
+                                <span>Cadastro de Despesa</span>
                             </>
                         ) : step === 'receita' ? (
                             'Cadastro de Receitas'
