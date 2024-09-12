@@ -1,3 +1,4 @@
+import { AnimatedPlayground } from '@/entities/animated-playground';
 import { AnimatedTabs } from '@/entities/animated-tabs/ui';
 
 export default function Page() {
@@ -12,6 +13,8 @@ export default function Page() {
             </p>
             <div className="flex flex-col gap-8 py-4">
                 <AnimatedTabs />
+
+                <AnimatedPlayground />
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Categoria } from '@/types/models/categoria';
+import { motion } from 'framer-motion';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';
@@ -55,6 +56,9 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     startAngle={90}
                     endAngle={-270}
                     isAnimationActive={true}
+                    animationBegin={0}
+                    animationDuration={800}
+                    animationEasing="ease-out"
                     onClick={(data, index) => {
                         onPieClick(index, activeIndex);
                     }}
@@ -71,30 +75,28 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                 </Pie>
             </PieChart>
             <div className="absolute inset-0 z-[0] flex select-none flex-col items-center justify-center gap-1">
-                {activeIndex < 0 ? (
-                    <span className=" text-sm font-bold text-gray-500">
-                        {numberToCurrency(
-                            categorias.reduce(
-                                (acc, curr) => acc + curr.total_gastos,
-                                0,
-                            ),
-                        )}
-                    </span>
-                ) : (
-                    <span
-                        className="text-center text-sm font-normal"
-                        style={{
-                            color: calcColor(
-                                categoriaSelecionada?.cor || '#000',
-                                false,
-                            ),
-                        }}
-                    >
-                        {numberToCurrency(
-                            categoriaSelecionada?.total_gastos || 0,
-                        )}
-                    </span>
-                )}
+                <motion.span
+                    key={`total-gastos-${activeIndex}`}
+                    transition={{
+                        type: 'spring',
+                        duration: 0.3,
+                        bounce: 0,
+                    }}
+                    initial={{ opacity: 0.9, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1.05 }}
+                    className=" text-sm font-bold text-gray-500"
+                >
+                    {activeIndex < 0
+                        ? numberToCurrency(
+                              categorias.reduce(
+                                  (acc, curr) => acc + curr.total_gastos,
+                                  0,
+                              ),
+                          )
+                        : numberToCurrency(
+                              categoriaSelecionada?.total_gastos || 0,
+                          )}
+                </motion.span>
             </div>
         </div>
     );
