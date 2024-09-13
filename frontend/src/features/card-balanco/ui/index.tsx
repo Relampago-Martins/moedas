@@ -1,9 +1,8 @@
 import { CardTransacao } from '@/features/card-balanco/ui/CardTransacao';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
+import { AlignVerticalCenterIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
-import { BsChevronRight } from 'react-icons/bs';
-import { FaChartSimple } from 'react-icons/fa6';
 import { balancoMes } from '../lib/data';
 import { FooterContent } from './FooterContent';
 import { GraficoBalanco } from './GraficoBalanco';
@@ -16,11 +15,10 @@ export function CardBalanco({ className }: CardBalancoProps) {
         <Card title="Balanço Mensal" className={className}>
             <CardHeader
                 className="flex flex-row items-center gap-2 space-y-0
-                font-semibold opacity-70 hover:cursor-pointer"
+                font-medium opacity-70 hover:cursor-pointer"
             >
-                <FaChartSimple className="text-lg" />
+                <AlignVerticalCenterIcon className="h-5 w-5" />
                 <span className="text-base">Balanço Mensal</span>
-                <BsChevronRight className="text-sm" />
             </CardHeader>
             <CardContent className="flex flex-row justify-center gap-4 pb-0">
                 <GraficoBalanco />

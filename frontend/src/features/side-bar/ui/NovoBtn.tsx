@@ -1,7 +1,7 @@
 'use client';
 
 import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
-import { FaPlus } from 'react-icons/fa6';
+import { Plus } from 'lucide-react';
 import { NavBarItem } from './NavBar';
 
 export function NovoBtn() {
@@ -11,7 +11,7 @@ export function NovoBtn() {
 
     return (
         <NavBarItem
-            icon={<FaPlus className="text-sm" />}
+            icon={<Plus className="h-4 w-4" />}
             onClick={() => {
                 abrirModal();
             }}

@@ -1,13 +1,8 @@
+import { ChartUpIcon, LeftToRightListDashIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
 import { MotionConfig } from 'framer-motion';
+import { Blocks, House, Menu, Settings } from 'lucide-react';
 import Link from 'next/link';
-import { BsFlagFill, BsGrid1X2Fill } from 'react-icons/bs';
-import {
-    FaArrowRightArrowLeft,
-    FaBars,
-    FaBoltLightning,
-    FaGear,
-} from 'react-icons/fa6';
 import {
     NavBar,
     NavBarContent,
@@ -29,7 +24,7 @@ export function SideBar() {
                     icon={<div className="rounded-lg bg-input px-2">P</div>}
                 >
                     <span className={`w-full`}>ProsperApp</span>
-                    <FaBars className="hidden text-lg md:block" />
+                    <Menu className="hidden h-6 w-6 md:block" />
                 </NavBarTrigger>
             </NavBarHeader>
             <Separator className="w-[85%] self-center" />
@@ -40,12 +35,14 @@ export function SideBar() {
                     <NavBarItem
                         component={<Link href="/dashboard" />}
                         activeName="/dashboard"
-                        icon={<BsGrid1X2Fill className="text-sm" />}
+                        icon={<House className="ml-1 h-4 w-4" />}
                     >
                         Início
                     </NavBarItem>
                     <NavBarItem
-                        icon={<FaArrowRightArrowLeft className="text-sm" />}
+                        icon={
+                            <LeftToRightListDashIcon className="ml-1 h-4 w-4" />
+                        }
                         suffix={<Notification>6</Notification>}
                         component={<Link href="/movimentacoes" />}
                         activeName="/movimentacoes"
@@ -54,20 +51,20 @@ export function SideBar() {
                     </NavBarItem>
                     <NavBarItem
                         activeName="/plano-financeiro"
-                        icon={<BsFlagFill className="text-sm" />}
+                        icon={<ChartUpIcon className="ml-1 h-4 w-4" />}
                         component={<Link href="/plano-financeiro" />}
                     >
                         Plano financeiro
                     </NavBarItem>
                     <NavBarItem
-                        icon={<FaBoltLightning className="text-sm" />}
+                        icon={<Blocks className="ml-1 h-4 w-4" />}
                         component={<Link href="/playground" />}
                         activeName="/playground"
                     >
                         PlayGround
                     </NavBarItem>
                     <NavBarItem
-                        icon={<FaGear className="text-sm" />}
+                        icon={<Settings className="ml-1 h-4 w-4" />}
                         component={<Link href="/configuracoes" />}
                         activeName="/configuracoes"
                     >

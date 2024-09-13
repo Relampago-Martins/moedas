@@ -27,11 +27,7 @@ const SelectCategoria = React.forwardRef<
     return (
         <Select onValueChange={onChange} defaultValue={value}>
             <SelectTrigger>
-                <SelectValue
-                    placeholder="Selecione uma categoria"
-                    ref={ref}
-                    {...props}
-                />
+                <SelectValue placeholder="Selecione" ref={ref} {...props} />
             </SelectTrigger>
             <SelectContent>
                 {categorias.map((categoria) => (

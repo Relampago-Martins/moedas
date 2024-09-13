@@ -1,8 +1,7 @@
 import { Button } from '@/shared/ui/button';
 import { DialogClose, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
-import { X } from 'lucide-react';
+import { ChevronLeft, X } from 'lucide-react';
 import { useContext } from 'react';
-import { BsChevronLeft } from 'react-icons/bs';
 import { ModalCadastroContext } from '../lib/context';
 
 type StepHeaderProps = {
@@ -22,7 +21,7 @@ export function StepHeader({ title, backBtn }: StepHeaderProps) {
                         className="h-full p-0 pr-2"
                         onClick={() => setStep('menu')}
                     >
-                        <BsChevronLeft className="text-lg" />
+                        <ChevronLeft className="h-4 w-4" />
                     </Button>
                 )}
                 {title}

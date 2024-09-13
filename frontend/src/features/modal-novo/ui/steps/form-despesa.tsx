@@ -15,6 +15,7 @@ import { Input } from '@/shared/ui/input';
 import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { getNomeDespesaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
 import { SelectFormaPagamento } from '../inputs/select-forma-pagamento';
 import { StepHeader } from '../step-header';
@@ -22,9 +23,7 @@ import { StepHeader } from '../step-header';
 export function FormDespesa() {
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
-        defaultValues: {
-            descricao: '',
-        },
+        defaultValues: {},
     });
 
     const onSubmit = async (data: DespesaSchema) => {
@@ -67,7 +66,10 @@ export function FormDespesa() {
                             <FormItem>
                                 <FormLabel>Nome</FormLabel>
                                 <FormControl>
-                                    <Input {...field} />
+                                    <Input
+                                        {...field}
+                                        placeholder={getNomeDespesaAleatoria()}
+                                    />
                                 </FormControl>
                                 <FormMessage></FormMessage>
                             </FormItem>

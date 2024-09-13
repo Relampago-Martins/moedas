@@ -1,16 +1,15 @@
-export function ReceitaIcon(props: React.SVGProps<SVGSVGElement>) {
+export function GastoIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             width={24}
             height={24}
-            color={'#000000'}
             fill={'none'}
             {...props}
         >
             <path
-                d="M7.99707 16.999C11.5286 16.999 18.9122 15.5348 18.6979 6.43269M16.4886 8.04302L18.3721 6.14612C18.5656 5.95127 18.8798 5.94981 19.0751 6.14286L20.9971 8.04302"
+                d="M6.99707 5.99902C10.5286 5.999 17.9122 7.46328 17.6979 16.5654M15.4886 14.955L17.3721 16.8519C17.5656 17.0468 17.8798 17.0482 18.0751 16.8552L19.9971 14.955"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"

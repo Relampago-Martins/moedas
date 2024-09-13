@@ -1,5 +1,6 @@
 import { numberToCurrency } from '@/shared/lib/utils';
-import { BsChevronRight, BsWallet2 } from 'react-icons/bs';
+import { Wallet03Icon } from '@/shared/ui/huge-icons';
+import { ChevronRight } from 'lucide-react';
 import './ui.scss';
 
 type SaldoProps = {
@@ -13,9 +14,9 @@ export function Saldo(props: SaldoProps) {
                 {numberToCurrency(props.valor)}
             </div>
             <div className="align-center flex gap-1 text-sm opacity-65">
-                <BsWallet2 className="h-3 self-center" />
+                <Wallet03Icon className="h-3 self-center" />
                 Saldo atual
-                <BsChevronRight className="h-3 self-center" />
+                <ChevronRight className="h-3 self-center" />
             </div>
         </div>
     );

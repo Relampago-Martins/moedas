@@ -5,8 +5,8 @@ import {
     CollapsibleTrigger,
 } from '@/shared/ui/collapsible';
 import { Collapsible } from '@radix-ui/react-collapsible';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { BsChevronCompactDown } from 'react-icons/bs';
 import { balancoMes } from '../lib/data';
 import { GraficoEconomia } from './GraficoEconomia';
 import './ui.scss';
@@ -33,8 +33,8 @@ export function FooterContent() {
                 </div>
             </CollapsibleContent>
             <CollapsibleTrigger className="self-center">
-                <BsChevronCompactDown
-                    className={`transform text-lg transition-transform duration-500
+                <ChevronDown
+                    className={`h-4 w-4 transform transition-transform duration-500
                     ${open ? 'rotate-180' : ''}`}
                 />
             </CollapsibleTrigger>
