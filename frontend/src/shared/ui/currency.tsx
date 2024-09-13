@@ -14,11 +14,14 @@ const CurrencyInput = React.forwardRef<
         <CurrencyPrimitive.default
             ref={ref}
             className={cn(
-                'h-9 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:ring-0 focus-visible:ring-ring',
+                `h-9 w-full rounded-none border-b border-primary bg-transparent py-1
+                text-xl
+                focus:outline-none`,
                 className,
             )}
             defaultValue={value}
             decimalSeparator=","
+            fixedDecimalLength={2}
             type="decimal"
             groupSeparator="."
             prefix={'R$ '}
