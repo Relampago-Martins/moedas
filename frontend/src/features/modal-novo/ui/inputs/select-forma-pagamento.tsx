@@ -31,11 +31,7 @@ const SelectFormaPagamento = React.forwardRef<
     return (
         <Select onValueChange={onChange} defaultValue={value}>
             <SelectTrigger>
-                <SelectValue
-                    placeholder="selecione uma forma de pag"
-                    ref={ref}
-                    {...props}
-                />
+                <SelectValue placeholder="selecione" ref={ref} {...props} />
             </SelectTrigger>
             <SelectContent>
                 {formasPagamento.map((formaPagamento) => (

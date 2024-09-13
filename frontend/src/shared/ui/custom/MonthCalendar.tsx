@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/shared/ui/button';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type MonthCalendarProps = {
     children?: React.ReactNode;
@@ -32,7 +32,7 @@ function CalendarHeader({ year, setYear }: CalendarHeaderProps) {
                 size={'sm'}
                 onClick={() => setYear(year - 1)}
             >
-                <BsChevronLeft />
+                <ChevronLeft className="h-4 w-4" />
             </Button>
             <div className="flex w-20 items-center justify-center text-lg font-semibold">
                 {year}
@@ -42,7 +42,7 @@ function CalendarHeader({ year, setYear }: CalendarHeaderProps) {
                 size={'sm'}
                 onClick={() => setYear(year + 1)}
             >
-                <BsChevronRight />
+                <ChevronRight className="h-4 w-4" />
             </Button>
         </div>
     );

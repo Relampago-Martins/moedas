@@ -12,8 +12,8 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/shared/ui/popover';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { BsChevronDown } from 'react-icons/bs';
 import { mesOptions } from '../lib/selectMes';
 
 export function MonthPickerInput() {
@@ -43,7 +43,7 @@ export function MonthPickerInput() {
                             )?.label
                         } ${monthData.year}`}
                     </span>
-                    <BsChevronDown className="ml-2 h-4" />
+                    <ChevronDown className="ml-2 h-4" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="mx-4 w-64">
