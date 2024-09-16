@@ -39,11 +39,11 @@ export function ItemMovimentacao({
                     <ReceitaIcon className="h-4 w-4 text-green-700" />
                 )}
             </div>
-            <div className="flex flex-col items-start">
-                <div className="w-full truncate  text-base">
+            <div className="">
+                <div className="w-full truncate text-start text-base">
                     {movimentacao.descricao}
                 </div>
-                <div className="text-sm opacity-70">
+                <div className="text-start text-sm opacity-70">
                     {numberToCurrency(movimentacao.valor)}
                 </div>
             </div>

@@ -16,10 +16,10 @@ export function MenuMovimentacoes() {
     return (
         <>
             <StepHeader title="Cadastre uma nova movimentação" />
-            <div className="grid w-full grid-cols-2 gap-4">
+            <div className="grid w-full gap-4 sm:grid-cols-2">
                 <Card
                     onClick={() => setStep('gasto')}
-                    className={`${cardClass} `}
+                    className={`${cardClass}`}
                 >
                     <GastoIcon className="h-8 w-8 text-red-600" />
                     <span className="text-base font-medium">Despesa</span>

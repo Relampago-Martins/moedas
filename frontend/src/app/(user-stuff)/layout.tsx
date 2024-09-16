@@ -34,9 +34,9 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <main className="flex h-full min-h-screen w-full flex-row bg-background">
+                    <main className="flex h-screen w-full flex-row bg-background">
                         <SideBar />
-                        <div className="w-full">
+                        <div className="w-full overflow-y-scroll">
                             <MobileHeader />
                             {children}
                             <Toaster />
