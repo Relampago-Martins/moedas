@@ -67,6 +67,17 @@
     },
     {
         "model": "moedas.categoria",
+        "pk": "SAL",
+        "fields": {
+            "nome": "Salário",
+            "cor": "#036C09",
+            "icone": "faDolar",
+            "is_base": true,
+            "tipo": "R"
+        }
+    },
+    {
+        "model": "moedas.categoria",
         "pk": "T",
         "fields": {
             "nome": "Transporte",
@@ -85,6 +96,17 @@
             "icone": "faTshirt",
             "is_base": true,
             "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "VEN",
+        "fields": {
+            "nome": "Venda",
+            "cor": "#FFB43C",
+            "icone": "faArrowLeftRight",
+            "is_base": true,
+            "tipo": "R"
         }
     }
 ]

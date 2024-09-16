@@ -3,9 +3,9 @@ from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_framework import viewsets
-from moedas.models import Despesa, Categoria
-from moedas.serializers import DespesaSerializer, CategoriaSerializer
-from moedas.filters import DespesaFilter, CategoriaFilter
+from moedas.models import Despesa, Categoria, Receita
+from moedas import serializers as moedas_serializers
+from moedas.filters import DespesaFilter, CategoriaFilter, ReceitaFilter
 
 
 # Create your views here.
@@ -25,7 +25,7 @@ class DespesaViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Despesa.objects.all()
-    serializer_class = DespesaSerializer
+    serializer_class = moedas_serializers.DespesaSerializer
     filterset_class = DespesaFilter
     # pagination_class = StandardResultsSetPagination
 
@@ -42,7 +42,7 @@ class CategotiaViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Categoria.objects.all()
-    serializer_class = CategoriaSerializer
+    serializer_class = moedas_serializers.CategoriaSerializer
     filterset_class = CategoriaFilter
     # pagination_class = StandardResultsSetPagination
 
@@ -52,3 +52,20 @@ class CategotiaViewSet(viewsets.ModelViewSet):
         as categorias criadas pelo usuário logado
         """
         return self.queryset.filter(is_base=True)
+
+
+class ReceitaViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet para Receitas
+    """
+
+    queryset = Receita.objects.all()
+    serializer_class = moedas_serializers.ReceitaSerializer
+    filterset_class = ReceitaFilter
+    # pagination_class = StandardResultsSetPagination
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)

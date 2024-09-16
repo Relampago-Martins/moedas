@@ -1,0 +1,23 @@
+meta {
+  name: cria-receita
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost/api/receitas/
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}
+
+body:json {
+  {
+    "valor": 2034.23,
+    "descricao": "Salário meu",
+    "categoria": "SAL"
+  }
+}

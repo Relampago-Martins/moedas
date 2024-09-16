@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from moedas.serializers.utils import MyPrimaryKeyRelatedField
 from moedas.serializers.categoria import CategoriaSerializer
-from moedas.models import Despesa, Categoria
+from moedas.models import Despesa, Categoria, Receita
 from moedas.models.movimentacao import FORMAS_PAGAMENTO
 
 
@@ -25,9 +25,24 @@ class DespesaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Despesa
         fields = "__all__"
-        read_only_fields = ["user"]
+        read_only_fields = ["user", "tipo"]
 
     categoria = MyPrimaryKeyRelatedField(
         queryset=Categoria.objects.all(), required=True, serializer=CategoriaSerializer
     )
     forma_pagamento = FormaPagSerializer(choices=FORMAS_PAGAMENTO)
+
+
+class ReceitaSerializer(serializers.ModelSerializer):
+    """
+    Serializer para Receitas
+    """
+
+    class Meta:
+        model = Receita
+        fields = "__all__"
+        read_only_fields = ["user", "tipo"]
+
+    categoria = MyPrimaryKeyRelatedField(
+        queryset=Categoria.objects.all(), required=True, serializer=CategoriaSerializer
+    )
