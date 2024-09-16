@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.db.models import Sum
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
@@ -105,24 +104,9 @@ class CarteiraView(views.APIView):
         - Total de despesas
         - Total de receitas
         """
-        total_despesas = Despesa.objects.filter(user=request.user).aggregate(
-            total=Sum("valor")
-        )
-
-        total_receitas = Receita.objects.filter(user=request.user).aggregate(
-            total=Sum("valor")
-        )
-
-        saldo = 0
-        if total_receitas["total"]:
-            saldo = total_receitas["total"]
-        if total_despesas["total"]:
-            saldo -= total_despesas["total"]
+        carteira_serializer = moedas_serializers.CarteiraSerializer(request.user)
 
         return Response(
-            {
-                "saldo": saldo,
-                "total_despesas": total_despesas["total"],
-                "total_receitas": total_receitas["total"],
-            }
+            carteira_serializer.data,
+            status=200,
         )
