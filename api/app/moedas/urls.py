@@ -16,6 +16,7 @@ urlpatterns = [
     path(
         "dj-rest-auth/social/google/", views.GoogleLogin.as_view(), name="google_login"
     ),
+    path("carteira/", views.CarteiraView.as_view(), name="carteira"),
 ]
 
 print(_("Welcome to my site."))

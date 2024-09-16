@@ -1,8 +1,10 @@
 from django.conf import settings
+from django.db.models import Sum
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import viewsets, views
 from moedas.models import Despesa, Categoria, Receita, Movimentacao
 from moedas import serializers as moedas_serializers
 from moedas.filters import (
@@ -88,3 +90,39 @@ class MovimentacaoViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+
+
+class CarteiraView(views.APIView):
+    """
+    View para retornar o saldo da carteira
+    """
+
+    def get(self, request):
+        """
+        View responsável por agregar em um local as informações da
+        financeiras gerais de um usuário
+        - Saldo em conta
+        - Total de despesas
+        - Total de receitas
+        """
+        total_despesas = Despesa.objects.filter(user=request.user).aggregate(
+            total=Sum("valor")
+        )
+
+        total_receitas = Receita.objects.filter(user=request.user).aggregate(
+            total=Sum("valor")
+        )
+
+        saldo = 0
+        if total_receitas["total"]:
+            saldo = total_receitas["total"]
+        if total_despesas["total"]:
+            saldo -= total_despesas["total"]
+
+        return Response(
+            {
+                "saldo": saldo,
+                "total_despesas": total_despesas["total"],
+                "total_receitas": total_receitas["total"],
+            }
+        )
