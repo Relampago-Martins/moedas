@@ -1,11 +1,15 @@
+import { Carteira } from '@/types/models';
 import { Pie, PieChart, ResponsiveContainer } from 'recharts';
-import { balancoMes } from '../lib/data';
 import { getColor } from '../lib/utils';
 import './ui.scss';
 
-export function GraficoEconomia() {
-    const totalReceitas = balancoMes.Receitas;
-    const saldoRestante = totalReceitas - balancoMes.Gastos;
+type GraficoEconomiaProps = {
+    carteira: Carteira;
+};
+
+export function GraficoEconomia({ carteira }: GraficoEconomiaProps) {
+    const totalReceitas = carteira.total_receitas;
+    const saldoRestante = totalReceitas - carteira.total_despesas;
     const percentual = (saldoRestante / totalReceitas) * 100;
     const [startAngle, endAngle] =
         percentual > 100 ? [0, 360] : [90, 90 - (360 * percentual) / 100];

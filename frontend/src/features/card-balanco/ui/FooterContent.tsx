@@ -4,16 +4,20 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from '@/shared/ui/collapsible';
+import { Carteira } from '@/types/models';
 import { Collapsible } from '@radix-ui/react-collapsible';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { balancoMes } from '../lib/data';
 import { GraficoEconomia } from './GraficoEconomia';
 import './ui.scss';
 
-export function FooterContent() {
+type FooterContentProps = {
+    carteira: Carteira;
+};
+
+export function FooterContent({ carteira }: FooterContentProps) {
     const [open, setOpen] = useState(false);
-    const totalEconomizado = balancoMes.Receitas - balancoMes.Gastos;
+    const totalEconomizado = carteira.total_receitas - carteira.total_despesas;
 
     return (
         <Collapsible
@@ -23,7 +27,7 @@ export function FooterContent() {
         >
             <CollapsibleContent className="CollapsibleMotion">
                 <div className="flex flex-row items-center justify-center gap-4">
-                    <GraficoEconomia />
+                    <GraficoEconomia carteira={carteira} />
                     <div className="flex flex-col break-words text-center text-xs text-gray-400">
                         <span className="max-w-[11rem]">
                             {`Parabéns! Você economizou 
