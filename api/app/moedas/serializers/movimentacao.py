@@ -24,7 +24,7 @@ class DespesaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Despesa
-        fields = "__all__"
+        exclude = ["tipo"]
         read_only_fields = ["user", "tipo"]
 
     categoria = MyPrimaryKeyRelatedField(
@@ -40,7 +40,7 @@ class ReceitaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Receita
-        fields = "__all__"
+        exclude = ["tipo"]
         read_only_fields = ["user", "tipo"]
 
     categoria = MyPrimaryKeyRelatedField(
