@@ -1,6 +1,7 @@
 from django_filters import rest_framework as filters
 
 from moedas import models as moedas_models
+from moedas.models.utils import TIPO
 
 
 class DespesaFilter(filters.FilterSet):
@@ -47,6 +48,28 @@ class ReceitaFilter(filters.FilterSet):
     categoria = filters.ModelChoiceFilter(
         field_name="categoria",
         queryset=moedas_models.Categoria.objects.filter(tipo="R"),
+    )
+
+    def filter_pesquisa(self, queryset, name, value):
+        return queryset.filter(descricao__icontains=value)
+
+
+class MovimentacaoFilter(filters.FilterSet):
+    """
+    Filtro para Movimentações
+    """
+
+    class Meta:
+        model = moedas_models.Movimentacao
+        fields = {}
+
+    tipo = filters.ChoiceFilter(
+        field_name="tipo",
+        choices=TIPO,
+    )
+    categoria = filters.ModelChoiceFilter(
+        field_name="categoria",
+        queryset=moedas_models.Categoria.objects.all(),
     )
 
     def filter_pesquisa(self, queryset, name, value):

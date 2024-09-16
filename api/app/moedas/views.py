@@ -3,9 +3,14 @@ from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_framework import viewsets
-from moedas.models import Despesa, Categoria, Receita
+from moedas.models import Despesa, Categoria, Receita, Movimentacao
 from moedas import serializers as moedas_serializers
-from moedas.filters import DespesaFilter, CategoriaFilter, ReceitaFilter
+from moedas.filters import (
+    DespesaFilter,
+    CategoriaFilter,
+    ReceitaFilter,
+    MovimentacaoFilter,
+)
 
 
 # Create your views here.
@@ -66,6 +71,20 @@ class ReceitaViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+
+class MovimentacaoViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    ViewSet para Movimentações
+    """
+
+    queryset = Movimentacao.objects.all()
+    serializer_class = moedas_serializers.MovimentacaoSerializer
+    filterset_class = MovimentacaoFilter
+    # pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
