@@ -2,11 +2,13 @@ import { CardBalanco } from '@/features/card-balanco/ui';
 import { CardGastos } from '@/features/card-gastos/ui';
 import { CardSaldo } from '@/features/card-saldo/ui';
 import { MonthPicker } from '@/features/month-picker/ui';
+import { getCarteira } from '@/shared/api/endpoints';
 import { loginIsRequiredServer } from '@/shared/lib/auth';
 import './ui.scss';
 
 export default async function Dashboard() {
     await loginIsRequiredServer(); // TODO: substituir por um middleware
+    const carteira = await getCarteira();
 
     return (
         <div
@@ -15,10 +17,12 @@ export default async function Dashboard() {
         >
             <MonthPicker className="col-span-12 lg:col-span-10 xl:col-start-2" />
             <CardSaldo
+                saldo={carteira.saldo}
                 className="
                             col-span-12 lg:col-span-4 lg:row-start-2 xl:col-start-2"
             />
             <CardBalanco
+                carteira={carteira}
                 className="
                             col-span-12 lg:col-span-4 xl:col-start-2"
             />

@@ -3,6 +3,7 @@ import { MobileHeader } from '@/entities/mobile-header';
 import { ModalNovo } from '@/features/modal-novo/ui';
 import { SideBar } from '@/features/side-bar/ui';
 import { inter } from '@/shared/lib/fonts';
+import { Toaster } from '@/shared/ui/toaster';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import '../globals.css';
@@ -33,11 +34,12 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <main className="flex h-full min-h-screen w-full flex-row bg-background">
+                    <main className="flex h-screen w-full flex-row bg-background">
                         <SideBar />
-                        <div className="w-full">
+                        <div className="w-full overflow-y-scroll">
                             <MobileHeader />
                             {children}
+                            <Toaster />
                         </div>
                         <ModalNovo />
                     </main>

@@ -3,14 +3,18 @@ import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import { AlignVerticalCenterIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
-import { balancoMes } from '../lib/data';
+import { Carteira } from '@/types/models';
 import { FooterContent } from './FooterContent';
 import { GraficoBalanco } from './GraficoBalanco';
 
 type CardBalancoProps = {
     className?: string;
+    carteira: Carteira;
 };
-export function CardBalanco({ className }: CardBalancoProps) {
+export function CardBalanco({
+    className,
+    carteira: { saldo, total_despesas, total_receitas },
+}: CardBalancoProps) {
     return (
         <Card title="Balanço Mensal" className={className}>
             <CardHeader
@@ -21,33 +25,35 @@ export function CardBalanco({ className }: CardBalancoProps) {
                 <span className="text-base">Balanço Mensal</span>
             </CardHeader>
             <CardContent className="flex flex-row justify-center gap-4 pb-0">
-                <GraficoBalanco />
+                <GraficoBalanco
+                    carteira={{ saldo, total_despesas, total_receitas }}
+                />
                 <div className="flex flex-col gap-1">
                     <CardTransacao className="gap-3 text-green-600">
                         <div className="flex flex-row items-center gap-2">
                             Receitas
                         </div>
-                        <div>{numberToCurrency(balancoMes.Receitas)}</div>
+                        <div>{numberToCurrency(total_receitas)}</div>
                     </CardTransacao>
                     <CardTransacao className="gap-3 text-rose-600">
                         <div className="flex flex-row items-center gap-2">
                             Gastos
                         </div>
-                        <div>{numberToCurrency(balancoMes.Gastos)}</div>
+                        <div>{numberToCurrency(total_despesas)}</div>
                     </CardTransacao>
                     <Separator className="my-1" />
                     <CardTransacao className="gap-3 font-semibold opacity-70">
                         <div>Balanço</div>
                         <div>
-                            {numberToCurrency(
-                                balancoMes.Receitas - balancoMes.Gastos,
-                            )}
+                            {numberToCurrency(total_receitas - total_despesas)}
                         </div>
                     </CardTransacao>
                 </div>
             </CardContent>
             <CardFooter className="flex flex-row justify-center pt-8">
-                <FooterContent />
+                <FooterContent
+                    carteira={{ saldo, total_despesas, total_receitas }}
+                />
             </CardFooter>
         </Card>
     );

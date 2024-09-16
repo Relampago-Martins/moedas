@@ -1,5 +1,5 @@
 'use client';
-import { ItemGasto } from '@/entities/item-gasto.tsx/ui';
+import { ItemMovimentacao } from '@/entities/item-movimentacao/ui';
 import { ScrollArea } from '@/shared/ui/scroll-area';
 import { Despesa } from '@/types/models/despesa';
 import { AnimatePresence } from 'framer-motion';
@@ -24,9 +24,9 @@ export function GastosLista({ despesas }: GastosListaProps) {
                 <div className="flex w-52 flex-col gap-3">
                     <AnimatePresence>
                         {despesasFiltradas.map((despesa) => (
-                            <ItemGasto
+                            <ItemMovimentacao
                                 key={despesa.id}
-                                gasto={despesa}
+                                gasto={{ ...despesa, tipo: 'D' }}
                                 prefixLayoutId="dashboard"
                             />
                         ))}

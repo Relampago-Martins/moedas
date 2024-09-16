@@ -21,7 +21,7 @@ const CurrencyInput = React.forwardRef<
             )}
             defaultValue={value}
             decimalSeparator=","
-            fixedDecimalLength={2}
+            decimalsLimit={2}
             type="decimal"
             groupSeparator="."
             prefix={'R$ '}
