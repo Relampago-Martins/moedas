@@ -15,7 +15,7 @@ export function MenuMovimentacoes() {
     const setStep = useModalNovoStore((state) => state.setStep);
     return (
         <>
-            <StepHeader title="Cadastre uma nova movimentação" />
+            <StepHeader title="Nova movimentação" />
             <div className="grid w-full gap-4 sm:grid-cols-2">
                 <Card
                     onClick={() => setStep('gasto')}

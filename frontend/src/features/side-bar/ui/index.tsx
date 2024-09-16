@@ -23,7 +23,7 @@ export function SideBar() {
                     className="select-none text-lg font-bold text-primary opacity-90"
                     icon={<div className="rounded-lg bg-input px-2">P</div>}
                 >
-                    <span className={`w-full`}>ProsperApp</span>
+                    <span className={`w-full`}>Prosper</span>
                     <Menu className="hidden h-6 w-6 md:block" />
                 </NavBarTrigger>
             </NavBarHeader>

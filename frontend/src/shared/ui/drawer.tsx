@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '@/shared/lib/utils';
+import { ScrollArea } from '@radix-ui/react-scroll-area';
 
 const Drawer = ({
     shouldScaleBackground = true,
@@ -37,22 +38,27 @@ DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 const DrawerContent = React.forwardRef<
     React.ElementRef<typeof DrawerPrimitive.Content>,
     React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-    <DrawerPortal>
-        <DrawerOverlay />
-        <DrawerPrimitive.Content
-            ref={ref}
-            className={cn(
-                'fixed inset-x-0 bottom-0 z-50 mb-4 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background',
-                className,
-            )}
-            {...props}
-        >
-            <div className="mx-auto mb-3 mt-3 h-2 w-[100px] rounded-full bg-gray-200 dark:bg-gray-700" />
-            {children}
-        </DrawerPrimitive.Content>
-    </DrawerPortal>
-));
+>(({ className, children, ...props }, ref) => {
+    return (
+        <DrawerPortal>
+            <DrawerOverlay />
+            <DrawerPrimitive.Content
+                ref={ref}
+                className={cn(
+                    'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-[90%] flex-col rounded-t-[10px] border bg-background',
+                    className,
+                )}
+                {...props}
+            >
+                <ScrollArea className="overflow-y-auto">
+                    <div className="mx-auto mb-2 mt-3 h-2 w-[100px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                    <div className="flex-grow px-4">{children}</div>
+                </ScrollArea>
+            </DrawerPrimitive.Content>
+        </DrawerPortal>
+    );
+});
+
 DrawerContent.displayName = 'DrawerContent';
 
 const DrawerHeader = ({

@@ -25,7 +25,6 @@ export function SliderAnimation({ step, children }: SliderAnimationProps) {
                     opacity: 0,
                     x: step === 'menu' ? -DESLOC : DESLOC,
                 }}
-                className="h-full w-full"
             >
                 {children}
             </motion.div>

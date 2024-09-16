@@ -33,10 +33,8 @@ export function ModalNovo() {
     );
 
     return isTabletOrMobile ? (
-        <Drawer open={isOpen} onOpenChange={onOpenChange}>
-            <DrawerContent className={`inset-0 px-5 pb-4`}>
-                {Content}
-            </DrawerContent>
+        <Drawer open={isOpen} onOpenChange={onOpenChange} dismissible={false}>
+            <DrawerContent>{Content}</DrawerContent>
         </Drawer>
     ) : (
         <Dialog open={isOpen} onOpenChange={onOpenChange}>
