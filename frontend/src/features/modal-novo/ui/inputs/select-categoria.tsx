@@ -12,14 +12,20 @@ import { DespesaSchema } from '@/types/models/despesa';
 import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 
-type SelectCategoriaProps = ControllerRenderProps<DespesaSchema, 'categoria'>;
+type SelectCategoriaProps = ControllerRenderProps<
+    DespesaSchema,
+    'categoria'
+> & {
+    tipoCategoria?: 'D' | 'R';
+};
+
 const SelectCategoria = React.forwardRef<
     HTMLSelectElement,
     Omit<SelectCategoriaProps, 'ref'>
->(({ onChange, value, ...props }, ref) => {
+>(({ onChange, value, tipoCategoria = 'D', ...props }, ref) => {
     const [categorias, setCategorias] = React.useState<Categoria[]>([]);
     React.useEffect(() => {
-        getCategorias('D').then((data) => {
+        getCategorias(tipoCategoria).then((data) => {
             setCategorias(data);
         });
     }, []);

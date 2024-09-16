@@ -1,9 +1,9 @@
-import { ItemGasto } from '@/entities/item-gasto.tsx/ui';
-import { getDespesas } from '@/shared/api/endpoints/despesa-cli';
+import { ItemMovimentacao } from '@/entities/item-movimentacao/ui';
+import { listaMovimentacoes } from '@/shared/api/endpoints/movimentacao-cli';
 import { Suspense } from 'react';
 
 export default async function Page() {
-    const despesas = await getDespesas();
+    const despesas = await listaMovimentacoes();
     return (
         <div className="px-8 py-6">
             <h1 className="text-xl font-semibold leading-10 text-primary">
@@ -16,7 +16,11 @@ export default async function Page() {
             <Suspense fallback={<div>Carregando...</div>}>
                 <ul className="flex flex-col gap-2">
                     {despesas.map((despesa) => (
-                        <ItemGasto key={despesa.id} gasto={despesa} />
+                        <ItemMovimentacao
+                            key={despesa.id}
+                            gasto={despesa}
+                            prefixLayoutId={'lista-mov'}
+                        />
                     ))}
                 </ul>
             </Suspense>

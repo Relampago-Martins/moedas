@@ -5,15 +5,14 @@ import {
 } from '@/shared/ui/huge-icons';
 import { GastoIcon } from '@/shared/ui/huge-icons/gasto';
 import { ReceitaIcon } from '@/shared/ui/huge-icons/receita';
-import { useContext } from 'react';
-import { ModalCadastroContext } from '../../lib/context';
+import { useModalNovoStore } from '../../lib/modal-novo-store';
 import { StepHeader } from '../step-header';
 
 const cardClass =
     'flex h-[5.5rem] w-full gap-1 cursor-pointer flex-col items-center justify-center transition-transform duration-300 hover:scale-105';
 
 export function MenuMovimentacoes() {
-    const { setStep } = useContext(ModalCadastroContext);
+    const setStep = useModalNovoStore((state) => state.setStep);
     return (
         <>
             <StepHeader title="Cadastre uma nova movimentação" />

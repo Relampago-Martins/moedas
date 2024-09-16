@@ -3,6 +3,7 @@ import { MobileHeader } from '@/entities/mobile-header';
 import { ModalNovo } from '@/features/modal-novo/ui';
 import { SideBar } from '@/features/side-bar/ui';
 import { inter } from '@/shared/lib/fonts';
+import { Toaster } from '@/shared/ui/toaster';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import '../globals.css';
@@ -38,6 +39,7 @@ export default function RootLayout({
                         <div className="w-full">
                             <MobileHeader />
                             {children}
+                            <Toaster />
                         </div>
                         <ModalNovo />
                     </main>

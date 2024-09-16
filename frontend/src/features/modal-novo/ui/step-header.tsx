@@ -1,8 +1,7 @@
 import { Button } from '@/shared/ui/button';
 import { DialogClose, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
 import { ChevronLeft, X } from 'lucide-react';
-import { useContext } from 'react';
-import { ModalCadastroContext } from '../lib/context';
+import { useModalNovoStore } from '../lib/modal-novo-store';
 
 type StepHeaderProps = {
     title: string;
@@ -10,7 +9,7 @@ type StepHeaderProps = {
 };
 
 export function StepHeader({ title, backBtn }: StepHeaderProps) {
-    const { step, setStep } = useContext(ModalCadastroContext);
+    const setStep = useModalNovoStore((state) => state.setStep);
 
     return (
         <DialogHeader>
