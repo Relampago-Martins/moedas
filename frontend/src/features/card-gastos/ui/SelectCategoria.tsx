@@ -67,11 +67,11 @@ export function SelectCategoria({ categorias }: SelectCategoriaProps) {
     );
 }
 
-type ItemGastoProps = {
+type TriggerContentProps = {
     categoria: Categoria | undefined;
     porcentagem: number;
 };
-function TriggerContent({ categoria, porcentagem }: ItemGastoProps) {
+function TriggerContent({ categoria, porcentagem }: TriggerContentProps) {
     return (
         <>
             <div className="flex items-center gap-2">

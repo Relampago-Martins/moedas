@@ -1,0 +1,21 @@
+meta {
+  name: atualiza-receita
+  type: http
+  seq: 3
+}
+
+patch {
+  url: http://localhost/api/receitas/17/
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}
+
+body:json {
+  {
+    "descricao": "Salário mio"
+  }
+}

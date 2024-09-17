@@ -8,7 +8,6 @@ export async function getDespesas(){
     return resp.data.map((despesa) => {
         return {
             ...despesa,
-            valor: parseFloat(despesa.valor.toString()),  // garante que o valor é sempre um número  
         }
     });
 }
@@ -29,3 +28,4 @@ export async function getDespesaConfigs(){
     });
     return resp.data;
 }
+

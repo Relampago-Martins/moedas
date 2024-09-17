@@ -1,0 +1,15 @@
+meta {
+  name: get-receitas
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost/api/receitas/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}

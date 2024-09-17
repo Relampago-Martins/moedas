@@ -14,24 +14,33 @@ import {
 import { Input } from '@/shared/ui/input';
 import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { getNomeDespesaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
 import { SelectFormaPagamento } from '../inputs/select-forma-pagamento';
 import { StepHeader } from '../step-header';
 
-export function FormDespesa() {
+type FormDespesaProps = {
+    onSucess: () => void;
+};
+
+export function FormDespesa({ onSucess }: FormDespesaProps) {
+    const randomName = useMemo(() => getNomeDespesaAleatoria(), []);
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
-        defaultValues: {},
     });
 
     const onSubmit = async (data: DespesaSchema) => {
         const resp = await criaDespesa(data);
         if (resp.status === 201) {
-            alert('Despesa criada com sucesso');
+            toast.success(`Despesa '${data.descricao}' criada com sucesso!`, {
+                duration: 4000,
+            });
+            onSucess();
         } else {
-            alert('Erro ao criar despesa');
+            toast.error('Erro ao criar despesa, tente novamente mais tarde');
         }
     };
 
@@ -68,7 +77,7 @@ export function FormDespesa() {
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder={getNomeDespesaAleatoria()}
+                                        placeholder={`ex: ${randomName}`}
                                     />
                                 </FormControl>
                                 <FormMessage></FormMessage>
@@ -82,7 +91,10 @@ export function FormDespesa() {
                             <FormItem>
                                 <FormLabel>Categoria</FormLabel>
                                 <FormControl>
-                                    <SelectCategoria {...field} />
+                                    <SelectCategoria
+                                        {...field}
+                                        tipoCategoria="D"
+                                    />
                                 </FormControl>
                                 <FormMessage></FormMessage>
                             </FormItem>

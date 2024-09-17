@@ -1,0 +1,15 @@
+meta {
+  name: get-carteira
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost/api/carteira/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}

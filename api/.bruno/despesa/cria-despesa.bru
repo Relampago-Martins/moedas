@@ -1,12 +1,12 @@
 meta {
-  name: deleta-gasto
+  name: cria-despesa
   type: http
-  seq: 4
+  seq: 2
 }
 
-delete {
-  url: http://localhost/api/despesas/1/
-  body: none
+post {
+  url: http://localhost/api/despesas/
+  body: json
   auth: none
 }
 

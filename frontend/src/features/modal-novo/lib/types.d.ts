@@ -2,6 +2,8 @@
 export type ModalNovoStore = {
     isOpen: boolean;
     onOpenChange: (newState: boolean) => void;
+    step: StepName;
+    setStep: (newStep: StepName) => void;
 };
 
 
