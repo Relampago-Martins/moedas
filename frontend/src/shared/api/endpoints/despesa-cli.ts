@@ -13,7 +13,9 @@ export async function getDespesas(){
 }
 
 export async function getDespesa(id: number){
-    const resp = await ApiClient.getInstance().get<Despesa>(`/despesas/${id}/`);
+    const resp = await ApiClient.getInstance().get<Despesa>(`/despesas/${id}/`,{
+        cache: "force-cache",
+    });
     return resp.data;
 }
 
@@ -29,3 +31,8 @@ export async function getDespesaConfigs(){
     return resp.data;
 }
 
+export async function deleteDespesa(id: number){
+    const resp = await ApiClient.getInstance().delete(`/despesas/${id}/`);
+    
+    return resp;
+}

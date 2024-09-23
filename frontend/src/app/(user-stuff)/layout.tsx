@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 import '../globals.css';
 
 export const metadata: Metadata = {
-    title: 'Prosper App',
+    title: 'Prosper',
     description: 'O seu app para controle financeiro',
 };
 
