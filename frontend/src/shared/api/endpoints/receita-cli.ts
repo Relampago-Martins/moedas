@@ -9,7 +9,10 @@ export async function criaReceita(receita: ReceitaSchema){
 
 export async function getReceita(id: number){
     const resp = await ApiClient.getInstance().get<Receita>(`/receitas/${id}/`,{
-        cache: "force-cache",
+        next: {
+            revalidate: 10,
+            tags: [`getReceita${id}`],
+        }
     });
     return resp.data;
 }
