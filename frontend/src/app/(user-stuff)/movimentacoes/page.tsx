@@ -8,10 +8,10 @@ export default async function Page() {
     const movimentacoes = await listaMovimentacoes();
     return (
         <div className="px-8 py-6">
-            <h1 className="text-xl font-semibold leading-10 text-primary">
+            <h1 className="text-xl font-semibold leading-10 text-primary-foreground">
                 Movimentações
             </h1>
-            <p className="mb-6 text-zinc-500">
+            <p className="mb-6 text-muted-foreground">
                 Esta é a página de movimentações. Aqui você pode visualizar os
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p>

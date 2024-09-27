@@ -17,7 +17,7 @@ export function ModalMovimentacao() {
                 }
             }}
         >
-            <DialogContent className="md:max-w-[20rem]">
+            <DialogContent className="bg-popover md:max-w-[20rem]">
                 {movimentacaoSelecionada?.tipo === 'D' && (
                     <DespesaDetail id={movimentacaoSelecionada.id} />
                 )}
