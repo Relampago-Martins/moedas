@@ -6,7 +6,18 @@ import { authConfig } from "../lib/auth";
 
 
 /**
- * Singleton class to manage the API instance
+ * Classe singleton para gerenciar a instância da API.
+ * 
+ * Ler doc para entender sobre o 
+ * [fetch e cache](https://nextjs.org/docs/app/api-reference/functions/fetch)
+ * e sobre a
+ * [remoção do cache](https://nextjs.org/docs/app/api-reference/functions/revalidateTag),
+ * 
+ * Para habilitar cache:
+ * `{ next: { revalidate: 10, tags: ['getCarros'] } }`
+ * 
+ * Para remover o cache:
+ * `revalidateTag('getCarros')`
  */
 export class ApiClient {
     private static instance: ApiClient;
@@ -44,7 +55,7 @@ export class ApiClient {
             {
                 method: "GET",
                 headers: await this.getHeaders(),
-                cache: cache || "no-cache",
+                cache: cache || "default",
                 ...config,
             }
         );

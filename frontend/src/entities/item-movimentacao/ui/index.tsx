@@ -8,11 +8,13 @@ import { motion } from 'framer-motion';
 type ItemMovimentacaoProps = {
     gasto: Movimentacao;
     prefixLayoutId?: string;
+    onClick?: () => void;
 };
 
 export function ItemMovimentacao({
     gasto: movimentacao,
     prefixLayoutId,
+    onClick,
 }: ItemMovimentacaoProps) {
     return (
         <motion.button
@@ -30,6 +32,7 @@ export function ItemMovimentacao({
             onMouseLeave={(event) => {
                 event.currentTarget.style.backgroundColor = 'var(--card)';
             }}
+            onClick={onClick}
             className="flex w-full flex-row items-center rounded-sm border-l-4 bg-card py-2"
         >
             <div className="pl-2 pr-3 text-sm">
