@@ -26,7 +26,7 @@ export function AnimatedTabs() {
                             className={
                                 activeTab === tab
                                     ? 'text-foreground'
-                                    : 'text-muted-foreground'
+                                    : 'text-muted'
                             }
                         >
                             {tab}

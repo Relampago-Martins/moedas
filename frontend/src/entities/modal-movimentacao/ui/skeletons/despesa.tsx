@@ -5,10 +5,9 @@ import { CalendarIcon, CreditCardIcon } from 'lucide-react';
 export function DespesaSkeleton() {
     return (
         <motion.div
-            key="despesa-skeleton"
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 1 }}
-            transition={{ duration: 4 }}
+            transition={{ opacity: { delay: 0.5, duration: 0.35 } }}
             className="flex flex-col gap-4"
         >
             <div className="mb-2 flex flex-col gap-2">
@@ -29,14 +28,14 @@ export function DespesaSkeleton() {
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <CalendarIcon className="h-6 w-6 animate-pulse text-muted-foreground" />
+                <CalendarIcon className="h-6 w-6 animate-pulse text-border " />
                 <div className="flex flex-col gap-1">
                     <Skeleton className="h-2 w-20" />
                     <Skeleton className="h-4 w-24" />
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <CreditCardIcon className="h-6 w-6 animate-pulse text-muted-foreground" />
+                <CreditCardIcon className="h-6 w-6 animate-pulse text-border " />
                 <div className="flex flex-col gap-1">
                     <Skeleton className="h-2 w-20" />
                     <Skeleton className="h-4 w-24" />
