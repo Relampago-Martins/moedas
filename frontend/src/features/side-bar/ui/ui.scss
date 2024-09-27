@@ -28,12 +28,12 @@
             height: 2.5rem;
             
             &:hover{
-                color: var(--primary-foreground);
+                color: var(--primary);
                 transform: scale(1.06);
                 background-color: var(--accent) !important;
             }
             &.ps-active{
-                color: var(--primary-foreground);
+                color: var(--primary);
             }
             .ps-menu-icon{
                 margin-right: 0.25rem;

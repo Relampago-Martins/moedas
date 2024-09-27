@@ -1,20 +1,30 @@
-import { authConfig } from "@/shared/lib/auth";
-import { getServerSession } from "next-auth";
-import ThemeToggle from "../../../components/themeToggle";
-import { Avatar, AvatarFallback, AvatarImage } from "../../../shared/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../../../shared/ui/dropdown-menu";
-import LogoutBtn from "./LogoutBtn";
+import { authConfig } from '@/shared/lib/auth';
+import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
+import { getServerSession } from 'next-auth';
+import ThemeToggle from '../../../components/themeToggle';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '../../../shared/ui/dropdown-menu';
+import LogoutBtn from './LogoutBtn';
 
-
-export async function UserMenu(){
+export async function UserMenu() {
     const session = await getServerSession(authConfig);
-    const siglaNome = session?.user?.name?.split(' ').map((n: string) => n[0]).join('') || undefined;
+    const siglaNome =
+        session?.user?.name
+            ?.split(' ')
+            .map((n: string) => n[0])
+            .join('') || undefined;
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="border border-input rounded-full">
+            <DropdownMenuTrigger className="rounded-full border border-muted">
                 <Avatar>
-                    <AvatarImage src={session?.user?.image || undefined}/>
+                    <AvatarImage src={session?.user?.image || undefined} />
                     <AvatarFallback>{siglaNome}</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
@@ -22,20 +32,16 @@ export async function UserMenu(){
                 <DropdownMenuLabel className="flex justify-center">
                     {session?.user?.name}
                 </DropdownMenuLabel>
-                <DropdownMenuSeparator/>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Editar perfil</DropdownMenuItem>
+                <DropdownMenuItem>Notificações</DropdownMenuItem>
                 <DropdownMenuItem>
-                    Editar perfil
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                    Notificações
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                    <LogoutBtn/>
+                    <LogoutBtn />
                 </DropdownMenuItem>
                 <DropdownMenuItem className="justify-center">
-                    <ThemeToggle/>
+                    <ThemeToggle />
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
-    )
+    );
 }

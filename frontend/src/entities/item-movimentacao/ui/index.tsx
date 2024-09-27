@@ -46,7 +46,7 @@ export function ItemMovimentacao({
                 <div className="w-full truncate text-start text-base text-foreground">
                     {movimentacao.descricao}
                 </div>
-                <div className="text-start text-sm text-muted-foreground">
+                <div className="text-start text-sm text-muted">
                     {numberToCurrency(movimentacao.valor)}
                 </div>
             </div>

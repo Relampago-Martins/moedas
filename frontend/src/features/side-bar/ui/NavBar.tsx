@@ -134,7 +134,7 @@ function NavBarItem({
             {isActive && (
                 <motion.div
                     layoutId="borda-menu-item"
-                    className="absolute inset-0 rounded-lg border border-primary-foreground"
+                    className="absolute inset-0 rounded-lg border border-primary"
                 />
             )}
             {children}
