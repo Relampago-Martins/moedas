@@ -25,13 +25,23 @@ export function ReceitaDetail({ id }: ReceitaDetailContext) {
     return (
         <div className="flex flex-col">
             <div className="mb-1 flex items-center gap-2">
-                <div className="w-fit rounded-full bg-green-200/50 p-1">
-                    <TradeUpIcon className="h-6 w-6 text-green-700" />
+                <div className="bg-success w-fit rounded-full p-1">
+                    <TradeUpIcon className="text-success-foreground h-6 w-6" />
                 </div>
                 <h2 className="text-xl">{receita.descricao}</h2>
             </div>
             <h2 className="mb-6 text-xl">{numberToCurrency(receita.valor)}</h2>
-
+            <div className="flex gap-6">
+                <div className="flex items-center gap-2">
+                    <div
+                        className="h-6 w-6 rounded-full"
+                        style={{ backgroundColor: receita.categoria.cor }}
+                    ></div>
+                    <span className="text-sm text-muted-foreground">
+                        {receita.categoria.nome}
+                    </span>
+                </div>
+            </div>
             <Button
                 variant={'destructive'}
                 onClick={() => {

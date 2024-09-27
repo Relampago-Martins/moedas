@@ -56,16 +56,14 @@ type MonthInputProps = {
 };
 function MonthBtn({ month, children, onChange, selected }: MonthInputProps) {
     return (
-        <Button
-            variant={'ghost'}
-            size={'sm'}
-            className={`h-10 w-12 ${selected ? 'bg-primary text-white hover:bg-primary hover:text-white' : ''}`}
+        <button
+            className={`h-10 w-12 rounded-sm text-sm ${selected ? 'border border-primary-foreground bg-primary font-medium text-primary-foreground' : 'hover:bg-accent'}`}
             onClick={() => {
                 onChange?.(month);
             }}
         >
             {children}
-        </Button>
+        </button>
     );
 }
 

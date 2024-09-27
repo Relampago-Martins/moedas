@@ -2,6 +2,7 @@ import { MySession } from "@/types/auth";
 import { CustomFetchProps, CustomResponse } from "@/types/http";
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { authConfig } from "../lib/auth";
 
 
@@ -90,6 +91,25 @@ export class ApiClient {
         return this.responseHandler<T>(resp);
     }
 
+    public async patch<T>(url: string, body: RequestInit | object, init?: Omit<CustomFetchProps, 'body'>){
+        const csrf = cookies().get('csrftoken')?.value;
+
+        const resp = await fetch(
+            `${this.apiUrl}${url}`,
+            {
+                method: "PATCH",
+                headers: {
+                    ...await this.getHeaders(),
+                    "X-CSRF-Token": csrf || "",
+                },
+                body: JSON.stringify(body),
+                ...init,
+            }
+        );
+
+        return this.responseHandler<T>(resp);
+    }
+
 
     /**
      * Faz uma requisição DELETE para a API
@@ -115,7 +135,6 @@ export class ApiClient {
     }
 
     // protected abstract put<T>(url: string, body: CustomFetchProps['body'], config: Omit<CustomFetchProps, 'body'>): Promise<T>;
-    // protected abstract patch<T>(url: string, body: CustomFetchProps['body'], config: Omit<CustomFetchProps, 'body'>): Promise<T>;
     public async options<T>(url: string, config: CustomFetchProps){
         const resp = await fetch(
             `${this.apiUrl}${url}`,
@@ -136,7 +155,11 @@ export class ApiClient {
             const data = await res.json();
             return { status: res.status, data: data };
         }
-        throw new Error(res.statusText);
+        if (res.status === 401) {
+            redirect('/login');
+        }
+
+        throw new Error(`Requisição retornou ${res.status} - ${res.statusText}`);
     }
 
     private async getAuthToken(){

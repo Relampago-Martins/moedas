@@ -32,10 +32,7 @@ type PopoverContentProps = React.HTMLAttributes<HTMLDivElement>;
 const Overlay = ({ className, ...props }: PopoverContentProps) => {
     return (
         <div
-            className={cn(
-                'PopOverOverlay z-10 bg-black bg-opacity-20',
-                className,
-            )}
+            className={cn('PopOverOverlay z-10 bg-black/20', className)}
             {...props}
         />
     );

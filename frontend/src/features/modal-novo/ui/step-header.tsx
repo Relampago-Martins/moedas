@@ -17,7 +17,7 @@ export function StepHeader({ title, backBtn }: StepHeaderProps) {
 
     return isTabletOrMobile ? (
         <DrawerHeader className="px-0 pt-1">
-            <DrawerTitle className="mb-2 flex justify-between text-xl text-primary ">
+            <DrawerTitle className="mb-2 flex justify-between text-xl text-primary-foreground">
                 <div className="w-6">
                     {backBtn && (
                         <Button
@@ -38,7 +38,7 @@ export function StepHeader({ title, backBtn }: StepHeaderProps) {
         </DrawerHeader>
     ) : (
         <DialogHeader>
-            <DialogTitle className="mb-2 flex items-center justify-between pb-4 text-xl text-primary">
+            <DialogTitle className="mb-2 flex items-center justify-between pb-4 text-xl text-primary-foreground">
                 {backBtn && (
                     <Button
                         variant={'ghost'}

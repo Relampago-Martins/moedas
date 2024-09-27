@@ -1,10 +1,10 @@
 .root{
-    background-color: var(--primary-foreground) !important;
+    background-color: var(--card) !important;
     border-color: var(--input) !important;
     z-index: 10 !important;
 
     .ps-sidebar-container {
-        background-color: var(--primary-foreground) !important;
+        background-color: var(--card) !important;
     }
 
     .header{
@@ -28,12 +28,12 @@
             height: 2.5rem;
             
             &:hover{
-                color: var(--primary);
+                color: var(--primary-foreground);
                 transform: scale(1.06);
                 background-color: var(--accent) !important;
             }
             &.ps-active{
-                color: var(--primary);
+                color: var(--primary-foreground);
             }
             .ps-menu-icon{
                 margin-right: 0.25rem;

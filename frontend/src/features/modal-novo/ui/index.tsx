@@ -34,12 +34,12 @@ export function ModalNovo() {
 
     return isTabletOrMobile ? (
         <Drawer open={isOpen} onOpenChange={onOpenChange} dismissible={false}>
-            <DrawerContent>{Content}</DrawerContent>
+            <DrawerContent className="bg-popover">{Content}</DrawerContent>
         </Drawer>
     ) : (
         <Dialog open={isOpen} onOpenChange={onOpenChange}>
             <DialogContent
-                className="overflow-hidden md:max-w-[20rem]"
+                className="overflow-hidden bg-popover md:max-w-[20rem]"
                 withoutClose
             >
                 {Content}

@@ -37,16 +37,16 @@ export function ItemMovimentacao({
         >
             <div className="pl-2 pr-3 text-sm">
                 {movimentacao.tipo === 'D' ? (
-                    <GastoIcon className="h-4 w-4 text-red-700" />
+                    <GastoIcon className="h-4 w-4 text-destructive-foreground" />
                 ) : (
                     <ReceitaIcon className="h-4 w-4 text-green-700" />
                 )}
             </div>
             <div className="">
-                <div className="w-full truncate text-start text-base">
+                <div className="w-full truncate text-start text-base text-foreground">
                     {movimentacao.descricao}
                 </div>
-                <div className="text-start text-sm opacity-70">
+                <div className="text-start text-sm text-muted-foreground">
                     {numberToCurrency(movimentacao.valor)}
                 </div>
             </div>
