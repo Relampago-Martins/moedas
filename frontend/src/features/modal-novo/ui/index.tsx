@@ -1,9 +1,7 @@
 'use client';
-import { Dialog, DialogContent } from '@/shared/ui/dialog';
-import { Drawer, DrawerContent } from '@/shared/ui/drawer';
+import { DialogDrawer } from '@/shared/ui/custom/dialog-drawer';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { useModalNovoStore } from '../lib/modal-novo-store';
 import { SliderAnimation } from './slider-animation';
 import { FormDespesa } from './steps/form-despesa';
@@ -14,7 +12,6 @@ import { MenuMovimentacoes } from './steps/menu-movimentacoes';
 
 export function ModalNovo() {
     const { isOpen, onOpenChange, step } = useModalNovoStore((state) => state);
-    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
     const router = useRouter();
     const onSucess = useCallback(() => {
         router.refresh();
@@ -22,28 +19,19 @@ export function ModalNovo() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const Content = (
-        <SliderAnimation step={step}>
-            {step === 'menu' && <MenuMovimentacoes />}
-            {step === 'gasto' && <FormDespesa onSucess={onSucess} />}
-            {step === 'receita' && <FormReceita onSucess={onSucess} />}
-            {step === 'transferencia' && <FormTransferencia />}
-            {step === 'investimento' && <FormInvestimento />}
-        </SliderAnimation>
-    );
-
-    return isTabletOrMobile ? (
-        <Drawer open={isOpen} onOpenChange={onOpenChange} dismissible={false}>
-            <DrawerContent className="bg-popover">{Content}</DrawerContent>
-        </Drawer>
-    ) : (
-        <Dialog open={isOpen} onOpenChange={onOpenChange}>
-            <DialogContent
-                className="overflow-hidden bg-popover md:max-w-[20rem]"
-                withoutClose
-            >
-                {Content}
-            </DialogContent>
-        </Dialog>
+    return (
+        <DialogDrawer
+            open={isOpen}
+            onOpenChange={onOpenChange}
+            className="overflow-hidden md:max-w-[20rem]"
+        >
+            <SliderAnimation step={step}>
+                {step === 'menu' && <MenuMovimentacoes />}
+                {step === 'gasto' && <FormDespesa onSucess={onSucess} />}
+                {step === 'receita' && <FormReceita onSucess={onSucess} />}
+                {step === 'transferencia' && <FormTransferencia />}
+                {step === 'investimento' && <FormInvestimento />}
+            </SliderAnimation>
+        </DialogDrawer>
     );
 }

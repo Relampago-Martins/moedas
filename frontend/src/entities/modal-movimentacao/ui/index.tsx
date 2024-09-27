@@ -1,5 +1,6 @@
 'use client';
-import { Dialog, DialogContent } from '@/shared/ui/dialog';
+import { DialogDrawer } from '@/shared/ui/custom/dialog-drawer';
+import { AnimatePresence } from 'framer-motion';
 import { useMovimentacaoContext } from '../lib/use-movimentacao-context';
 import { DespesaDetail } from './movimentacoes/despesa';
 import { ReceitaDetail } from './movimentacoes/receita';
@@ -9,22 +10,23 @@ export function ModalMovimentacao() {
         useMovimentacaoContext();
 
     return (
-        <Dialog
-            open={!!movimentacaoSelecionada}
+        <DialogDrawer
+            className="md:max-w-[20rem]"
+            open={!!movimentacaoSelecionada?.id}
             onOpenChange={(val) => {
                 if (!val) {
                     setMovimentacaoSelecionada(undefined);
                 }
             }}
         >
-            <DialogContent className="bg-popover md:max-w-[20rem]">
+            <AnimatePresence mode="wait">
                 {movimentacaoSelecionada?.tipo === 'D' && (
                     <DespesaDetail id={movimentacaoSelecionada.id} />
                 )}
                 {movimentacaoSelecionada?.tipo === 'R' && (
                     <ReceitaDetail id={movimentacaoSelecionada.id} />
                 )}
-            </DialogContent>
-        </Dialog>
+            </AnimatePresence>
+        </DialogDrawer>
     );
 }

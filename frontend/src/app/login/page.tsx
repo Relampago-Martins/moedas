@@ -25,14 +25,14 @@ export default async function Login() {
                     <LoginForm />
                     <div className="flex flex-row items-center justify-center gap-6">
                         <Separator className="w-4 flex-grow" />
-                        <span className="text-sm font-semibold text-muted-foreground">
+                        <span className="text-sm font-semibold text-muted">
                             OU
                         </span>
                         <Separator className="w-4 flex-grow" />
                     </div>
                     <GoogleSignInButton />
                     <div className="mt-4 flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">
+                        <span className="text-sm text-muted">
                             Não possui cadastro?
                             <Link href="/signin">
                                 <em className="text-primary"> Cadastre-se</em>

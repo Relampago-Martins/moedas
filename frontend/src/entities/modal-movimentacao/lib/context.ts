@@ -5,7 +5,10 @@ type MovimentacaoContext = {
         id: number;
         tipo: string;
     },
-    setMovimentacaoSelecionada: (movimentacao?: { id: number, tipo: string }) => void;
+    setMovimentacaoSelecionada: React.Dispatch<React.SetStateAction<{
+        id: number;
+        tipo: string;
+    } | undefined>>
 }
 
 export const MovimentacaoContext = createContext<MovimentacaoContext>({
