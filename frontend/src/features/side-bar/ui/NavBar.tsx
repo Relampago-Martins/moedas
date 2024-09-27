@@ -124,7 +124,7 @@ function NavBarItem({
     return (
         <MenuItem
             active={isActive}
-            className={`${className} text-sm font-medium opacity-85`}
+            className={`${className} text-sm font-medium`}
             onClick={(e) => {
                 setTimeout(() => toogle(), 350);
                 onClick?.(e);
@@ -134,7 +134,7 @@ function NavBarItem({
             {isActive && (
                 <motion.div
                     layoutId="borda-menu-item"
-                    className="absolute inset-0 rounded-lg border border-primary"
+                    className="absolute inset-0 rounded-lg border border-primary-foreground"
                 />
             )}
             {children}

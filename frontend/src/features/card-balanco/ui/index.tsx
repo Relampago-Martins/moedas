@@ -29,15 +29,15 @@ export function CardBalanco({
                     carteira={{ saldo, total_despesas, total_receitas }}
                 />
                 <div className="flex flex-col gap-1">
-                    <CardTransacao className="gap-3 text-green-600">
+                    <CardTransacao className="text-success-foreground gap-3">
                         <div className="flex flex-row items-center gap-2">
                             Receitas
                         </div>
                         <div>{numberToCurrency(total_receitas)}</div>
                     </CardTransacao>
-                    <CardTransacao className="gap-3 text-rose-600">
+                    <CardTransacao className="gap-3 text-destructive-foreground">
                         <div className="flex flex-row items-center gap-2">
-                            Gastos
+                            Despesas
                         </div>
                         <div>{numberToCurrency(total_despesas)}</div>
                     </CardTransacao>

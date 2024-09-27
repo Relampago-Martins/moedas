@@ -27,8 +27,8 @@ export function DespesaDetail({ id }: DespesaDetailContext) {
         <div className="flex flex-col gap-4">
             <div className="mb-2 flex flex-col gap-2">
                 <div className="flex items-center gap-2">
-                    <div className="w-fit rounded-full bg-red-200/50 p-1 dark:bg-red-700">
-                        <TradeDownIcon className="h-6 w-6 text-red-700 dark:text-red-200" />
+                    <div className="w-fit rounded-full bg-destructive p-1">
+                        <TradeDownIcon className="h-6 w-6 text-destructive-foreground" />
                     </div>
                     <h2 className="text-xl">{despesa.descricao}</h2>
                 </div>
@@ -45,7 +45,7 @@ export function DespesaDetail({ id }: DespesaDetailContext) {
                         </>
                     ) : (
                         <>
-                            <XIcon className="h-6 w-6 text-red-700" />
+                            <XIcon className="h-6 w-6 text-destructive-foreground" />
                             <span className="text-sm text-muted-foreground">
                                 Não foi pago
                             </span>
@@ -63,17 +63,6 @@ export function DespesaDetail({ id }: DespesaDetailContext) {
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <CreditCardIcon className="h-6 w-6" />
-                <div className="flex flex-col">
-                    <div className="text-xs text-muted-foreground">
-                        Forma de pagamento
-                    </div>
-                    <span className="text-base">
-                        {despesa.forma_pagamento.nome}
-                    </span>
-                </div>
-            </div>
-            <div className="flex items-center gap-2">
                 <CalendarIcon className="h-6 w-6" />
                 <div className="flex flex-col">
                     <div className="text-xs text-muted-foreground">
@@ -81,6 +70,17 @@ export function DespesaDetail({ id }: DespesaDetailContext) {
                     </div>
                     <span className="text-base">
                         {toLocalDate(new Date(despesa.data))}
+                    </span>
+                </div>
+            </div>
+            <div className="flex items-center gap-2">
+                <CreditCardIcon className="h-6 w-6" />
+                <div className="flex flex-col">
+                    <div className="text-xs text-muted-foreground">
+                        Forma de pagamento
+                    </div>
+                    <span className="text-base">
+                        {despesa.forma_pagamento.nome}
                     </span>
                 </div>
             </div>

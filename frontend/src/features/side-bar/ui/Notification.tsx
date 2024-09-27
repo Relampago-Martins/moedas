@@ -1,15 +1,17 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react';
 
 type NotificationProps = {
-    children: ReactNode,
-    className?: string
-}
+    children: ReactNode;
+    className?: string;
+};
 
-export function Notification({children, className}: NotificationProps){
+export function Notification({ children, className }: NotificationProps) {
     return (
-        <div className={`text-[0.625rem] bg-violet-500 text-primary-foreground
-            px-[.5rem] rounded-full ${className}`}>
+        <div
+            className={`rounded-full bg-primary px-[.5rem] text-[0.625rem]
+            text-primary-foreground shadow-sm ${className}`}
+        >
             {children}
         </div>
-    )
+    );
 }
