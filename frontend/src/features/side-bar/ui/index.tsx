@@ -20,10 +20,10 @@ export function SideBar() {
         <NavBar transitionDuration={600}>
             <NavBarHeader>
                 <NavBarTrigger
-                    className="select-none text-lg font-bold text-primary-foreground"
+                    className="select-none text-lg font-bold text-primary"
                     icon={<div className="rounded-lg bg-primary px-2">P</div>}
                 >
-                    <span className={`w-full dark:text-primary`}>Prosper</span>
+                    <span className={`w-full`}>Prosper</span>
                     <Menu className="hidden h-6 w-6 md:block" />
                 </NavBarTrigger>
             </NavBarHeader>

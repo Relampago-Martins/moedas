@@ -20,7 +20,7 @@ export default async function Signin() {
                         Prosper
                     </div>
                     <RegisterForm />
-                    <span className="mt-4 text-sm text-muted-foreground">
+                    <span className="mt-4 text-sm text-muted">
                         Já possui cadastro?
                         <Link href="/login">
                             <em className="text-primary"> Entre</em>

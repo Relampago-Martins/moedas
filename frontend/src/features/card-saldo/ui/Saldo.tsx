@@ -10,10 +10,10 @@ type SaldoProps = {
 export function Saldo(props: SaldoProps) {
     return (
         <div className="saldo">
-            <div className="text-2xl font-semibold text-secondary-foreground">
+            <div className="text-2xl font-semibold text-primary">
                 {numberToCurrency(props.valor)}
             </div>
-            <div className="align-center flex gap-1 text-sm opacity-65">
+            <div className="align-center flex gap-1 text-sm text-muted">
                 <Wallet03Icon className="h-3 self-center" />
                 Saldo atual
                 <ChevronRight className="h-3 self-center" />

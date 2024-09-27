@@ -13,12 +13,12 @@ export function GraficoBalanco({ carteira }: GraficoBalancoProps) {
                 {/* <Legend radius={10} /> */}
                 <Bar
                     dataKey="total_receitas"
-                    fill="#16a34a"
+                    fill="var(--success-foreground)"
                     radius={[8, 8, 0, 0]}
                 />
                 <Bar
                     dataKey="total_despesas"
-                    fill="#e11d48"
+                    fill="var(--destructive-foreground)"
                     radius={[8, 8, 0, 0]}
                 />
             </BarChart>
