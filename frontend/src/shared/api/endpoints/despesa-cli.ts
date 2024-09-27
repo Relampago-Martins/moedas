@@ -1,5 +1,4 @@
 'use server';
-
 import { Despesa, DespesaConfig, DespesaSchema } from "@/types/models/despesa";
 import { ApiClient } from "../api-client";
 
@@ -13,7 +12,12 @@ export async function getDespesas(){
 }
 
 export async function getDespesa(id: number){
-    const resp = await ApiClient.getInstance().get<Despesa>(`/despesas/${id}/`);
+    const resp = await ApiClient.getInstance().get<Despesa>(`/despesas/${id}/`, {
+        next: {
+            revalidate: 10,
+            tags: [`getDespesa${id}`],
+        }
+    });
     return resp.data;
 }
 
@@ -29,3 +33,8 @@ export async function getDespesaConfigs(){
     return resp.data;
 }
 
+export async function deleteDespesa(id: number){
+    const resp = await ApiClient.getInstance().delete(`/despesas/${id}/`);
+    
+    return resp;
+}
