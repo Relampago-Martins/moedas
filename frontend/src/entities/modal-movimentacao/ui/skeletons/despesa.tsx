@@ -7,7 +7,7 @@ export function DespesaSkeleton() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ opacity: { delay: 0.5, duration: 0.35 } }}
+            transition={{ opacity: { delay: 0.25, duration: 0.35 } }}
             className="flex flex-col gap-4"
         >
             <div className="mb-2 flex flex-col gap-2">
