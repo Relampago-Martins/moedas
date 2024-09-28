@@ -21,7 +21,11 @@ export function SideBar() {
             <NavBarHeader>
                 <NavBarTrigger
                     className="select-none text-lg font-bold text-primary"
-                    icon={<div className="rounded-lg bg-primary px-2">P</div>}
+                    icon={
+                        <div className="rounded-lg bg-primary px-2 text-primary-foreground">
+                            P
+                        </div>
+                    }
                 >
                     <span className={`w-full`}>Prosper</span>
                     <Menu className="hidden h-6 w-6 md:block" />

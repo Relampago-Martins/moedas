@@ -19,7 +19,6 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeReceitaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
-import { StepHeader } from '../step-header';
 
 type FormReceitaProps = {
     onSucess: () => void;
@@ -44,64 +43,58 @@ export function FormReceita({ onSucess }: FormReceitaProps) {
     };
 
     return (
-        <>
-            <StepHeader title="Receita" backBtn />
-            <Form {...form}>
-                <form
-                    className="flex flex-col gap-5"
-                    onSubmit={form.handleSubmit(onSubmit, console.error)}
-                >
-                    <FormField
-                        name="valor"
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Valor</FormLabel>
-                                <FormControl>
-                                    <CurrencyInput
-                                        {...field}
-                                        placeholder="R$ 0,00"
-                                    />
-                                </FormControl>
-                                <FormMessage></FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        name="descricao"
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Nome</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        placeholder={`ex: ${randomName}`}
-                                    />
-                                </FormControl>
-                                <FormMessage></FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        name="categoria"
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Categoria</FormLabel>
-                                <FormControl>
-                                    <SelectCategoria
-                                        {...field}
-                                        tipoCategoria="R"
-                                    />
-                                </FormControl>
-                                <FormMessage></FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                    <Button type="submit">Cadastrar</Button>
-                </form>
-            </Form>
-        </>
+        <Form {...form}>
+            <form
+                className="flex flex-col gap-5"
+                onSubmit={form.handleSubmit(onSubmit, console.error)}
+            >
+                <FormField
+                    name="valor"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Valor</FormLabel>
+                            <FormControl>
+                                <CurrencyInput
+                                    {...field}
+                                    placeholder="R$ 0,00"
+                                />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="descricao"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Nome</FormLabel>
+                            <FormControl>
+                                <Input
+                                    {...field}
+                                    placeholder={`ex: ${randomName}`}
+                                />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="categoria"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Categoria</FormLabel>
+                            <FormControl>
+                                <SelectCategoria {...field} tipoCategoria="R" />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <Button type="submit">Salvar</Button>
+            </form>
+        </Form>
     );
 }
