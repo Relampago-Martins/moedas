@@ -20,16 +20,17 @@ import { toast } from 'sonner';
 import { getNomeDespesaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
 import { SelectFormaPagamento } from '../inputs/select-forma-pagamento';
-import { StepHeader } from '../step-header';
 
 type FormDespesaProps = {
     onSucess: () => void;
+    formValues?: DespesaSchema;
 };
 
-export function FormDespesa({ onSucess }: FormDespesaProps) {
+export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
     const randomName = useMemo(() => getNomeDespesaAleatoria(), []);
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
+        defaultValues: formValues,
     });
 
     const onSubmit = async (data: DespesaSchema) => {
@@ -45,77 +46,71 @@ export function FormDespesa({ onSucess }: FormDespesaProps) {
     };
 
     return (
-        <>
-            <StepHeader title="Despesa" backBtn />
-            <Form {...form}>
-                <form
-                    className="flex flex-col gap-5"
-                    onSubmit={form.handleSubmit(onSubmit, console.error)}
-                >
-                    <FormField
-                        name="valor"
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Valor</FormLabel>
-                                <FormControl>
-                                    <CurrencyInput
-                                        {...field}
-                                        placeholder="R$ 0,00"
-                                    />
-                                </FormControl>
-                                <FormMessage></FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        name="descricao"
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Nome</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        placeholder={`ex: ${randomName}`}
-                                    />
-                                </FormControl>
-                                <FormMessage></FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        name="categoria"
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Categoria</FormLabel>
-                                <FormControl>
-                                    <SelectCategoria
-                                        {...field}
-                                        tipoCategoria="D"
-                                    />
-                                </FormControl>
-                                <FormMessage></FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        name="forma_pagamento"
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Forma de Pagamento</FormLabel>
-                                <FormControl>
-                                    <SelectFormaPagamento {...field} />
-                                </FormControl>
-                                <FormMessage></FormMessage>
-                            </FormItem>
-                        )}
-                    />
-                    <Button type="submit">Cadastrar</Button>
-                </form>
-            </Form>
-        </>
+        <Form {...form}>
+            <form
+                className="flex flex-col gap-5"
+                onSubmit={form.handleSubmit(onSubmit, console.error)}
+            >
+                <FormField
+                    name="valor"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Valor</FormLabel>
+                            <FormControl>
+                                <CurrencyInput
+                                    {...field}
+                                    placeholder="R$ 0,00"
+                                />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="descricao"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Nome</FormLabel>
+                            <FormControl>
+                                <Input
+                                    {...field}
+                                    placeholder={`ex: ${randomName}`}
+                                />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="categoria"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Categoria</FormLabel>
+                            <FormControl>
+                                <SelectCategoria {...field} tipoCategoria="D" />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="forma_pagamento"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Forma de Pagamento</FormLabel>
+                            <FormControl>
+                                <SelectFormaPagamento {...field} />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <Button type="submit">Salvar</Button>
+            </form>
+        </Form>
     );
 }

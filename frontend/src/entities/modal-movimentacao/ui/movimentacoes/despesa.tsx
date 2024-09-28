@@ -1,110 +1,84 @@
-import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
-import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
+'use client';
+import { FormDespesa } from '@/features/modal-novo/ui/steps/form-despesa';
+import { deleteDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { Button } from '@/shared/ui/button';
-import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
-import { Despesa } from '@/types/models/despesa';
-import { motion } from 'framer-motion';
-import { CalendarIcon, CheckCheck, CreditCardIcon, XIcon } from 'lucide-react';
+import { SliderAnimation } from '@/shared/ui/custom/slider-animation';
+import { Despesa, DespesaSchema } from '@/types/models/despesa';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMovimentacaoContext } from '../../lib/use-movimentacao-context';
-import { DespesaSkeleton } from '../skeletons/despesa';
+import { DespesaDetail } from './despesa-detail';
 
-type DespesaDetailContext = {
+type DespesaContentProps = {
     id: number;
 };
 
-export function DespesaDetail({ id }: DespesaDetailContext) {
+export function DespesaContent({ id }: DespesaContentProps) {
     const router = useRouter();
     const { setMovimentacaoSelecionada } = useMovimentacaoContext();
-    const [despesa, setDespesa] = useState<Despesa | null>(null);
-    useEffect(() => {
-        getDespesa(id).then((despesa) => {
-            setDespesa(despesa);
-        });
-    }, [id]);
+    const [step, setStep] = useState('detail');
+    const [formValues, setFormValues] = useState<Despesa>();
 
-    return !!despesa ? (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ opacity: { duration: 0.35 } }}
-            className="flex flex-col gap-4 "
-        >
-            <div className="mb-2 flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                    <div className="w-fit rounded-full bg-destructive p-1">
-                        <TradeDownIcon className="h-6 w-6 text-destructive-foreground" />
-                    </div>
-                    <h2 className="text-xl">{despesa.descricao}</h2>
-                </div>
-                <h2 className=" text-xl">{numberToCurrency(despesa.valor)}</h2>
-            </div>
-            <div className="flex gap-6">
-                <div className="flex items-center gap-2">
-                    {despesa.pago ? (
-                        <>
-                            <CheckCheck className="h-6 w-6 text-green-700" />
-                            <span className="text-sm text-muted">Pago</span>
-                        </>
-                    ) : (
-                        <>
-                            <XIcon className="h-6 w-6 text-destructive-foreground" />
-                            <span className="text-sm text-muted">
-                                Não foi pago
-                            </span>
-                        </>
-                    )}
-                </div>
-                <div className="flex items-center gap-2">
-                    <div
-                        className="h-6 w-6 rounded-full"
-                        style={{
-                            backgroundColor: despesa.categoria.cor,
-                        }}
-                    ></div>
-                    <span className="text-sm text-muted">
-                        {despesa.categoria.nome}
-                    </span>
-                </div>
-            </div>
-            <div className="flex items-center gap-2">
-                <CalendarIcon className="h-6 w-6" />
-                <div className="flex flex-col">
-                    <div className="text-xs text-muted">Comprado em</div>
-                    <span className="text-base">
-                        {toLocalDate(new Date(despesa.data))}
-                    </span>
-                </div>
-            </div>
-            <div className="flex items-center gap-2">
-                <CreditCardIcon className="h-6 w-6" />
-                <div className="flex flex-col">
-                    <div className="text-xs text-muted">Forma de pagamento</div>
-                    <span className="text-base">
-                        {despesa.forma_pagamento.nome}
-                    </span>
-                </div>
-            </div>
-            <div className="mt-2 flex items-center justify-end gap-2">
-                <Button
-                    variant={'destructive'}
-                    onClick={() => {
-                        deleteDespesa(id).then(() => {
+    return (
+        <SliderAnimation step={step} firstStep="detail">
+            {step === 'detail' && (
+                <DespesaDetail
+                    id={id}
+                    onEdit={(despesa) => {
+                        setStep('editar');
+                        setFormValues(despesa);
+                    }}
+                    onDelete={() => setStep('excluir')}
+                />
+            )}
+            {step === 'editar' && (
+                <>
+                    <button onClick={() => setStep('detail')}>voltar</button>
+                    <FormDespesa
+                        onSucess={() => {
                             setMovimentacaoSelecionada(undefined);
                             router.refresh();
-                        });
-                    }}
-                >
-                    Excluir
-                </Button>
-                <Button variant={'outline'} onClick={() => {}}>
-                    Editar
-                </Button>
-            </div>
-        </motion.div>
-    ) : (
-        <DespesaSkeleton />
+                        }}
+                        formValues={
+                            {
+                                ...formValues,
+                                forma_pagamento:
+                                    formValues?.forma_pagamento.sigla,
+                                categoria: formValues?.categoria.sigla,
+                                valor: Number(formValues?.valor.toString()),
+                            } as DespesaSchema
+                        }
+                    />
+                </>
+            )}
+            {step === 'excluir' && (
+                <div>
+                    <h1></h1>
+                    <h3 className="text-xl font-semibold">
+                        Deseja realmente excluir essa despesa?
+                    </h3>
+                    <div className="flex gap-2">
+                        <Button
+                            variant={'destructive'}
+                            onClick={() =>
+                                deleteDespesa(id).then(() => {
+                                    setMovimentacaoSelecionada(undefined);
+                                    router.refresh();
+                                })
+                            }
+                            className="btn btn-danger"
+                        >
+                            Excluir
+                        </Button>
+                        <Button
+                            onClick={() => setStep('detail')}
+                            variant={'outline'}
+                        >
+                            Cancelar
+                        </Button>
+                    </div>
+                </div>
+            )}
+        </SliderAnimation>
     );
 }
