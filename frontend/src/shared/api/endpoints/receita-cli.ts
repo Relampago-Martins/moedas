@@ -11,7 +11,7 @@ export async function criaReceita(receita: ReceitaSchema){
 export async function getReceita(id: number){
     const resp = await ApiClient.getInstance().get<Receita>(`/receitas/${id}/`,{
         next: {
-            revalidate: 10,
+            revalidate: 100,
             tags: [`getReceita${id}`],
         }
     });
@@ -20,7 +20,7 @@ export async function getReceita(id: number){
 
 export async function deleteReceita(id: number){
     const resp = await ApiClient.getInstance().delete(`/receitas/${id}/`);
-    
+    revalidateTag(`getReceita${id}`);
     return resp;
 }
 

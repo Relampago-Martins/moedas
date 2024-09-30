@@ -15,7 +15,9 @@ export function MovimentacaoProvider({ children }: MovimentacaoProviderProps) {
         <MovimentacaoContext.Provider
             value={{
                 movimentacaoSelecionada,
-                setMovimentacaoSelecionada,
+                setMovimentacaoSelecionada: (movimentacao) => {
+                    setMovimentacaoSelecionada(movimentacao);
+                },
             }}
         >
             {children}

@@ -1,29 +1,22 @@
-import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
 import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Receita } from '@/types/models/receita';
 import { motion } from 'framer-motion';
 import { CalendarIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { useMovimentacaoContext } from '../../lib/use-movimentacao-context';
 import { ReceitaSkeleton } from '../skeletons/receita';
 
 type ReceitaDetailContext = {
-    id: number;
+    receita?: Receita;
+    onEdit: () => void;
+    onDelete: () => void;
 };
 
-export function ReceitaDetail({ id }: ReceitaDetailContext) {
-    const router = useRouter();
-    const { setMovimentacaoSelecionada } = useMovimentacaoContext();
-    const [receita, setReceita] = useState<Receita | null>(null);
-    useEffect(() => {
-        getReceita(id).then((receita) => {
-            setReceita(receita);
-        });
-    }, [id]);
-
+export function ReceitaDetail({
+    receita,
+    onEdit,
+    onDelete,
+}: ReceitaDetailContext) {
     return !!receita ? (
         <motion.div
             initial={{ opacity: 0 }}
@@ -64,18 +57,12 @@ export function ReceitaDetail({ id }: ReceitaDetailContext) {
                 </div>
             </div>
             <div className="mt-2 flex items-center justify-end gap-2">
-                <Button
-                    variant={'destructive'}
-                    onClick={() => {
-                        deleteReceita(id).then(() => {
-                            setMovimentacaoSelecionada(undefined);
-                            router.refresh();
-                        });
-                    }}
-                >
+                <Button variant={'outline'} onClick={onEdit}>
+                    Editar
+                </Button>
+                <Button variant={'destructive'} onClick={onDelete}>
                     Excluir
                 </Button>
-                <Button variant={'outline'}>Editar</Button>
             </div>
         </motion.div>
     ) : (
