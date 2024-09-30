@@ -1,8 +1,8 @@
 'use client';
 import { DialogDrawer } from '@/shared/ui/custom/dialog-drawer';
 import { useMovimentacaoContext } from '../lib/use-movimentacao-context';
-import { DespesaContent } from './movimentacoes/despesa';
-import { ReceitaDetail } from './movimentacoes/receita';
+import { DespesaContent } from './movimentacoes/despesa-content';
+import { ReceitaContent } from './movimentacoes/receita-content';
 
 export function ModalMovimentacao() {
     const { movimentacaoSelecionada, setMovimentacaoSelecionada } =
@@ -10,7 +10,7 @@ export function ModalMovimentacao() {
 
     return (
         <DialogDrawer
-            className="overflow-hidden sm:min-h-[14rem] md:max-w-[20rem]"
+            className="overflow-hidden md:max-w-[22rem]"
             open={!!movimentacaoSelecionada?.id}
             onOpenChange={(val) => {
                 if (!val) {
@@ -22,7 +22,7 @@ export function ModalMovimentacao() {
                 <DespesaContent id={movimentacaoSelecionada.id} />
             )}
             {movimentacaoSelecionada?.tipo === 'R' && (
-                <ReceitaDetail id={movimentacaoSelecionada.id} />
+                <ReceitaContent id={movimentacaoSelecionada.id} />
             )}
         </DialogDrawer>
     );

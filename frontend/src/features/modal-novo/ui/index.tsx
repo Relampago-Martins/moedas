@@ -12,7 +12,9 @@ import { FormTransferencia } from './steps/form-transferencia';
 import { MenuMovimentacoes } from './steps/menu-movimentacoes';
 
 export function ModalNovo() {
-    const { isOpen, onOpenChange, step } = useModalNovoStore((state) => state);
+    const { isOpen, onOpenChange, step, setStep } = useModalNovoStore(
+        (state) => state,
+    );
     const router = useRouter();
     const onSucess = useCallback(() => {
         router.refresh();
@@ -29,7 +31,7 @@ export function ModalNovo() {
             <SliderAnimation step={step} firstStep={'menu'}>
                 <StepHeader
                     title={getTituloStep(step)}
-                    backBtn={step !== 'menu'}
+                    onBack={step !== 'menu' ? () => setStep('menu') : undefined}
                 />
                 {step === 'menu' && <MenuMovimentacoes />}
                 {step === 'gasto' && <FormDespesa onSucess={onSucess} />}

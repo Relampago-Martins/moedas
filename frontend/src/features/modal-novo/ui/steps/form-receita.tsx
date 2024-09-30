@@ -1,5 +1,8 @@
 'use client';
-import { criaReceita } from '@/shared/api/endpoints/receita-cli';
+import {
+    atualizaReceita,
+    criaReceita,
+} from '@/shared/api/endpoints/receita-cli';
 import { receita } from '@/shared/lib/forms';
 import { Button } from '@/shared/ui/button';
 import { CurrencyInput } from '@/shared/ui/currency';
@@ -22,17 +25,21 @@ import { SelectCategoria } from '../inputs/select-categoria';
 
 type FormReceitaProps = {
     onSucess: () => void;
+    formValues?: ReceitaSchema;
 };
 
-export function FormReceita({ onSucess }: FormReceitaProps) {
+export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
     const randomName = useMemo(() => getNomeReceitaAleatoria(), []);
     const form = useForm<ReceitaSchema>({
         resolver: zodResolver(receita),
+        defaultValues: formValues,
     });
 
     const onSubmit = async (data: ReceitaSchema) => {
-        const resp = await criaReceita(data);
-        if (resp.status === 201) {
+        const resp = formValues?.id
+            ? await atualizaReceita(formValues.id, data)
+            : await criaReceita(data);
+        if ([200, 201].includes(resp.status)) {
             toast.success(`Receita '${data.descricao}' criada com sucesso!`, {
                 duration: 4000,
             });
