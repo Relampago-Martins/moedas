@@ -15,7 +15,7 @@ export async function getDespesas(){
 export async function getDespesa(id: number){
     const resp = await ApiClient.getInstance().get<Despesa>(`/despesas/${id}/`, {
         next: {
-            revalidate: 10,
+            revalidate: 100,
             tags: [`getDespesa${id}`],
         }
     });
@@ -27,7 +27,7 @@ export async function criaDespesa(despesa: DespesaSchema){
     return resp;
 }
 
-export async function atuliazaDespesa(id: number, despesa: DespesaSchema){
+export async function atualizaDespesa(id: number, despesa: DespesaSchema){
     const resp = await ApiClient.getInstance().patch<Despesa>(`/despesas/${id}/`, despesa);
     revalidateTag(`getDespesa${id}`);
     return resp;
@@ -43,6 +43,6 @@ export async function getDespesaConfigs(){
 
 export async function deleteDespesa(id: number){
     const resp = await ApiClient.getInstance().delete(`/despesas/${id}/`);
-    
+    revalidateTag(`getDespesa${id}`);
     return resp;
 }

@@ -1,27 +1,22 @@
-import { getDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Despesa } from '@/types/models/despesa';
 import { motion } from 'framer-motion';
 import { CalendarIcon, CheckCheck, CreditCardIcon, XIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { DespesaSkeleton } from '../skeletons/despesa';
 
 type DespesaDetailContext = {
-    id: number;
-    onEdit: (despesa: Despesa) => void;
-    onDelete: (id: string) => void;
+    despesa?: Despesa;
+    onEdit: () => void;
+    onDelete: () => void;
 };
 
-export function DespesaDetail({ id, onEdit, onDelete }: DespesaDetailContext) {
-    const [despesa, setDespesa] = useState<Despesa | null>(null);
-    useEffect(() => {
-        getDespesa(id).then((despesa) => {
-            setDespesa(despesa);
-        });
-    }, [id]);
-
+export function DespesaDetail({
+    despesa,
+    onEdit,
+    onDelete,
+}: DespesaDetailContext) {
     return !!despesa ? (
         <motion.div
             initial={{ opacity: 0 }}
@@ -86,14 +81,11 @@ export function DespesaDetail({ id, onEdit, onDelete }: DespesaDetailContext) {
                 </div>
             </div>
             <div className="mt-2 flex items-center justify-end gap-2">
-                <Button
-                    variant={'destructive'}
-                    onClick={() => onDelete(id.toString())}
-                >
-                    Excluir
-                </Button>
-                <Button variant={'outline'} onClick={() => onEdit(despesa)}>
+                <Button variant={'outline'} onClick={onEdit}>
                     Editar
+                </Button>
+                <Button variant={'destructive'} onClick={onDelete}>
+                    Excluir
                 </Button>
             </div>
         </motion.div>

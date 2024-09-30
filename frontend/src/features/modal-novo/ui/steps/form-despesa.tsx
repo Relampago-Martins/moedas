@@ -1,5 +1,8 @@
 'use client';
-import { criaDespesa } from '@/shared/api/endpoints/despesa-cli';
+import {
+    atualizaDespesa,
+    criaDespesa,
+} from '@/shared/api/endpoints/despesa-cli';
 import { despesa } from '@/shared/lib/forms';
 import { Button } from '@/shared/ui/button';
 import { CurrencyInput } from '@/shared/ui/currency';
@@ -34,13 +37,19 @@ export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
     });
 
     const onSubmit = async (data: DespesaSchema) => {
-        const resp = await criaDespesa(data);
-        if (resp.status === 201) {
-            toast.success(`Despesa '${data.descricao}' criada com sucesso!`, {
-                duration: 4000,
-            });
+        const resp = formValues?.id
+            ? await atualizaDespesa(formValues.id, data)
+            : await criaDespesa(data);
+        if ([200, 201].includes(resp.status)) {
+            toast.success(
+                `Despesa '${data.descricao}' ${formValues?.id ? 'atualizada' : 'criada'}
+                 com sucesso!`,
+                {
+                    duration: 4000,
+                },
+            );
             onSucess();
-        } else {
+        } else if (resp.status === 400) {
             toast.error('Erro ao criar despesa, tente novamente mais tarde');
         }
     };
