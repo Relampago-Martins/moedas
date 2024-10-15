@@ -27,7 +27,7 @@ export function SideBar() {
                         </div>
                     }
                 >
-                    <span className={`w-full`}>Prosper</span>
+                    <span className={`w-full`}>Pharus</span>
                     <Menu className="hidden h-6 w-6 md:block" />
                 </NavBarTrigger>
             </NavBarHeader>

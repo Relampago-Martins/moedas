@@ -21,5 +21,5 @@ export default function Page() {
 }
 
 export const metadata = {
-    title: 'ProperApp - Playground de componentes',
+    title: 'Pharus - Playground de componentes',
 };
