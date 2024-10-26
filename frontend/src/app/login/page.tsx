@@ -21,7 +21,7 @@ export default async function Login() {
             >
                 <div className="flex w-full flex-col gap-4">
                     <div className="flex justify-center text-3xl font-semibold text-primary">
-                        <Logo comNome />
+                        <Logo comNome className="w-[14rem]" />
                     </div>
                     <LoginForm />
                     <div className="flex flex-row items-center justify-center gap-6">
