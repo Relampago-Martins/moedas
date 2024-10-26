@@ -15,7 +15,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="pt" suppressHydrationWarning>
             <head>
                 <meta charSet="UTF-8" />
                 <meta
