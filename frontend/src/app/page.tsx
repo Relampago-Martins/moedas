@@ -1,6 +1,6 @@
-import { authConfig } from "@/shared/lib/auth";
-import { getServerSession } from "next-auth";
-import { permanentRedirect } from "next/navigation";
+import { authConfig } from '@/shared/lib/auth';
+import { getServerSession } from 'next-auth';
+import { permanentRedirect } from 'next/navigation';
 
 export default async function Home() {
     const session = await getServerSession(authConfig);
@@ -12,5 +12,5 @@ export default async function Home() {
 }
 
 export const metadata = {
-    title: 'Moedas Landing Page',
-}
+    title: 'Pharus - Início',
+};

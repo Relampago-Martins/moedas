@@ -3,6 +3,7 @@ import LoginForm from '@/components/auth/LoginForm';
 import ThemeToggle from '@/components/themeToggle';
 import { authConfig } from '@/shared/lib/auth';
 import { Card } from '@/shared/ui/card';
+import { Logo } from '@/shared/ui/custom/log';
 import { Separator } from '@/shared/ui/separator';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ export default async function Login() {
             >
                 <div className="flex w-full flex-col gap-4">
                     <div className="flex justify-center text-3xl font-semibold text-primary">
-                        Prosper
+                        <Logo comNome className="w-[14rem]" />
                     </div>
                     <LoginForm />
                     <div className="flex flex-row items-center justify-center gap-6">
@@ -47,5 +48,5 @@ export default async function Login() {
 }
 
 export const metadata = {
-    title: 'Moedas - Entrar',
+    title: 'Pharus - Entrar',
 };

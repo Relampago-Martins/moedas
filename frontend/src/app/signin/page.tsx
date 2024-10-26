@@ -17,7 +17,7 @@ export default async function Signin() {
             >
                 <div className="flex w-full flex-col gap-4">
                     <div className="flex justify-center text-3xl font-semibold text-primary">
-                        Prosper
+                        Pharus
                     </div>
                     <RegisterForm />
                     <span className="mt-4 text-sm text-muted">
