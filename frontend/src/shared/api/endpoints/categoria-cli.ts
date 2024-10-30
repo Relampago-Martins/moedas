@@ -13,3 +13,8 @@ export async function getCategorias(tipo?: "D" | "R") {
     );
     return resp.data;
 }
+
+export async function getCategoria(sigla: string) {
+    const resp = await ApiClient.getInstance().get<Categoria>(`/categorias/${sigla}/`);
+    return resp.data;
+}
