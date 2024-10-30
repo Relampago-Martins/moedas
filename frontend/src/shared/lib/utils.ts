@@ -15,6 +15,10 @@ export function numberToCurrency(value: number | string) {
   });
 }
 
+/**
+ * Converte uma data para o formato local (dd MMM yyyy)
+ * ex: 01 Jan 2022
+ */
 export function toLocalDate(date: Date): string {
   const day = date.getDate();
   const monthIndex = date.getMonth(); // Month index (0-11)

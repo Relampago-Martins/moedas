@@ -12,7 +12,6 @@ import {
     NavBarItem,
     NavBarTrigger,
 } from './NavBar';
-import { Notification } from './Notification';
 import { NovoBtn } from './NovoBtn';
 import { UserMenu } from './UserMenu';
 
@@ -46,7 +45,6 @@ export function SideBar() {
                         icon={
                             <LeftToRightListDashIcon className="ml-1 h-4 w-4" />
                         }
-                        suffix={<Notification>6</Notification>}
                         component={<Link href="/movimentacoes" />}
                         activeName="/movimentacoes"
                     >
