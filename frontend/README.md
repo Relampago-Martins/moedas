@@ -1,4 +1,4 @@
-# Moedas-Front
+# Pharus-Front
 
 Projeto para controlar rendas, despesas, dividas, etc
 

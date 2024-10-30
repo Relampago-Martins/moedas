@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-    title: 'Prosper',
+    title: 'Pharus',
     description: 'O seu app para controle financeiro',
 };
 
@@ -15,7 +15,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="pt" suppressHydrationWarning>
             <head>
                 <meta charSet="UTF-8" />
                 <meta

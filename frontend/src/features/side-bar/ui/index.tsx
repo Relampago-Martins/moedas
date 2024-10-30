@@ -1,3 +1,4 @@
+import { Logo } from '@/shared/ui/custom/log';
 import { ChartUpIcon, LeftToRightListDashIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
 import { MotionConfig } from 'framer-motion';
@@ -20,13 +21,11 @@ export function SideBar() {
             <NavBarHeader>
                 <NavBarTrigger
                     className="select-none text-lg font-bold text-primary"
-                    icon={
-                        <div className="rounded-lg bg-primary px-2 text-primary-foreground">
-                            P
-                        </div>
-                    }
+                    icon={<Logo />}
                 >
-                    <span className={`w-full`}>Prosper</span>
+                    <span className={`w-full`}>
+                        <Logo comNome />
+                    </span>
                     <Menu className="hidden h-6 w-6 md:block" />
                 </NavBarTrigger>
             </NavBarHeader>
