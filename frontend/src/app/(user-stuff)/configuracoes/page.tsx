@@ -1,6 +1,6 @@
 export default function Page() {
     return (
-        <div className="px-8 py-6">
+        <div className="px-6 py-6 md:px-8">
             <h1 className="text-xl font-semibold leading-10 text-primary">
                 Configurações
             </h1>
