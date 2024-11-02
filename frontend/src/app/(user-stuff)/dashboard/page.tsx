@@ -12,8 +12,8 @@ export default async function Dashboard() {
 
     return (
         <div
-            className="
-                        grid grid-cols-12 gap-4 p-6 pt-4 lg:grid-cols-10 xl:grid-cols-12"
+            className="grid grid-cols-12 gap-4
+                        px-6 py-6 pt-4 md:px-8 lg:grid-cols-10 xl:grid-cols-12"
         >
             <MonthPicker className="col-span-12 lg:col-span-10 xl:col-start-2" />
             <CardSaldo

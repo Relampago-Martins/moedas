@@ -5,6 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/**
+ * Converte um número para o formato de moeda local (BRL)
+ * ex: 1.000,00
+ */
 export function numberToCurrency(value: number | string) {
   if (typeof value === 'string') {
       value = parseFloat(value);
