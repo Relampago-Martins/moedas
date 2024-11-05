@@ -23,13 +23,13 @@
     --muted:#6b7280;
     --muted-foreground:#F3F4F6;
 
-    --accent: #fff7ed;
+    --accent: #f5f5f5;
     --accent-foreground: #2e1065;
 
-    --destructive: 	#fef2f2;
+    --destructive: 	#fee2e2;
     --destructive-foreground: #b91c1c;
     
-    --success: #f0fdf4;
+    --success: #dcfce7;
     --success-foreground: #15803d;
 
     --border: #d4d4d4;
