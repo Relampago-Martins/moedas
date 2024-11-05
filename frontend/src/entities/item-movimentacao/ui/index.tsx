@@ -1,7 +1,7 @@
 'use client';
-import { numberToCurrency } from '@/shared/lib/utils';
-import { GastoIcon } from '@/shared/ui/huge-icons/gasto';
-import { ReceitaIcon } from '@/shared/ui/huge-icons/receita';
+import { formatDateToTimeAgo, numberToCurrency } from '@/shared/lib/utils';
+import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
+import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Movimentacao } from '@/types/models/movimentacao';
 import { motion } from 'framer-motion';
 
@@ -21,32 +21,32 @@ export function ItemMovimentacao({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             layoutId={`${prefixLayoutId}-${movimentacao.id}`}
-            style={{ borderColor: movimentacao.categoria.cor }}
-            onMouseOver={(event) => {
-                if (movimentacao.categoria) {
-                    event.currentTarget.style.backgroundColor =
-                        movimentacao.categoria.cor + '15';
-                }
-            }}
-            onMouseLeave={(event) => {
-                event.currentTarget.style.backgroundColor = 'var(--card)';
-            }}
             onClick={onClick}
-            className="flex w-full flex-row items-center rounded-sm border-l-4 bg-card py-2"
+            className="w-full overflow-hidden rounded-md border-[1px] bg-card shadow-sm hover:bg-accent"
         >
-            <div className="pl-2 pr-3 text-sm">
+            <div
+                className="flex flex-row items-center gap-3 border-l-4 px-4 py-2 "
+                style={{ borderColor: movimentacao.categoria.cor }}
+            >
                 {movimentacao.tipo === 'D' ? (
-                    <GastoIcon className="h-4 w-4 text-destructive-foreground" />
+                    <div className="rounded-full bg-destructive p-1">
+                        <TradeDownIcon className="h-5 w-5 text-destructive-foreground " />
+                    </div>
                 ) : (
-                    <ReceitaIcon className="h-4 w-4 text-green-700" />
+                    <div className="rounded-full bg-success p-1">
+                        <TradeUpIcon className="h-5 w-5 text-success-foreground " />
+                    </div>
                 )}
-            </div>
-            <div className="">
-                <div className="w-full truncate text-start text-base text-foreground">
-                    {movimentacao.descricao}
+                <div className="">
+                    <div className="w-full truncate text-start text-base text-foreground">
+                        {movimentacao.descricao}
+                    </div>
+                    <div className="text-start text-sm text-muted">
+                        {numberToCurrency(movimentacao.valor)}
+                    </div>
                 </div>
-                <div className="text-start text-sm text-muted">
-                    {numberToCurrency(movimentacao.valor)}
+                <div className="ml-auto text-xs text-muted">
+                    <span>{formatDateToTimeAgo(movimentacao.data)}</span>
                 </div>
             </div>
         </motion.button>

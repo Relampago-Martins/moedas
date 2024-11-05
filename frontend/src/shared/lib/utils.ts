@@ -1,4 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { twMerge } from "tailwind-merge";
  
 export function cn(...inputs: ClassValue[]) {
@@ -37,3 +39,13 @@ export function toLocalDate(date: Date): string {
 
   return `${day} ${month} ${year}`;
 }
+
+
+/**
+ * Formata uma data para o formato de tempo decorrido (há 1 minuto)
+ * ex: 2024-09-09 -> há 1 minuto
+ */
+export const formatDateToTimeAgo = (dateString: string) => {
+  const date = new Date(dateString);
+  return formatDistanceToNow(date, { addSuffix: true, locale: ptBR });
+};
