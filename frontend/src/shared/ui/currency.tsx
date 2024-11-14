@@ -41,6 +41,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
                         text-xl focus:outline-none`,
                         className,
                     )}
+                    inputMode="numeric"
                     defaultValue={value}
                     value={displayValue}
                     onInput={handleChange}
