@@ -1,35 +1,62 @@
 import { cn } from '@/shared/lib/utils';
-import React from 'react';
-import * as CurrencyPrimitive from 'react-currency-input-field';
-import { ControllerRenderProps } from 'react-hook-form';
+import React, { HTMLProps, useState } from 'react';
 
-type CurrencyInputProps = CurrencyPrimitive.CurrencyInputProps &
-    ControllerRenderProps;
+type CurrencyInputProps = HTMLProps<HTMLInputElement> & {
+    value: number;
+    onChange: (value: number) => void;
+};
 
-const CurrencyInput = React.forwardRef<
-    React.ElementRef<typeof CurrencyPrimitive.default>,
-    Omit<CurrencyInputProps, 'ref'>
->(({ className, onChange, value, ...props }, ref) => {
-    return (
-        <CurrencyPrimitive.default
-            ref={ref}
-            className={cn(
-                `h-9 w-full rounded-none border-b border-primary bg-transparent py-1
-                text-xl
-                focus:outline-none`,
-                className,
-            )}
-            defaultValue={value}
-            decimalSeparator=","
-            decimalsLimit={2}
-            type="decimal"
-            groupSeparator="."
-            prefix={'R$ '}
-            onValueChange={(_, __, values) => onChange(values?.float)}
-            {...props}
-        />
-    );
+const DENOMINADOR_DECIMAL = 100;
+const formatador = new Intl.NumberFormat('pt-BR', {
+    currency: 'BRL',
+    minimumFractionDigits: 2,
 });
+
+const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
+    ({ className, onChange, value = 0, ...props }, ref) => {
+        const [displayValue, setDisplayValue] = useState<string>(
+            `R$ ${formatador.format(value)}`,
+        );
+
+        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+            // Remove todos os caracteres não numéricos
+            const value = parseFloat(
+                event.target.value
+                    .replace('.', '')
+                    .replace(',', '')
+                    .replace(/\D/g, ''),
+            );
+            const result = formatador.format(value / DENOMINADOR_DECIMAL);
+            const valorHidden = result.replaceAll('.', '').replaceAll(',', '.');
+
+            setDisplayValue(`R$ ${result}`);
+            onChange(parseFloat(valorHidden));
+        };
+
+        return (
+            <>
+                <input
+                    className={cn(
+                        `h-9 w-full rounded-none border-b border-primary bg-transparent py-1
+                        text-xl focus:outline-none`,
+                        className,
+                    )}
+                    defaultValue={value}
+                    value={displayValue}
+                    onInput={handleChange}
+                    {...props}
+                />
+                <input
+                    ref={ref}
+                    type="hidden"
+                    name={props.name}
+                    value={value}
+                    {...props}
+                />
+            </>
+        );
+    },
+);
 
 CurrencyInput.displayName = 'CurrencyInput';
 
