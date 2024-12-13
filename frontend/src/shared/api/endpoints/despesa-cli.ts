@@ -5,11 +5,7 @@ import { ApiClient } from "../api-client";
 
 export async function getDespesas(){
     const resp = await ApiClient.getInstance().get<Despesa[]>("/despesas/");
-    return resp.data.map((despesa) => {
-        return {
-            ...despesa,
-        }
-    });
+    return resp.data;
 }
 
 export async function getDespesa(id: number){

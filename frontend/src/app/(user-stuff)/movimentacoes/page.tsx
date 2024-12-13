@@ -1,3 +1,4 @@
+import { CardDespesas } from '@/entities/card-despesas/ui';
 import { ModalMovimentacao } from '@/entities/modal-movimentacao/ui';
 import { MovimentacaoProvider } from '@/entities/modal-movimentacao/ui/movimentacao-provider';
 import { ListaMovimentacoes } from '@/features/lista-movimentacoes/ui';
@@ -15,6 +16,13 @@ export default async function Page() {
                 Esta é a página de movimentações. Aqui você pode visualizar os
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p>
+            <div className="mb-4 flex">
+                <CardDespesas
+                    despesas={movimentacoes.filter(
+                        (movimentacao) => movimentacao.tipo === 'D',
+                    )}
+                />
+            </div>
             <MovimentacaoProvider>
                 <Suspense fallback={<p>Carregando...</p>}>
                     <ListaMovimentacoes movimentacoes={movimentacoes} />

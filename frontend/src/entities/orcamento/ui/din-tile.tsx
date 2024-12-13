@@ -10,7 +10,7 @@ export function DinTile({ label, valor, icon }: DinTileProps) {
         <div className="flex items-center gap-4">
             {icon}
             <div className="flex flex-col">
-                <span className="text-xs text-muted">{label}</span>
+                <span className="text-sm text-muted">{label}</span>
                 <div className="flex items-center">
                     <span className="mr-1 text-sm text-muted">R$</span>
                     <span className="text-lg">

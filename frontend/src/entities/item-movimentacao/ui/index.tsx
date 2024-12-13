@@ -30,11 +30,11 @@ export function ItemMovimentacao({
             >
                 {movimentacao.tipo === 'D' ? (
                     <div className="rounded-full bg-destructive p-1">
-                        <TradeDownIcon className="h-5 w-5 text-destructive-foreground " />
+                        <TradeDownIcon className="h-5 w-5 text-destructive-foreground dark:text-foreground" />
                     </div>
                 ) : (
                     <div className="rounded-full bg-success p-1">
-                        <TradeUpIcon className="h-5 w-5 text-success-foreground " />
+                        <TradeUpIcon className="h-5 w-5 text-success-foreground dark:text-foreground" />
                     </div>
                 )}
                 <div className="">
