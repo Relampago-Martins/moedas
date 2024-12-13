@@ -18,17 +18,15 @@ export function CardDespesas({ despesas }: CardDespesasProps) {
     return (
         <div
             className="dark:bg-grid-small-white/[0.3] bg-grid-small-black/[0.3] relative min-w-[200px]
-        overflow-hidden rounded-md border-[1px] border-border bg-card pt-4"
+        overflow-hidden rounded-md border-[1px] border-border bg-card pt-2"
         >
             <div
                 className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white
                 [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
             ></div>
-            <h4 className="absolute left-2 top-2 text-base text-muted">
-                Despesas
-            </h4>
+            <h4 className="px-2 text-base text-muted">Despesas</h4>
             {/* remove init animation */}
-            <ResponsiveContainer width="100%" height={50}>
+            <ResponsiveContainer width="100%" height={30}>
                 <AreaChart
                     data={chartData}
                     margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
