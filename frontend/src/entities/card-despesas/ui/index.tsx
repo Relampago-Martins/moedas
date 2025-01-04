@@ -1,5 +1,6 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
+import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Movimentacao } from '@/types/models/movimentacao';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 type CardDespesasProps = {
@@ -17,14 +18,15 @@ export function CardDespesas({ despesas }: CardDespesasProps) {
     }));
     return (
         <div
-            className="dark:bg-grid-small-white/[0.3] bg-grid-small-black/[0.3] relative min-w-[200px]
-        overflow-hidden rounded-md border-[1px] border-border bg-card pt-2"
+            className="relative min-w-[200px] overflow-hidden rounded-md
+        border-[1px] border-border bg-card pt-8 bg-grid-small-black/[0.3] dark:bg-grid-small-white/[0.3]"
         >
-            <div
-                className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white
-                [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
-            ></div>
-            <h4 className="px-2 text-base text-muted">Despesas</h4>
+            <div className="absolute inset-0 z-[1] px-2 py-1">
+                <div className="flex items-center gap-1">
+                    <TradeDownIcon className="h-5 w-5" />
+                    <h4 className="text-base">Despesas</h4>
+                </div>
+            </div>
             {/* remove init animation */}
             <ResponsiveContainer width="100%" height={30}>
                 <AreaChart
@@ -40,7 +42,6 @@ export function CardDespesas({ despesas }: CardDespesasProps) {
                         fill="var(--destructive)"
                         fillOpacity={1}
                         dot={false}
-                        isAnimationActive={false}
                     />
                 </AreaChart>
             </ResponsiveContainer>
@@ -52,6 +53,10 @@ export function CardDespesas({ despesas }: CardDespesasProps) {
                     {numberToCurrency(totalDespesas).replace('R$', '').trim()}
                 </span>
             </div>
+            <div
+                className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white
+                [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
+            ></div>
         </div>
     );
 }
