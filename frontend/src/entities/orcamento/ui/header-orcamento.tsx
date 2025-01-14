@@ -36,6 +36,7 @@ export function HeaderOrcamento({
                 </Button>
                 <AnimatePresence mode="wait" initial={false}>
                     <motion.div
+                        className="w-full bg-card px-2 text-center"
                         key={`${data.mes}-${data.ano}`}
                         transition={{
                             type: 'spring',

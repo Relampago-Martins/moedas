@@ -11,7 +11,7 @@ export async function getCategorias(tipo?: "D" | "R") {
     const resp = await ApiClient.getInstance().get<Categoria[]>(
         `/categorias/?${urlParams}`
     );
-    return resp.data;
+    return resp.data.sort((a, b) => a.total_gastos - b.total_gastos);
 }
 
 export async function getCategoria(sigla: string) {
