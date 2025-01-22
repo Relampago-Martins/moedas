@@ -16,10 +16,15 @@ export default async function Page() {
                 Esta é a página de movimentações. Aqui você pode visualizar os
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p>
-            <div className="mb-4 flex">
+            <div className="mb-4 flex gap-6">
                 <CardDespesas
                     despesas={movimentacoes.filter(
                         (movimentacao) => movimentacao.tipo === 'D',
+                    )}
+                />
+                <CardDespesas
+                    despesas={movimentacoes.filter(
+                        (movimentacao) => movimentacao.tipo === 'R',
                     )}
                 />
             </div>
