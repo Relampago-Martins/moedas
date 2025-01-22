@@ -1,5 +1,5 @@
 'use client';
-import { formatDateToTimeAgo, numberToCurrency } from '@/shared/lib/utils';
+import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Movimentacao } from '@/types/models/movimentacao';
@@ -44,9 +44,6 @@ export function ItemMovimentacao({
                     <div className="text-start text-sm text-muted">
                         {numberToCurrency(movimentacao.valor)}
                     </div>
-                </div>
-                <div className="ml-auto text-xs text-muted">
-                    <span>{formatDateToTimeAgo(movimentacao.data)}</span>
                 </div>
             </div>
         </motion.button>
