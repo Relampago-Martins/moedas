@@ -17,8 +17,13 @@ export function ListaMovimentacoes({
         <ul className="flex flex-col gap-2">
             {movimentacoes.length > 0 ? (
                 movimentacoesPorDatas.map((movimentacoesPorData) => (
-                    <>
-                        <span>{movimentacoesPorData.data}</span>
+                    <div
+                        className="flex flex-col gap-2"
+                        key={movimentacoesPorData.data}
+                    >
+                        <span className="text-muted">
+                            {movimentacoesPorData.data}
+                        </span>
                         {movimentacoesPorData.movimentacoes.map((despesa) => (
                             <ItemMovimentacao
                                 key={despesa.id}
@@ -32,7 +37,7 @@ export function ListaMovimentacoes({
                                 }
                             />
                         ))}
-                    </>
+                    </div>
                 ))
             ) : (
                 <p>Não há movimentações</p>
