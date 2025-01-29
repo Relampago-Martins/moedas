@@ -1,4 +1,7 @@
 import { Movimentacao } from "@/types/models/movimentacao";
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+
 
 
 type MovimentacaoPorData = {
@@ -23,4 +26,24 @@ export function separarPorDatas(movimentacoes: Movimentacao[]) {
         }
     }
     return movimentacoesPorData;
+}
+
+/**
+ * 
+ * Recebe uma data em formato mm/dd/yyyy e
+ * se a data for de 7 dias atrás usa o date ago
+ * se não retorna a data no formato 9 Set 2022
+ */
+export function cleanDate(date: string) {
+    const dateObj = new Date(date);
+    const now = new Date();
+    const diff = now.getTime() - dateObj.getTime();
+    if (diff < 604800000) {
+        return formatDistanceToNow(dateObj,  { addSuffix: true, locale: ptBR });
+    }
+    return dateObj.toLocaleDateString('pt-BR', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    });
 }

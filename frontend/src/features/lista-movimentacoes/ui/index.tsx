@@ -3,7 +3,7 @@
 import { ItemMovimentacao } from '@/entities/item-movimentacao/ui';
 import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { Movimentacao } from '@/types/models/movimentacao';
-import { separarPorDatas } from '../lib';
+import { cleanDate, separarPorDatas } from '../lib';
 
 export function ListaMovimentacoes({
     movimentacoes,
@@ -22,7 +22,7 @@ export function ListaMovimentacoes({
                         key={movimentacoesPorData.data}
                     >
                         <span className="text-muted">
-                            {movimentacoesPorData.data}
+                            {cleanDate(movimentacoesPorData.data)}
                         </span>
                         {movimentacoesPorData.movimentacoes.map((despesa) => (
                             <ItemMovimentacao
