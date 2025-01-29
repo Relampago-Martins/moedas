@@ -52,7 +52,7 @@ export function ReceitaDetail({
                 <div className="flex flex-col">
                     <div className="text-xs text-muted">Recebido em</div>
                     <span className="text-base">
-                        {toLocalDate(new Date(receita.data))}
+                        {toLocalDate(receita.data)}
                     </span>
                 </div>
             </div>
