@@ -63,7 +63,7 @@ export function DespesaDetail({
                 <div className="flex flex-col">
                     <div className="text-xs text-muted">Comprado em</div>
                     <span className="text-base">
-                        {toLocalDate(new Date(despesa.data))}
+                        {toLocalDate(despesa.data)}
                     </span>
                 </div>
             </div>
