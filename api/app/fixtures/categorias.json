@@ -5,7 +5,29 @@
         "fields": {
             "nome": "Alimentação",
             "cor": "#36760D",
+            "icone": "ph ph-fork-knife",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "AS",
+        "fields": {
+            "nome": "Assinatura",
+            "cor": "#0E7490",
             "icone": "faBurguer",
+            "is_base": true,
+            "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "AU",
+        "fields": {
+            "nome": "Autocuidado",
+            "cor": "#415CFF",
+            "icone": "ph ph-barbell",
             "is_base": true,
             "tipo": "D"
         }
@@ -16,7 +38,7 @@
         "fields": {
             "nome": "Educação",
             "cor": "#1B1DFF",
-            "icone": "faMortar",
+            "icone": "ph ph-book-bookmark",
             "is_base": true,
             "tipo": "D"
         }
@@ -38,7 +60,7 @@
         "fields": {
             "nome": "Lazer",
             "cor": "#FFAE3A",
-            "icone": "fa",
+            "icone": "ph ph-mask-happy",
             "is_base": true,
             "tipo": "D"
         }
@@ -49,9 +71,20 @@
         "fields": {
             "nome": "Outros",
             "cor": "#7D7D7D",
-            "icone": "faBox",
+            "icone": "ph ph-package",
             "is_base": true,
             "tipo": "D"
+        }
+    },
+    {
+        "model": "moedas.categoria",
+        "pk": "OU2",
+        "fields": {
+            "nome": "Outros",
+            "cor": "#525252",
+            "icone": "ph ph-package",
+            "is_base": true,
+            "tipo": "R"
         }
     },
     {
@@ -60,7 +93,7 @@
         "fields": {
             "nome": "Saúde",
             "cor": "#36A551",
-            "icone": "faHeart",
+            "icone": "ph ph-heartbeat",
             "is_base": true,
             "tipo": "D"
         }
@@ -71,7 +104,7 @@
         "fields": {
             "nome": "Salário",
             "cor": "#036C09",
-            "icone": "faDolar",
+            "icone": "ph ph-coins",
             "is_base": true,
             "tipo": "R"
         }
@@ -81,8 +114,8 @@
         "pk": "T",
         "fields": {
             "nome": "Transporte",
-            "cor": "#D0FF1B",
-            "icone": "faCar",
+            "cor": "#FFA400",
+            "icone": "ph ph-car-profile",
             "is_base": true,
             "tipo": "D"
         }
@@ -104,7 +137,7 @@
         "fields": {
             "nome": "Venda",
             "cor": "#FFB43C",
-            "icone": "faArrowLeftRight",
+            "icone": "ph ph-hand-coins",
             "is_base": true,
             "tipo": "R"
         }
