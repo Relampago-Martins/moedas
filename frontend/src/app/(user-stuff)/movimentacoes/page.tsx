@@ -1,4 +1,5 @@
 import { CardDespesas } from '@/entities/card-despesas/ui';
+import { CardReceitas } from '@/entities/card-receitas/ui';
 import { ModalMovimentacao } from '@/entities/modal-movimentacao/ui';
 import { MovimentacaoProvider } from '@/entities/modal-movimentacao/ui/movimentacao-provider';
 import { ListaMovimentacoes } from '@/features/lista-movimentacoes/ui';
@@ -22,8 +23,8 @@ export default async function Page() {
                         (movimentacao) => movimentacao.tipo === 'D',
                     )}
                 />
-                <CardDespesas
-                    despesas={movimentacoes.filter(
+                <CardReceitas
+                    receitas={movimentacoes.filter(
                         (movimentacao) => movimentacao.tipo === 'R',
                     )}
                 />

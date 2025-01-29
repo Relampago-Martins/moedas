@@ -1,7 +1,5 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
-import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
-import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Movimentacao } from '@/types/models/movimentacao';
 import { motion } from 'framer-motion';
 
@@ -22,21 +20,20 @@ export function ItemMovimentacao({
             exit={{ scale: 0.95, opacity: 0 }}
             layoutId={`${prefixLayoutId}-${movimentacao.id}`}
             onClick={onClick}
-            className="w-full overflow-hidden rounded-md border-[1px] bg-card shadow-sm hover:bg-accent"
+            className="w-full overflow-hidden rounded-md
+            border-[1px] bg-card px-1 py-2 shadow-sm hover:bg-accent "
         >
-            <div
-                className="flex flex-row items-center gap-3 border-l-4 px-4 py-2 "
-                style={{ borderColor: movimentacao.categoria.cor }}
-            >
-                {movimentacao.tipo === 'D' ? (
-                    <div className="rounded-full bg-destructive p-1">
-                        <TradeDownIcon className="h-5 w-5 text-destructive-foreground dark:text-foreground" />
-                    </div>
-                ) : (
-                    <div className="rounded-full bg-success p-1">
-                        <TradeUpIcon className="h-5 w-5 text-success-foreground dark:text-foreground" />
-                    </div>
-                )}
+            <div className="flex flex-row items-center gap-3">
+                <div
+                    className={`ml-2 h-[40px] w-2 rounded-md
+                    ${movimentacao.tipo === 'R' ? 'bg-success-foreground' : 'bg-destructive-foreground'}
+                `}
+                ></div>
+                <div className="rounded-md p-1">
+                    <i
+                        className={`${movimentacao.categoria.icone} text-2xl`}
+                    ></i>
+                </div>
                 <div className="">
                     <div className="w-full truncate text-start text-base text-foreground">
                         {movimentacao.descricao}

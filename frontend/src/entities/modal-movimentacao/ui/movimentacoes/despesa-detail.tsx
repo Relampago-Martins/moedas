@@ -34,33 +34,29 @@ export function DespesaDetail({
                 </div>
                 <h2 className="text-xl">{numberToCurrency(despesa.valor)}</h2>
             </div>
-            <div className="flex gap-6">
-                <div className="flex items-center gap-2">
-                    {despesa.pago ? (
-                        <>
-                            <CheckCheck className="h-6 w-6 text-green-700" />
-                            <span className="text-sm text-muted">Pago</span>
-                        </>
-                    ) : (
-                        <>
-                            <XIcon className="h-6 w-6 text-destructive-foreground" />
-                            <span className="text-sm text-muted">
-                                Não foi pago
-                            </span>
-                        </>
-                    )}
+            <div className="flex">
+                <div
+                    className="flex items-center gap-2 rounded-md px-2 text-background"
+                    style={{
+                        backgroundColor: despesa.categoria.cor,
+                    }}
+                >
+                    <i className={`${despesa.categoria.icone} text-2xl`}></i>
+                    <span className="text-sm">{despesa.categoria.nome}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                    <div
-                        className="h-6 w-6 rounded-full"
-                        style={{
-                            backgroundColor: despesa.categoria.cor,
-                        }}
-                    ></div>
-                    <span className="text-sm text-muted">
-                        {despesa.categoria.nome}
-                    </span>
-                </div>
+            </div>
+            <div className="flex items-center gap-2">
+                {despesa.pago ? (
+                    <>
+                        <CheckCheck className="h-6 w-6 text-green-700" />
+                        <span className="text-sm text-muted">Pago</span>
+                    </>
+                ) : (
+                    <>
+                        <XIcon className="h-6 w-6 text-destructive-foreground" />
+                        <span className="text-sm text-muted">Não foi pago</span>
+                    </>
+                )}
             </div>
             <div className="flex items-center gap-2">
                 <CalendarIcon className="h-6 w-6" />

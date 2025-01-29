@@ -22,6 +22,11 @@ export default function RootLayout({
                     name="viewport"
                     content="width=device-width, initial-scale=1.0"
                 />
+                <link
+                    rel="stylesheet"
+                    type="text/css"
+                    href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+                ></link>
             </head>
             <body className={inter.className}>
                 <ThemeProvider
