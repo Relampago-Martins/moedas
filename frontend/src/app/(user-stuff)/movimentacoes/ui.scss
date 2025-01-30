@@ -1,0 +1,7 @@
+.scroll-horizontal{
+    overflow-x: scroll;
+    //make the scroll bar invisible
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

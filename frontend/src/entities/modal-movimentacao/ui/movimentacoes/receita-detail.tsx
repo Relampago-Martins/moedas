@@ -1,3 +1,4 @@
+import { CategoriaBadge } from '@/entities/item-movimentacao/ui/categoria-badge';
 import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
@@ -34,19 +35,8 @@ export function ReceitaDetail({
                 </div>
                 <h2 className="text-xl">{numberToCurrency(receita.valor)}</h2>
             </div>
-            <div className="flex gap-6">
-                <div className="flex items-center gap-2">
-                    <div
-                        className="h-6 w-6 rounded-full"
-                        style={{
-                            backgroundColor: receita.categoria.cor,
-                        }}
-                    ></div>
-                    <span className="text-sm text-muted">
-                        {receita.categoria.nome}
-                    </span>
-                </div>
-            </div>
+            <CategoriaBadge categoria={receita.categoria} />
+
             <div className="flex items-center gap-2">
                 <CalendarIcon className="h-6 w-6" />
                 <div className="flex flex-col">

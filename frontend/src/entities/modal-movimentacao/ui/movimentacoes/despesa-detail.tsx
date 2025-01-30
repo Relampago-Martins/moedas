@@ -1,3 +1,4 @@
+import { CategoriaBadge } from '@/entities/item-movimentacao/ui/categoria-badge';
 import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
@@ -34,17 +35,7 @@ export function DespesaDetail({
                 </div>
                 <h2 className="text-xl">{numberToCurrency(despesa.valor)}</h2>
             </div>
-            <div className="flex">
-                <div
-                    className="flex items-center gap-2 rounded-md px-2 text-background"
-                    style={{
-                        backgroundColor: despesa.categoria.cor,
-                    }}
-                >
-                    <i className={`${despesa.categoria.icone} text-2xl`}></i>
-                    <span className="text-sm">{despesa.categoria.nome}</span>
-                </div>
-            </div>
+            <CategoriaBadge categoria={despesa.categoria} />
             <div className="flex items-center gap-2">
                 {despesa.pago ? (
                     <>
