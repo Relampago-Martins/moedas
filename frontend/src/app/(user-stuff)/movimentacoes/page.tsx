@@ -5,6 +5,7 @@ import { MovimentacaoProvider } from '@/entities/modal-movimentacao/ui/movimenta
 import { ListaMovimentacoes } from '@/features/lista-movimentacoes/ui';
 import { listaMovimentacoes } from '@/shared/api/endpoints/movimentacao-cli';
 import { Suspense } from 'react';
+import './ui.scss';
 
 export default async function Page() {
     const movimentacoes = await listaMovimentacoes();
@@ -17,7 +18,7 @@ export default async function Page() {
                 Esta é a página de movimentações. Aqui você pode visualizar os
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p>
-            <div className="mb-4 flex gap-6">
+            <div className="scroll-horizontal mb-4 flex gap-6">
                 <CardDespesas
                     despesas={movimentacoes.filter(
                         (movimentacao) => movimentacao.tipo === 'D',

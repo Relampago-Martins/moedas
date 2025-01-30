@@ -18,7 +18,7 @@ export function ListaMovimentacoes({
             {movimentacoes.length > 0 ? (
                 movimentacoesPorDatas.map((movimentacoesPorData) => (
                     <div
-                        className="flex flex-col gap-2"
+                        className="flex max-w-[40rem] flex-col gap-2"
                         key={movimentacoesPorData.data}
                     >
                         <span className="text-muted">
