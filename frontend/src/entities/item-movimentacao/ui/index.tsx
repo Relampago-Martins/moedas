@@ -39,8 +39,18 @@ export function ItemMovimentacao({
                     ></div>
                 </div>
                 <div className="w-full">
-                    <div className="w-full truncate text-start text-lg text-foreground">
-                        {movimentacao.descricao}
+                    <div className="flex flex-row items-center justify-between gap-2">
+                        <div className="line-clamp-1 w-full overflow-hidden text-ellipsis text-start text-foreground sm:text-lg">
+                            {movimentacao.descricao}
+                        </div>
+                        <div
+                            className={`w-fit shrink-0 text-end text-sm
+                        ${movimentacao.tipo === 'R' ? 'text-success-foreground' : 'text-destructive-foreground'}
+                    `}
+                        >
+                            {movimentacao.tipo === 'R' ? '' : '-'}
+                            {numberToCurrency(movimentacao.valor)}
+                        </div>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="text-start text-sm text-muted">
@@ -51,15 +61,6 @@ export function ItemMovimentacao({
                             Nubank - C.Corrente
                         </div>
                     </div>
-                </div>
-
-                <div
-                    className={`w-full text-end text-sm
-                        ${movimentacao.tipo === 'R' ? 'text-success-foreground' : 'text-destructive-foreground'}
-                    `}
-                >
-                    {movimentacao.tipo === 'R' ? '' : '-'}
-                    {numberToCurrency(movimentacao.valor)}
                 </div>
             </div>
         </motion.button>

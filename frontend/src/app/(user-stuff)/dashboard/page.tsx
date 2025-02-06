@@ -26,10 +26,7 @@ export default async function Dashboard() {
                 className="
                             col-span-12 lg:col-span-4 xl:col-start-2"
             />
-            <CardGastos
-                className="
-                            col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2"
-            />
+            <CardGastos className="col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2" />
         </div>
     );
 }
