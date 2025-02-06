@@ -86,16 +86,23 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     animate={{ opacity: 1, scale: 1.05 }}
                     className=" text-sm font-bold text-gray-500"
                 >
-                    {activeIndex < 0
-                        ? numberToCurrency(
-                              categorias.reduce(
-                                  (acc, curr) => acc + curr.total_gastos,
-                                  0,
-                              ),
-                          )
-                        : numberToCurrency(
-                              categoriaSelecionada?.total_gastos || 0,
-                          )}
+                    {activeIndex < 0 ? (
+                        numberToCurrency(
+                            categorias.reduce(
+                                (acc, curr) => acc + curr.total_gastos,
+                                0,
+                            ),
+                        )
+                    ) : (
+                        <div className="flex flex-col items-center gap-1">
+                            <i
+                                className={`${categoriaSelecionada?.icone} text-4xl`}
+                            />
+                            {numberToCurrency(
+                                categoriaSelecionada?.total_gastos || 0,
+                            )}
+                        </div>
+                    )}
                 </motion.span>
             </div>
         </div>
