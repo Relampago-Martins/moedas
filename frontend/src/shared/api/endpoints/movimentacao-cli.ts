@@ -1,15 +1,27 @@
 'use server';
 
+import { obj2SearchParams } from "@/shared/lib/utils";
 import { Movimentacao } from "@/types/models/movimentacao";
 import { ApiClient } from "../api-client";
 
-export async function listaMovimentacoes(tipo?: "D" | "R") {
-    const urlParams = new URLSearchParams();
-    if (tipo) {
-        urlParams.append("tipo", tipo);
+type ListaMovsParams = {
+    tipo?: "D" | "R", 
+    periodo?: {
+        periodo_after?: string;
+        periodo_before?: string;
     }
+}
+export async function listaMovimentacoes(props: ListaMovsParams) {
+    const urlParams = obj2SearchParams(
+        {
+            tipo: props.tipo,
+            periodo_after: props.periodo?.periodo_after,
+            periodo_before: props.periodo?.periodo_before,
+        }
+    );
     const resp = await ApiClient.getInstance().get<Movimentacao[]>(
-        `/movimentacoes/?${urlParams}`
+        `/movimentacoes/?${urlParams}`, 
+        {cache: "no-store"}
     );
     return resp.data;
 }

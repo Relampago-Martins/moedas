@@ -1,5 +1,5 @@
 'use client';
-import { ItemMovimentacao } from '@/entities/item-movimentacao/ui';
+import { ItemMovimentacao } from '@/entities/movimentacoes/item-movimentacao/ui';
 import { ScrollArea } from '@/shared/ui/scroll-area';
 import { Despesa } from '@/types/models/despesa';
 import { AnimatePresence } from 'framer-motion';

@@ -89,7 +89,7 @@ class MovimentacaoViewSet(viewsets.ReadOnlyModelViewSet):
     # pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        return self.queryset.order_by("-data")
+        return self.queryset.filter(user=self.request.user).order_by("-data")
 
 
 class CarteiraView(views.APIView):

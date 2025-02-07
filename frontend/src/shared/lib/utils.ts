@@ -34,7 +34,7 @@ export function toLocalDate(date: string): string {
       'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
   ];
 
-  const month = monthNames[monthIndex];
+  const month = monthNames[monthIndex -1];
 
   return `${day} ${month} ${year}`;
 }
@@ -48,3 +48,16 @@ export const formatDateToTimeAgo = (dateString: string) => {
   const date = new Date(dateString);
   return formatDistanceToNow(date, { addSuffix: true, locale: ptBR });
 };
+
+
+/**
+ * Converte um objeto em uma URLSearchParams.
+ */
+export function obj2SearchParams<T extends object>(obj: T) {
+  const urlParams = new URLSearchParams();
+  Object.entries(obj).forEach(([key, value]) => {
+    if (value === undefined) return;
+    urlParams.append(key, value);
+  });
+  return urlParams;
+}

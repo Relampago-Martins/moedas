@@ -1,4 +1,4 @@
-import { CategoriaBadge } from '@/entities/item-movimentacao/ui/categoria-badge';
+import { CategoriaBadge } from '@/entities/movimentacoes/item-movimentacao/ui/categoria-badge';
 import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
