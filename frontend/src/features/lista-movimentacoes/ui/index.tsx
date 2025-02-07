@@ -11,7 +11,7 @@ export function ListaMovimentacoes({
     movimentacoes: Movimentacao[];
 }) {
     const { setMovimentacaoSelecionada } = useMovimentacaoContext();
-    const movimentacoesPorDatas = separarPorDatas(movimentacoes.toReversed());
+    const movimentacoesPorDatas = separarPorDatas(movimentacoes);
 
     return (
         <ul className="flex flex-col gap-2">
