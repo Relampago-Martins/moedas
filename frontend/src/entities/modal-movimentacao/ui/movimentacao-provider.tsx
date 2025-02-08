@@ -1,5 +1,6 @@
 'use client';
 
+import { Movimentacao } from '@/types/models/movimentacao';
 import { useState } from 'react';
 import { MovimentacaoContext } from '../lib/context';
 
@@ -10,6 +11,7 @@ export function MovimentacaoProvider({ children }: MovimentacaoProviderProps) {
     const [movimentacaoSelecionada, setMovimentacaoSelecionada] = useState<
         { id: number; tipo: string } | undefined
     >(undefined);
+    const [movimentacoes, setMovimentacoes] = useState<Movimentacao[]>([]);
 
     return (
         <MovimentacaoContext.Provider
@@ -18,6 +20,8 @@ export function MovimentacaoProvider({ children }: MovimentacaoProviderProps) {
                 setMovimentacaoSelecionada: (movimentacao) => {
                     setMovimentacaoSelecionada(movimentacao);
                 },
+                movimentacoes,
+                setMovimentacoes,
             }}
         >
             {children}

@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import { Movimentacao } from "@/types/models/movimentacao";
+import { createContext, useContext } from "react";
 
 type MovimentacaoContext = {
     movimentacaoSelecionada?: {
@@ -9,9 +10,19 @@ type MovimentacaoContext = {
         id: number;
         tipo: string;
     } | undefined>>
+    movimentacoes: Movimentacao[];
+    setMovimentacoes: React.Dispatch<React.SetStateAction<Movimentacao[]>>;
 }
 
 export const MovimentacaoContext = createContext<MovimentacaoContext>({
     movimentacaoSelecionada: undefined,
-    setMovimentacaoSelecionada: () => {}
+    setMovimentacaoSelecionada: () => {},
+    movimentacoes: [],
+    setMovimentacoes: () => {},
 });
+
+export const useMovimentacaoContext = () => {
+    return {
+        ...useContext(MovimentacaoContext),
+    };
+}

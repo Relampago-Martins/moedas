@@ -1,3 +1,4 @@
+from datetime import date
 from django.conf import settings
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
@@ -88,7 +89,7 @@ class MovimentacaoViewSet(viewsets.ReadOnlyModelViewSet):
     # pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter(user=self.request.user).order_by("-data")
 
 
 class CarteiraView(views.APIView):

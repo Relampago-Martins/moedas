@@ -16,7 +16,7 @@
         "fields": {
             "nome": "Assinatura",
             "cor": "#0E7490",
-            "icone": "faBurguer",
+            "icone": "ph ph-credit-card",
             "is_base": true,
             "tipo": "D"
         }
@@ -49,7 +49,7 @@
         "fields": {
             "nome": "Eletrônicos",
             "cor": "#144D03",
-            "icone": "faCpu",
+            "icone": "ph ph-laptop",
             "is_base": true,
             "tipo": "D"
         }
@@ -126,7 +126,7 @@
         "fields": {
             "nome": "Vestuário",
             "cor": "#FF4535",
-            "icone": "faTshirt",
+            "icone": "ph ph-tshirt",
             "is_base": true,
             "tipo": "D"
         }

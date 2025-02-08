@@ -1,3 +1,4 @@
+import { toLocalDate } from "@/shared/lib/utils";
 import { Movimentacao } from "@/types/models/movimentacao";
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -53,6 +54,7 @@ export function cleanDate(date: string): string {
             if (dateObj.getFullYear() === now.getFullYear()) {
                 return dateObj.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short' });
             }
-            return dateObj.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
+            debugger;
+            return toLocalDate(dateObj.toISOString().split('T')[0]);
     }
 }

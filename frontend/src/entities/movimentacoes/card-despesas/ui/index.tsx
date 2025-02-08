@@ -1,24 +1,32 @@
 'use client';
+import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/context';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
-import { Movimentacao } from '@/types/models/movimentacao';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
-type CardDespesasProps = {
-    despesas: Movimentacao[];
-};
+import { getDefaultChartData } from '../../filtros/utils';
 
-export function CardDespesas({ despesas }: CardDespesasProps) {
+export function CardDespesas() {
+    const { movimentacoes } = useMovimentacaoContext();
+    const despesas = movimentacoes.filter(
+        (movimentacao) => movimentacao.tipo === 'D',
+    );
     const totalDespesas = despesas.reduce(
         (acc, despesa) => acc + Number(despesa.valor),
         0,
     );
-    const chartData = despesas.map((despesa) => ({
-        date: new Date(despesa.data).getTime(),
-        value: Number(despesa.valor),
-    }));
+    const [step1, step2] = getDefaultChartData(despesas[0]?.data);
+    const chartData = [
+        step1,
+        ...despesas.map((despesa) => ({
+            date: new Date(despesa.data).getTime(),
+            value: Number(despesa.valor),
+        })),
+        step2,
+    ];
+
     return (
         <div
-            className="relative min-w-[200px] overflow-hidden rounded-md
+            className="relative w-full min-w-[200px] overflow-hidden rounded-md
         border-[1px] border-border bg-card pt-8 bg-grid-small-black/[0.3] dark:bg-grid-small-white/[0.3]"
         >
             <div className="absolute inset-0 z-[1] px-2 py-1">
@@ -31,11 +39,11 @@ export function CardDespesas({ despesas }: CardDespesasProps) {
             <ResponsiveContainer width="100%" height={30}>
                 <AreaChart
                     data={chartData}
-                    margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    margin={{ top: 4, right: 0, bottom: 0, left: 0 }}
                 >
                     {/* The line */}
                     <Area
-                        type="monotone"
+                        type="linear"
                         dataKey="value"
                         stroke="var(--destructive-foreground)"
                         strokeWidth={1}

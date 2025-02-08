@@ -1,14 +1,15 @@
 'use client';
+import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/context';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
-import { Movimentacao } from '@/types/models/movimentacao';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
-type CardReceitasProps = {
-    receitas: Movimentacao[];
-};
+export function CardReceitas() {
+    const { movimentacoes } = useMovimentacaoContext();
+    const receitas = movimentacoes.filter(
+        (movimentacao) => movimentacao.tipo === 'R',
+    );
 
-export function CardReceitas({ receitas }: CardReceitasProps) {
     const totalDespesas = receitas.reduce(
         (acc, receita) => acc + Number(receita.valor),
         0,
@@ -19,7 +20,7 @@ export function CardReceitas({ receitas }: CardReceitasProps) {
     }));
     return (
         <div
-            className="relative min-w-[200px] overflow-hidden rounded-md
+            className="relative w-full min-w-[200px] overflow-hidden rounded-md
         border-[1px] border-border bg-card pt-8 bg-grid-small-black/[0.3] dark:bg-grid-small-white/[0.3]"
         >
             <div className="absolute inset-0 z-[1] px-2 py-1">
@@ -36,7 +37,7 @@ export function CardReceitas({ receitas }: CardReceitasProps) {
                 >
                     {/* The line */}
                     <Area
-                        type="monotone"
+                        type="linear"
                         dataKey="value"
                         stroke="var(--success-foreground)"
                         strokeWidth={1}
