@@ -35,14 +35,18 @@ const SelectCategoria = React.forwardRef<
             <SelectTrigger>
                 <SelectValue placeholder="Selecione" ref={ref} {...props} />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="max-h-[15rem]">
                 {categorias.map((categoria) => (
                     <SelectItem key={categoria.sigla} value={categoria.sigla}>
                         <div className="flex flex-row items-center gap-2">
                             <div
-                                className="flex h-4 w-4 rounded-full"
+                                className="flex h-7 w-7 items-center justify-center rounded-full"
                                 style={{ backgroundColor: categoria.cor }}
-                            />
+                            >
+                                <i
+                                    className={`ph flex ${categoria.icone} text-xl`}
+                                />
+                            </div>
                             {categoria.nome}
                         </div>
                     </SelectItem>
