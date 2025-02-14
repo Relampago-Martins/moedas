@@ -1,5 +1,5 @@
 import { Movimentacao } from "@/types/models/movimentacao";
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
 type MovimentacaoContext = {
     movimentacaoSelecionada?: {
@@ -20,9 +20,3 @@ export const MovimentacaoContext = createContext<MovimentacaoContext>({
     movimentacoes: [],
     setMovimentacoes: () => {},
 });
-
-export const useMovimentacaoContext = () => {
-    return {
-        ...useContext(MovimentacaoContext),
-    };
-}

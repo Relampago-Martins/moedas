@@ -17,6 +17,7 @@ import {
 import { Input } from '@/shared/ui/input';
 import { ReceitaSchema } from '@/types/models/receita';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -30,6 +31,7 @@ type FormReceitaProps = {
 
 export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
     const randomName = useMemo(() => getNomeReceitaAleatoria(), []);
+    const queryClient = useQueryClient();
     const form = useForm<ReceitaSchema>({
         resolver: zodResolver(receita),
         defaultValues: formValues,
@@ -40,6 +42,7 @@ export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
             ? await atualizaReceita(formValues.id, data)
             : await criaReceita(data);
         if ([200, 201].includes(resp.status)) {
+            queryClient.invalidateQueries({ queryKey: ['movimentacoes'] });
             toast.success(`Receita '${data.descricao}' criada com sucesso!`, {
                 duration: 4000,
             });

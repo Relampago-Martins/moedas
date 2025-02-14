@@ -17,6 +17,7 @@ import {
 import { Input } from '@/shared/ui/input';
 import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -31,6 +32,7 @@ type FormDespesaProps = {
 
 export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
     const randomName = useMemo(() => getNomeDespesaAleatoria(), []);
+    const queryClient = useQueryClient();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: formValues,
@@ -41,6 +43,7 @@ export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
             ? await atualizaDespesa(formValues.id, data)
             : await criaDespesa(data);
         if ([200, 201].includes(resp.status)) {
+            queryClient.invalidateQueries({ queryKey: ['movimentacoes'] });
             toast.success(
                 `Despesa '${data.descricao}' ${formValues?.id ? 'atualizada' : 'criada'}
                  com sucesso!`,

@@ -54,7 +54,6 @@ export function cleanDate(date: string): string {
             if (dateObj.getFullYear() === now.getFullYear()) {
                 return dateObj.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short' });
             }
-            debugger;
             return toLocalDate(dateObj.toISOString().split('T')[0]);
     }
 }

@@ -1,9 +1,9 @@
 'use client';
-import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/context';
+import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
-import { getDefaultChartData } from '../../filtros/utils';
+import { getDefaultChartData } from '../lib/utils';
 
 export function CardDespesas() {
     const { movimentacoes } = useMovimentacaoContext();

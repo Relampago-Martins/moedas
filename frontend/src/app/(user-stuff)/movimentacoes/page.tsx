@@ -2,12 +2,12 @@ import { ModalMovimentacao } from '@/entities/modal-movimentacao/ui';
 import { MovimentacaoProvider } from '@/entities/modal-movimentacao/ui/movimentacao-provider';
 import { CardDespesas } from '@/entities/movimentacoes/card-despesas/ui';
 import { CardReceitas } from '@/entities/movimentacoes/card-receitas/ui';
-import { Filtros } from '@/entities/movimentacoes/filtros';
+import { Filtros } from '@/entities/movimentacoes/filtros/ui';
 import { ListaMovimentacoes } from '@/features/lista-movimentacoes/ui';
 import { LeftToRightListDashIcon } from '@/shared/ui/huge-icons';
 import './ui.scss';
 
-export default async function Page() {
+export default function Page() {
     return (
         <div className="px-6 py-6 md:px-8">
             <h1 className="mb-6 flex items-center gap-2 text-xl font-semibold leading-10 text-primary">

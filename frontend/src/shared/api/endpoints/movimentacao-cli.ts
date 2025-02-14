@@ -11,7 +11,8 @@ type ListaMovsParams = {
         periodo_before?: string;
     }
 }
-export async function listaMovimentacoes(props: ListaMovsParams) {
+export async function getMovimentacoes(props: ListaMovsParams) {
+    console.log('movimentacoes server;');
     const urlParams = obj2SearchParams(
         {
             tipo: props.tipo,

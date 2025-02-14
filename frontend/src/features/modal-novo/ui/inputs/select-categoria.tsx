@@ -35,7 +35,7 @@ const SelectCategoria = React.forwardRef<
             <SelectTrigger>
                 <SelectValue placeholder="Selecione" ref={ref} {...props} />
             </SelectTrigger>
-            <SelectContent className="max-h-[15rem]">
+            <SelectContent className="sm:max-h-[15rem]">
                 {categorias.map((categoria) => (
                     <SelectItem key={categoria.sigla} value={categoria.sigla}>
                         <div className="flex flex-row items-center gap-2">
