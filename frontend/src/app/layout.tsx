@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { inter } from '@/shared/lib/fonts';
+import ReactQueryProvider from '@/shared/ui/react-query-provider';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import './globals.css';
@@ -35,7 +36,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {children}
+                    <ReactQueryProvider>{children}</ReactQueryProvider>
                 </ThemeProvider>
                 <Analytics />
             </body>

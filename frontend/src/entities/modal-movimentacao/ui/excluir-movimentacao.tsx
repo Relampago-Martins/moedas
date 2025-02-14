@@ -1,4 +1,5 @@
 import { Button } from '@/shared/ui/button';
+import { useQueryClient } from '@tanstack/react-query';
 
 type ExcluirMovimentacaoProps = {
     id: number;
@@ -13,6 +14,8 @@ export function ExcluirMovimentacao({
     ondDelete,
     onCancelar,
 }: ExcluirMovimentacaoProps) {
+    const queryClient = useQueryClient();
+
     return (
         <div>
             <h1 className="text-xl font-semibold">
@@ -27,7 +30,12 @@ export function ExcluirMovimentacao({
                 </Button>
                 <Button
                     variant={'destructive'}
-                    onClick={ondDelete}
+                    onClick={() => {
+                        queryClient.invalidateQueries({
+                            queryKey: ['movimentacoes'],
+                        });
+                        ondDelete();
+                    }}
                     className="btn btn-danger"
                 >
                     Excluir

@@ -1,5 +1,5 @@
 'use client';
-import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/context';
+import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';

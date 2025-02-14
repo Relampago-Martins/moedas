@@ -1,6 +1,5 @@
 'use client';
 import { DialogDrawer } from '@/shared/ui/custom/dialog-drawer';
-import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { SliderAnimation } from '../../../shared/ui/custom/slider-animation';
 import { useModalNovoStore } from '../lib/modal-novo-store';
@@ -15,9 +14,7 @@ export function ModalNovo() {
     const { isOpen, onOpenChange, step, setStep } = useModalNovoStore(
         (state) => state,
     );
-    const router = useRouter();
     const onSucess = useCallback(() => {
-        router.refresh();
         onOpenChange(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
