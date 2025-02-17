@@ -3,7 +3,7 @@ import { MovimentacaoProvider } from '@/entities/modal-movimentacao/ui/movimenta
 import { CardDespesas } from '@/entities/movimentacoes/card-despesas/ui';
 import { CardReceitas } from '@/entities/movimentacoes/card-receitas/ui';
 import { Filtros } from '@/entities/movimentacoes/filtros/ui';
-import { ListaMovimentacoes } from '@/features/lista-movimentacoes/ui';
+import { ListaMovimentacoes } from '@/entities/movimentacoes/lista-movimentacoes/ui';
 import { LeftToRightListDashIcon } from '@/shared/ui/huge-icons';
 import './ui.scss';
 
