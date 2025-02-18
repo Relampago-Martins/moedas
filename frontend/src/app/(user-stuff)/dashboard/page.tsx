@@ -3,11 +3,9 @@ import { CardGastos } from '@/features/card-gastos/ui';
 import { CardSaldo } from '@/features/card-saldo/ui';
 import { MonthPicker } from '@/features/month-picker/ui';
 import { getCarteira } from '@/shared/api/endpoints';
-import { loginIsRequiredServer } from '@/shared/lib/auth';
 import './ui.scss';
 
 export default async function Dashboard() {
-    await loginIsRequiredServer(); // TODO: substituir por um middleware
     const carteira = await getCarteira();
 
     return (
