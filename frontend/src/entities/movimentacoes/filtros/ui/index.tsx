@@ -14,7 +14,6 @@ export function Filtros() {
             periodo_after: searchParams.get('periodo_after') || '',
             periodo_before: searchParams.get('periodo_before') || '',
         },
-        mode: 'onChange',
     });
 
     const handleSubmit = (data: SearchMovimentacoes) => {

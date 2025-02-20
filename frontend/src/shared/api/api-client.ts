@@ -56,7 +56,7 @@ export class ApiClient {
             {
                 method: "GET",
                 headers: await this.getHeaders(),
-                cache: cache || "default",
+                cache: cache, 
                 ...config,
             }
         );

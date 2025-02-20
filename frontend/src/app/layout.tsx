@@ -28,11 +28,12 @@ export default function RootLayout({
                     type="text/css"
                     href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
                 ></link>
+                {/* <link rel="icon" href="/favicon.ico" /> */}
             </head>
             <body className={inter.className}>
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="system"
+                    defaultTheme="light"
                     enableSystem
                     disableTransitionOnChange
                 >

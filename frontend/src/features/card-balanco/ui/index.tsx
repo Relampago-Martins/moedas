@@ -1,20 +1,18 @@
 import { CardTransacao } from '@/features/card-balanco/ui/CardTransacao';
+import { getCarteira } from '@/shared/api/endpoints';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import { AlignVerticalCenterIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
-import { Carteira } from '@/types/models';
 import { FooterContent } from './FooterContent';
 import { GraficoBalanco } from './GraficoBalanco';
 
 type CardBalancoProps = {
     className?: string;
-    carteira: Carteira;
 };
-export function CardBalanco({
-    className,
-    carteira: { saldo, total_despesas, total_receitas },
-}: CardBalancoProps) {
+export async function CardBalanco({ className }: CardBalancoProps) {
+    const { saldo, total_despesas, total_receitas } = await getCarteira();
+
     return (
         <Card title="Balanço Mensal" className={className}>
             <CardHeader
@@ -29,7 +27,7 @@ export function CardBalanco({
                     carteira={{ saldo, total_despesas, total_receitas }}
                 />
                 <div className="flex flex-col gap-1">
-                    <CardTransacao className="text-success-foreground gap-3">
+                    <CardTransacao className="gap-3 text-success-foreground">
                         <div className="flex flex-row items-center gap-2">
                             Receitas
                         </div>

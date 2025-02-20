@@ -9,7 +9,8 @@ export async function getCategorias(tipo?: "D" | "R") {
         urlParams.append("tipo", tipo);
     }
     const resp = await ApiClient.getInstance().get<Categoria[]>(
-        `/categorias/?${urlParams}`
+        `/categorias/?${urlParams}`, 
+        { next: { revalidate: 60, tags: ['categorias'] } }
     );
     return resp.data.sort((a, b) => a.total_gastos - b.total_gastos);
 }

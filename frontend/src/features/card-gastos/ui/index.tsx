@@ -1,8 +1,6 @@
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
-import { getDespesas } from '@/shared/api/endpoints/despesa-cli';
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { PieChart02Icon } from '@/shared/ui/huge-icons';
-import { GastosLista } from './GastosLista';
 import { GraficoPizza } from './GraficoPizza';
 import { SelectCategoria } from './SelectCategoria';
 import { GastosContext } from './utils/GastosContext';
@@ -15,7 +13,6 @@ export async function CardGastos({ className }: CardGastosProps) {
     const categorias = await getCategorias().then((categorias) =>
         categorias.filter((c) => c.total_gastos > 0),
     );
-    const despesas = await getDespesas();
 
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
@@ -25,21 +22,29 @@ export async function CardGastos({ className }: CardGastosProps) {
                     Despesas por Categoria
                 </span>
             </CardHeader>
-            <CardContent className="flex h-full flex-wrap justify-center gap-4">
-                {despesas.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center gap-2 text-gray-500">
-                        <i className="ph ph-package text-3xl" />
-                        <span>Nenhuma despesa cadastrada</span>
+            <CardContent className="mb-8 flex h-full flex-wrap items-center justify-center gap-4">
+                <GastosContext>
+                    <GraficoPizza categorias={categorias} />
+                    <div className="flex w-[200px] flex-col gap-4">
+                        <SelectCategoria categorias={categorias} />
+                        {categorias.map((categoria) => (
+                            <div
+                                className="flex items-center gap-2"
+                                key={categoria.sigla}
+                            >
+                                <div
+                                    className="h-4 w-4 rounded-full"
+                                    style={{
+                                        backgroundColor: categoria.cor,
+                                    }}
+                                />
+                                <span className="text-sm font-medium">
+                                    {categoria.nome}
+                                </span>
+                            </div>
+                        ))}
                     </div>
-                ) : (
-                    <GastosContext>
-                        <GraficoPizza categorias={categorias} />
-                        <div className="flex flex-col gap-4">
-                            <SelectCategoria categorias={categorias} />
-                            <GastosLista despesas={despesas} />
-                        </div>
-                    </GastosContext>
-                )}
+                </GastosContext>
             </CardContent>
         </Card>
     );
