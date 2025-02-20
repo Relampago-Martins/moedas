@@ -7,6 +7,13 @@ import { getUser, login, loginGoogle } from "../api/fetchAPI";
 
 
 export const authConfig: NextAuthOptions = {
+    pages: {
+        signIn: '/login',
+        signOut: '/login',
+        error: '/login',
+        verifyRequest: '/login',
+        newUser: '/login',
+    },
     providers: [
         CredentialsProvider({
             name: 'Credentials',
