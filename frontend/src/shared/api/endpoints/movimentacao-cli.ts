@@ -20,7 +20,7 @@ export async function getMovimentacoes(props: ListaMovsParams) {
         }
     );
     const resp = await ApiClient.getInstance().get<Movimentacao[]>(
-        `/movimentacoes/?${urlParams}`, 
+        `/movimentacoes/?${urlParams.toString()}`, 
         {cache: "no-store"}
     );
     return resp.data;

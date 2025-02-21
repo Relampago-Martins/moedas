@@ -1,22 +1,23 @@
 'use client';
+
+import { MonthPicker } from '@/entities/movimentacoes/filtros/ui/fields/month-picker';
 import { Form } from '@/shared/ui/form';
+import { TFiltroPeriodo } from '@/types/filters';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { SearchMovimentacoes } from '../lib/types';
-import { MonthPicker } from './fields/month-picker';
 
-export function Filtros() {
+export function FiltroPeriodo() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const form = useForm<SearchMovimentacoes>({
+    const form = useForm<TFiltroPeriodo>({
         defaultValues: {
             periodo_after: searchParams.get('periodo_after') || '',
             periodo_before: searchParams.get('periodo_before') || '',
         },
     });
 
-    const handleSubmit = (data: SearchMovimentacoes) => {
+    const handleSubmit = (data: TFiltroPeriodo) => {
         const params = new URLSearchParams(searchParams.toString());
         Object.entries(data).forEach(([key, value]) => {
             if (value) {
@@ -30,11 +31,8 @@ export function Filtros() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="mb-4 ">
-                <MonthPicker
-                    formControl={form.control}
-                    className="max-w-[40rem] rounded-md border-[1px] border-border bg-card"
-                />
+            <form onSubmit={form.handleSubmit(handleSubmit)}>
+                <MonthPicker formControl={form.control} />
             </form>
         </Form>
     );

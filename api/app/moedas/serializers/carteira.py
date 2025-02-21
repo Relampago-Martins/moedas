@@ -13,10 +13,16 @@ class CarteiraSerializer(serializers.ModelSerializer):
     saldo = serializers.SerializerMethodField()
 
     def get_total_receitas(self, obj):
-        return obj.movimentacoes.filter(tipo="R").aggregate(total=Sum("valor"))["total"] or 0
+        return (
+            obj.movimentacoes.filter(tipo="R").aggregate(total=Sum("valor"))["total"]
+            or 0
+        )
 
     def get_total_despesas(self, obj):
-        return obj.movimentacoes.filter(tipo="D").aggregate(total=Sum("valor"))["total"] or 0
+        return (
+            obj.movimentacoes.filter(tipo="D").aggregate(total=Sum("valor"))["total"]
+            or 0
+        )
 
     def get_saldo(self, obj):
         total_receitas = self.get_total_receitas(obj)

@@ -1,6 +1,6 @@
+'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
-import { Wallet03Icon } from '@/shared/ui/huge-icons';
-import { ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 import './ui.scss';
 
 type SaldoProps = {
@@ -8,15 +8,30 @@ type SaldoProps = {
 };
 
 export function Saldo(props: SaldoProps) {
+    const [show, setShow] = useState(true);
+
+    const valorShow = numberToCurrency(props.valor).replace('R$', '').trim();
+
     return (
-        <div className="saldo">
-            <div className="text-2xl font-semibold text-primary">
-                {numberToCurrency(props.valor)}
-            </div>
+        <div className="flex flex-col gap-1">
             <div className="align-center flex gap-1 text-sm text-muted">
-                <Wallet03Icon className="h-3 self-center" />
-                Saldo atual
-                <ChevronRight className="h-3 self-center" />
+                <i className="ph ph-wallet flex text-lg"></i>
+                Saldo
+            </div>
+            <div className="flex items-center text-primary">
+                <span className="mr-1 mt-0 text-base">R$</span>
+                <div className="text-2xl font-semibold ">
+                    {show ? valorShow : valorShow.replace(/\d/g, '*')}
+                </div>
+                <button
+                    className="ml-3"
+                    onClick={() => setShow(!show)}
+                    aria-label="Mostrar saldo"
+                >
+                    <i
+                        className={`ph ${show ? 'ph-eye-slash' : 'ph-eye'} flex text-lg text-muted`}
+                    ></i>
+                </button>
             </div>
         </div>
     );

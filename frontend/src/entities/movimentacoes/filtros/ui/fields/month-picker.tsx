@@ -1,10 +1,11 @@
+import { TFiltroPeriodo } from '@/types/filters';
 import { useState } from 'react';
 import { Control, useController } from 'react-hook-form';
-import { SearchMovimentacoes } from '../../lib/types';
 import { formatDate, getDateFomISO, getMonthRange } from '../../lib/utils';
 
 type DatePickerProps = {
-    formControl: Control<SearchMovimentacoes>;
+    formControl: Control<TFiltroPeriodo>;
+    className?: string;
 };
 
 type PeriodoState = {
@@ -15,7 +16,7 @@ type PeriodoState = {
 /**
  * TODO: separar este componente em MonthPicker e MonthPickerField
  */
-export function MonthPicker({ formControl }: DatePickerProps) {
+export function MonthPicker({ formControl, className }: DatePickerProps) {
     const afterField = useController({
         control: formControl,
         name: 'periodo_after',
@@ -34,7 +35,9 @@ export function MonthPicker({ formControl }: DatePickerProps) {
     );
 
     return (
-        <div className="flex h-10 w-full max-w-[40rem] items-center justify-between rounded-md border-[1px] border-border bg-card">
+        <div
+            className={`flex h-10 w-full items-center justify-between ${className}`}
+        >
             <button
                 onClick={() => {
                     const after = new Date(
