@@ -1,21 +1,26 @@
 import { getCarteira } from '@/shared/api/endpoints';
-import { Card, CardContent, CardTitle } from '@/shared/ui/card';
+import { Card } from '@/shared/ui/card';
+import { TFiltroPeriodo } from '@/types/filters';
+import { FiltroPeriodo } from './filtro-periodo';
 import { Saldo } from './Saldo';
 import './ui.scss';
 
 type CardSaldoProps = {
     className?: string;
+    params: TFiltroPeriodo;
 };
 
-export async function CardSaldo({ className }: CardSaldoProps) {
-    const { saldo } = await getCarteira();
+export async function CardSaldo({ className, params }: CardSaldoProps) {
+    const { saldo } = await getCarteira(params);
 
     return (
         <Card className={className}>
-            <CardTitle>Saldo</CardTitle>
-            <CardContent className="flex h-full flex-col justify-between gap-4 pt-6">
+            <div className="border-b shadow-sm">
+                <FiltroPeriodo />
+            </div>
+            <div className="flex h-full flex-col justify-between gap-4 px-6 py-3">
                 <Saldo valor={saldo} />
-            </CardContent>
+            </div>
         </Card>
     );
 }

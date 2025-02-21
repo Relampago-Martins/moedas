@@ -4,14 +4,16 @@ import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import { AlignVerticalCenterIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
+import { TFiltroPeriodo } from '@/types/filters';
 import { FooterContent } from './FooterContent';
 import { GraficoBalanco } from './GraficoBalanco';
 
 type CardBalancoProps = {
     className?: string;
+    params: TFiltroPeriodo;
 };
-export async function CardBalanco({ className }: CardBalancoProps) {
-    const { saldo, total_despesas, total_receitas } = await getCarteira();
+export async function CardBalanco({ className, params }: CardBalancoProps) {
+    const { saldo, total_despesas, total_receitas } = await getCarteira(params);
 
     return (
         <Card title="Balanço Mensal" className={className}>

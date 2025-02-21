@@ -1,4 +1,3 @@
-export type SearchMovimentacoes = {
-    periodo_after?: string;
-    periodo_before?: string;
-} 
+import { TFiltroPeriodo } from "@/types/filters";
+
+export type SearchMovimentacoes = TFiltroPeriodo
