@@ -105,7 +105,14 @@ class CarteiraView(views.APIView):
         - Total de despesas
         - Total de receitas
         """
-        carteira_serializer = moedas_serializers.CarteiraSerializer(request.user)
+        periodo_after = request.query_params.get("periodo_after")
+        periodo_before = request.query_params.get("periodo_before")
+
+        carteira_serializer = moedas_serializers.CarteiraSerializer(
+            user=request.user,
+            periodo_after=periodo_after,
+            periodo_before=periodo_before,
+        )
 
         return Response(
             carteira_serializer.data,
