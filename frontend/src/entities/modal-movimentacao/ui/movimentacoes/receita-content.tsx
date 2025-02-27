@@ -1,5 +1,5 @@
 'use client';
-import { StepHeader } from '@/features/modal-novo/ui/step-header';
+import { DialogOrDrawerHeader } from '@/features/modal-novo/ui/step-header';
 import { FormReceita } from '@/features/modal-novo/ui/steps/form-receita';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
 import { SliderAnimation } from '@/shared/ui/custom/slider-animation';
@@ -34,9 +34,9 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
             )}
             {step === 'editar' && (
                 <>
-                    <StepHeader
-                        title="Editar receita"
-                        onBack={() => setStep('detail')}
+                    <DialogOrDrawerHeader
+                    // title="Editar receita"
+                    // onBack={() => setStep('detail')}
                     />
                     <FormReceita
                         formValues={

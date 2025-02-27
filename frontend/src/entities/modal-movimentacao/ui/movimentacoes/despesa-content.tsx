@@ -1,5 +1,5 @@
 'use client';
-import { StepHeader } from '@/features/modal-novo/ui/step-header';
+import { DialogOrDrawerHeader } from '@/features/modal-novo/ui/step-header';
 import { FormDespesa } from '@/features/modal-novo/ui/steps/form-despesa';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { SliderAnimation } from '@/shared/ui/custom/slider-animation';
@@ -38,9 +38,9 @@ export function DespesaContent({ id }: DespesaContentProps) {
             )}
             {step === 'editar' && (
                 <>
-                    <StepHeader
-                        title="Editar despesa"
-                        onBack={() => setStep('detail')}
+                    <DialogOrDrawerHeader
+                    // title="Editar despesa"
+                    // onBack={() => setStep('detail')}
                     />
                     <FormDespesa
                         onSucess={() => {
