@@ -3,22 +3,25 @@ import { DialogClose, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
 import { DrawerClose, DrawerHeader, DrawerTitle } from '@/shared/ui/drawer';
 import { ChevronLeft, X } from 'lucide-react';
 import { useMediaQuery } from 'react-responsive';
-import { StepName } from '../lib/types';
-import { useStepper } from './stepper';
 
-type DialogOrDrawerHeaderProps = {};
+type DialogOrDrawerHeaderProps = {
+    title: string;
+    onBack?: () => void;
+    withBackButton?: boolean;
+};
 
-export function DialogOrDrawerHeader({}: DialogOrDrawerHeaderProps) {
+export function DialogOrDrawerHeader({
+    title,
+    withBackButton = true,
+    onBack,
+}: DialogOrDrawerHeaderProps) {
     const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
-    const { currentLevel, currentStep, goToStep } = useStepper();
-    const title = getTituloStep(currentStep);
-    const onBack = () => goToStep('menu', 0);
 
     return isMobile ? (
         <DrawerHeader className="px-0 pt-1">
             <DrawerTitle className="mb-2 flex justify-between text-xl text-primary">
                 <div className="w-6">
-                    {currentLevel > 0 && (
+                    {withBackButton && (
                         <Button
                             variant={'ghost'}
                             className="p-0 pr-4"
@@ -38,7 +41,7 @@ export function DialogOrDrawerHeader({}: DialogOrDrawerHeaderProps) {
     ) : (
         <DialogHeader>
             <DialogTitle className="mb-2 flex items-center justify-between pb-4 text-xl text-primary">
-                {currentLevel > 0 && (
+                {withBackButton && (
                     <Button
                         variant={'ghost'}
                         className="h-full p-0 pr-2"
@@ -55,23 +58,4 @@ export function DialogOrDrawerHeader({}: DialogOrDrawerHeaderProps) {
             </DialogTitle>
         </DialogHeader>
     );
-}
-
-function getTituloStep(step: StepName) {
-    switch (step) {
-        case 'menu':
-            return 'Criar movimentação';
-        case 'gasto':
-            return 'Criar despesa';
-        case 'receita':
-            return 'Criar receita';
-        case 'transferencia':
-            return 'Criar transferência';
-        case 'investimento':
-            return 'Criar investimento';
-        case 'lista-categorias':
-            return 'Categorias';
-        default:
-            return '';
-    }
 }

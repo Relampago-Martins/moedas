@@ -39,8 +39,9 @@ export function DespesaContent({ id }: DespesaContentProps) {
             {step === 'editar' && (
                 <>
                     <DialogOrDrawerHeader
-                    // title="Editar despesa"
-                    // onBack={() => setStep('detail')}
+                        title="Editar despesa"
+                        onBack={() => setStep('detail')}
+                        withBackButton
                     />
                     <FormDespesa
                         onSucess={() => {

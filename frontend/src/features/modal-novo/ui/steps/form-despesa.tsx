@@ -21,9 +21,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import { ModalNovoSteps } from '..';
 import { getNomeDespesaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
 import { SelectFormaPagamento } from '../inputs/select-forma-pagamento';
+import { useStepper } from '../stepper';
 
 type FormDespesaProps = {
     onSucess: () => void;
@@ -32,6 +34,7 @@ type FormDespesaProps = {
 
 export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
     const randomName = useMemo(() => getNomeDespesaAleatoria(), []);
+    const { goToStep } = useStepper<ModalNovoSteps>();
     const queryClient = useQueryClient();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
@@ -108,6 +111,14 @@ export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
                         </FormItem>
                     )}
                 />
+                <button
+                    type="button"
+                    onClick={() =>
+                        goToStep({ name: 'lista-categorias', level: 2 })
+                    }
+                >
+                    categorias
+                </button>
                 <FormField
                     name="forma_pagamento"
                     control={form.control}

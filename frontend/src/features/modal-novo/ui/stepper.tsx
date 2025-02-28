@@ -1,47 +1,57 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { createContext, useContext, useState } from 'react';
-import { StepName } from '../lib/types';
+import React, {
+    createContext,
+    Dispatch,
+    SetStateAction,
+    useContext,
+    useMemo,
+    useState,
+} from 'react';
 
-interface TStepperContext {
-    currentStep: StepName;
-    currentLevel: number;
-    previousLevel: number | null;
-    goToStep: (step: StepName, level: number) => void;
+export interface StepObject<T> {
+    name: T;
+    level: number;
+}
+
+interface TStepperContext<T = string> {
+    currentStep: StepObject<T>;
+    previousStep: StepObject<T> | null;
+    goToStep: (step: StepObject<T>) => void;
 }
 
 // Contexto para gerenciar o estado do Stepper
 const StepperContext = createContext<TStepperContext | undefined>(undefined);
 
 // Hook para acessar o contexto
-const useStepper = () => {
+function useStepper<T extends string>() {
     const context = useContext(StepperContext);
     if (!context) {
         throw new Error(
             'useStepperContext deve ser usado dentro de um Stepper',
         );
     }
-    return context;
-};
+    return context as unknown as TStepperContext<T>;
+}
 
 // SliderAnimation modificado para usar level em vez de firstStep
 const DESLOC = 310;
 
-type SliderAnimationProps = {
+interface SliderAnimationProps {
     children: React.ReactNode;
-    step: StepName;
+    step: string;
     level: number;
-};
+}
 
 function SliderAnimation({ step, children, level }: SliderAnimationProps) {
-    const { currentStep, previousLevel, currentLevel } = useStepper();
+    const { currentStep, previousStep } = useStepper<string>();
 
     // Determina a direção com base na comparação de níveis
-    const isMovingForward = level > (previousLevel || 0);
-    const isMovingBackward = level <= (previousLevel || 0);
+    const isMovingForward = level > (previousStep?.level || 0);
+    const isMovingBackward = level <= (previousStep?.level || 0);
 
     return (
         <AnimatePresence mode="popLayout" initial={false}>
-            {currentStep === step && (
+            {currentStep.name === step && (
                 <motion.div
                     key={step}
                     transition={{
@@ -70,47 +80,51 @@ function SliderAnimation({ step, children, level }: SliderAnimationProps) {
 }
 
 // Componente principal Stepper
-type StepperProps = {
-    firstStep: StepName;
-    children?: React.ReactNode;
-};
+interface StepperProps<T extends string> {
+    currentStep: StepObject<T>;
+    onStepChange: Dispatch<SetStateAction<StepObject<T>>>;
+    children: React.ReactNode;
+}
 
-function Stepper({ firstStep, children }: StepperProps) {
-    const [currentStep, setCurrentStep] = useState<StepName>(firstStep);
-    const [currentLevel, setCurrentLevel] = useState<number>(0);
-    const [previousLevel, setPreviousLevel] = useState<number | null>(null);
+function Stepper<T extends string>(props: StepperProps<T>) {
+    const { currentStep, setCurrentStep } = useMemo(
+        () => ({
+            currentStep: props.currentStep,
+            setCurrentStep: props.onStepChange,
+        }),
+        [props.currentStep, props.onStepChange],
+    );
+    const [previousStep, setPreviousStep] = useState<StepObject<string> | null>(
+        null,
+    );
 
     // Função para navegar entre os passos
-    const goToStep = (step: StepName, level: number) => {
-        setPreviousLevel(currentLevel);
-        setCurrentLevel(level);
-        setCurrentStep(step);
+    const goToStep = (step: StepObject<string>) => {
+        setPreviousStep(currentStep);
+        setCurrentStep(step as StepObject<T>);
     };
 
     const contextValue: TStepperContext = {
-        currentStep,
-        currentLevel,
-        previousLevel,
+        currentStep: currentStep,
+        previousStep: previousStep,
         goToStep,
     };
 
     return (
         <StepperContext.Provider value={contextValue}>
-            {children}
+            {props.children}
         </StepperContext.Provider>
     );
 }
 
 // Componente para o conteúdo de cada passo
 type StepperContentProps = {
-    value: StepName;
+    value: string;
     level: number;
     children: React.ReactNode;
 };
 
 function StepperContent({ value, level, children }: StepperContentProps) {
-    const { currentStep } = useStepper();
-
     return (
         <SliderAnimation step={value} level={level}>
             {children}
