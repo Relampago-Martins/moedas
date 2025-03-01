@@ -25,6 +25,7 @@ import { ModalNovoSteps } from '..';
 import { getNomeDespesaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
 import { SelectFormaPagamento } from '../inputs/select-forma-pagamento';
+import { DialogOrDrawerHeader } from '../step-header';
 import { useStepper } from '../stepper';
 
 type FormDespesaProps = {
@@ -61,79 +62,88 @@ export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
     };
 
     return (
-        <Form {...form}>
-            <form
-                className="flex flex-col gap-5"
-                onSubmit={form.handleSubmit(onSubmit, console.error)}
-            >
-                <FormField
-                    name="valor"
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Valor</FormLabel>
-                            <FormControl>
-                                <CurrencyInput
-                                    {...field}
-                                    placeholder="R$ 0,00"
-                                />
-                            </FormControl>
-                            <FormMessage></FormMessage>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    name="descricao"
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Nome</FormLabel>
-                            <FormControl>
-                                <Input
-                                    {...field}
-                                    placeholder={`ex: ${randomName}`}
-                                />
-                            </FormControl>
-                            <FormMessage></FormMessage>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    name="categoria"
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Categoria</FormLabel>
-                            <FormControl>
-                                <SelectCategoria {...field} tipoCategoria="D" />
-                            </FormControl>
-                            <FormMessage></FormMessage>
-                        </FormItem>
-                    )}
-                />
-                <button
-                    type="button"
-                    onClick={() =>
-                        goToStep({ name: 'lista-categorias', level: 2 })
-                    }
+        <>
+            <DialogOrDrawerHeader
+                title={'Criar despesa'}
+                onBack={() => goToStep({ name: 'menu', level: 0 })}
+            />
+            <Form {...form}>
+                <form
+                    className="flex flex-col gap-5"
+                    onSubmit={form.handleSubmit(onSubmit, console.error)}
                 >
-                    categorias
-                </button>
-                <FormField
-                    name="forma_pagamento"
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Forma de Pagamento</FormLabel>
-                            <FormControl>
-                                <SelectFormaPagamento {...field} />
-                            </FormControl>
-                            <FormMessage></FormMessage>
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Salvar</Button>
-            </form>
-        </Form>
+                    <FormField
+                        name="valor"
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Valor</FormLabel>
+                                <FormControl>
+                                    <CurrencyInput
+                                        {...field}
+                                        placeholder="R$ 0,00"
+                                    />
+                                </FormControl>
+                                <FormMessage></FormMessage>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        name="descricao"
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Nome</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder={`ex: ${randomName}`}
+                                    />
+                                </FormControl>
+                                <FormMessage></FormMessage>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        name="categoria"
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Categoria</FormLabel>
+                                <FormControl>
+                                    <SelectCategoria
+                                        {...field}
+                                        tipoCategoria="D"
+                                    />
+                                </FormControl>
+                                <FormMessage></FormMessage>
+                            </FormItem>
+                        )}
+                    />
+                    <button
+                        type="button"
+                        onClick={() =>
+                            goToStep({ name: 'lista-categorias', level: 2 })
+                        }
+                    >
+                        categorias
+                    </button>
+                    <FormField
+                        name="forma_pagamento"
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Forma de Pagamento</FormLabel>
+                                <FormControl>
+                                    <SelectFormaPagamento {...field} />
+                                </FormControl>
+                                <FormMessage></FormMessage>
+                            </FormItem>
+                        )}
+                    />
+                    <Button type="submit">Salvar</Button>
+                </form>
+            </Form>
+        </>
     );
 }

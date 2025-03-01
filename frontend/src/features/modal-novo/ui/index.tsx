@@ -2,12 +2,12 @@
 import { DialogOrDrawer } from '@/shared/ui/custom/dialog-drawer';
 import { useCallback, useState } from 'react';
 import { useModalNovoStore } from '../lib/modal-novo-store';
-import { DialogOrDrawerHeader } from './step-header';
 import { StepObject, Stepper, StepperContent } from './stepper';
 import { FormDespesa } from './steps/form-despesa';
 import { FormInvestimento } from './steps/form-investimento';
 import { FormReceita } from './steps/form-receita';
 import { FormTransferencia } from './steps/form-transferencia';
+import { ListaCategorias } from './steps/lista-categorias';
 import { MenuMovimentacoes } from './steps/menu-movimentacoes';
 
 export type ModalNovoSteps =
@@ -24,23 +24,21 @@ export function ModalNovo() {
         name: 'menu',
         level: 0,
     });
+
     const onSucess = useCallback(() => {
-        onOpenChange(false);
+        onOpenChange(false, () => setStep({ name: 'menu', level: 0 }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <DialogOrDrawer
             open={isOpen}
-            onOpenChange={onOpenChange}
+            onOpenChange={(val) =>
+                onOpenChange(val, () => setStep({ name: 'menu', level: 0 }))
+            }
             className="overflow-hidden md:max-w-[20rem]"
         >
             <Stepper currentStep={step} onStepChange={setStep}>
-                <DialogOrDrawerHeader
-                    title={getTituloStep(step.name)}
-                    onBack={() => setStep({ name: 'menu', level: 0 })}
-                    withBackButton={step.name !== 'menu'}
-                />
                 <StepperContent value="menu" level={0}>
                     <MenuMovimentacoes />
                 </StepperContent>
@@ -57,28 +55,9 @@ export function ModalNovo() {
                     <FormInvestimento />
                 </StepperContent>
                 <StepperContent value="lista-categorias" level={2}>
-                    <div>Categorias</div>
+                    <ListaCategorias />
                 </StepperContent>
             </Stepper>
         </DialogOrDrawer>
     );
-}
-
-function getTituloStep(step: ModalNovoSteps) {
-    switch (step) {
-        case 'menu':
-            return 'Criar movimentação';
-        case 'gasto':
-            return 'Criar despesa';
-        case 'receita':
-            return 'Criar receita';
-        case 'transferencia':
-            return 'Criar transferência';
-        case 'investimento':
-            return 'Criar investimento';
-        case 'lista-categorias':
-            return 'Categorias';
-        default:
-            return '';
-    }
 }

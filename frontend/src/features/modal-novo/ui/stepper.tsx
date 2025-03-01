@@ -4,7 +4,7 @@ import React, {
     Dispatch,
     SetStateAction,
     useContext,
-    useMemo,
+    useEffect,
     useState,
 } from 'react';
 
@@ -44,10 +44,8 @@ interface SliderAnimationProps {
 
 function SliderAnimation({ step, children, level }: SliderAnimationProps) {
     const { currentStep, previousStep } = useStepper<string>();
-
     // Determina a direção com base na comparação de níveis
-    const isMovingForward = level > (previousStep?.level || 0);
-    const isMovingBackward = level <= (previousStep?.level || 0);
+    const isRight = level > (previousStep?.level || 0);
 
     return (
         <AnimatePresence mode="popLayout" initial={false}>
@@ -61,7 +59,7 @@ function SliderAnimation({ step, children, level }: SliderAnimationProps) {
                     }}
                     initial={{
                         opacity: 0,
-                        x: isMovingForward ? DESLOC : -DESLOC,
+                        x: isRight ? DESLOC : -DESLOC,
                     }}
                     animate={{
                         opacity: 1,
@@ -69,7 +67,7 @@ function SliderAnimation({ step, children, level }: SliderAnimationProps) {
                     }}
                     exit={{
                         opacity: 0,
-                        x: isMovingBackward ? -DESLOC : DESLOC,
+                        x: isRight ? DESLOC : -DESLOC,
                     }}
                 >
                     {children}
@@ -87,21 +85,21 @@ interface StepperProps<T extends string> {
 }
 
 function Stepper<T extends string>(props: StepperProps<T>) {
-    const { currentStep, setCurrentStep } = useMemo(
-        () => ({
-            currentStep: props.currentStep,
-            setCurrentStep: props.onStepChange,
-        }),
-        [props.currentStep, props.onStepChange],
+    const [currentStep, setCurrentStep] = useState<StepObject<T>>(
+        props.currentStep,
     );
     const [previousStep, setPreviousStep] = useState<StepObject<string> | null>(
         null,
     );
 
+    useEffect(() => {
+        setCurrentStep(props.currentStep);
+    }, [props.currentStep]);
+
     // Função para navegar entre os passos
     const goToStep = (step: StepObject<string>) => {
         setPreviousStep(currentStep);
-        setCurrentStep(step as StepObject<T>);
+        props.onStepChange(step as StepObject<T>);
     };
 
     const contextValue: TStepperContext = {
