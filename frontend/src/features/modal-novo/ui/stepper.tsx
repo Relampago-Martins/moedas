@@ -42,24 +42,39 @@ interface SliderAnimationProps {
     level: number;
 }
 
+type Direction = 'left' | 'right';
 function SliderAnimation({ step, children, level }: SliderAnimationProps) {
     const { currentStep, previousStep } = useStepper<string>();
+    const [showStep, setShowStep] = useState(currentStep?.name === step);
     // Determina a direção com base na comparação de níveis
-    const isRight = level > (previousStep?.level || 0);
+    let initFrom: Direction =
+        (previousStep?.level || 0) > level ? 'left' : 'right';
+    let exitTo: Direction =
+        (previousStep?.level || 0) < level ? 'right' : 'left';
+
+    if (previousStep?.name == step && currentStep?.level < level) {
+        exitTo = 'right';
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShowStep(currentStep.name === step);
+        }, 1);
+    }, [currentStep, step]);
 
     return (
         <AnimatePresence mode="popLayout" initial={false}>
-            {currentStep.name === step && (
+            {showStep && (
                 <motion.div
                     key={step}
                     transition={{
                         type: 'spring',
-                        duration: 0.4,
+                        duration: 0.5,
                         bounce: 0,
                     }}
                     initial={{
                         opacity: 0,
-                        x: isRight ? DESLOC : -DESLOC,
+                        x: initFrom === 'left' ? -DESLOC : DESLOC,
                     }}
                     animate={{
                         opacity: 1,
@@ -67,7 +82,7 @@ function SliderAnimation({ step, children, level }: SliderAnimationProps) {
                     }}
                     exit={{
                         opacity: 0,
-                        x: isRight ? DESLOC : -DESLOC,
+                        x: exitTo === 'left' ? -DESLOC : DESLOC,
                     }}
                 >
                     {children}
