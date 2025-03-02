@@ -59,7 +59,7 @@ function SliderAnimation({ step, children, level }: SliderAnimationProps) {
     useEffect(() => {
         setTimeout(() => {
             setShowStep(currentStep.name === step);
-        }, 1);
+        }, 0.5);
     }, [currentStep, step]);
 
     return (
@@ -69,7 +69,7 @@ function SliderAnimation({ step, children, level }: SliderAnimationProps) {
                     key={step}
                     transition={{
                         type: 'spring',
-                        duration: 0.5,
+                        duration: 0.4,
                         bounce: 0,
                     }}
                     initial={{

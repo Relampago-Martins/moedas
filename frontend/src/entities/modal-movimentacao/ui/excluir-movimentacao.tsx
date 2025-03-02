@@ -1,3 +1,4 @@
+import { StepObject, useStepper } from '@/features/modal-novo/ui/stepper';
 import { Button } from '@/shared/ui/button';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -5,16 +6,17 @@ type ExcluirMovimentacaoProps = {
     id: number;
     tipoMovimentacao: string;
     ondDelete: () => void;
-    onCancelar: () => void;
+    stepBack: StepObject<string>;
 };
 
 export function ExcluirMovimentacao({
     id,
     tipoMovimentacao,
     ondDelete,
-    onCancelar,
+    stepBack,
 }: ExcluirMovimentacaoProps) {
     const queryClient = useQueryClient();
+    const { goToStep } = useStepper();
 
     return (
         <div>
@@ -25,7 +27,12 @@ export function ExcluirMovimentacao({
                 Essa ação não poderá ser desfeita.
             </h3>
             <div className="flex justify-end gap-2">
-                <Button onClick={onCancelar} variant={'outline'}>
+                <Button
+                    onClick={() => {
+                        goToStep(stepBack);
+                    }}
+                    variant={'outline'}
+                >
                     Cancelar
                 </Button>
                 <Button

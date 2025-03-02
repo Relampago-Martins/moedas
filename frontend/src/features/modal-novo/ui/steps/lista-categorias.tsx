@@ -1,12 +1,15 @@
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
 import { Categoria } from '@/types/models/categoria';
 import { useEffect, useState } from 'react';
-import { ModalNovoSteps } from '..';
 import { DialogOrDrawerHeader } from '../step-header';
-import { useStepper } from '../stepper';
+import { StepObject, useStepper } from '../stepper';
 
-export function ListaCategorias() {
-    const { goToStep } = useStepper<ModalNovoSteps>();
+type ListaCategoriasProps = {
+    stepBack: StepObject<string>;
+};
+
+export function ListaCategorias({ stepBack }: ListaCategoriasProps) {
+    const { goToStep } = useStepper();
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
         getCategorias('D').then((data) => {
@@ -17,7 +20,7 @@ export function ListaCategorias() {
         <>
             <DialogOrDrawerHeader
                 title={'Categorias'}
-                onBack={() => goToStep({ name: 'gasto', level: 1 })}
+                onBack={() => goToStep(stepBack)}
             />
             <div className=" grid h-[20rem] grid-cols-2 gap-4 overflow-y-scroll pr-4 hover:shadow-md">
                 {categorias.map((categoria) => (

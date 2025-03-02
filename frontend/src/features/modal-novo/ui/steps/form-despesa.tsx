@@ -21,21 +21,25 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { ModalNovoSteps } from '..';
 import { getNomeDespesaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
 import { SelectFormaPagamento } from '../inputs/select-forma-pagamento';
 import { DialogOrDrawerHeader } from '../step-header';
-import { useStepper } from '../stepper';
+import { StepObject, useStepper } from '../stepper';
 
 type FormDespesaProps = {
     onSucess: () => void;
     formValues?: DespesaSchema;
+    stepBack: StepObject<string>;
 };
 
-export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
+export function FormDespesa({
+    onSucess,
+    formValues,
+    stepBack,
+}: FormDespesaProps) {
     const randomName = useMemo(() => getNomeDespesaAleatoria(), []);
-    const { goToStep } = useStepper<ModalNovoSteps>();
+    const { goToStep } = useStepper();
     const queryClient = useQueryClient();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
@@ -64,8 +68,8 @@ export function FormDespesa({ onSucess, formValues }: FormDespesaProps) {
     return (
         <>
             <DialogOrDrawerHeader
-                title={'Criar despesa'}
-                onBack={() => goToStep({ name: 'menu', level: 0 })}
+                title={formValues ? 'Editar Despesa' : 'Nova Despesa'}
+                onBack={() => goToStep(stepBack)}
             />
             <Form {...form}>
                 <form

@@ -43,7 +43,10 @@ export function ModalNovo() {
                     <MenuMovimentacoes />
                 </StepperContent>
                 <StepperContent value="gasto" level={1}>
-                    <FormDespesa onSucess={onSucess} />
+                    <FormDespesa
+                        stepBack={{ name: 'menu', level: 0 }}
+                        onSucess={onSucess}
+                    />
                 </StepperContent>
                 <StepperContent value="receita" level={1}>
                     <FormReceita onSucess={onSucess} />
@@ -55,7 +58,7 @@ export function ModalNovo() {
                     <FormInvestimento />
                 </StepperContent>
                 <StepperContent value="lista-categorias" level={2}>
-                    <ListaCategorias />
+                    <ListaCategorias stepBack={{ name: 'gasto', level: 1 }} />
                 </StepperContent>
             </Stepper>
         </DialogOrDrawer>
