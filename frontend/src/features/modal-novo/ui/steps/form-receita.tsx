@@ -21,19 +21,23 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { ModalNovoSteps } from '..';
 import { getNomeReceitaAleatoria } from '../../lib/utils';
 import { SelectCategoria } from '../inputs/select-categoria';
 import { DialogOrDrawerHeader } from '../step-header';
-import { useStepper } from '../stepper';
+import { StepObject, useStepper } from '../stepper';
 
 type FormReceitaProps = {
     onSucess: () => void;
     formValues?: ReceitaSchema;
+    stepBack: StepObject<string>;
 };
 
-export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
-    const { goToStep } = useStepper<ModalNovoSteps>();
+export function FormReceita({
+    onSucess,
+    formValues,
+    stepBack,
+}: FormReceitaProps) {
+    const { goToStep } = useStepper();
     const randomName = useMemo(() => getNomeReceitaAleatoria(), []);
     const queryClient = useQueryClient();
     const form = useForm<ReceitaSchema>({
@@ -50,6 +54,7 @@ export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
             toast.success(`Receita '${data.descricao}' criada com sucesso!`, {
                 duration: 4000,
             });
+            goToStep(stepBack);
             onSucess();
         } else {
             toast.error('Erro ao criar receita, tente novamente mais tarde');
@@ -60,7 +65,7 @@ export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
         <>
             <DialogOrDrawerHeader
                 title={'Criar receita'}
-                onBack={() => goToStep({ name: 'menu', level: 0 })}
+                onBack={() => goToStep(stepBack)}
             />
             <Form {...form}>
                 <form

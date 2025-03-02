@@ -22,7 +22,6 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeDespesaAleatoria } from '../../lib/utils';
-import { SelectCategoria } from '../inputs/select-categoria';
 import { SelectFormaPagamento } from '../inputs/select-forma-pagamento';
 import { DialogOrDrawerHeader } from '../step-header';
 import { StepObject, useStepper } from '../stepper';
@@ -59,6 +58,7 @@ export function FormDespesa({
                     duration: 4000,
                 },
             );
+            goToStep(stepBack);
             onSucess();
         } else if (resp.status === 400) {
             toast.error('Erro ao criar despesa, tente novamente mais tarde');
@@ -68,7 +68,7 @@ export function FormDespesa({
     return (
         <>
             <DialogOrDrawerHeader
-                title={formValues ? 'Editar Despesa' : 'Nova Despesa'}
+                title={formValues?.id ? 'Editar Despesa' : 'Nova Despesa'}
                 onBack={() => goToStep(stepBack)}
             />
             <Form {...form}>
@@ -115,23 +115,27 @@ export function FormDespesa({
                             <FormItem>
                                 <FormLabel>Categoria</FormLabel>
                                 <FormControl>
-                                    <SelectCategoria
-                                        {...field}
-                                        tipoCategoria="D"
-                                    />
+                                    <Button
+                                        type="button"
+                                        variant={'outline'}
+                                        value={field.value}
+                                        className="justify-between"
+                                        onClick={() =>
+                                            goToStep({
+                                                name: 'lista-categorias',
+                                                level: 2,
+                                            })
+                                        }
+                                    >
+                                        {field.value || 'Selecione'}
+                                        <i className="ph ph-caret-right ml-2"></i>
+                                    </Button>
                                 </FormControl>
                                 <FormMessage></FormMessage>
                             </FormItem>
                         )}
                     />
-                    <button
-                        type="button"
-                        onClick={() =>
-                            goToStep({ name: 'lista-categorias', level: 2 })
-                        }
-                    >
-                        categorias
-                    </button>
+
                     <FormField
                         name="forma_pagamento"
                         control={form.control}

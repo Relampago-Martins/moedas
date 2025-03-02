@@ -36,7 +36,7 @@ export function ModalNovo() {
             onOpenChange={(val) =>
                 onOpenChange(val, () => setStep({ name: 'menu', level: 0 }))
             }
-            className="overflow-hidden md:max-w-[20rem]"
+            className="overflow-hidden md:w-auto md:min-w-[20rem]"
         >
             <Stepper currentStep={step} onStepChange={setStep}>
                 <StepperContent value="menu" level={0}>
@@ -49,16 +49,26 @@ export function ModalNovo() {
                     />
                 </StepperContent>
                 <StepperContent value="receita" level={1}>
-                    <FormReceita onSucess={onSucess} />
+                    <FormReceita
+                        stepBack={{ name: 'menu', level: 0 }}
+                        onSucess={onSucess}
+                    />
                 </StepperContent>
                 <StepperContent value="transferencia" level={1}>
                     <FormTransferencia />
                 </StepperContent>
                 <StepperContent value="investimento" level={1}>
-                    <FormInvestimento />
+                    <FormInvestimento stepBack={{ name: 'menu', level: 0 }} />
                 </StepperContent>
-                <StepperContent value="lista-categorias" level={2}>
-                    <ListaCategorias stepBack={{ name: 'gasto', level: 1 }} />
+                <StepperContent
+                    value="lista-categorias"
+                    level={2}
+                    className="md:w-[25rem]"
+                >
+                    <ListaCategorias
+                        onSelect={(cat) => console.log(cat)}
+                        stepBack={{ name: 'gasto', level: 1 }}
+                    />
                 </StepperContent>
             </Stepper>
         </DialogOrDrawer>

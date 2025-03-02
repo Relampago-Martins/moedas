@@ -9,6 +9,7 @@ import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { Despesa, DespesaSchema } from '@/types/models/despesa';
 import { useCallback, useEffect, useState } from 'react';
+import { MovimentacaoSteps } from '../../lib/types';
 import { useMovimentacaoContext } from '../../lib/use-movimentacao-context';
 import { ExcluirMovimentacao } from '../excluir-movimentacao';
 import { DespesaDetail } from './despesa-detail';
@@ -17,7 +18,6 @@ type DespesaContentProps = {
     id: number;
 };
 
-type MovimentacaoSteps = 'detail' | 'editar' | 'excluir' | 'lista-categorias';
 export function DespesaContent({ id }: DespesaContentProps) {
     const { setMovimentacaoSelecionada } = useMovimentacaoContext();
     const [step, setStep] = useState<StepObject<MovimentacaoSteps>>({
@@ -47,10 +47,7 @@ export function DespesaContent({ id }: DespesaContentProps) {
             <StepperContent value="editar" level={1}>
                 <FormDespesa
                     stepBack={{ name: 'detail', level: 0 }}
-                    onSucess={() => {
-                        setStep({ name: 'detail', level: 0 });
-                        getSetDespesa(id);
-                    }}
+                    onSucess={() => getSetDespesa(id)}
                     formValues={
                         {
                             ...despesa,
@@ -72,7 +69,11 @@ export function DespesaContent({ id }: DespesaContentProps) {
                     stepBack={{ name: 'detail', level: 0 }}
                 />
             </StepperContent>
-            <StepperContent value="lista-categorias" level={2}>
+            <StepperContent
+                value="lista-categorias"
+                level={2}
+                className="md:w-[25rem]"
+            >
                 <ListaCategorias
                     stepBack={{
                         name: 'editar',

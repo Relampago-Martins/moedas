@@ -6,9 +6,10 @@ import { StepObject, useStepper } from '../stepper';
 
 type ListaCategoriasProps = {
     stepBack: StepObject<string>;
+    onSelect?: (categoria: Categoria) => void;
 };
 
-export function ListaCategorias({ stepBack }: ListaCategoriasProps) {
+export function ListaCategorias({ stepBack, onSelect }: ListaCategoriasProps) {
     const { goToStep } = useStepper();
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
@@ -22,22 +23,30 @@ export function ListaCategorias({ stepBack }: ListaCategoriasProps) {
                 title={'Categorias'}
                 onBack={() => goToStep(stepBack)}
             />
-            <div className=" grid h-[20rem] grid-cols-2 gap-4 overflow-y-scroll pr-4 hover:shadow-md">
+            <div className=" grid h-[25rem] grid-cols-3 gap-4 overflow-y-scroll pr-4 ">
                 {categorias.map((categoria) => (
-                    <div
+                    <button
                         key={categoria.sigla}
-                        className="flex aspect-square flex-col items-center justify-center rounded-md border"
+                        className="relative flex aspect-square flex-col items-center justify-center gap-3 rounded-md border hover:shadow-md"
+                        style={{ color: categoria.cor }}
+                        onClick={() => {
+                            onSelect?.(categoria);
+                            goToStep(stepBack);
+                        }}
                     >
-                        <div
-                            className="flex h-7 w-7 items-center justify-center rounded-full"
-                            style={{ backgroundColor: categoria.cor }}
-                        >
+                        <div className="flex h-7 w-7 items-center justify-center rounded-full">
                             <i
-                                className={`ph flex ${categoria.icone} text-xl`}
+                                className={`ph flex ${categoria.icone} text-4xl`}
                             />
                         </div>
-                        {categoria.nome}
-                    </div>
+                        <span className="text-sm font-medium">
+                            {categoria.nome}
+                        </span>
+                        <div
+                            className="absolute inset-0 rounded-md opacity-15"
+                            style={{ backgroundColor: categoria.cor }}
+                        ></div>
+                    </button>
                 ))}
             </div>
         </>

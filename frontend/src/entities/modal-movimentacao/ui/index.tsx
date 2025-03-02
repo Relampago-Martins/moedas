@@ -10,7 +10,7 @@ export function ModalMovimentacao() {
 
     return (
         <DialogOrDrawer
-            className="overflow-hidden md:max-w-[22rem]"
+            className="overflow-hidden  md:w-auto md:min-w-[20rem]"
             open={!!movimentacaoSelecionada?.id}
             onOpenChange={(val) => {
                 if (!val) {

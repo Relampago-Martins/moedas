@@ -40,10 +40,16 @@ interface SliderAnimationProps {
     children: React.ReactNode;
     step: string;
     level: number;
+    className?: string;
 }
 
 type Direction = 'left' | 'right';
-function SliderAnimation({ step, children, level }: SliderAnimationProps) {
+function SliderAnimation({
+    step,
+    children,
+    level,
+    className,
+}: SliderAnimationProps) {
     const { currentStep, previousStep } = useStepper<string>();
     const [showStep, setShowStep] = useState(currentStep?.name === step);
     // Determina a direção com base na comparação de níveis
@@ -66,6 +72,7 @@ function SliderAnimation({ step, children, level }: SliderAnimationProps) {
         <AnimatePresence mode="popLayout" initial={false}>
             {showStep && (
                 <motion.div
+                    className={className}
                     key={step}
                     transition={{
                         type: 'spring',
@@ -135,11 +142,17 @@ type StepperContentProps = {
     value: string;
     level: number;
     children: React.ReactNode;
+    className?: string;
 };
 
-function StepperContent({ value, level, children }: StepperContentProps) {
+function StepperContent({
+    value,
+    level,
+    children,
+    className,
+}: StepperContentProps) {
     return (
-        <SliderAnimation step={value} level={level}>
+        <SliderAnimation step={value} level={level} className={className}>
             {children}
         </SliderAnimation>
     );

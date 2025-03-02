@@ -1,10 +1,14 @@
 'use client';
-import { DialogOrDrawerHeader } from '@/features/modal-novo/ui/step-header';
+import {
+    StepObject,
+    Stepper,
+    StepperContent,
+} from '@/features/modal-novo/ui/stepper';
 import { FormReceita } from '@/features/modal-novo/ui/steps/form-receita';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
-import { SliderAnimation } from '@/shared/ui/custom/slider-animation';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
 import { useEffect, useState } from 'react';
+import { MovimentacaoSteps } from '../../lib/types';
 import { useMovimentacaoContext } from '../../lib/use-movimentacao-context';
 import { ExcluirMovimentacao } from '../excluir-movimentacao';
 import { ReceitaDetail } from './receita-detail';
@@ -14,8 +18,11 @@ type ReceitaContentProps = {
 };
 
 export function ReceitaContent({ id }: ReceitaContentProps) {
+    const [step, setStep] = useState<StepObject<MovimentacaoSteps>>({
+        name: 'detail',
+        level: 0,
+    });
     const { setMovimentacaoSelecionada } = useMovimentacaoContext();
-    const [step, setStep] = useState('detail');
     const [receita, setReceita] = useState<Receita>();
     useEffect(() => {
         getReceita(id).then((receita) => {
@@ -24,38 +31,32 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
     }, [id]);
 
     return (
-        <SliderAnimation step={step} firstStep="detail">
-            {step === 'detail' && (
+        <Stepper currentStep={step} onStepChange={setStep}>
+            <StepperContent value="detail" level={0}>
                 <ReceitaDetail
                     receita={receita}
-                    onEdit={() => setStep('editar')}
-                    onDelete={() => setStep('excluir')}
+                    onEdit={() => setStep({ name: 'editar', level: 1 })}
+                    onDelete={() => setStep({ name: 'excluir', level: 1 })}
                 />
-            )}
-            {step === 'editar' && (
-                <>
-                    <DialogOrDrawerHeader
-                    // title="Editar receita"
-                    // onBack={() => setStep('detail')}
-                    />
-                    <FormReceita
-                        formValues={
-                            {
-                                ...receita,
-                                categoria: receita?.categoria?.sigla,
-                                valor: Number(receita?.valor),
-                            } as ReceitaSchema
-                        }
-                        onSucess={() => {
-                            setStep('detail');
-                            getReceita(id).then((receita) => {
-                                setReceita(receita);
-                            });
-                        }}
-                    />
-                </>
-            )}
-            {step === 'excluir' && (
+            </StepperContent>
+            <StepperContent value="editar" level={1}>
+                <FormReceita
+                    stepBack={{ name: 'detail', level: 0 }}
+                    formValues={
+                        {
+                            ...receita,
+                            categoria: receita?.categoria?.sigla,
+                            valor: Number(receita?.valor),
+                        } as ReceitaSchema
+                    }
+                    onSucess={() =>
+                        getReceita(id).then((receita) => {
+                            setReceita(receita);
+                        })
+                    }
+                />
+            </StepperContent>
+            <StepperContent value="excluir" level={1}>
                 <ExcluirMovimentacao
                     tipoMovimentacao={'receita'}
                     id={id}
@@ -63,9 +64,9 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                         deleteReceita(id);
                         setMovimentacaoSelecionada(undefined);
                     }}
-                    onCancelar={() => setStep('detail')}
+                    stepBack={{ name: 'detail', level: 0 }}
                 />
-            )}
-        </SliderAnimation>
+            </StepperContent>
+        </Stepper>
     );
 }
