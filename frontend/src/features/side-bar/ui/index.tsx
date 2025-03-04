@@ -1,4 +1,4 @@
-import { Logo } from '@/shared/ui/custom/log';
+import { Logo } from '@/shared/ui/custom/logo';
 import { ChartUpIcon, LeftToRightListDashIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
 import { MotionConfig } from 'framer-motion';

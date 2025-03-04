@@ -1,5 +1,5 @@
 import { NavBarOuterTrigger } from '@/features/side-bar/ui/NavBar';
-import { Logo } from '@/shared/ui/custom/log';
+import { Logo } from '@/shared/ui/custom/logo';
 import { Menu } from 'lucide-react';
 
 export function MobileHeader() {
