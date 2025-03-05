@@ -1,10 +1,10 @@
 'use client';
+import { FormDespesa } from '@/entities/movimentacoes/forms/form-despesa';
 import {
     StepObject,
     Stepper,
     StepperContent,
 } from '@/features/modal-novo/ui/stepper';
-import { FormDespesa } from '@/features/modal-novo/ui/steps/form-despesa';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { Despesa, DespesaSchema } from '@/types/models/despesa';

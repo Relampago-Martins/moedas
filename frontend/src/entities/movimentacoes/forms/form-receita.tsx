@@ -21,10 +21,13 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { getNomeReceitaAleatoria } from '../../lib/utils';
-import { SelectCategoria } from '../inputs/select-categoria';
-import { DialogOrDrawerHeader } from '../step-header';
-import { StepObject, useStepper } from '../stepper';
+import { getNomeReceitaAleatoria } from '../../../features/modal-novo/lib/utils';
+import { SelectCategoria } from '../../../features/modal-novo/ui/inputs/select-categoria';
+import { DialogOrDrawerHeader } from '../../../features/modal-novo/ui/step-header';
+import {
+    StepObject,
+    useStepper,
+} from '../../../features/modal-novo/ui/stepper';
 
 type FormReceitaProps = {
     onSucess: () => void;

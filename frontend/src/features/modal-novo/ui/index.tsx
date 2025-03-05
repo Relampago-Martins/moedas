@@ -1,15 +1,15 @@
 'use client';
 import { DialogOrDrawer } from '@/shared/ui/custom/dialog-drawer';
-import { EventProvider } from '@/shared/ui/custom/use-event';
+import { useEvent } from '@/shared/ui/custom/use-event';
 import { useCallback, useState } from 'react';
+import { FormInvestimento } from '../../../entities/movimentacoes/forms/form-investimento';
+import { FormReceita } from '../../../entities/movimentacoes/forms/form-receita';
+import { FormTransferencia } from '../../../entities/movimentacoes/forms/form-transferencia';
 import { useModalNovoStore } from '../lib/modal-novo-store';
 import { StepObject, Stepper, StepperContent } from './stepper';
-import { FormDespesa } from './steps/form-despesa';
-import { FormInvestimento } from './steps/form-investimento';
-import { FormReceita } from './steps/form-receita';
-import { FormTransferencia } from './steps/form-transferencia';
 import { ListaCategorias } from './steps/lista-categorias';
 import { MenuMovimentacoes } from './steps/menu-movimentacoes';
+import { StepFormDespesa } from './steps/step-form-despesa';
 
 export type ModalNovoSteps =
     | 'menu'
@@ -21,6 +21,7 @@ export type ModalNovoSteps =
 
 export function ModalNovo() {
     const { isOpen, onOpenChange } = useModalNovoStore((state) => state);
+    const event = useEvent();
     const [step, setStep] = useState<StepObject<ModalNovoSteps>>({
         name: 'menu',
         level: 0,
@@ -40,40 +41,34 @@ export function ModalNovo() {
             className="overflow-hidden md:w-auto md:min-w-[20rem]"
         >
             <Stepper currentStep={step} onStepChange={setStep}>
-                <EventProvider>
-                    <StepperContent value="menu" level={0}>
-                        <MenuMovimentacoes />
-                    </StepperContent>
-                    <StepperContent value="gasto" level={1}>
-                        <FormDespesa
-                            stepBack={{ name: 'menu', level: 0 }}
-                            onSucess={onSucess}
-                        />
-                    </StepperContent>
-                    <StepperContent value="receita" level={1}>
-                        <FormReceita
-                            stepBack={{ name: 'menu', level: 0 }}
-                            onSucess={onSucess}
-                        />
-                    </StepperContent>
-                    <StepperContent value="transferencia" level={1}>
-                        <FormTransferencia />
-                    </StepperContent>
-                    <StepperContent value="investimento" level={1}>
-                        <FormInvestimento
-                            stepBack={{ name: 'menu', level: 0 }}
-                        />
-                    </StepperContent>
-                    <StepperContent
-                        value="lista-categorias"
-                        level={2}
-                        className="md:w-[25rem]"
-                    >
-                        <ListaCategorias
-                            stepBack={{ name: 'gasto', level: 1 }}
-                        />
-                    </StepperContent>
-                </EventProvider>
+                <StepperContent value="menu" level={0}>
+                    <MenuMovimentacoes />
+                </StepperContent>
+                <StepFormDespesa subscribeEvent={event.subscribe} />
+                <StepperContent value="receita" level={1}>
+                    <FormReceita
+                        stepBack={{ name: 'menu', level: 0 }}
+                        onSucess={onSucess}
+                    />
+                </StepperContent>
+                <StepperContent value="transferencia" level={1}>
+                    <FormTransferencia />
+                </StepperContent>
+                <StepperContent value="investimento" level={1}>
+                    <FormInvestimento stepBack={{ name: 'menu', level: 0 }} />
+                </StepperContent>
+                <StepperContent
+                    value="lista-categorias"
+                    level={2}
+                    className="md:w-[25rem]"
+                >
+                    <ListaCategorias
+                        onSelect={(categoria) => {
+                            event.submit('onSelectCategoria', categoria);
+                        }}
+                        stepBack={{ name: 'gasto', level: 1 }}
+                    />
+                </StepperContent>
             </Stepper>
         </DialogOrDrawer>
     );

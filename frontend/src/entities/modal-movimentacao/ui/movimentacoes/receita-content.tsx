@@ -1,10 +1,10 @@
 'use client';
+import { FormReceita } from '@/entities/movimentacoes/forms/form-receita';
 import {
     StepObject,
     Stepper,
     StepperContent,
 } from '@/features/modal-novo/ui/stepper';
-import { FormReceita } from '@/features/modal-novo/ui/steps/form-receita';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
 import { useEffect, useState } from 'react';

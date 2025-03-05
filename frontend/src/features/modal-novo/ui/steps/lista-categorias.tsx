@@ -1,5 +1,4 @@
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
-import { useEvent } from '@/shared/ui/custom/use-event';
 import { Categoria } from '@/types/models/categoria';
 import { useEffect, useState } from 'react';
 import { DialogOrDrawerHeader } from '../step-header';
@@ -11,20 +10,12 @@ type ListaCategoriasProps = {
 };
 
 export function ListaCategorias({ stepBack, onSelect }: ListaCategoriasProps) {
-    const { submit, subscribe } = useEvent();
     const { goToStep } = useStepper();
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
         getCategorias('D').then((data) => {
             setCategorias(data);
         });
-    }, []);
-
-    useEffect(() => {
-        const unsubscribe = subscribe('onSelectCategoria', (categoria) => {
-            console.log(categoria);
-        });
-        return unsubscribe;
     }, []);
 
     return (
@@ -40,7 +31,7 @@ export function ListaCategorias({ stepBack, onSelect }: ListaCategoriasProps) {
                         className="relative flex aspect-square flex-col items-center justify-center gap-3 rounded-md border hover:shadow-md"
                         style={{ color: categoria.cor }}
                         onClick={() => {
-                            submit('onSelectCategoria', categoria);
+                            onSelect?.(categoria);
                             goToStep(stepBack);
                         }}
                     >

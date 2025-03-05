@@ -1,12 +1,6 @@
-// EventContext.tsx
+// useEvent.ts
 import { Categoria } from '@/types/models/categoria';
-import React, {
-    createContext,
-    ReactNode,
-    useCallback,
-    useContext,
-    useState,
-} from 'react';
+import { useCallback, useRef } from 'react';
 
 // Definindo os eventos disponíveis e seus tipos de dados correspondentes
 export interface EventMap {
@@ -16,73 +10,40 @@ export interface EventMap {
 // Tipo para o callback de um evento
 type EventCallback<T> = (data: T) => void;
 
-// Interface para o contexto do evento
-interface EventContextType {
-    subscribe: <K extends keyof EventMap>(
-        eventName: K,
-        callback: EventCallback<EventMap[K]>,
-    ) => () => void;
-    submit: <K extends keyof EventMap>(
-        eventName: K,
-        data: EventMap[K],
-    ) => number;
-}
-
-// Props para o EventProvider
-interface EventProviderProps {
-    children?: ReactNode;
-}
-
-// Criando o contexto para os eventos
-const EventContext = createContext<EventContextType | null>(null);
-
-// Provider de eventos que gerencia as assinaturas e submissões
-export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
-    // Estado para armazenar os assinantes dos eventos tipados
-    const [eventSubscribers, setEventSubscribers] = useState<{
+export const useEvent = () => {
+    // Referência mutável para armazenar os assinantes dos eventos
+    const subscribersRef = useRef<{
         [K in keyof EventMap]?: EventCallback<EventMap[K]>[];
     }>({});
 
-    // Função para assinar um evento (tipada)
+    // Função para assinar um evento
     const subscribe = useCallback(
         <K extends keyof EventMap>(
             eventName: K,
             callback: EventCallback<EventMap[K]>,
         ) => {
-            setEventSubscribers((prev) => {
-                // Cria uma nova lista de assinantes para o evento se não existir
-                const currentSubscribers = (prev[eventName] ||
-                    []) as EventCallback<EventMap[K]>[];
+            // Se não existir lista de assinantes para este evento, cria uma
+            if (!subscribersRef.current[eventName]) {
+                subscribersRef.current[eventName] = [];
+            }
 
-                // Adiciona o novo callback à lista
-                return {
-                    ...prev,
-                    [eventName]: [...currentSubscribers, callback],
-                };
-            });
+            // Adiciona o callback à lista de assinantes
+            subscribersRef.current[eventName]!.push(callback);
 
-            // Retorna uma função para cancelar a assinatura
+            // Retorna função para cancelar a assinatura
             return () => {
-                setEventSubscribers((prev) => {
-                    const currentSubscribers = (prev[eventName] ||
-                        []) as EventCallback<EventMap[K]>[];
-                    return {
-                        ...prev,
-                        [eventName]: currentSubscribers.filter(
-                            (cb) => cb !== callback,
-                        ) as any,
-                    };
-                });
+                subscribersRef.current[eventName] = subscribersRef.current[
+                    eventName
+                ]!.filter((cb) => cb !== callback);
             };
         },
         [],
     );
 
-    // Função para disparar um evento (tipada)
+    // Função para disparar um evento
     const submit = useCallback(
         <K extends keyof EventMap>(eventName: K, data: EventMap[K]) => {
-            const subscribers = (eventSubscribers[eventName] ||
-                []) as EventCallback<EventMap[K]>[];
+            const subscribers = subscribersRef.current[eventName] || [];
 
             // Notifica todos os assinantes do evento
             subscribers.forEach((callback) => {
@@ -98,27 +59,8 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
 
             return subscribers.length; // Retorna o número de assinantes notificados
         },
-        [eventSubscribers],
+        [],
     );
 
-    // Expõe as funções no contexto
-    const value: EventContextType = {
-        subscribe,
-        submit,
-    };
-
-    return (
-        <EventContext.Provider value={value}>{children}</EventContext.Provider>
-    );
-};
-
-// Hook personalizado para usar o sistema de eventos
-export const useEvent = (): EventContextType => {
-    const context = useContext(EventContext);
-
-    if (!context) {
-        throw new Error('useEvent deve ser usado dentro de um EventProvider');
-    }
-
-    return context;
+    return { subscribe, submit };
 };

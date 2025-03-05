@@ -1,5 +1,8 @@
-import { DialogOrDrawerHeader } from '../step-header';
-import { StepObject, useStepper } from '../stepper';
+import { DialogOrDrawerHeader } from '../../../features/modal-novo/ui/step-header';
+import {
+    StepObject,
+    useStepper,
+} from '../../../features/modal-novo/ui/stepper';
 
 type FormInvestimentoProps = {
     stepBack: StepObject<string>;

@@ -1,6 +1,6 @@
-import { ModalNovoSteps } from '..';
-import { DialogOrDrawerHeader } from '../step-header';
-import { useStepper } from '../stepper';
+import { ModalNovoSteps } from '../../../features/modal-novo/ui';
+import { DialogOrDrawerHeader } from '../../../features/modal-novo/ui/step-header';
+import { useStepper } from '../../../features/modal-novo/ui/stepper';
 
 export function FormTransferencia() {
     const { goToStep } = useStepper<ModalNovoSteps>();
