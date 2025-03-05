@@ -16,6 +16,8 @@ export async function getCategorias(tipo?: "D" | "R") {
 }
 
 export async function getCategoria(sigla: string) {
-    const resp = await ApiClient.getInstance().get<Categoria>(`/categorias/${sigla}/`);
+    const resp = await ApiClient.getInstance().get<Categoria>(`/categorias/${sigla}/`, {
+        next: { revalidate: 300, tags: [`categoria${sigla}`] }
+    });
     return resp.data;
 }

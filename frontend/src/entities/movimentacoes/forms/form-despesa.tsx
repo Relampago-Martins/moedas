@@ -22,11 +22,12 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeDespesaAleatoria } from '../../../features/modal-novo/lib/utils';
-import { SelectFormaPagamento } from '../../../features/modal-novo/ui/inputs/select-forma-pagamento';
 import {
     StepObject,
     useStepper,
 } from '../../../features/modal-novo/ui/stepper';
+import { SelectCategoria } from './fields/select-categoria';
+import { SelectFormaPagamento } from './fields/select-forma-pagamento';
 
 type FormDespesaProps = {
     onSucess: () => void;
@@ -112,21 +113,7 @@ export function FormDespesa({
                         <FormItem>
                             <FormLabel>Categoria</FormLabel>
                             <FormControl>
-                                <Button
-                                    type="button"
-                                    variant={'outline'}
-                                    value={field.value}
-                                    className="justify-between"
-                                    onClick={() =>
-                                        goToStep({
-                                            name: 'lista-categorias',
-                                            level: 2,
-                                        })
-                                    }
-                                >
-                                    {field.value || 'Selecione'}
-                                    <i className="ph ph-caret-right ml-2"></i>
-                                </Button>
+                                <SelectCategoria {...field} />
                             </FormControl>
                             <FormMessage></FormMessage>
                         </FormItem>

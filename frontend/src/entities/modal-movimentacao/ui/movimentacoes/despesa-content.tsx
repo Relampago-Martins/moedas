@@ -7,6 +7,7 @@ import {
 } from '@/features/modal-novo/ui/stepper';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
+import { useEvent } from '@/shared/ui/custom/use-event';
 import { Despesa, DespesaSchema } from '@/types/models/despesa';
 import { useCallback, useEffect, useState } from 'react';
 import { MovimentacaoSteps } from '../../lib/types';
@@ -20,6 +21,7 @@ type DespesaContentProps = {
 
 export function DespesaContent({ id }: DespesaContentProps) {
     const { setMovimentacaoSelecionada } = useMovimentacaoContext();
+    const event = useEvent();
     const [step, setStep] = useState<StepObject<MovimentacaoSteps>>({
         name: 'detail',
         level: 0,
@@ -35,6 +37,19 @@ export function DespesaContent({ id }: DespesaContentProps) {
         getSetDespesa(id);
     }, [id]);
 
+    useEffect(() => {
+        event.subscribe('onSelectCategoria', (categoria) => {
+            setDespesa((prev) => {
+                if (prev) {
+                    return {
+                        ...prev,
+                        categoria,
+                    };
+                }
+                return prev;
+            });
+        });
+    }, [despesa?.id]);
     return (
         <Stepper currentStep={step} onStepChange={setStep}>
             <StepperContent value="detail" level={0}>
@@ -75,6 +90,9 @@ export function DespesaContent({ id }: DespesaContentProps) {
                 className="md:w-[25rem]"
             >
                 <ListaCategorias
+                    onSelect={(categoria) => {
+                        event.submit('onSelectCategoria', categoria);
+                    }}
                     stepBack={{
                         name: 'editar',
                         level: 1,

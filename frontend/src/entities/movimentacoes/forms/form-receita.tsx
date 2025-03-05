@@ -22,12 +22,12 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeReceitaAleatoria } from '../../../features/modal-novo/lib/utils';
-import { SelectCategoria } from '../../../features/modal-novo/ui/inputs/select-categoria';
 import { DialogOrDrawerHeader } from '../../../features/modal-novo/ui/step-header';
 import {
     StepObject,
     useStepper,
 } from '../../../features/modal-novo/ui/stepper';
+import { SelectCategoria } from './fields/select-categoria';
 
 type FormReceitaProps = {
     onSucess: () => void;
