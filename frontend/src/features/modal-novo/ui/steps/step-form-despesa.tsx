@@ -36,13 +36,15 @@ export function StepFormDespesa({
     };
 
     useEffect(() => {
-        subscribeEvent('onSelectCategoria', (categoria) =>
-            form.setValue('categoria', categoria.sigla),
-        );
+        subscribeEvent('onSelectCategoria', (categoria) => {
+            form.setValue('categoria', categoria.sigla);
+        });
     }, []);
 
     useEffect(() => {
-        form.reset(formValues);
+        if (form.getValues('id') === undefined) {
+            form.reset(formValues);
+        }
     }, [formValues]);
 
     return (
