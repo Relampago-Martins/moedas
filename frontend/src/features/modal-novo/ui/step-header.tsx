@@ -4,19 +4,24 @@ import { DrawerClose, DrawerHeader, DrawerTitle } from '@/shared/ui/drawer';
 import { ChevronLeft, X } from 'lucide-react';
 import { useMediaQuery } from 'react-responsive';
 
-type StepHeaderProps = {
+type DialogOrDrawerHeaderProps = {
     title: string;
     onBack?: () => void;
+    withBackButton?: boolean;
 };
 
-export function StepHeader({ title, onBack }: StepHeaderProps) {
-    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+export function DialogOrDrawerHeader({
+    title,
+    withBackButton = true,
+    onBack,
+}: DialogOrDrawerHeaderProps) {
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
 
-    return isTabletOrMobile ? (
+    return isMobile ? (
         <DrawerHeader className="px-0 pt-1">
             <DrawerTitle className="mb-2 flex justify-between text-xl text-primary">
                 <div className="w-6">
-                    {onBack && (
+                    {withBackButton && (
                         <Button
                             variant={'ghost'}
                             className="p-0 pr-4"
@@ -36,7 +41,7 @@ export function StepHeader({ title, onBack }: StepHeaderProps) {
     ) : (
         <DialogHeader>
             <DialogTitle className="mb-2 flex items-center justify-between pb-4 text-xl text-primary">
-                {onBack && (
+                {withBackButton && (
                     <Button
                         variant={'ghost'}
                         className="h-full p-0 pr-2"

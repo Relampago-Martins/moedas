@@ -6,5 +6,5 @@ export type Categoria = {
     nome: string;
     icone: string;
     is_base: boolean;
-    tipo: string;
+    tipo: "D" | "R";
 };

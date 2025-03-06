@@ -3,7 +3,7 @@ import LoginForm from '@/components/auth/LoginForm';
 import ThemeToggle from '@/components/themeToggle';
 import { authConfig } from '@/shared/lib/auth';
 import { Card } from '@/shared/ui/card';
-import { Logo } from '@/shared/ui/custom/log';
+import { Logo } from '@/shared/ui/custom/logo';
 import { Separator } from '@/shared/ui/separator';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';

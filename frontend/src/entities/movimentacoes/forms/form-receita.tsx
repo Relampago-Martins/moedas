@@ -3,7 +3,6 @@ import {
     atualizaReceita,
     criaReceita,
 } from '@/shared/api/endpoints/receita-cli';
-import { receita } from '@/shared/lib/forms';
 import { Button } from '@/shared/ui/button';
 import { CurrencyInput } from '@/shared/ui/currency';
 import {
@@ -16,30 +15,26 @@ import {
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { ReceitaSchema } from '@/types/models/receita';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
-import { getNomeReceitaAleatoria } from '../../lib/utils';
-import { SelectCategoria } from '../inputs/select-categoria';
+import { getNomeReceitaAleatoria } from '../../../features/modal-novo/lib/utils';
+import { SelectCategoria } from './fields/select-categoria';
 
 type FormReceitaProps = {
+    formState: UseFormReturn<ReceitaSchema>;
     onSucess: () => void;
-    formValues?: ReceitaSchema;
 };
 
-export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
+export function FormReceita({ formState: form, onSucess }: FormReceitaProps) {
     const randomName = useMemo(() => getNomeReceitaAleatoria(), []);
     const queryClient = useQueryClient();
-    const form = useForm<ReceitaSchema>({
-        resolver: zodResolver(receita),
-        defaultValues: formValues,
-    });
+    const formId = useMemo(() => form.getValues('id'), [form]);
 
     const onSubmit = async (data: ReceitaSchema) => {
-        const resp = formValues?.id
-            ? await atualizaReceita(formValues.id, data)
+        const resp = formId
+            ? await atualizaReceita(formId, data)
             : await criaReceita(data);
         if ([200, 201].includes(resp.status)) {
             queryClient.invalidateQueries({ queryKey: ['movimentacoes'] });
@@ -97,7 +92,7 @@ export function FormReceita({ onSucess, formValues }: FormReceitaProps) {
                         <FormItem>
                             <FormLabel>Categoria</FormLabel>
                             <FormControl>
-                                <SelectCategoria {...field} tipoCategoria="R" />
+                                <SelectCategoria tipo="R" {...field} />
                             </FormControl>
                             <FormMessage></FormMessage>
                         </FormItem>

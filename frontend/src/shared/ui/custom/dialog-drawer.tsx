@@ -10,15 +10,15 @@ type DialogDrawerProps = {
     className?: string;
 };
 
-export function DialogDrawer({
+export function DialogOrDrawer({
     open: isOpen,
     onOpenChange,
     children: Content,
     className,
 }: DialogDrawerProps) {
-    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
 
-    return isTabletOrMobile ? (
+    return isMobile ? (
         <Drawer
             open={isOpen}
             onOpenChange={onOpenChange}

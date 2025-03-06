@@ -1,58 +1,91 @@
 'use client';
-import { DialogDrawer } from '@/shared/ui/custom/dialog-drawer';
-import { useCallback } from 'react';
-import { SliderAnimation } from '../../../shared/ui/custom/slider-animation';
+import { DialogOrDrawer } from '@/shared/ui/custom/dialog-drawer';
+import { useEvent } from '@/shared/ui/custom/use-event';
+import { useCallback, useState } from 'react';
+import { FormInvestimento } from '../../../entities/movimentacoes/forms/form-investimento';
+import { FormTransferencia } from '../../../entities/movimentacoes/forms/form-transferencia';
 import { useModalNovoStore } from '../lib/modal-novo-store';
-import { StepHeader } from './step-header';
-import { FormDespesa } from './steps/form-despesa';
-import { FormInvestimento } from './steps/form-investimento';
-import { FormReceita } from './steps/form-receita';
-import { FormTransferencia } from './steps/form-transferencia';
-import { MenuMovimentacoes } from './steps/menu-movimentacoes';
+import { StepObject, Stepper, StepperContent } from './stepper';
+import { ListaCategorias } from './steps/lista-categorias';
+import { StepFormDespesa } from './steps/step-form-despesa';
+import { StepFormReceita } from './steps/step-form-receita';
+import { StepMenu } from './steps/step-menu';
+
+export type ModalNovoSteps =
+    | 'menu'
+    | 'gasto'
+    | 'receita'
+    | 'transferencia'
+    | 'investimento'
+    | 'lista-categorias';
 
 export function ModalNovo() {
-    const { isOpen, onOpenChange, step, setStep } = useModalNovoStore(
-        (state) => state,
-    );
+    const { isOpen, onOpenChange } = useModalNovoStore((state) => state);
+    const event = useEvent();
+    const [step, setStep] = useState<StepObject<ModalNovoSteps>>({
+        name: 'menu',
+        level: 0,
+    });
+
     const onSucess = useCallback(() => {
         onOpenChange(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <DialogDrawer
+        <DialogOrDrawer
             open={isOpen}
-            onOpenChange={onOpenChange}
-            className="overflow-hidden md:max-w-[20rem]"
+            onOpenChange={(val) =>
+                onOpenChange(val, () => setStep({ name: 'menu', level: 0 }))
+            }
+            className="overflow-hidden md:w-auto md:min-w-[20rem]"
         >
-            <SliderAnimation step={step} firstStep={'menu'}>
-                <StepHeader
-                    title={getTituloStep(step)}
-                    onBack={step !== 'menu' ? () => setStep('menu') : undefined}
+            <Stepper currentStep={step} onStepChange={setStep}>
+                <StepMenu value="menu" level={0} />
+                <StepFormDespesa
+                    step={{ name: 'gasto', level: 1 }}
+                    stepBack={{ name: 'menu', level: 0 }}
+                    subscribeEvent={event.subscribe}
+                    onSucess={onSucess}
                 />
-                {step === 'menu' && <MenuMovimentacoes />}
-                {step === 'gasto' && <FormDespesa onSucess={onSucess} />}
-                {step === 'receita' && <FormReceita onSucess={onSucess} />}
-                {step === 'transferencia' && <FormTransferencia />}
-                {step === 'investimento' && <FormInvestimento />}
-            </SliderAnimation>
-        </DialogDrawer>
+                <StepFormReceita
+                    step={{ name: 'receita', level: 1 }}
+                    stepBack={{ name: 'menu', level: 0 }}
+                    subscribeEvent={event.subscribe}
+                    onSucess={onSucess}
+                />
+                <StepperContent value="transferencia" level={1}>
+                    <FormTransferencia />
+                </StepperContent>
+                <StepperContent value="investimento" level={1}>
+                    <FormInvestimento stepBack={{ name: 'menu', level: 0 }} />
+                </StepperContent>
+                <StepperContent
+                    value="lista-categorias"
+                    level={2}
+                    className="md:w-[25rem]"
+                >
+                    <ListaCategorias
+                        onSelect={(categoria) => {
+                            event.submit('onSelectCategoria', categoria);
+                        }}
+                        stepBack={{ name: 'gasto', level: 1 }}
+                    />
+                </StepperContent>
+                <StepperContent
+                    value="lista-categorias-receita"
+                    level={2}
+                    className="md:w-[25rem]"
+                >
+                    <ListaCategorias
+                        tipoCategoria="R"
+                        onSelect={(categoria) => {
+                            event.submit('onSelectCategoria', categoria);
+                        }}
+                        stepBack={{ name: 'receita', level: 1 }}
+                    />
+                </StepperContent>
+            </Stepper>
+        </DialogOrDrawer>
     );
-}
-
-function getTituloStep(step: string) {
-    switch (step) {
-        case 'menu':
-            return 'Criar movimentação';
-        case 'gasto':
-            return 'Criar despesa';
-        case 'receita':
-            return 'Criar receita';
-        case 'transferencia':
-            return 'Criar transferência';
-        case 'investimento':
-            return 'Criar investimento';
-        default:
-            return '';
-    }
 }

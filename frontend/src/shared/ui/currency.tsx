@@ -38,7 +38,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
                 <input
                     className={cn(
                         `h-9 w-full rounded-none border-b border-primary bg-transparent py-1
-                        text-xl focus:outline-none`,
+                        text-2xl focus:outline-none`,
                         className,
                     )}
                     inputMode="numeric"
