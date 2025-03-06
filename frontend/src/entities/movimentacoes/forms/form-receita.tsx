@@ -114,10 +114,7 @@ export function FormReceita({
                             <FormItem>
                                 <FormLabel>Categoria</FormLabel>
                                 <FormControl>
-                                    <SelectCategoria
-                                        {...field}
-                                        tipoCategoria="R"
-                                    />
+                                    <SelectCategoria {...field} />
                                 </FormControl>
                                 <FormMessage></FormMessage>
                             </FormItem>

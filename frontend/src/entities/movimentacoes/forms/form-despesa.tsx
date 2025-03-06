@@ -3,7 +3,6 @@ import {
     atualizaDespesa,
     criaDespesa,
 } from '@/shared/api/endpoints/despesa-cli';
-import { despesa } from '@/shared/lib/forms';
 import { Button } from '@/shared/ui/button';
 import { CurrencyInput } from '@/shared/ui/currency';
 import {
@@ -16,53 +15,38 @@ import {
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { DespesaSchema } from '@/types/models/despesa';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeDespesaAleatoria } from '../../../features/modal-novo/lib/utils';
-import {
-    StepObject,
-    useStepper,
-} from '../../../features/modal-novo/ui/stepper';
 import { SelectCategoria } from './fields/select-categoria';
 import { SelectFormaPagamento } from './fields/select-forma-pagamento';
 
 type FormDespesaProps = {
-    onSucess: () => void;
-    formValues?: DespesaSchema;
-    stepBack: StepObject<string>;
+    onSucess?: () => void;
+    formState: UseFormReturn<DespesaSchema>;
 };
 
-export function FormDespesa({
-    onSucess,
-    formValues,
-    stepBack,
-}: FormDespesaProps) {
+export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
     const randomName = useMemo(() => getNomeDespesaAleatoria(), []);
-    const { goToStep } = useStepper();
     const queryClient = useQueryClient();
-    const form = useForm<DespesaSchema>({
-        resolver: zodResolver(despesa),
-        defaultValues: formValues,
-    });
+    const formId = useMemo(() => form.getValues('id'), [form]);
 
     const onSubmit = async (data: DespesaSchema) => {
-        const resp = formValues?.id
-            ? await atualizaDespesa(formValues.id, data)
+        const resp = formId
+            ? await atualizaDespesa(formId, data)
             : await criaDespesa(data);
         if ([200, 201].includes(resp.status)) {
             queryClient.invalidateQueries({ queryKey: ['movimentacoes'] });
             toast.success(
-                `Despesa '${data.descricao}' ${formValues?.id ? 'atualizada' : 'criada'}
+                `Despesa '${data.descricao}' ${formId ? 'atualizada' : 'criada'}
                  com sucesso!`,
                 {
                     duration: 4000,
                 },
             );
-            goToStep(stepBack);
-            onSucess();
+            onSucess?.();
         } else if (resp.status === 400) {
             toast.error('Erro ao criar despesa, tente novamente mais tarde');
         }

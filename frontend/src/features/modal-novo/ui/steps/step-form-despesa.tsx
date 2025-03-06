@@ -1,43 +1,64 @@
 import { FormDespesa } from '@/entities/movimentacoes/forms/form-despesa';
+import { despesa } from '@/shared/lib/forms';
 import { useEvent } from '@/shared/ui/custom/use-event';
 import { DespesaSchema } from '@/types/models/despesa';
-import { useEffect, useState } from 'react';
-import { useModalNovoStore } from '../../lib/modal-novo-store';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { DialogOrDrawerHeader } from '../step-header';
-import { StepperContent, useStepper } from '../stepper';
+import { StepObject, StepperContent, useStepper } from '../stepper';
 
 type StepFormDespesaProps = {
     subscribeEvent: ReturnType<typeof useEvent>['subscribe'];
+    stepBack: StepObject<string>;
+    step: StepObject<string>;
+    formValues?: DespesaSchema;
+    onSucess?: () => void;
 };
 
-export function StepFormDespesa({ subscribeEvent }: StepFormDespesaProps) {
-    const { isOpen, onOpenChange } = useModalNovoStore((state) => state);
+export function StepFormDespesa({
+    subscribeEvent,
+    stepBack,
+    step,
+    formValues,
+    onSucess,
+}: StepFormDespesaProps) {
     const { goToStep } = useStepper();
-    const [categoriaSelecionada, setCategoriaSelecionada] = useState<
-        string | undefined
-    >();
+    const form = useForm<DespesaSchema>({
+        resolver: zodResolver(despesa),
+        defaultValues: formValues,
+    });
+    const emptyForm = {
+        descricao: '',
+        valor: 0,
+        forma_pagamento: '',
+        categoria: '',
+    };
 
     useEffect(() => {
-        subscribeEvent('onSelectCategoria', (categoria) => {
-            setCategoriaSelecionada(categoria.sigla);
-        });
+        subscribeEvent('onSelectCategoria', (categoria) =>
+            form.setValue('categoria', categoria.sigla),
+        );
     }, []);
 
+    useEffect(() => {
+        form.reset(formValues);
+    }, [formValues]);
+
     return (
-        <StepperContent value="gasto" level={1}>
+        <StepperContent value={step.name} level={step.level}>
             <DialogOrDrawerHeader
-                title={'Nova Despesa'}
-                onBack={() => goToStep({ name: 'menu', level: 0 })}
+                title={formValues?.id ? 'Editar despesa' : 'Nova despesa'}
+                onBack={() => {
+                    form.reset(formValues?.id ? formValues : emptyForm);
+                    goToStep(stepBack);
+                }}
             />
             <FormDespesa
-                stepBack={{ name: 'menu', level: 0 }}
-                formValues={
-                    { categoria: categoriaSelecionada } as DespesaSchema
-                }
+                formState={form}
                 onSucess={() => {
-                    onOpenChange(false, () =>
-                        goToStep({ name: 'menu', level: 0 }),
-                    );
+                    onSucess?.();
+                    setTimeout(() => goToStep(stepBack), 100);
                 }}
             />
         </StepperContent>

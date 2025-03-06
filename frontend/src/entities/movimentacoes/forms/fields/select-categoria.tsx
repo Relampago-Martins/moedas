@@ -6,17 +6,12 @@ import { DespesaSchema } from '@/types/models/despesa';
 import React, { useEffect } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 
-type SelectCategoriaProps = ControllerRenderProps<
-    DespesaSchema,
-    'categoria'
-> & {
-    tipoCategoria?: 'D' | 'R';
-};
+type SelectCategoriaProps = ControllerRenderProps<DespesaSchema, 'categoria'>;
 
 const SelectCategoria = React.forwardRef<
     HTMLSelectElement,
     Omit<SelectCategoriaProps, 'ref'>
->(({ onChange, value, tipoCategoria = 'D', ...props }, ref) => {
+>(({ onChange, value, ...props }, ref) => {
     const { goToStep } = useStepper();
     const [categoriaSelecionada, setCategoriaSelecionada] = React.useState<
         Categoria | undefined
@@ -26,7 +21,7 @@ const SelectCategoria = React.forwardRef<
         if (value) {
             getCategoria(value).then(setCategoriaSelecionada);
         }
-    }, [tipoCategoria]);
+    }, []);
 
     return (
         <button
@@ -59,7 +54,7 @@ const SelectCategoria = React.forwardRef<
                     </span>
                 </div>
             ) : (
-                <span className=" ml-3 w-full">Selecione</span>
+                <span className="ml-3 w-full text-start">Selecione</span>
             )}
             <div
                 className="absolute inset-0 opacity-15"

@@ -28,7 +28,7 @@ export function ModalNovo() {
     });
 
     const onSucess = useCallback(() => {
-        onOpenChange(false, () => setStep({ name: 'menu', level: 0 }));
+        onOpenChange(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -44,7 +44,12 @@ export function ModalNovo() {
                 <StepperContent value="menu" level={0}>
                     <MenuMovimentacoes />
                 </StepperContent>
-                <StepFormDespesa subscribeEvent={event.subscribe} />
+                <StepFormDespesa
+                    step={{ name: 'gasto', level: 1 }}
+                    stepBack={{ name: 'menu', level: 0 }}
+                    subscribeEvent={event.subscribe}
+                    onSucess={onSucess}
+                />
                 <StepperContent value="receita" level={1}>
                     <FormReceita
                         stepBack={{ name: 'menu', level: 0 }}

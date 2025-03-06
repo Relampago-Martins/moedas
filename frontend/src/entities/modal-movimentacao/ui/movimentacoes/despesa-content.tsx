@@ -1,11 +1,11 @@
 'use client';
-import { FormDespesa } from '@/entities/movimentacoes/forms/form-despesa';
 import {
     StepObject,
     Stepper,
     StepperContent,
 } from '@/features/modal-novo/ui/stepper';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
+import { StepFormDespesa } from '@/features/modal-novo/ui/steps/step-form-despesa';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { useEvent } from '@/shared/ui/custom/use-event';
 import { Despesa, DespesaSchema } from '@/types/models/despesa';
@@ -37,19 +37,6 @@ export function DespesaContent({ id }: DespesaContentProps) {
         getSetDespesa(id);
     }, [id]);
 
-    useEffect(() => {
-        event.subscribe('onSelectCategoria', (categoria) => {
-            setDespesa((prev) => {
-                if (prev) {
-                    return {
-                        ...prev,
-                        categoria,
-                    };
-                }
-                return prev;
-            });
-        });
-    }, [despesa?.id]);
     return (
         <Stepper currentStep={step} onStepChange={setStep}>
             <StepperContent value="detail" level={0}>
@@ -59,20 +46,20 @@ export function DespesaContent({ id }: DespesaContentProps) {
                     onDelete={() => setStep({ name: 'excluir', level: 1 })}
                 />
             </StepperContent>
-            <StepperContent value="editar" level={1}>
-                <FormDespesa
-                    stepBack={{ name: 'detail', level: 0 }}
-                    onSucess={() => getSetDespesa(id)}
-                    formValues={
-                        {
-                            ...despesa,
-                            forma_pagamento: despesa?.forma_pagamento.sigla,
-                            categoria: despesa?.categoria.sigla,
-                            valor: Number(despesa?.valor.toString()),
-                        } as DespesaSchema
-                    }
-                />
-            </StepperContent>
+            <StepFormDespesa
+                onSucess={() => getSetDespesa(id)}
+                subscribeEvent={event.subscribe}
+                step={{ name: 'editar', level: 1 }}
+                stepBack={{ name: 'detail', level: 0 }}
+                formValues={
+                    {
+                        ...despesa,
+                        forma_pagamento: despesa?.forma_pagamento.sigla,
+                        categoria: despesa?.categoria.sigla,
+                        valor: Number(despesa?.valor.toString()),
+                    } as DespesaSchema
+                }
+            />
             <StepperContent value="excluir" level={1}>
                 <ExcluirMovimentacao
                     tipoMovimentacao={'despesa'}

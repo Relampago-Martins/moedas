@@ -38,10 +38,10 @@ export function ExcluirMovimentacao({
                 <Button
                     variant={'destructive'}
                     onClick={() => {
+                        ondDelete();
                         queryClient.invalidateQueries({
                             queryKey: ['movimentacoes'],
                         });
-                        ondDelete();
                     }}
                     className="btn btn-danger"
                 >

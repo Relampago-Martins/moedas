@@ -5,7 +5,9 @@ import {
     Stepper,
     StepperContent,
 } from '@/features/modal-novo/ui/stepper';
+import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
+import { useEvent } from '@/shared/ui/custom/use-event';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
 import { useEffect, useState } from 'react';
 import { MovimentacaoSteps } from '../../lib/types';
@@ -18,11 +20,12 @@ type ReceitaContentProps = {
 };
 
 export function ReceitaContent({ id }: ReceitaContentProps) {
+    const { setMovimentacaoSelecionada } = useMovimentacaoContext();
+    const event = useEvent();
     const [step, setStep] = useState<StepObject<MovimentacaoSteps>>({
         name: 'detail',
         level: 0,
     });
-    const { setMovimentacaoSelecionada } = useMovimentacaoContext();
     const [receita, setReceita] = useState<Receita>();
     useEffect(() => {
         getReceita(id).then((receita) => {
@@ -65,6 +68,22 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                         setMovimentacaoSelecionada(undefined);
                     }}
                     stepBack={{ name: 'detail', level: 0 }}
+                />
+            </StepperContent>
+            <StepperContent
+                value="lista-categorias"
+                level={2}
+                className="md:w-[25rem]"
+            >
+                <ListaCategorias
+                    onSelect={(categoria) => {
+                        event.submit('onSelectCategoria', categoria);
+                    }}
+                    tipoCategoria="R"
+                    stepBack={{
+                        name: 'editar',
+                        level: 1,
+                    }}
                 />
             </StepperContent>
         </Stepper>

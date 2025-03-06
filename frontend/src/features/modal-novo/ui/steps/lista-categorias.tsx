@@ -7,13 +7,18 @@ import { StepObject, useStepper } from '../stepper';
 type ListaCategoriasProps = {
     stepBack: StepObject<string>;
     onSelect?: (categoria: Categoria) => void;
+    tipoCategoria?: Categoria['tipo'];
 };
 
-export function ListaCategorias({ stepBack, onSelect }: ListaCategoriasProps) {
+export function ListaCategorias({
+    stepBack,
+    onSelect,
+    tipoCategoria = 'D',
+}: ListaCategoriasProps) {
     const { goToStep } = useStepper();
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
-        getCategorias('D').then((data) => {
+        getCategorias(tipoCategoria).then((data) => {
             setCategorias(data);
         });
     }, []);
