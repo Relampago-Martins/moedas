@@ -3,13 +3,13 @@ import { DialogOrDrawer } from '@/shared/ui/custom/dialog-drawer';
 import { useEvent } from '@/shared/ui/custom/use-event';
 import { useCallback, useState } from 'react';
 import { FormInvestimento } from '../../../entities/movimentacoes/forms/form-investimento';
-import { FormReceita } from '../../../entities/movimentacoes/forms/form-receita';
 import { FormTransferencia } from '../../../entities/movimentacoes/forms/form-transferencia';
 import { useModalNovoStore } from '../lib/modal-novo-store';
 import { StepObject, Stepper, StepperContent } from './stepper';
 import { ListaCategorias } from './steps/lista-categorias';
-import { MenuMovimentacoes } from './steps/menu-movimentacoes';
 import { StepFormDespesa } from './steps/step-form-despesa';
+import { StepFormReceita } from './steps/step-form-receita';
+import { StepMenu } from './steps/step-menu';
 
 export type ModalNovoSteps =
     | 'menu'
@@ -41,21 +41,19 @@ export function ModalNovo() {
             className="overflow-hidden md:w-auto md:min-w-[20rem]"
         >
             <Stepper currentStep={step} onStepChange={setStep}>
-                <StepperContent value="menu" level={0}>
-                    <MenuMovimentacoes />
-                </StepperContent>
+                <StepMenu value="menu" level={0} />
                 <StepFormDespesa
                     step={{ name: 'gasto', level: 1 }}
                     stepBack={{ name: 'menu', level: 0 }}
                     subscribeEvent={event.subscribe}
                     onSucess={onSucess}
                 />
-                <StepperContent value="receita" level={1}>
-                    <FormReceita
-                        stepBack={{ name: 'menu', level: 0 }}
-                        onSucess={onSucess}
-                    />
-                </StepperContent>
+                <StepFormReceita
+                    step={{ name: 'receita', level: 1 }}
+                    stepBack={{ name: 'menu', level: 0 }}
+                    subscribeEvent={event.subscribe}
+                    onSucess={onSucess}
+                />
                 <StepperContent value="transferencia" level={1}>
                     <FormTransferencia />
                 </StepperContent>
@@ -72,6 +70,19 @@ export function ModalNovo() {
                             event.submit('onSelectCategoria', categoria);
                         }}
                         stepBack={{ name: 'gasto', level: 1 }}
+                    />
+                </StepperContent>
+                <StepperContent
+                    value="lista-categorias-receita"
+                    level={2}
+                    className="md:w-[25rem]"
+                >
+                    <ListaCategorias
+                        tipoCategoria="R"
+                        onSelect={(categoria) => {
+                            event.submit('onSelectCategoria', categoria);
+                        }}
+                        stepBack={{ name: 'receita', level: 1 }}
                     />
                 </StepperContent>
             </Stepper>

@@ -7,15 +7,15 @@ import { GastoIcon } from '@/shared/ui/huge-icons/gasto';
 import { ReceitaIcon } from '@/shared/ui/huge-icons/receita';
 import { ModalNovoSteps } from '..';
 import { DialogOrDrawerHeader } from '../step-header';
-import { useStepper } from '../stepper';
+import { StepperContent, useStepper } from '../stepper';
 
 const cardClass =
     'flex h-[5.5rem] w-full gap-1 cursor-pointer flex-col items-center justify-center transition-transform duration-300 hover:scale-105';
 
-export function MenuMovimentacoes() {
+export function StepMenu({ value, level }: { value: string; level: number }) {
     const { goToStep } = useStepper<ModalNovoSteps>();
     return (
-        <>
+        <StepperContent value={value} level={level}>
             <DialogOrDrawerHeader
                 title={'Criar movimentação'}
                 withBackButton={false}
@@ -70,6 +70,6 @@ export function MenuMovimentacoes() {
                     <span className="text-base font-medium">Investimento</span>
                 </Card>
             </div>
-        </>
+        </StepperContent>
     );
 }

@@ -1,11 +1,11 @@
 'use client';
-import { FormReceita } from '@/entities/movimentacoes/forms/form-receita';
 import {
     StepObject,
     Stepper,
     StepperContent,
 } from '@/features/modal-novo/ui/stepper';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
+import { StepFormReceita } from '@/features/modal-novo/ui/steps/step-form-receita';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
 import { useEvent } from '@/shared/ui/custom/use-event';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
@@ -42,23 +42,23 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                     onDelete={() => setStep({ name: 'excluir', level: 1 })}
                 />
             </StepperContent>
-            <StepperContent value="editar" level={1}>
-                <FormReceita
-                    stepBack={{ name: 'detail', level: 0 }}
-                    formValues={
-                        {
-                            ...receita,
-                            categoria: receita?.categoria?.sigla,
-                            valor: Number(receita?.valor),
-                        } as ReceitaSchema
-                    }
-                    onSucess={() =>
-                        getReceita(id).then((receita) => {
-                            setReceita(receita);
-                        })
-                    }
-                />
-            </StepperContent>
+            <StepFormReceita
+                subscribeEvent={event.subscribe}
+                step={{ name: 'editar', level: 1 }}
+                stepBack={{ name: 'detail', level: 0 }}
+                formValues={
+                    {
+                        ...receita,
+                        categoria: receita?.categoria?.sigla,
+                        valor: Number(receita?.valor),
+                    } as ReceitaSchema
+                }
+                onSucess={() =>
+                    getReceita(id).then((receita) => {
+                        setReceita(receita);
+                    })
+                }
+            />
             <StepperContent value="excluir" level={1}>
                 <ExcluirMovimentacao
                     tipoMovimentacao={'receita'}
@@ -71,7 +71,7 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                 />
             </StepperContent>
             <StepperContent
-                value="lista-categorias"
+                value="lista-categorias-receita"
                 level={2}
                 className="md:w-[25rem]"
             >

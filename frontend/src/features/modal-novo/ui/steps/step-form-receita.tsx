@@ -1,0 +1,67 @@
+import { FormReceita } from '@/entities/movimentacoes/forms/form-receita';
+import { receita } from '@/shared/lib/forms';
+import { useEvent } from '@/shared/ui/custom/use-event';
+import { ReceitaSchema } from '@/types/models/receita';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { DialogOrDrawerHeader } from '../step-header';
+import { StepObject, StepperContent, useStepper } from '../stepper';
+
+type StepFormReceitaProps = {
+    subscribeEvent: ReturnType<typeof useEvent>['subscribe'];
+    stepBack: StepObject<string>;
+    step: StepObject<string>;
+    formValues?: ReceitaSchema;
+    onSucess?: () => void;
+};
+
+export function StepFormReceita({
+    subscribeEvent,
+    stepBack,
+    step,
+    formValues,
+    onSucess,
+}: StepFormReceitaProps) {
+    const { goToStep } = useStepper();
+    const form = useForm<ReceitaSchema>({
+        resolver: zodResolver(receita),
+        defaultValues: formValues,
+    });
+    const emptyForm: ReceitaSchema = {
+        valor: 0,
+        categoria: '',
+        descricao: '',
+    };
+
+    useEffect(() => {
+        subscribeEvent('onSelectCategoria', (categoria) => {
+            form.setValue('categoria', categoria.sigla);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (form.getValues('id') === undefined) {
+            form.reset(formValues);
+        }
+    }, [formValues]);
+
+    return (
+        <StepperContent value={step.name} level={step.level}>
+            <DialogOrDrawerHeader
+                title={formValues?.id ? 'Editar Receita' : 'Nova Receita'}
+                onBack={() => {
+                    form.reset(formValues?.id ? formValues : emptyForm);
+                    goToStep(stepBack);
+                }}
+            />
+            <FormReceita
+                formState={form}
+                onSucess={() => {
+                    onSucess?.();
+                    setTimeout(() => goToStep(stepBack), 100);
+                }}
+            />
+        </StepperContent>
+    );
+}
