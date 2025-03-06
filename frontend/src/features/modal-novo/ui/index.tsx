@@ -1,7 +1,7 @@
 'use client';
 import { DialogOrDrawer } from '@/shared/ui/custom/dialog-drawer';
 import { useEvent } from '@/shared/ui/custom/use-event';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { FormInvestimento } from '../../../entities/movimentacoes/forms/form-investimento';
 import { FormTransferencia } from '../../../entities/movimentacoes/forms/form-transferencia';
 import { useModalNovoStore } from '../lib/modal-novo-store';
@@ -27,11 +27,6 @@ export function ModalNovo() {
         level: 0,
     });
 
-    const onSucess = useCallback(() => {
-        onOpenChange(false);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <DialogOrDrawer
             open={isOpen}
@@ -46,13 +41,13 @@ export function ModalNovo() {
                     step={{ name: 'gasto', level: 1 }}
                     stepBack={{ name: 'menu', level: 0 }}
                     subscribeEvent={event.subscribe}
-                    onSucess={onSucess}
+                    onSucess={() => onOpenChange(false)}
                 />
                 <StepFormReceita
                     step={{ name: 'receita', level: 1 }}
                     stepBack={{ name: 'menu', level: 0 }}
                     subscribeEvent={event.subscribe}
-                    onSucess={onSucess}
+                    onSucess={() => onOpenChange(false)}
                 />
                 <StepperContent value="transferencia" level={1}>
                     <FormTransferencia />

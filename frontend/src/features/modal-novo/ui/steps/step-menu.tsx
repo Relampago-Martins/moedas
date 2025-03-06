@@ -20,7 +20,7 @@ export function StepMenu({ value, level }: { value: string; level: number }) {
                 title={'Criar movimentação'}
                 withBackButton={false}
             />
-            <div className="grid w-full gap-4 sm:grid-cols-2">
+            <div className="grid w-full grid-cols-2 gap-4">
                 <Card
                     onClick={() =>
                         goToStep({
