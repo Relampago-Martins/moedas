@@ -1,5 +1,5 @@
 'use client';
-import { useStepper } from '@/features/modal-novo/ui/stepper';
+import { useStepper } from '@/entities/stepper/ui/stepper';
 import { getCategoria } from '@/shared/api/endpoints/categoria-cli';
 import { Categoria } from '@/types/models/categoria';
 import { DespesaSchema } from '@/types/models/despesa';

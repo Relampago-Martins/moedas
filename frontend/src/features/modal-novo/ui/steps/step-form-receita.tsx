@@ -1,12 +1,16 @@
 import { FormReceita } from '@/entities/movimentacoes/forms/form-receita';
+import { StepObject } from '@/entities/stepper/lib/types';
 import { receita } from '@/shared/lib/forms';
 import { useEvent } from '@/shared/ui/custom/use-event';
 import { ReceitaSchema } from '@/types/models/receita';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import {
+    StepperContent,
+    useStepper,
+} from '../../../../entities/stepper/ui/stepper';
 import { DialogOrDrawerHeader } from '../step-header';
-import { StepObject, StepperContent, useStepper } from '../stepper';
 
 type StepFormReceitaProps = {
     subscribeEvent: ReturnType<typeof useEvent>['subscribe'];

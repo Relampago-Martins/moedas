@@ -1,9 +1,6 @@
 'use client';
-import {
-    StepObject,
-    Stepper,
-    StepperContent,
-} from '@/features/modal-novo/ui/stepper';
+import { StepObject } from '@/entities/stepper/lib/types';
+import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { StepFormReceita } from '@/features/modal-novo/ui/steps/step-form-receita';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';

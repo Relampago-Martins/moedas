@@ -1,8 +1,11 @@
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
 import { Categoria } from '@/types/models/categoria';
 import { useEffect, useState } from 'react';
+import {
+    StepObject,
+    useStepper,
+} from '../../../../entities/stepper/ui/stepper';
 import { DialogOrDrawerHeader } from '../step-header';
-import { StepObject, useStepper } from '../stepper';
 
 type ListaCategoriasProps = {
     stepBack: StepObject<string>;

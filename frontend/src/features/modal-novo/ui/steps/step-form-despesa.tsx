@@ -1,16 +1,19 @@
 import { FormDespesa } from '@/entities/movimentacoes/forms/form-despesa';
+import { StepObject } from '@/entities/stepper/lib/types';
 import { despesa } from '@/shared/lib/forms';
 import { useEvent } from '@/shared/ui/custom/use-event';
 import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import {
+    StepperContent,
+    useStepper,
+} from '../../../../entities/stepper/ui/stepper';
 import { DialogOrDrawerHeader } from '../step-header';
-import { StepObject, StepperContent, useStepper } from '../stepper';
 
 type StepFormDespesaProps = {
     subscribeEvent: ReturnType<typeof useEvent>['subscribe'];
-    stepBack: StepObject<string>;
     step: StepObject<string>;
     formValues?: DespesaSchema;
     onSucess?: () => void;
@@ -18,12 +21,11 @@ type StepFormDespesaProps = {
 
 export function StepFormDespesa({
     subscribeEvent,
-    stepBack,
     step,
     formValues,
     onSucess,
 }: StepFormDespesaProps) {
-    const { goToStep } = useStepper();
+    const { goToStep, previous } = useStepper();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: formValues,
@@ -53,14 +55,14 @@ export function StepFormDespesa({
                 title={formValues?.id ? 'Editar despesa' : 'Nova despesa'}
                 onBack={() => {
                     form.reset(formValues?.id ? formValues : emptyForm);
-                    goToStep(stepBack);
+                    previous();
                 }}
             />
             <FormDespesa
                 formState={form}
                 onSucess={() => {
                     onSucess?.();
-                    setTimeout(() => goToStep(stepBack), 100);
+                    setTimeout(() => previous(), 100);
                 }}
             />
         </StepperContent>

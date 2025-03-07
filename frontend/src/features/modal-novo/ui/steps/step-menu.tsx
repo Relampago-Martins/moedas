@@ -6,8 +6,11 @@ import {
 import { GastoIcon } from '@/shared/ui/huge-icons/gasto';
 import { ReceitaIcon } from '@/shared/ui/huge-icons/receita';
 import { ModalNovoSteps } from '..';
+import {
+    StepperContent,
+    useStepper,
+} from '../../../../entities/stepper/ui/stepper';
 import { DialogOrDrawerHeader } from '../step-header';
-import { StepperContent, useStepper } from '../stepper';
 
 const cardClass =
     'flex h-[5.5rem] w-full gap-1 cursor-pointer flex-col items-center justify-center transition-transform duration-300 hover:scale-105';

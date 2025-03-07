@@ -1,11 +1,12 @@
 'use client';
+import { StepObject } from '@/entities/stepper/lib/types';
 import { DialogOrDrawer } from '@/shared/ui/custom/dialog-drawer';
 import { useEvent } from '@/shared/ui/custom/use-event';
 import { useState } from 'react';
 import { FormInvestimento } from '../../../entities/movimentacoes/forms/form-investimento';
 import { FormTransferencia } from '../../../entities/movimentacoes/forms/form-transferencia';
+import { Stepper, StepperContent } from '../../../entities/stepper/ui/stepper';
 import { useModalNovoStore } from '../lib/modal-novo-store';
-import { StepObject, Stepper, StepperContent } from './stepper';
 import { ListaCategorias } from './steps/lista-categorias';
 import { StepFormDespesa } from './steps/step-form-despesa';
 import { StepFormReceita } from './steps/step-form-receita';
@@ -39,7 +40,6 @@ export function ModalNovo() {
                 <StepMenu value="menu" level={0} />
                 <StepFormDespesa
                     step={{ name: 'gasto', level: 1 }}
-                    stepBack={{ name: 'menu', level: 0 }}
                     subscribeEvent={event.subscribe}
                     onSucess={() => onOpenChange(false)}
                 />

@@ -3,7 +3,7 @@ import {
     StepObject,
     Stepper,
     StepperContent,
-} from '@/features/modal-novo/ui/stepper';
+} from '@/entities/stepper/ui/stepper';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { StepFormDespesa } from '@/features/modal-novo/ui/steps/step-form-despesa';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
