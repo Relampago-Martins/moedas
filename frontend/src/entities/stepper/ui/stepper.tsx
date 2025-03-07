@@ -2,8 +2,6 @@ import { StepObject } from '@/entities/stepper/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, {
     createContext,
-    Dispatch,
-    SetStateAction,
     useContext,
     useEffect,
     useMemo,
@@ -102,34 +100,26 @@ function SliderAnimation({
 
 // Componente principal Stepper
 interface StepperProps<T extends string> {
-    currentStep: StepObject<T>;
-    onStepChange: Dispatch<SetStateAction<StepObject<T>>>;
+    defaultValue: StepObject<T>;
     children: React.ReactNode;
 }
 
 function Stepper<T extends string>(props: StepperProps<T>) {
     const [currentStep, setCurrentStep] = useState<StepObject<T>>(
-        props.currentStep,
+        props.defaultValue,
     );
     const [previousStep, setPreviousStep] = useState<StepObject<T> | null>(
         null,
     );
-
-    // Navigation tree manager (encapsulated logic)
     const navigationTreeRef = useMemo(() => {
-        console.log('new StepNavigationTree', props.currentStep);
-        return new StepNavigationTree<T>(props.currentStep);
+        return new StepNavigationTree<T>(props.defaultValue);
     }, []);
-
-    useEffect(() => {
-        setCurrentStep(props.currentStep);
-    }, [props.currentStep]);
 
     // Função para navegar entre os passos
     const goToStep = (step: StepObject<T>) => {
         setPreviousStep(currentStep);
         navigationTreeRef.navigateTo(step);
-        props.onStepChange(step);
+        setCurrentStep(step);
     };
 
     // Função para voltar ao passo anterior na árvore
@@ -139,7 +129,7 @@ function Stepper<T extends string>(props: StepperProps<T>) {
         if (success) {
             const parentStep = navigationTreeRef.getCurrentStep();
             setPreviousStep(currentStep);
-            props.onStepChange(parentStep);
+            setCurrentStep(parentStep);
             return true;
         }
 
