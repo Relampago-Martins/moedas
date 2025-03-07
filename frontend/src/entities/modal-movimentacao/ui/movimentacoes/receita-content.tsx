@@ -42,7 +42,6 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
             <StepFormReceita
                 subscribeEvent={event.subscribe}
                 step={{ name: 'editar', level: 1 }}
-                stepBack={{ name: 'detail', level: 0 }}
                 formValues={
                     {
                         ...receita,

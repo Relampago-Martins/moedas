@@ -45,7 +45,6 @@ export function ModalNovo() {
                 />
                 <StepFormReceita
                     step={{ name: 'receita', level: 1 }}
-                    stepBack={{ name: 'menu', level: 0 }}
                     subscribeEvent={event.subscribe}
                     onSucess={() => onOpenChange(false)}
                 />

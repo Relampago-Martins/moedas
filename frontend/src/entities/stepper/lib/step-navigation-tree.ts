@@ -42,6 +42,12 @@ export class StepNavigationTree<T = string> {
     /**
      * Navigate to a specific step
      * Will update the tree structure accordingly
+     * 
+     * Possiveis problemas:
+     * - Só pode avançar um nível por vez 
+     *      - mais que isso ele cria um nodo no nivel errado
+     * - Um nodo não pode ter ter dois parents 
+     *      - se tentar ele cria um nodo com valor duplicado
      */
     navigateTo(step: StepObject<T>): void {
         const stepName = String(step.name);

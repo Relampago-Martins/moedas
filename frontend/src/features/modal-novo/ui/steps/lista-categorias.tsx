@@ -1,10 +1,8 @@
+import { StepObject } from '@/entities/stepper/lib/types';
+import { useStepper } from '@/entities/stepper/ui/stepper';
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
 import { Categoria } from '@/types/models/categoria';
 import { useEffect, useState } from 'react';
-import {
-    StepObject,
-    useStepper,
-} from '../../../../entities/stepper/ui/stepper';
 import { DialogOrDrawerHeader } from '../step-header';
 
 type ListaCategoriasProps = {
@@ -14,11 +12,10 @@ type ListaCategoriasProps = {
 };
 
 export function ListaCategorias({
-    stepBack,
     onSelect,
     tipoCategoria = 'D',
 }: ListaCategoriasProps) {
-    const { goToStep } = useStepper();
+    const { previous } = useStepper();
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
         getCategorias(tipoCategoria).then((data) => {
@@ -30,7 +27,7 @@ export function ListaCategorias({
         <>
             <DialogOrDrawerHeader
                 title={'Categorias'}
-                onBack={() => goToStep(stepBack)}
+                onBack={() => previous()}
             />
             <div className=" grid h-[25rem] grid-cols-3 gap-4 overflow-y-scroll pr-4 ">
                 {categorias.map((categoria) => (
@@ -40,7 +37,7 @@ export function ListaCategorias({
                         style={{ color: categoria.cor }}
                         onClick={() => {
                             onSelect?.(categoria);
-                            goToStep(stepBack);
+                            previous();
                         }}
                     >
                         <div className="flex h-7 w-7 items-center justify-center rounded-full">

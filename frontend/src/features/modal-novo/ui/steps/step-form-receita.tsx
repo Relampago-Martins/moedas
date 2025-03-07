@@ -14,7 +14,6 @@ import { DialogOrDrawerHeader } from '../step-header';
 
 type StepFormReceitaProps = {
     subscribeEvent: ReturnType<typeof useEvent>['subscribe'];
-    stepBack: StepObject<string>;
     step: StepObject<string>;
     formValues?: ReceitaSchema;
     onSucess?: () => void;
@@ -22,12 +21,11 @@ type StepFormReceitaProps = {
 
 export function StepFormReceita({
     subscribeEvent,
-    stepBack,
     step,
     formValues,
     onSucess,
 }: StepFormReceitaProps) {
-    const { goToStep } = useStepper();
+    const { previous } = useStepper();
     const form = useForm<ReceitaSchema>({
         resolver: zodResolver(receita),
         defaultValues: formValues,
@@ -56,14 +54,14 @@ export function StepFormReceita({
                 title={formValues?.id ? 'Editar Receita' : 'Nova Receita'}
                 onBack={() => {
                     form.reset(formValues?.id ? formValues : emptyForm);
-                    goToStep(stepBack);
+                    previous();
                 }}
             />
             <FormReceita
                 formState={form}
                 onSucess={() => {
                     onSucess?.();
-                    setTimeout(() => goToStep(stepBack), 100);
+                    setTimeout(() => previous(), 100);
                 }}
             />
         </StepperContent>

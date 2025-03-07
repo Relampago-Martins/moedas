@@ -6,7 +6,7 @@ import React, {
     SetStateAction,
     useContext,
     useEffect,
-    useRef,
+    useMemo,
     useState,
 } from 'react';
 import { StepNavigationTree } from '../lib/step-navigation-tree';
@@ -116,9 +116,10 @@ function Stepper<T extends string>(props: StepperProps<T>) {
     );
 
     // Navigation tree manager (encapsulated logic)
-    const navigationTreeRef = useRef(
-        new StepNavigationTree<T>(props.currentStep),
-    );
+    const navigationTreeRef = useMemo(() => {
+        console.log('new StepNavigationTree', props.currentStep);
+        return new StepNavigationTree<T>(props.currentStep);
+    }, []);
 
     useEffect(() => {
         setCurrentStep(props.currentStep);
@@ -127,16 +128,16 @@ function Stepper<T extends string>(props: StepperProps<T>) {
     // Função para navegar entre os passos
     const goToStep = (step: StepObject<T>) => {
         setPreviousStep(currentStep);
-        navigationTreeRef.current.navigateTo(step);
+        navigationTreeRef.navigateTo(step);
         props.onStepChange(step);
     };
 
     // Função para voltar ao passo anterior na árvore
     const goToPrevious = () => {
-        const success = navigationTreeRef.current.navigateBack();
+        const success = navigationTreeRef.navigateBack();
 
         if (success) {
-            const parentStep = navigationTreeRef.current.getCurrentStep();
+            const parentStep = navigationTreeRef.getCurrentStep();
             setPreviousStep(currentStep);
             props.onStepChange(parentStep);
             return true;
