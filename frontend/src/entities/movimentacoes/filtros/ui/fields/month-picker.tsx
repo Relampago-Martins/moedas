@@ -1,7 +1,8 @@
+import { getDateFromISO } from '@/shared/lib/utils';
 import { TFiltroPeriodo } from '@/types/filters';
 import { useState } from 'react';
 import { Control, useController } from 'react-hook-form';
-import { formatDate, getDateFomISO, getMonthRange } from '../../lib/utils';
+import { formatDate, getMonthRange } from '../../lib/utils';
 
 type DatePickerProps = {
     formControl: Control<TFiltroPeriodo>;
@@ -28,8 +29,8 @@ export function MonthPicker({ formControl, className }: DatePickerProps) {
     const [periodo, setPeriodo] = useState<PeriodoState>(
         !!beforeField.field.value && !!afterField.field.value
             ? {
-                  before: getDateFomISO(beforeField.field.value),
-                  after: getDateFomISO(afterField.field.value),
+                  before: getDateFromISO(beforeField.field.value),
+                  after: getDateFromISO(afterField.field.value),
               }
             : getMonthRange(new Date()),
     );

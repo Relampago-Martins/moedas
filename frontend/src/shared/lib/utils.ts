@@ -61,3 +61,15 @@ export function obj2SearchParams<T extends object>(obj: T) {
   });
   return urlParams;
 }
+
+
+/**
+ * Recebe uma data no formato yyyy-mm-dd e retorna um objeto de data
+ */
+export function getDateFromISO(data: string | null) {
+  if (!data) return new Date();
+  
+  const [year, month, day] = data.split('-').map(Number);
+  return new Date(year, month - 1, day);
+
+}

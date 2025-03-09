@@ -9,6 +9,7 @@ import { ListaCategorias } from './steps/lista-categorias';
 import { StepFormDespesa } from './steps/step-form-despesa';
 import { StepFormReceita } from './steps/step-form-receita';
 import { StepMenu } from './steps/step-menu';
+import { StepSelectDate } from './steps/step-select-date';
 
 export type ModalNovoSteps =
     | 'menu'
@@ -16,7 +17,9 @@ export type ModalNovoSteps =
     | 'receita'
     | 'transferencia'
     | 'investimento'
-    | 'lista-categorias';
+    | 'lista-categorias'
+    | 'lista-categorias-receita'
+    | 'calendario';
 
 export function ModalNovo() {
     const { isOpen, onOpenChange } = useModalNovoStore((state) => state);
@@ -58,7 +61,6 @@ export function ModalNovo() {
                             onSelect={(categoria) => {
                                 event.submit('onSelectCategoria', categoria);
                             }}
-                            stepBack={{ name: 'gasto', level: 1 }}
                         />
                     </StepperContent>
                     <StepperContent
@@ -71,7 +73,17 @@ export function ModalNovo() {
                             onSelect={(categoria) => {
                                 event.submit('onSelectCategoria', categoria);
                             }}
-                            stepBack={{ name: 'receita', level: 1 }}
+                        />
+                    </StepperContent>
+                    <StepperContent
+                        value="calendario"
+                        level={2}
+                        className="md:w-[25rem]"
+                    >
+                        <StepSelectDate
+                            onSelect={(date) => {
+                                event.submit('onSelectDate', date);
+                            }}
                         />
                     </StepperContent>
                 </Stepper>

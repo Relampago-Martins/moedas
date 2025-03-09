@@ -69,6 +69,7 @@ const SelectCategoria = React.forwardRef<
                 style={{ backgroundColor: categoriaSelecionada?.cor }}
             ></div>
             <i className="ph ph-caret-right mx-3 justify-self-end"></i>
+            <input {...props} type="hidden" />
         </button>
     );
 });

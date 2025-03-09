@@ -21,6 +21,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeDespesaAleatoria } from '../../../features/modal-novo/lib/utils';
 import { SelectCategoria } from './fields/select-categoria';
+import { SelectDate } from './fields/select-date';
 import { SelectFormaPagamento } from './fields/select-forma-pagamento';
 
 type FormDespesaProps = {
@@ -55,14 +56,14 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
     return (
         <Form {...form}>
             <form
-                className="flex flex-col gap-5"
+                className="grid grid-cols-2 gap-5 "
                 onSubmit={form.handleSubmit(onSubmit, console.error)}
             >
                 <FormField
                     name="valor"
                     control={form.control}
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="col-span-2">
                             <FormLabel>Valor</FormLabel>
                             <FormControl>
                                 <CurrencyInput
@@ -78,7 +79,7 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
                     name="descricao"
                     control={form.control}
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="col-span-2">
                             <FormLabel>Nome</FormLabel>
                             <FormControl>
                                 <Input
@@ -94,10 +95,23 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
                     name="categoria"
                     control={form.control}
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="col-span-1">
                             <FormLabel>Categoria</FormLabel>
                             <FormControl>
                                 <SelectCategoria {...field} />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="data"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem className="col-span-1">
+                            <FormLabel>Data</FormLabel>
+                            <FormControl>
+                                <SelectDate {...field} />
                             </FormControl>
                             <FormMessage></FormMessage>
                         </FormItem>
@@ -108,7 +122,7 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
                     name="forma_pagamento"
                     control={form.control}
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="col-span-2">
                             <FormLabel>Forma de Pagamento</FormLabel>
                             <FormControl>
                                 <SelectFormaPagamento {...field} />

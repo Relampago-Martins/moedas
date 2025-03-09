@@ -25,7 +25,7 @@ export function StepFormDespesa({
     formValues,
     onSucess,
 }: StepFormDespesaProps) {
-    const { goToStep, previous } = useStepper();
+    const { previous } = useStepper();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: formValues,
@@ -40,6 +40,9 @@ export function StepFormDespesa({
     useEffect(() => {
         subscribeEvent('onSelectCategoria', (categoria) => {
             form.setValue('categoria', categoria.sigla);
+        });
+        subscribeEvent('onSelectDate', (date) => {
+            form.setValue('data', date.toISOString().split('T')[0]);
         });
     }, []);
 

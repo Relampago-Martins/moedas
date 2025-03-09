@@ -65,10 +65,6 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                         event.submit('onSelectCategoria', categoria);
                     }}
                     tipoCategoria="R"
-                    stepBack={{
-                        name: 'editar',
-                        level: 1,
-                    }}
                 />
             </StepperContent>
         </Stepper>
