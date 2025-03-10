@@ -23,7 +23,7 @@ export function SelectDate(props: DateInputProps) {
             {props.value ? (
                 <span className="ml-3">{toLocalDate(props.value)}</span>
             ) : (
-                <span className="ml-3">Selecione a data</span>
+                <span className="ml-3">Selecione</span>
             )}
             <i className="ph ph-calendar absolute right-3 text-xl"></i>
             <input {...props} type="hidden" />

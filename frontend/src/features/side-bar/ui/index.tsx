@@ -1,8 +1,7 @@
 import { Logo } from '@/shared/ui/custom/logo';
-import { ChartUpIcon, LeftToRightListDashIcon } from '@/shared/ui/huge-icons';
 import { Separator } from '@/shared/ui/separator';
 import { MotionConfig } from 'framer-motion';
-import { Blocks, House, Menu, Settings } from 'lucide-react';
+import { Menu, Settings } from 'lucide-react';
 import Link from 'next/link';
 import {
     NavBar,
@@ -37,14 +36,12 @@ export function SideBar() {
                     <NavBarItem
                         component={<Link href="/dashboard" />}
                         activeName="/dashboard"
-                        icon={<House className="ml-1 h-4 w-4" />}
+                        icon={<i className="ph ph ph-house ml-1 text-xl" />}
                     >
                         Início
                     </NavBarItem>
                     <NavBarItem
-                        icon={
-                            <LeftToRightListDashIcon className="ml-1 h-4 w-4" />
-                        }
+                        icon={<i className="ph ph-list-dashes ml-1 text-xl" />}
                         component={<Link href="/movimentacoes" />}
                         activeName="/movimentacoes"
                     >
@@ -52,18 +49,20 @@ export function SideBar() {
                     </NavBarItem>
                     <NavBarItem
                         activeName="/plano-financeiro"
-                        icon={<ChartUpIcon className="ml-1 h-4 w-4" />}
+                        icon={
+                            <i className="ph ph-rocket-launch ml-1 text-xl" />
+                        }
                         component={<Link href="/plano-financeiro" />}
                     >
                         Plano financeiro
                     </NavBarItem>
-                    <NavBarItem
+                    {/* <NavBarItem
                         icon={<Blocks className="ml-1 h-4 w-4" />}
                         component={<Link href="/playground" />}
                         activeName="/playground"
                     >
                         PlayGround
-                    </NavBarItem>
+                    </NavBarItem> */}
                     <NavBarItem
                         icon={<Settings className="ml-1 h-4 w-4" />}
                         component={<Link href="/configuracoes" />}

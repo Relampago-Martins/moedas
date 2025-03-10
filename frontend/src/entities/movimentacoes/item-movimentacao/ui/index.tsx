@@ -38,7 +38,7 @@ export function ItemMovimentacao({
                     ></i>
 
                     <div
-                        className={`absolute inset-0 z-0 w-full opacity-20 ${movimentacao.tipo === 'R' ? 'bg-success' : 'bg-destructive'}`}
+                        className={`absolute inset-0 z-0 w-full opacity-70 dark:opacity-20 ${movimentacao.tipo === 'R' ? 'bg-success' : 'bg-destructive'}`}
                     ></div>
                 </div>
                 <div className="w-full">

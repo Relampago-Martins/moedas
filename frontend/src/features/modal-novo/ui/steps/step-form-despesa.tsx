@@ -1,3 +1,4 @@
+'use client';
 import { FormDespesa } from '@/entities/movimentacoes/forms/form-despesa';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { despesa } from '@/shared/lib/forms';
@@ -13,7 +14,7 @@ import {
 import { DialogOrDrawerHeader } from '../step-header';
 
 type StepFormDespesaProps = {
-    subscribeEvent: ReturnType<typeof useEvent>['subscribe'];
+    subscribeEvent?: ReturnType<typeof useEvent>['subscribe'];
     step: StepObject<string>;
     formValues?: DespesaSchema;
     onSucess?: () => void;
@@ -38,10 +39,10 @@ export function StepFormDespesa({
     };
 
     useEffect(() => {
-        subscribeEvent('onSelectCategoria', (categoria) => {
+        subscribeEvent?.('onSelectCategoria', (categoria) => {
             form.setValue('categoria', categoria.sigla);
         });
-        subscribeEvent('onSelectDate', (date) => {
+        subscribeEvent?.('onSelectDate', (date) => {
             form.setValue('data', date.toISOString().split('T')[0]);
         });
     }, []);

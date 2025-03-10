@@ -1,3 +1,4 @@
+'use client';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, {

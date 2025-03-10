@@ -1,3 +1,4 @@
+'use client';
 import { FormReceita } from '@/entities/movimentacoes/forms/form-receita';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { receita } from '@/shared/lib/forms';
@@ -13,7 +14,7 @@ import {
 import { DialogOrDrawerHeader } from '../step-header';
 
 type StepFormReceitaProps = {
-    subscribeEvent: ReturnType<typeof useEvent>['subscribe'];
+    subscribeEvent?: ReturnType<typeof useEvent>['subscribe'];
     step: StepObject<string>;
     formValues?: ReceitaSchema;
     onSucess?: () => void;
@@ -37,7 +38,7 @@ export function StepFormReceita({
     };
 
     useEffect(() => {
-        subscribeEvent('onSelectCategoria', (categoria) => {
+        subscribeEvent?.('onSelectCategoria', (categoria) => {
             form.setValue('categoria', categoria.sigla);
         });
     }, []);

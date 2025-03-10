@@ -1,5 +1,6 @@
 'use client';
 import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
+import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
 import { getMovimentacoes } from '@/shared/api/endpoints/movimentacao-cli';
 import { Button } from '@/shared/ui/button';
 import { Skeleton } from '@/shared/ui/skeleton';
@@ -11,6 +12,7 @@ import { cleanDate, separarPorDatas } from '../lib';
 
 export function ListaMovimentacoes() {
     const searchParams = useSearchParams();
+    const onOpenChange = useModalNovoStore((state) => state.onOpenChange);
     const { setMovimentacaoSelecionada, setMovimentacoes } =
         useMovimentacaoContext();
 
@@ -66,10 +68,7 @@ export function ListaMovimentacoes() {
                     <span className="text-lg font-medium">
                         Nenhuma movimentação
                     </span>
-                    <Button
-                        variant={'link'}
-                        onClick={() => console.log('Adicionar movimentação')}
-                    >
+                    <Button variant={'link'} onClick={() => onOpenChange(true)}>
                         Adicionar
                     </Button>
                 </p>

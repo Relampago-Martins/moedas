@@ -1,3 +1,4 @@
+'use client';
 import { useStepper } from '@/entities/stepper/ui/stepper';
 import { Calendar } from '@/shared/ui/calendar';
 import { useState } from 'react';
@@ -15,7 +16,7 @@ export function StepSelectDate({ onSelect }: StepSelectDateProps) {
     return (
         <>
             <DialogOrDrawerHeader
-                title={'Categorias'}
+                title={'Data da Compra'}
                 onBack={() => previous()}
             />
             <Calendar
@@ -27,7 +28,7 @@ export function StepSelectDate({ onSelect }: StepSelectDateProps) {
                     setSelected(date);
                     previous();
                 }}
-                className="rounded-md border"
+                className="w-full"
             />
         </>
     );

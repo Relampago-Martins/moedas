@@ -1,3 +1,4 @@
+'use client';
 import { useStepper } from '@/entities/stepper/ui/stepper';
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
 import { Categoria } from '@/types/models/categoria';
