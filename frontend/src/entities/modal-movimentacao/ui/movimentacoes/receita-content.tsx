@@ -33,7 +33,6 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                 formValues={
                     {
                         ...receita,
-                        categoria: receita?.categoria?.sigla,
                         valor: Number(receita?.valor),
                     } as ReceitaSchema
                 }

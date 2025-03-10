@@ -16,6 +16,7 @@ interface TStepperContext<T = string> {
     previousStep: StepObject<T> | null;
     goToStep: (step: StepObject<T>) => void;
     previous: () => void;
+    hasPrevious: boolean;
     events: ReturnType<typeof useEvent>;
 }
 
@@ -146,6 +147,7 @@ function Stepper<T extends string>(props: StepperProps<T>) {
         goToStep,
         previous: () => goToPrevious(),
         events,
+        hasPrevious: navigationTree.hasPrevious(),
     };
     return (
         <StepperContext.Provider value={contextValue}>

@@ -4,7 +4,10 @@ import { revalidateTag } from "next/cache";
 import { ApiClient } from "../api-client";
 
 export async function criaReceita(receita: ReceitaSchema){
-    const resp = await ApiClient.getInstance().post<Receita>("/receitas/", receita);
+    const resp = await ApiClient.getInstance().post<Receita>("/receitas/", {
+        ...receita,
+        categoria: receita.categoria.sigla,
+    });
     return resp;
 }
 
@@ -25,7 +28,10 @@ export async function deleteReceita(id: number){
 }
 
 export async function atualizaReceita(id: number, receita: ReceitaSchema){
-    const resp = await ApiClient.getInstance().patch<Receita>(`/receitas/${id}/`, receita);
+    const resp = await ApiClient.getInstance().patch<Receita>(`/receitas/${id}/`, {
+        ...receita,
+        categoria: receita.categoria.sigla,
+    });
     revalidateTag(`getReceita${id}`);
     return resp;
 }

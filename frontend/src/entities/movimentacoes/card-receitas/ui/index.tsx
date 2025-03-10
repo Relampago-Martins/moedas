@@ -25,14 +25,8 @@ export function CardReceitas() {
         value: Number(receita.valor),
     }));
     return (
-        <div className="flex w-full min-w-[200px] overflow-hidden rounded-md border bg-card">
-            <button
-                onClick={openNovaReceita}
-                className="flex h-full w-10 items-center justify-center border-r"
-            >
-                <i className="ph-bold ph-plus text-2xl text-success-foreground transition-transform hover:scale-110" />
-            </button>
-            <div className="relative w-full pt-8">
+        <div className="flex w-full min-w-[200px] flex-col ">
+            <div className="relative w-full overflow-hidden rounded-md border bg-card pt-8">
                 <div className="absolute inset-0 z-[1] px-2 py-1">
                     <div className="flex items-center gap-1">
                         <TradeUpIcon className="h-5 w-5" />
@@ -76,6 +70,13 @@ export function CardReceitas() {
                 [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
                 ></div>
             </div>
+            <button
+                onClick={openNovaReceita}
+                className="flex items-center justify-center gap-2  pt-2 text-sm text-muted transition-transform hover:scale-110"
+            >
+                <i className="ph-bold ph-plus" />
+                <span className="hover:underline">Receita</span>
+            </button>
         </div>
     );
 }

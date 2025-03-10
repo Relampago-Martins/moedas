@@ -23,7 +23,7 @@ export function StepFormDespesa({
     formValues,
     onSucess,
 }: StepFormDespesaProps) {
-    const { previous, events } = useStepper();
+    const { previous, events, hasPrevious } = useStepper();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: formValues,
@@ -32,12 +32,11 @@ export function StepFormDespesa({
         descricao: '',
         valor: 0,
         forma_pagamento: '',
-        categoria: '',
     };
 
     useEffect(() => {
         events.subscribe('onSelectCategoria', (categoria) => {
-            form.setValue('categoria', categoria.sigla);
+            form.setValue('categoria', categoria);
         });
         events.subscribe('onSelectDate', (date) => {
             form.setValue('data', date.toISOString().split('T')[0]);
@@ -45,6 +44,7 @@ export function StepFormDespesa({
     }, []);
 
     useEffect(() => {
+        // usado para resetar o form quando o usuário volta para o passo anterior
         if (form.getValues('id') === undefined) {
             form.reset(formValues);
         }
@@ -53,7 +53,16 @@ export function StepFormDespesa({
     return (
         <StepperContent value={step.name} level={step.level}>
             <DialogOrDrawerHeader
-                title={formValues?.id ? 'Editar despesa' : 'Nova despesa'}
+                withBackButton={hasPrevious}
+                title={
+                    <span className="flex items-center gap-2 text-xl text-destructive-foreground">
+                        <i className="ph-bold ph-trend-down" />
+
+                        {formValues?.id
+                            ? 'Editar Despesa'
+                            : 'Adicionar Despesa'}
+                    </span>
+                }
                 onBack={() => {
                     form.reset(formValues?.id ? formValues : emptyForm);
                     previous();

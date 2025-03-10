@@ -1,6 +1,7 @@
 'use client';
 import { useStepper } from '@/entities/stepper/ui/stepper';
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
+import { Skeleton } from '@/shared/ui/skeleton';
 import { Categoria } from '@/types/models/categoria';
 import { useEffect, useState } from 'react';
 import { DialogOrDrawerHeader } from '../step-header';
@@ -21,7 +22,7 @@ export function ListaCategorias({ tipoCategoria = 'D' }: ListaCategoriasProps) {
     return (
         <>
             <DialogOrDrawerHeader
-                title={'Categorias'}
+                title={'Selecionar Categoria'}
                 onBack={() => previous()}
             />
             <div className=" grid h-[25rem] grid-cols-3 gap-4 overflow-y-scroll pr-4 ">
@@ -49,6 +50,10 @@ export function ListaCategorias({ tipoCategoria = 'D' }: ListaCategoriasProps) {
                         ></div>
                     </button>
                 ))}
+                {categorias.length === 0 &&
+                    Array.from({ length: 9 }).map((_, i) => (
+                        <Skeleton key={i} className="aspect-square" />
+                    ))}
             </div>
         </>
     );

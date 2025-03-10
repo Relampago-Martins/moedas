@@ -23,20 +23,19 @@ export function StepFormReceita({
     formValues,
     onSucess,
 }: StepFormReceitaProps) {
-    const { previous, events } = useStepper();
+    const { previous, events, hasPrevious } = useStepper();
     const form = useForm<ReceitaSchema>({
         resolver: zodResolver(receita),
         defaultValues: formValues,
     });
-    const emptyForm: ReceitaSchema = {
+    const emptyForm = {
         valor: 0,
-        categoria: '',
         descricao: '',
     };
 
     useEffect(() => {
         events.subscribe('onSelectCategoria', (categoria) => {
-            form.setValue('categoria', categoria.sigla);
+            form.setValue('categoria', categoria);
         });
     }, []);
 
@@ -49,7 +48,15 @@ export function StepFormReceita({
     return (
         <StepperContent value={step.name} level={step.level}>
             <DialogOrDrawerHeader
-                title={formValues?.id ? 'Editar Receita' : 'Nova Receita'}
+                withBackButton={hasPrevious}
+                title={
+                    <span className="flex items-center gap-2 text-xl text-success-foreground">
+                        <i className="ph-bold ph-trend-up" />
+                        {formValues?.id
+                            ? 'Editar Receita'
+                            : 'Adicionar Receita'}
+                    </span>
+                }
                 onBack={() => {
                     form.reset(formValues?.id ? formValues : emptyForm);
                     previous();

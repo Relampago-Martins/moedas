@@ -109,4 +109,9 @@ export class StepNavigationTree<T = string> {
         // Can navigate to existing child
         return this.currentNode.children.has(stepName);
     }
+
+
+    hasPrevious(): boolean {
+        return !!this.currentNode.parent;
+    }
 }

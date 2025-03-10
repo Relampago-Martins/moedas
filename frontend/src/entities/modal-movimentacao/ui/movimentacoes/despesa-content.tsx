@@ -40,7 +40,6 @@ export function DespesaContent({ id }: DespesaContentProps) {
                     {
                         ...despesa,
                         forma_pagamento: despesa?.forma_pagamento.sigla,
-                        categoria: despesa?.categoria.sigla,
                         valor: Number(despesa?.valor.toString()),
                     } as DespesaSchema
                 }
