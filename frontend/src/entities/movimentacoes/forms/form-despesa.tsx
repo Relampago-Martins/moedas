@@ -131,7 +131,9 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Salvar</Button>
+                <Button type="submit" className="col-span-2">
+                    Salvar
+                </Button>
             </form>
         </Form>
     );

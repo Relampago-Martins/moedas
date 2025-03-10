@@ -1,5 +1,6 @@
 'use client';
 import { StepObject } from '@/entities/stepper/lib/types';
+import { useEvent } from '@/shared/lib/use-event';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, {
     createContext,
@@ -15,6 +16,7 @@ interface TStepperContext<T = string> {
     previousStep: StepObject<T> | null;
     goToStep: (step: StepObject<T>) => void;
     previous: () => void;
+    events: ReturnType<typeof useEvent>;
 }
 
 // Contexto para gerenciar o estado do Stepper
@@ -106,29 +108,30 @@ interface StepperProps<T extends string> {
 }
 
 function Stepper<T extends string>(props: StepperProps<T>) {
+    const events = useEvent();
     const [currentStep, setCurrentStep] = useState<StepObject<T>>(
         props.defaultValue,
     );
     const [previousStep, setPreviousStep] = useState<StepObject<T> | null>(
         null,
     );
-    const navigationTreeRef = useMemo(() => {
+    const navigationTree = useMemo(() => {
         return new StepNavigationTree<T>(props.defaultValue);
     }, []);
 
     // Função para navegar entre os passos
     const goToStep = (step: StepObject<T>) => {
         setPreviousStep(currentStep);
-        navigationTreeRef.navigateTo(step);
+        navigationTree.navigateTo(step);
         setCurrentStep(step);
     };
 
     // Função para voltar ao passo anterior na árvore
     const goToPrevious = () => {
-        const success = navigationTreeRef.navigateBack();
+        const success = navigationTree.navigateBack();
 
         if (success) {
-            const parentStep = navigationTreeRef.getCurrentStep();
+            const parentStep = navigationTree.getCurrentStep();
             setPreviousStep(currentStep);
             setCurrentStep(parentStep);
             return true;
@@ -142,8 +145,8 @@ function Stepper<T extends string>(props: StepperProps<T>) {
         previousStep: previousStep,
         goToStep,
         previous: () => goToPrevious(),
+        events,
     };
-
     return (
         <StepperContext.Provider value={contextValue}>
             {props.children}

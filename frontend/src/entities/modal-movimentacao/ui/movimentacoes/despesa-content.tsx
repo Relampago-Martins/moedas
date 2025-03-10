@@ -4,7 +4,7 @@ import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias
 import { StepFormDespesa } from '@/features/modal-novo/ui/steps/step-form-despesa';
 import { StepSelectDate } from '@/features/modal-novo/ui/steps/step-select-date';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
-import { useEvent } from '@/shared/ui/custom/use-event';
+import { useEvent } from '@/shared/lib/use-event';
 import { Despesa, DespesaSchema } from '@/types/models/despesa';
 import { useCallback, useEffect, useState } from 'react';
 import { useMovimentacaoContext } from '../../lib/use-movimentacao-context';
@@ -36,7 +36,6 @@ export function DespesaContent({ id }: DespesaContentProps) {
             <StepFormDespesa
                 step={{ name: 'editar', level: 1 }}
                 onSucess={() => getSetDespesa(id)}
-                subscribeEvent={event.subscribe}
                 formValues={
                     {
                         ...despesa,
@@ -62,23 +61,10 @@ export function DespesaContent({ id }: DespesaContentProps) {
                 level={2}
                 className="md:w-[25rem]"
             >
-                <ListaCategorias
-                    onSelect={(categoria) => {
-                        event.submit('onSelectCategoria', categoria);
-                    }}
-                />
+                <ListaCategorias />
             </StepperContent>
-            <StepperContent
-                value="calendario"
-                level={2}
-                className="md:w-[25rem]"
-            >
-                <StepSelectDate
-                    onSelect={(date) => {
-                        event.submit('onSelectDate', date);
-                    }}
-                />
-            </StepperContent>
+
+            <StepSelectDate />
         </Stepper>
     );
 }

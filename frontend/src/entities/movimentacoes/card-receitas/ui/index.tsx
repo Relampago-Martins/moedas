@@ -7,7 +7,10 @@ import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
 export function CardReceitas() {
     const { movimentacoes } = useMovimentacaoContext();
-    const onOpenChange = useModalNovoStore((state) => state.onOpenChange);
+    const openNovaReceita = useModalNovoStore((state) => () => {
+        state.setDefaultStep({ name: 'receita', level: 1 });
+        state.onOpenChange(true);
+    });
 
     const receitas = movimentacoes.filter(
         (movimentacao) => movimentacao.tipo === 'R',
@@ -24,7 +27,7 @@ export function CardReceitas() {
     return (
         <div className="flex w-full min-w-[200px] overflow-hidden rounded-md border bg-card">
             <button
-                onClick={() => onOpenChange(true)}
+                onClick={openNovaReceita}
                 className="flex h-full w-10 items-center justify-center border-r"
             >
                 <i className="ph-bold ph-plus text-2xl text-success-foreground transition-transform hover:scale-110" />

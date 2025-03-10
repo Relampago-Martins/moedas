@@ -2,7 +2,6 @@
 import { FormReceita } from '@/entities/movimentacoes/forms/form-receita';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { receita } from '@/shared/lib/forms';
-import { useEvent } from '@/shared/ui/custom/use-event';
 import { ReceitaSchema } from '@/types/models/receita';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
@@ -14,19 +13,17 @@ import {
 import { DialogOrDrawerHeader } from '../step-header';
 
 type StepFormReceitaProps = {
-    subscribeEvent?: ReturnType<typeof useEvent>['subscribe'];
     step: StepObject<string>;
     formValues?: ReceitaSchema;
     onSucess?: () => void;
 };
 
 export function StepFormReceita({
-    subscribeEvent,
     step,
     formValues,
     onSucess,
 }: StepFormReceitaProps) {
-    const { previous } = useStepper();
+    const { previous, events } = useStepper();
     const form = useForm<ReceitaSchema>({
         resolver: zodResolver(receita),
         defaultValues: formValues,
@@ -38,7 +35,7 @@ export function StepFormReceita({
     };
 
     useEffect(() => {
-        subscribeEvent?.('onSelectCategoria', (categoria) => {
+        events.subscribe('onSelectCategoria', (categoria) => {
             form.setValue('categoria', categoria.sigla);
         });
     }, []);

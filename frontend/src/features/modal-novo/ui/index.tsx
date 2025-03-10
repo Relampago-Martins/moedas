@@ -1,6 +1,5 @@
 'use client';
 import { DialogOrDrawer } from '@/shared/ui/custom/dialog-drawer';
-import { useEvent } from '@/shared/ui/custom/use-event';
 import { FormInvestimento } from '../../../entities/movimentacoes/forms/form-investimento';
 import { FormTransferencia } from '../../../entities/movimentacoes/forms/form-transferencia';
 import { Stepper, StepperContent } from '../../../entities/stepper/ui/stepper';
@@ -21,73 +20,59 @@ export type ModalNovoSteps =
     | 'lista-categorias-receita'
     | 'calendario';
 
+/**
+ *
+ * TODO: Transformar o conteúdo deste componente em um dynamic import (lazy load)
+ * para melhorar a performance da aplicação.
+ */
 export function ModalNovo() {
-    const { isOpen, onOpenChange } = useModalNovoStore((state) => state);
-    const event = useEvent();
+    const { defaultStep, isOpen, onOpenChange, setDefaultStep } =
+        useModalNovoStore((state) => state);
 
     return (
         <DialogOrDrawer
             open={isOpen}
-            onOpenChange={onOpenChange}
+            onOpenChange={(v) => {
+                if (!v) {
+                    setDefaultStep({ name: 'menu', level: 0 });
+                }
+                onOpenChange(v);
+            }}
             className="overflow-hidden md:w-auto md:min-w-[20rem]"
         >
-            {isOpen && (
-                <Stepper defaultValue={{ name: 'menu', level: 0 }}>
-                    <StepMenu value="menu" level={0} />
-                    <StepFormDespesa
-                        step={{ name: 'gasto', level: 1 }}
-                        subscribeEvent={event.subscribe}
-                        onSucess={() => onOpenChange(false)}
-                    />
-                    <StepFormReceita
-                        step={{ name: 'receita', level: 1 }}
-                        subscribeEvent={event.subscribe}
-                        onSucess={() => onOpenChange(false)}
-                    />
-                    <StepperContent value="transferencia" level={1}>
-                        <FormTransferencia />
-                    </StepperContent>
-                    <StepperContent value="investimento" level={1}>
-                        <FormInvestimento
-                            stepBack={{ name: 'menu', level: 0 }}
-                        />
-                    </StepperContent>
-                    <StepperContent
-                        value="lista-categorias"
-                        level={2}
-                        className="md:w-[25rem]"
-                    >
-                        <ListaCategorias
-                            onSelect={(categoria) => {
-                                event.submit('onSelectCategoria', categoria);
-                            }}
-                        />
-                    </StepperContent>
-                    <StepperContent
-                        value="lista-categorias-receita"
-                        level={2}
-                        className="md:w-[25rem]"
-                    >
-                        <ListaCategorias
-                            tipoCategoria="R"
-                            onSelect={(categoria) => {
-                                event.submit('onSelectCategoria', categoria);
-                            }}
-                        />
-                    </StepperContent>
-                    <StepperContent
-                        value="calendario"
-                        level={2}
-                        className="md:w-[25rem]"
-                    >
-                        <StepSelectDate
-                            onSelect={(date) => {
-                                event.submit('onSelectDate', date);
-                            }}
-                        />
-                    </StepperContent>
-                </Stepper>
-            )}
+            <Stepper defaultValue={defaultStep}>
+                <StepMenu value="menu" level={0} />
+                <StepFormDespesa
+                    step={{ name: 'gasto', level: 1 }}
+                    onSucess={() => onOpenChange(false)}
+                />
+                <StepFormReceita
+                    step={{ name: 'receita', level: 1 }}
+                    onSucess={() => onOpenChange(false)}
+                />
+                <StepperContent value="transferencia" level={1}>
+                    <FormTransferencia />
+                </StepperContent>
+                <StepperContent value="investimento" level={1}>
+                    <FormInvestimento stepBack={{ name: 'menu', level: 0 }} />
+                </StepperContent>
+                <StepperContent
+                    value="lista-categorias"
+                    level={2}
+                    className="md:w-[25rem]"
+                >
+                    <ListaCategorias />
+                </StepperContent>
+                <StepperContent
+                    value="lista-categorias-receita"
+                    level={2}
+                    className="md:w-[25rem]"
+                >
+                    <ListaCategorias tipoCategoria="R" />
+                </StepperContent>
+
+                <StepSelectDate />
+            </Stepper>
         </DialogOrDrawer>
     );
 }

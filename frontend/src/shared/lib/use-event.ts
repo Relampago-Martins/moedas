@@ -6,6 +6,7 @@ import { useCallback, useRef } from 'react';
 export interface EventMap {
     onSelectCategoria: Categoria;
     onSelectDate: Date;
+    onOpenDateStep: Date;
 }
 
 // Tipo para o callback de um evento

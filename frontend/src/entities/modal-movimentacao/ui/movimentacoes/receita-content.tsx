@@ -3,7 +3,7 @@ import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { StepFormReceita } from '@/features/modal-novo/ui/steps/step-form-receita';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
-import { useEvent } from '@/shared/ui/custom/use-event';
+import { useEvent } from '@/shared/lib/use-event';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
 import { useEffect, useState } from 'react';
 import { useMovimentacaoContext } from '../../lib/use-movimentacao-context';
@@ -29,7 +29,6 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
         <Stepper defaultValue={{ name: 'detail', level: 0 }}>
             <StepReceitaDetail receita={receita} />
             <StepFormReceita
-                subscribeEvent={event.subscribe}
                 step={{ name: 'editar', level: 1 }}
                 formValues={
                     {
@@ -60,12 +59,7 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                 level={2}
                 className="md:w-[25rem]"
             >
-                <ListaCategorias
-                    onSelect={(categoria) => {
-                        event.submit('onSelectCategoria', categoria);
-                    }}
-                    tipoCategoria="R"
-                />
+                <ListaCategorias tipoCategoria="R" />
             </StepperContent>
         </Stepper>
     );

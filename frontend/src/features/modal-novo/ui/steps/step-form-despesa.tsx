@@ -2,7 +2,6 @@
 import { FormDespesa } from '@/entities/movimentacoes/forms/form-despesa';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { despesa } from '@/shared/lib/forms';
-import { useEvent } from '@/shared/ui/custom/use-event';
 import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
@@ -14,19 +13,17 @@ import {
 import { DialogOrDrawerHeader } from '../step-header';
 
 type StepFormDespesaProps = {
-    subscribeEvent?: ReturnType<typeof useEvent>['subscribe'];
     step: StepObject<string>;
     formValues?: DespesaSchema;
     onSucess?: () => void;
 };
 
 export function StepFormDespesa({
-    subscribeEvent,
     step,
     formValues,
     onSucess,
 }: StepFormDespesaProps) {
-    const { previous } = useStepper();
+    const { previous, events } = useStepper();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: formValues,
@@ -39,10 +36,10 @@ export function StepFormDespesa({
     };
 
     useEffect(() => {
-        subscribeEvent?.('onSelectCategoria', (categoria) => {
+        events.subscribe('onSelectCategoria', (categoria) => {
             form.setValue('categoria', categoria.sigla);
         });
-        subscribeEvent?.('onSelectDate', (date) => {
+        events.subscribe('onSelectDate', (date) => {
             form.setValue('data', date.toISOString().split('T')[0]);
         });
     }, []);

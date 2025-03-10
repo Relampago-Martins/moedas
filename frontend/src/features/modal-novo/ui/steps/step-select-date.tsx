@@ -1,20 +1,20 @@
 'use client';
-import { useStepper } from '@/entities/stepper/ui/stepper';
+import { StepperContent, useStepper } from '@/entities/stepper/ui/stepper';
 import { Calendar } from '@/shared/ui/calendar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DialogOrDrawerHeader } from '../step-header';
 
-type StepSelectDateProps = {
-    onSelect?: (categoria: Date) => void;
-};
+type StepSelectDateProps = {};
 
-export function StepSelectDate({ onSelect }: StepSelectDateProps) {
-    const { previous } = useStepper();
+export function StepSelectDate({}: StepSelectDateProps) {
+    const { previous, events } = useStepper();
     const [selected, setSelected] = useState<Date | undefined>();
-    // getDateFromISO
 
+    useEffect(() => {
+        events.subscribe('onOpenDateStep', setSelected);
+    }, []);
     return (
-        <>
+        <StepperContent value="calendario" level={2} className="md:w-[25rem]">
             <DialogOrDrawerHeader
                 title={'Data da Compra'}
                 onBack={() => previous()}
@@ -24,12 +24,13 @@ export function StepSelectDate({ onSelect }: StepSelectDateProps) {
                 selected={selected}
                 onSelect={(date) => {
                     if (!date) return;
-                    onSelect?.(date);
+                    console.log('date', date);
                     setSelected(date);
+                    events.submit('onSelectDate', date);
                     previous();
                 }}
                 className="w-full"
             />
-        </>
+        </StepperContent>
     );
 }

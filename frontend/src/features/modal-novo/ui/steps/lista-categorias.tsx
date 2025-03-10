@@ -6,15 +6,11 @@ import { useEffect, useState } from 'react';
 import { DialogOrDrawerHeader } from '../step-header';
 
 type ListaCategoriasProps = {
-    onSelect?: (categoria: Categoria) => void;
     tipoCategoria?: Categoria['tipo'];
 };
 
-export function ListaCategorias({
-    onSelect,
-    tipoCategoria = 'D',
-}: ListaCategoriasProps) {
-    const { previous } = useStepper();
+export function ListaCategorias({ tipoCategoria = 'D' }: ListaCategoriasProps) {
+    const { previous, events } = useStepper();
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
         getCategorias(tipoCategoria).then((data) => {
@@ -35,7 +31,7 @@ export function ListaCategorias({
                         className="relative flex aspect-square flex-col items-center justify-center gap-3 rounded-md border hover:shadow-md"
                         style={{ color: categoria.cor }}
                         onClick={() => {
-                            onSelect?.(categoria);
+                            events.submit('onSelectCategoria', categoria);
                             previous();
                         }}
                     >

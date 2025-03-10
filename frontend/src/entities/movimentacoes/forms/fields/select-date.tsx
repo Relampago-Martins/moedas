@@ -1,24 +1,29 @@
 import { useStepper } from '@/entities/stepper/ui/stepper';
 import { ModalNovoSteps } from '@/features/modal-novo/ui';
-import { toLocalDate } from '@/shared/lib/utils';
+import { getDateFromISO, toLocalDate } from '@/shared/lib/utils';
 import { DespesaSchema } from '@/types/models/despesa';
 import { ControllerRenderProps } from 'react-hook-form';
 
 type DateInputProps = ControllerRenderProps<DespesaSchema, 'data'>;
 
 export function SelectDate(props: DateInputProps) {
-    const { goToStep } = useStepper<ModalNovoSteps>();
+    const { goToStep, events } = useStepper<ModalNovoSteps>();
     return (
         <button
             type="button"
             value={props.value}
             className="relative flex h-9 items-center rounded-md border"
-            onClick={() =>
+            onClick={() => {
                 goToStep({
                     name: 'calendario',
                     level: 2,
-                })
-            }
+                });
+                if (props.value)
+                    events.submit(
+                        'onOpenDateStep',
+                        getDateFromISO(props.value),
+                    );
+            }}
         >
             {props.value ? (
                 <span className="ml-3">{toLocalDate(props.value)}</span>
