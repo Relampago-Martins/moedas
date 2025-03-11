@@ -1,6 +1,6 @@
-import { CardBalanco } from '@/features/card-balanco/ui';
-import { CardGastos } from '@/features/card-gastos/ui';
-import { CardSaldo } from '@/features/card-saldo/ui';
+import { CardBalanco } from '@/features/dashboard/card-balanco/ui';
+import { CardCategorias } from '@/features/dashboard/card-categorias/ui';
+import { CardSaldo } from '@/features/dashboard/card-saldo/ui';
 import { Saudacao } from '@/features/month-picker/ui/Saudacao';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { TFiltroPeriodo } from '@/types/filters';
@@ -47,7 +47,7 @@ export default function Dashboard({
                     <Skeleton className="col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2" />
                 }
             >
-                <CardGastos className="col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2" />
+                <CardCategorias className="col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2" />
             </Suspense>
         </div>
     );

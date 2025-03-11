@@ -9,7 +9,7 @@ type CardGastosProps = {
     className?: string;
 };
 
-export async function CardGastos({ className }: CardGastosProps) {
+export async function CardCategorias({ className }: CardGastosProps) {
     const categorias = await getCategorias().then((categorias) =>
         categorias.filter((c) => c.total_gastos > 0),
     );
