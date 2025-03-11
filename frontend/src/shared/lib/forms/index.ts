@@ -29,10 +29,8 @@ export const registerForm = z.object({
     path: ["password2"],
 })
 
-const categoria = z.object({
+export const categoria = z.object({
     sigla: z.string(),
-    total_gastos: z.number(),
-    total_receitas: z.number(),
     nome: z.string(),
     cor: z.string(),
     icone: z.string(),

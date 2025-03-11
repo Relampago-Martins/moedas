@@ -47,7 +47,10 @@ export default function Dashboard({
                     <Skeleton className="col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2" />
                 }
             >
-                <CardCategorias className="col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2" />
+                <CardCategorias
+                    params={searchParams}
+                    className="col-span-12 lg:col-span-6 lg:row-span-2 lg:row-start-2"
+                />
             </Suspense>
         </div>
     );

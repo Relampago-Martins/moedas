@@ -1,4 +1,4 @@
-import { CardTransacao } from '@/features/card-balanco/ui/CardTransacao';
+import { CardTransacao } from '@/features/dashboard/card-balanco/ui/CardTransacao';
 import { getCarteira } from '@/shared/api/endpoints';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
