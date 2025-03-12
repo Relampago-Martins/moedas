@@ -6,14 +6,14 @@ import {
     SelectItem,
 } from '@/shared/ui/select';
 
-import { Categoria } from '@/types/models/categoria';
+import { Categoria, CategoriaTotalMov } from '@/types/models/categoria';
 import { Icon, SelectTrigger } from '@radix-ui/react-select';
 import { ChevronDown } from 'lucide-react';
 import { useContext } from 'react';
 import { GastosContext } from '../lib/context';
 
 type SelectCategoriaProps = {
-    categorias: Categoria[];
+    categorias: CategoriaTotalMov[];
 };
 
 export function SelectCategoria({ categorias }: SelectCategoriaProps) {
@@ -21,7 +21,7 @@ export function SelectCategoria({ categorias }: SelectCategoriaProps) {
         useContext(GastosContext);
 
     const gastosTotais = categorias.reduce(
-        (acc, categoria) => acc + categoria.total_gastos,
+        (acc, categoria) => acc + categoria.total_movimentacoes,
         0,
     );
 
@@ -39,7 +39,8 @@ export function SelectCategoria({ categorias }: SelectCategoriaProps) {
                     categoria={categoriaSelecionada}
                     porcentagem={
                         categoriaSelecionada
-                            ? categoriaSelecionada.total_gastos / gastosTotais
+                            ? categoriaSelecionada.total_movimentacoes /
+                              gastosTotais
                             : 1
                     }
                 />

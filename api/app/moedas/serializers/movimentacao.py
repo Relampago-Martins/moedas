@@ -1,3 +1,4 @@
+import typing
 from rest_framework import serializers
 from moedas.serializers.utils import MyPrimaryKeyRelatedField
 from moedas.serializers.categoria import CategoriaSerializer
@@ -33,19 +34,26 @@ class MovimentacaoSerializer(serializers.ModelSerializer):
 
 
 class DespesaSerializer(serializers.ModelSerializer):
-    """
-    Serializer para Despesas
-    """
+    """Serializer para Despesas."""
 
     class Meta:
         model = Despesa
-        exclude = ["tipo"]
-        read_only_fields = ["user", "tipo"]
+        exclude: typing.ClassVar = ["tipo"]
+        read_only_fields: typing.ClassVar = ["user", "tipo"]
 
     categoria = MyPrimaryKeyRelatedField(
-        queryset=Categoria.objects.all(), required=True, serializer=CategoriaSerializer
+        queryset=Categoria.objects.all(),
+        required=True,
+        serializer=CategoriaSerializer,
     )
     forma_pagamento = FormaPagSerializer(choices=FORMAS_PAGAMENTO)
+
+    def validate_categoria(self, value: Categoria) -> Categoria:
+        """Valida se a categoria é do tipo Despesa."""
+        if value.tipo != "D":
+            msg = "A categoria deve ser do tipo Despesa"
+            raise serializers.ValidationError(msg)
+        return value
 
 
 class ReceitaSerializer(serializers.ModelSerializer):

@@ -1,4 +1,6 @@
+from __future__ import annotations
 from datetime import date
+from urllib.request import Request
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
@@ -64,12 +66,18 @@ class CategoriaViewSet(viewsets.ModelViewSet):
         """
         return self.queryset.filter(is_base=True)
 
-    @action(detail=False, methods=["get"], url_path="meu-resumo")
-    def meu_resumo(self, request):
-        """View que retorna um resumo das categorias do usuário."""
+    @action(detail=False, methods=["get"], url_path="total-movimentacoes")
+    def total_movimentacoes(self, request: Request) -> Response:
+        """View que retorna o total de movimentações por categoria.
 
+        @filtros:
+        - periodo_after: data de início do filtro (yyyy-mm-dd)
+        - periodo_before: data de fim do filtro (yyyy-mm-dd)
+        - tipo: tipo de movimentação (R ou D)
+        """
         periodo_after = request.query_params.get("periodo_after")
         periodo_before = request.query_params.get("periodo_before")
+        tipo = request.query_params.get("tipo")
 
         categorias = (
             Categoria.objects.annotate(
@@ -78,9 +86,10 @@ class CategoriaViewSet(viewsets.ModelViewSet):
                     filter=Q(
                         movimentacao__user=request.user,
                     )
-                    & self._get_filtro_movimentacoes_por_periodo(
+                    & self._get_filtros_total_movs(
                         periodo_after,
                         periodo_before,
+                        tipo=tipo,
                     ),
                 ),
             )
@@ -100,12 +109,19 @@ class CategoriaViewSet(viewsets.ModelViewSet):
             status=200,
         )
 
-    def _get_filtro_movimentacoes_por_periodo(self, periodo_after, periodo_before) -> Q:
+    def _get_filtros_total_movs(
+        self,
+        periodo_after: str | None,
+        periodo_before: str | None,
+        tipo: str | None,
+    ) -> Q:
         qs = Q()
         if periodo_after:
             qs &= Q(movimentacao__data__gte=periodo_after)
         if periodo_before:
             qs &= Q(movimentacao__data__lte=periodo_before)
+        if tipo:
+            qs &= Q(movimentacao__tipo=tipo)
         if not periodo_after and not periodo_before:
             hoje = date.today()
             qs &= Q(
@@ -116,9 +132,7 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 
 
 class ReceitaViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet para Receitas
-    """
+    """ViewSet para Receitas."""
 
     queryset = Receita.objects.all()
     serializer_class = moedas_serializers.ReceitaSerializer

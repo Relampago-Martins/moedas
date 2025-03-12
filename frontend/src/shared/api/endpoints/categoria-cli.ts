@@ -1,7 +1,8 @@
 'use server';
 
 import { obj2SearchParams } from "@/shared/lib/utils";
-import { Categoria } from "@/types/models/categoria";
+import { TFiltroPeriodo } from "@/types/filters";
+import { Categoria, CategoriaTotalMov } from "@/types/models/categoria";
 import { ApiClient } from "../api-client";
 
 
@@ -14,16 +15,22 @@ export async function getCategorias(tipo?: "D" | "R") {
         `/categorias/?${urlParams}`, 
         { next: { revalidate: 60, tags: ['categorias'] } }
     );
-    return resp.data.sort((a, b) => a.total_gastos - b.total_gastos)
+    return resp.data;
 }
 
-// export async function getResumoCategorias() {
-//     const resp = await ApiClient.getInstance().get<Categoria[]>(
-//         `/categorias/meu-resumo/`, 
-//         { next: { revalidate: 60, tags: ['meu-resumo-categorias'] } }
-//     );
-//     return resp.data.sort((a, b) => a.total_gastos - b.total_gastos);
-// };
+type ResumoCategoriasProps = TFiltroPeriodo & {
+    tipo?: "D" | "R";
+    
+}
+
+export async function getCategoriasTotalMovs(params: ResumoCategoriasProps) {
+    const urlParams = obj2SearchParams(params);
+    const resp = await ApiClient.getInstance().get<CategoriaTotalMov[]>(
+        `/categorias/total-movimentacoes/?${urlParams}`, 
+        { next: { revalidate: 60, tags: ['categorias-total-movimentacoes'] } }
+    );
+    return resp.data;
+};
 
 
 

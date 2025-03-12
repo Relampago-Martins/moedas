@@ -1,4 +1,4 @@
-import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
+import { getCategoriasTotalMovs } from '@/shared/api/endpoints/categoria-cli';
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { PieChart02Icon } from '@/shared/ui/huge-icons';
 import { TFiltroPeriodo } from '@/types/filters';
@@ -12,9 +12,10 @@ type CardGastosProps = {
 };
 
 export async function CardCategorias({ className, params }: CardGastosProps) {
-    const categorias = await getCategorias().then((categorias) =>
-        categorias.filter((c) => c.total_gastos > 0),
-    );
+    const categorias = await getCategoriasTotalMovs({
+        ...params,
+        tipo: 'D',
+    });
 
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>

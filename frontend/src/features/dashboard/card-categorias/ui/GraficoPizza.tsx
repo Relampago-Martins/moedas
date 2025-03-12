@@ -1,6 +1,6 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
-import { Categoria } from '@/types/models/categoria';
+import { CategoriaTotalMov } from '@/types/models/categoria';
 import { motion } from 'framer-motion';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
@@ -11,7 +11,7 @@ import { FatiaAtiva, FatiaInativa } from './utils/GraphFatia';
 
 export type GraficoPizzaProps = {
     className?: string;
-    categorias: Categoria[];
+    categorias: CategoriaTotalMov[];
 };
 
 export function GraficoPizza({ categorias }: GraficoPizzaProps) {
@@ -46,7 +46,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
             <PieChart width={250} height={250} className="z-[1] -mx-3">
                 <Pie
                     data={categorias}
-                    dataKey="total_gastos"
+                    dataKey="total_movimentacoes"
                     activeIndex={activeIndex}
                     activeShape={FatiaAtiva}
                     inactiveShape={FatiaInativa}
@@ -89,7 +89,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     {activeIndex < 0 ? (
                         numberToCurrency(
                             categorias.reduce(
-                                (acc, curr) => acc + curr.total_gastos,
+                                (acc, curr) => acc + curr.total_movimentacoes,
                                 0,
                             ),
                         )
@@ -99,7 +99,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                                 className={`${categoriaSelecionada?.icone} text-4xl`}
                             />
                             {numberToCurrency(
-                                categoriaSelecionada?.total_gastos || 0,
+                                categoriaSelecionada?.total_movimentacoes || 0,
                             )}
                         </div>
                     )}
