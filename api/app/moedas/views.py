@@ -1,18 +1,21 @@
 from datetime import date
-from django.conf import settings
-from dj_rest_auth.registration.views import SocialLoginView
-from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from dj_rest_auth.registration.views import SocialLoginView
+from django.conf import settings
+from rest_framework import views, viewsets
+from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import viewsets, views
-from moedas.models import Despesa, Categoria, Receita, Movimentacao
+
 from moedas import serializers as moedas_serializers
 from moedas.filters import (
-    DespesaFilter,
     CategoriaFilter,
-    ReceitaFilter,
+    DespesaFilter,
     MovimentacaoFilter,
+    ReceitaFilter,
 )
+from moedas.models import Categoria, Despesa, Movimentacao, Receita
 
 
 # Create your views here.
@@ -43,7 +46,7 @@ class DespesaViewSet(viewsets.ModelViewSet):
         return self.queryset.filter(user=self.request.user)
 
 
-class CategotiaViewSet(viewsets.ModelViewSet):
+class CategoriaViewSet(viewsets.ModelViewSet):
     """
     ViewSet para Categorias
     """
@@ -59,6 +62,17 @@ class CategotiaViewSet(viewsets.ModelViewSet):
         as categorias criadas pelo usuário logado
         """
         return self.queryset.filter(is_base=True)
+
+    @action(detail=False, methods=["get"], url_path="meu-resumo")
+    def meu_resumo(self, request):
+        """View que retorna um resumo das categorias do usuário."""
+        resumo_categorias = moedas_serializers.ResumoMinhasCategorias(
+            user=request.user,
+        )
+        return Response(
+            resumo_categorias.data,
+            status=200,
+        )
 
 
 class ReceitaViewSet(viewsets.ModelViewSet):

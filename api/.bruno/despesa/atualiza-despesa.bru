@@ -1,0 +1,21 @@
+meta {
+  name: atualiza-despesa
+  type: http
+  seq: 5
+}
+
+patch {
+  url: http://localhost:8001/api/despesas/25/
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: token {{api_token}}
+}
+
+body:json {
+  {
+    "data": "2025-03-09"
+  }
+}

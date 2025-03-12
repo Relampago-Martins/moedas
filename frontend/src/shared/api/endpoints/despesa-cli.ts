@@ -19,12 +19,18 @@ export async function getDespesa(id: number){
 }
 
 export async function criaDespesa(despesa: DespesaSchema){
-    const resp = await ApiClient.getInstance().post<Despesa>("/despesas/", despesa);
+    const resp = await ApiClient.getInstance().post<Despesa>("/despesas/", {
+        ...despesa,
+        categoria: despesa.categoria.sigla,
+    });
     return resp;
 }
 
 export async function atualizaDespesa(id: number, despesa: DespesaSchema){
-    const resp = await ApiClient.getInstance().patch<Despesa>(`/despesas/${id}/`, despesa);
+    const resp = await ApiClient.getInstance().patch<Despesa>(`/despesas/${id}/`, {
+        ...despesa,
+        categoria: despesa.categoria.sigla,
+    });
     revalidateTag(`getDespesa${id}`);
     return resp;
 }

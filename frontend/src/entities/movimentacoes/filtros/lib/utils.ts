@@ -16,17 +16,6 @@ export const getMonthRange = (date: Date) => {
     };
 };
 
-/**
- * Recebe uma data no formato yyyy-mm-dd e retorna um objeto de data
- */
-export function getDateFomISO(data: string | null) {
-    if (!data) return new Date();
-    
-    const [year, month, day] = data.split('-').map(Number);
-    return new Date(year, month - 1, day);
-
-}
-
 
 /**
  * Recebe um objeto Date e retorna um nome verboso para o mes e ano

@@ -1,3 +1,3 @@
-import Page from './dashboard/page';
-import './ui.scss';
-export default Page;
+export default function Default() {
+    return null;
+}

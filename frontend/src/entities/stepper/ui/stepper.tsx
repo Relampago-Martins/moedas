@@ -1,26 +1,29 @@
+'use client';
+import { StepObject } from '@/entities/stepper/lib/types';
+import { useEvent } from '@/shared/lib/use-event';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, {
     createContext,
-    Dispatch,
-    SetStateAction,
     useContext,
     useEffect,
+    useMemo,
     useState,
 } from 'react';
-
-export interface StepObject<T> {
-    name: T;
-    level: number;
-}
+import { StepNavigationTree } from '../lib/step-navigation-tree';
 
 interface TStepperContext<T = string> {
     currentStep: StepObject<T>;
     previousStep: StepObject<T> | null;
     goToStep: (step: StepObject<T>) => void;
+    previous: () => void;
+    hasPrevious: boolean;
+    events: ReturnType<typeof useEvent>;
 }
 
 // Contexto para gerenciar o estado do Stepper
-const StepperContext = createContext<TStepperContext | undefined>(undefined);
+const StepperContext = createContext<TStepperContext<any> | undefined>(
+    undefined,
+);
 
 // Hook para acessar o contexto
 function useStepper<T extends string>() {
@@ -101,35 +104,51 @@ function SliderAnimation({
 
 // Componente principal Stepper
 interface StepperProps<T extends string> {
-    currentStep: StepObject<T>;
-    onStepChange: Dispatch<SetStateAction<StepObject<T>>>;
+    defaultValue: StepObject<T>;
     children: React.ReactNode;
 }
 
 function Stepper<T extends string>(props: StepperProps<T>) {
+    const events = useEvent();
     const [currentStep, setCurrentStep] = useState<StepObject<T>>(
-        props.currentStep,
+        props.defaultValue,
     );
-    const [previousStep, setPreviousStep] = useState<StepObject<string> | null>(
+    const [previousStep, setPreviousStep] = useState<StepObject<T> | null>(
         null,
     );
-
-    useEffect(() => {
-        setCurrentStep(props.currentStep);
-    }, [props.currentStep]);
+    const navigationTree = useMemo(() => {
+        return new StepNavigationTree<T>(props.defaultValue);
+    }, []);
 
     // Função para navegar entre os passos
-    const goToStep = (step: StepObject<string>) => {
+    const goToStep = (step: StepObject<T>) => {
         setPreviousStep(currentStep);
-        props.onStepChange(step as StepObject<T>);
+        navigationTree.navigateTo(step);
+        setCurrentStep(step);
     };
 
-    const contextValue: TStepperContext = {
+    // Função para voltar ao passo anterior na árvore
+    const goToPrevious = () => {
+        const success = navigationTree.navigateBack();
+
+        if (success) {
+            const parentStep = navigationTree.getCurrentStep();
+            setPreviousStep(currentStep);
+            setCurrentStep(parentStep);
+            return true;
+        }
+
+        return false;
+    };
+
+    const contextValue: TStepperContext<T> = {
         currentStep: currentStep,
         previousStep: previousStep,
         goToStep,
+        previous: () => goToPrevious(),
+        events,
+        hasPrevious: navigationTree.hasPrevious(),
     };
-
     return (
         <StepperContext.Provider value={contextValue}>
             {props.children}

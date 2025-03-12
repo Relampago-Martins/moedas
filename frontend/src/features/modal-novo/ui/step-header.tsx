@@ -1,11 +1,11 @@
 import { Button } from '@/shared/ui/button';
 import { DialogClose, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
-import { DrawerClose, DrawerHeader, DrawerTitle } from '@/shared/ui/drawer';
+import { DrawerHeader, DrawerTitle } from '@/shared/ui/drawer';
 import { ChevronLeft, X } from 'lucide-react';
 import { useMediaQuery } from 'react-responsive';
 
 type DialogOrDrawerHeaderProps = {
-    title: string;
+    title: React.ReactNode;
     onBack?: () => void;
     withBackButton?: boolean;
 };
@@ -32,24 +32,23 @@ export function DialogOrDrawerHeader({
                     )}
                 </div>
                 {title}
-                <DrawerClose className="w-6">
-                    <X className="h-5 w-5" />
-                    <span className="sr-only">Close</span>
-                </DrawerClose>
+                <div className="w-6"></div>
             </DrawerTitle>
         </DrawerHeader>
     ) : (
         <DialogHeader>
             <DialogTitle className="mb-2 flex items-center justify-between pb-4 text-xl text-primary">
-                {withBackButton && (
-                    <Button
-                        variant={'ghost'}
-                        className="h-full p-0 pr-2"
-                        onClick={onBack}
-                    >
-                        <ChevronLeft className="h-5 w-5" />
-                    </Button>
-                )}
+                <div className="w-5">
+                    {withBackButton && (
+                        <Button
+                            variant={'ghost'}
+                            className="h-full p-0 pr-2"
+                            onClick={onBack}
+                        >
+                            <ChevronLeft className="h-5 w-5" />
+                        </Button>
+                    )}
+                </div>
                 {title}
                 <DialogClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
                     <X className="h-5 w-5" />

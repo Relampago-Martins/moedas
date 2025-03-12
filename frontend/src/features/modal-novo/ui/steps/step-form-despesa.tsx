@@ -1,29 +1,29 @@
+'use client';
 import { FormDespesa } from '@/entities/movimentacoes/forms/form-despesa';
+import { StepObject } from '@/entities/stepper/lib/types';
 import { despesa } from '@/shared/lib/forms';
-import { useEvent } from '@/shared/ui/custom/use-event';
 import { DespesaSchema } from '@/types/models/despesa';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import {
+    StepperContent,
+    useStepper,
+} from '../../../../entities/stepper/ui/stepper';
 import { DialogOrDrawerHeader } from '../step-header';
-import { StepObject, StepperContent, useStepper } from '../stepper';
 
 type StepFormDespesaProps = {
-    subscribeEvent: ReturnType<typeof useEvent>['subscribe'];
-    stepBack: StepObject<string>;
     step: StepObject<string>;
     formValues?: DespesaSchema;
     onSucess?: () => void;
 };
 
 export function StepFormDespesa({
-    subscribeEvent,
-    stepBack,
     step,
     formValues,
     onSucess,
 }: StepFormDespesaProps) {
-    const { goToStep } = useStepper();
+    const { previous, events, hasPrevious } = useStepper();
     const form = useForm<DespesaSchema>({
         resolver: zodResolver(despesa),
         defaultValues: formValues,
@@ -32,16 +32,19 @@ export function StepFormDespesa({
         descricao: '',
         valor: 0,
         forma_pagamento: '',
-        categoria: '',
     };
 
     useEffect(() => {
-        subscribeEvent('onSelectCategoria', (categoria) => {
-            form.setValue('categoria', categoria.sigla);
+        events.subscribe('onSelectCategoria', (categoria) => {
+            form.setValue('categoria', categoria);
+        });
+        events.subscribe('onSelectDate', (date) => {
+            form.setValue('data', date.toISOString().split('T')[0]);
         });
     }, []);
 
     useEffect(() => {
+        // usado para resetar o form quando o usuário volta para o passo anterior
         if (form.getValues('id') === undefined) {
             form.reset(formValues);
         }
@@ -50,17 +53,26 @@ export function StepFormDespesa({
     return (
         <StepperContent value={step.name} level={step.level}>
             <DialogOrDrawerHeader
-                title={formValues?.id ? 'Editar despesa' : 'Nova despesa'}
+                withBackButton={hasPrevious}
+                title={
+                    <span className="flex items-center gap-2 text-xl text-destructive-foreground">
+                        <i className="ph-bold ph-trend-down" />
+
+                        {formValues?.id
+                            ? 'Editar Despesa'
+                            : 'Adicionar Despesa'}
+                    </span>
+                }
                 onBack={() => {
                     form.reset(formValues?.id ? formValues : emptyForm);
-                    goToStep(stepBack);
+                    previous();
                 }}
             />
             <FormDespesa
                 formState={form}
                 onSucess={() => {
                     onSucess?.();
-                    setTimeout(() => goToStep(stepBack), 100);
+                    setTimeout(() => previous(), 100);
                 }}
             />
         </StepperContent>

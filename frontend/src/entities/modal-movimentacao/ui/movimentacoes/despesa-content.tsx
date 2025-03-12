@@ -1,16 +1,12 @@
 'use client';
-import {
-    StepObject,
-    Stepper,
-    StepperContent,
-} from '@/features/modal-novo/ui/stepper';
+import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
 import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { StepFormDespesa } from '@/features/modal-novo/ui/steps/step-form-despesa';
+import { StepSelectDate } from '@/features/modal-novo/ui/steps/step-select-date';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
-import { useEvent } from '@/shared/ui/custom/use-event';
+import { useEvent } from '@/shared/lib/use-event';
 import { Despesa, DespesaSchema } from '@/types/models/despesa';
 import { useCallback, useEffect, useState } from 'react';
-import { MovimentacaoSteps } from '../../lib/types';
 import { useMovimentacaoContext } from '../../lib/use-movimentacao-context';
 import { ExcluirMovimentacao } from '../excluir-movimentacao';
 import { DespesaDetail } from './despesa-detail';
@@ -22,10 +18,7 @@ type DespesaContentProps = {
 export function DespesaContent({ id }: DespesaContentProps) {
     const { setMovimentacaoSelecionada } = useMovimentacaoContext();
     const event = useEvent();
-    const [step, setStep] = useState<StepObject<MovimentacaoSteps>>({
-        name: 'detail',
-        level: 0,
-    });
+
     const [despesa, setDespesa] = useState<Despesa>();
 
     const getSetDespesa = useCallback(async (id: number) => {
@@ -38,24 +31,15 @@ export function DespesaContent({ id }: DespesaContentProps) {
     }, [id]);
 
     return (
-        <Stepper currentStep={step} onStepChange={setStep}>
-            <StepperContent value="detail" level={0}>
-                <DespesaDetail
-                    despesa={despesa}
-                    onEdit={() => setStep({ name: 'editar', level: 1 })}
-                    onDelete={() => setStep({ name: 'excluir', level: 1 })}
-                />
-            </StepperContent>
+        <Stepper defaultValue={{ name: 'detail', level: 0 }}>
+            <DespesaDetail despesa={despesa} />
             <StepFormDespesa
-                onSucess={() => getSetDespesa(id)}
-                subscribeEvent={event.subscribe}
                 step={{ name: 'editar', level: 1 }}
-                stepBack={{ name: 'detail', level: 0 }}
+                onSucess={() => getSetDespesa(id)}
                 formValues={
                     {
                         ...despesa,
                         forma_pagamento: despesa?.forma_pagamento.sigla,
-                        categoria: despesa?.categoria.sigla,
                         valor: Number(despesa?.valor.toString()),
                     } as DespesaSchema
                 }
@@ -76,16 +60,10 @@ export function DespesaContent({ id }: DespesaContentProps) {
                 level={2}
                 className="md:w-[25rem]"
             >
-                <ListaCategorias
-                    onSelect={(categoria) => {
-                        event.submit('onSelectCategoria', categoria);
-                    }}
-                    stepBack={{
-                        name: 'editar',
-                        level: 1,
-                    }}
-                />
+                <ListaCategorias />
             </StepperContent>
+
+            <StepSelectDate />
         </Stepper>
     );
 }

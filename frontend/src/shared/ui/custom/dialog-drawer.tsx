@@ -1,3 +1,4 @@
+'use client';
 import { cn } from '@/shared/lib/utils';
 import { useMediaQuery } from 'react-responsive';
 import { Dialog, DialogContent } from '../dialog';

@@ -5,6 +5,8 @@ import { useCallback, useRef } from 'react';
 // Definindo os eventos disponíveis e seus tipos de dados correspondentes
 export interface EventMap {
     onSelectCategoria: Categoria;
+    onSelectDate: Date;
+    onOpenDateStep: Date;
 }
 
 // Tipo para o callback de um evento
@@ -31,11 +33,11 @@ export const useEvent = () => {
             subscribersRef.current[eventName]!.push(callback);
 
             // Retorna função para cancelar a assinatura
-            return () => {
-                subscribersRef.current[eventName] = subscribersRef.current[
-                    eventName
-                ]!.filter((cb) => cb !== callback);
-            };
+            // return () => {
+            //     subscribersRef.current[eventName] = subscribersRef.current[
+            //         eventName
+            //     ]!.filter((cb) => cb !== callback);
+            // };
         },
         [],
     );

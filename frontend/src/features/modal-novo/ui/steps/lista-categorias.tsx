@@ -1,21 +1,17 @@
+'use client';
+import { useStepper } from '@/entities/stepper/ui/stepper';
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
+import { Skeleton } from '@/shared/ui/skeleton';
 import { Categoria } from '@/types/models/categoria';
 import { useEffect, useState } from 'react';
 import { DialogOrDrawerHeader } from '../step-header';
-import { StepObject, useStepper } from '../stepper';
 
 type ListaCategoriasProps = {
-    stepBack: StepObject<string>;
-    onSelect?: (categoria: Categoria) => void;
     tipoCategoria?: Categoria['tipo'];
 };
 
-export function ListaCategorias({
-    stepBack,
-    onSelect,
-    tipoCategoria = 'D',
-}: ListaCategoriasProps) {
-    const { goToStep } = useStepper();
+export function ListaCategorias({ tipoCategoria = 'D' }: ListaCategoriasProps) {
+    const { previous, events } = useStepper();
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
         getCategorias(tipoCategoria).then((data) => {
@@ -26,8 +22,8 @@ export function ListaCategorias({
     return (
         <>
             <DialogOrDrawerHeader
-                title={'Categorias'}
-                onBack={() => goToStep(stepBack)}
+                title={'Selecionar Categoria'}
+                onBack={() => previous()}
             />
             <div className=" grid h-[25rem] grid-cols-3 gap-4 overflow-y-scroll pr-4 ">
                 {categorias.map((categoria) => (
@@ -36,8 +32,8 @@ export function ListaCategorias({
                         className="relative flex aspect-square flex-col items-center justify-center gap-3 rounded-md border hover:shadow-md"
                         style={{ color: categoria.cor }}
                         onClick={() => {
-                            onSelect?.(categoria);
-                            goToStep(stepBack);
+                            events.submit('onSelectCategoria', categoria);
+                            previous();
                         }}
                     >
                         <div className="flex h-7 w-7 items-center justify-center rounded-full">
@@ -54,6 +50,10 @@ export function ListaCategorias({
                         ></div>
                     </button>
                 ))}
+                {categorias.length === 0 &&
+                    Array.from({ length: 9 }).map((_, i) => (
+                        <Skeleton key={i} className="aspect-square" />
+                    ))}
             </div>
         </>
     );

@@ -1,5 +1,5 @@
 'use client';
-import { numberToCurrency } from '@/shared/lib/utils';
+import { getDateFromISO, numberToCurrency } from '@/shared/lib/utils';
 import { Separator } from '@/shared/ui/separator';
 import { Movimentacao } from '@/types/models/movimentacao';
 import { motion } from 'framer-motion';
@@ -15,6 +15,7 @@ export function ItemMovimentacao({
     prefixLayoutId,
     onClick,
 }: ItemMovimentacaoProps) {
+    const isSolid = getDateFromISO(movimentacao.data) < new Date();
     return (
         <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
@@ -22,8 +23,9 @@ export function ItemMovimentacao({
             exit={{ scale: 0.95, opacity: 0 }}
             layoutId={`${prefixLayoutId}-${movimentacao.id}`}
             onClick={onClick}
-            className="h-16 w-full overflow-hidden
-            rounded-md border-[1px] bg-card pr-4 shadow-sm hover:bg-accent"
+            className={`h-16 w-full overflow-hidden
+            rounded-md border-[1px] bg-card pr-4 shadow-sm hover:bg-accent
+            ${isSolid ? 'border-solid' : 'border-dashed'}`}
         >
             <div className="flex w-full flex-row items-center gap-3">
                 <div
@@ -36,7 +38,7 @@ export function ItemMovimentacao({
                     ></i>
 
                     <div
-                        className={`absolute inset-0 z-0 w-full opacity-20 ${movimentacao.tipo === 'R' ? 'bg-success' : 'bg-destructive'}`}
+                        className={`absolute inset-0 z-0 w-full opacity-70 dark:opacity-20 ${movimentacao.tipo === 'R' ? 'bg-success' : 'bg-destructive'}`}
                     ></div>
                 </div>
                 <div className="w-full">

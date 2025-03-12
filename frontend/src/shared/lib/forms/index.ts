@@ -29,12 +29,23 @@ export const registerForm = z.object({
     path: ["password2"],
 })
 
+export const categoria = z.object({
+    sigla: z.string(),
+    nome: z.string(),
+    cor: z.string(),
+    icone: z.string(),
+    is_base: z.boolean(),
+    tipo: z.string(),
+    total_gastos: z.number(),
+    total_receitas: z.number(),
+});
+
 export const despesa = z.object({
     id: z.number().optional(),
     data: z.string().optional(),
     descricao: z.string().min(1, { message: 'Descrição é obrigatória' }).max(255),
     valor: z.number().min(0.01, { message: 'Valor deve ser maior que 0' }),
-    categoria: z.string().min(1, { message: 'Categoria é obrigatória' }),
+    categoria: categoria,
     forma_pagamento: z.string().min(1, { message: 'Categoria é obrigatória' }),
 });
 
@@ -43,5 +54,5 @@ export const receita = z.object({
     data: z.string().optional(),
     descricao: z.string().min(1, { message: 'Descrição é obrigatória' }).max(255),
     valor: z.number().min(0.01, { message: 'Valor deve ser maior que 0' }),
-    categoria: z.string().min(1, { message: 'Categoria é obrigatória' }),
+    categoria: categoria,
 });

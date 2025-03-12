@@ -1,9 +1,8 @@
 'use client';
-import { useStepper } from '@/features/modal-novo/ui/stepper';
-import { getCategoria } from '@/shared/api/endpoints/categoria-cli';
+import { useStepper } from '@/entities/stepper/ui/stepper';
 import { Categoria } from '@/types/models/categoria';
 import { DespesaSchema } from '@/types/models/despesa';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 
 type SelectCategoriaProps = ControllerRenderProps<
@@ -18,20 +17,10 @@ const SelectCategoria = React.forwardRef<
     Omit<SelectCategoriaProps, 'ref'>
 >(({ onChange, value, tipo = 'D', ...props }, ref) => {
     const { goToStep } = useStepper();
-    const [categoriaSelecionada, setCategoriaSelecionada] = React.useState<
-        Categoria | undefined
-    >();
-
-    useEffect(() => {
-        if (value) {
-            getCategoria(value).then(setCategoriaSelecionada);
-        }
-    }, []);
 
     return (
         <button
             type="button"
-            value={value}
             className="relative flex h-9 items-center rounded-md border"
             onClick={() =>
                 goToStep({
@@ -43,22 +32,18 @@ const SelectCategoria = React.forwardRef<
                 })
             }
         >
-            {categoriaSelecionada ? (
+            {value ? (
                 <div className="relative ml-3 w-full">
                     <span
                         className="flex items-center  gap-2"
-                        style={{ color: categoriaSelecionada?.cor }}
+                        style={{ color: value?.cor }}
                     >
-                        <i
-                            className={`${categoriaSelecionada.icone} text-2xl`}
-                        ></i>
-                        {categoriaSelecionada.nome}
+                        <i className={`${value.icone} text-2xl`}></i>
+                        {value.nome}
                     </span>
                     <span className="absolute inset-0 flex items-center gap-2 text-black opacity-30">
-                        <i
-                            className={`${categoriaSelecionada.icone} text-2xl`}
-                        ></i>
-                        {categoriaSelecionada.nome}
+                        <i className={`${value.icone} text-2xl`}></i>
+                        {value.nome}
                     </span>
                 </div>
             ) : (
@@ -66,9 +51,10 @@ const SelectCategoria = React.forwardRef<
             )}
             <div
                 className="absolute inset-0 opacity-15"
-                style={{ backgroundColor: categoriaSelecionada?.cor }}
+                style={{ backgroundColor: value?.cor }}
             ></div>
             <i className="ph ph-caret-right mx-3 justify-self-end"></i>
+            <input {...props} type="hidden" />
         </button>
     );
 });

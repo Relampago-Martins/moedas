@@ -1,4 +1,5 @@
-import { StepObject, useStepper } from '@/features/modal-novo/ui/stepper';
+import { StepObject } from '@/entities/stepper/lib/types';
+import { useStepper } from '@/entities/stepper/ui/stepper';
 import { Button } from '@/shared/ui/button';
 import { useQueryClient } from '@tanstack/react-query';
 
