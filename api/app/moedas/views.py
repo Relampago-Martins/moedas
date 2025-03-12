@@ -4,6 +4,7 @@ from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
 from django.conf import settings
+from django.db.models import Q, Sum
 from rest_framework import views, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -66,13 +67,52 @@ class CategoriaViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["get"], url_path="meu-resumo")
     def meu_resumo(self, request):
         """View que retorna um resumo das categorias do usuário."""
-        resumo_categorias = moedas_serializers.ResumoMinhasCategorias(
-            user=request.user,
+
+        periodo_after = request.query_params.get("periodo_after")
+        periodo_before = request.query_params.get("periodo_before")
+
+        categorias = (
+            Categoria.objects.annotate(
+                total=Sum(
+                    "movimentacao__valor",
+                    filter=Q(
+                        movimentacao__user=request.user,
+                    )
+                    & self._get_filtro_movimentacoes_por_periodo(
+                        periodo_after,
+                        periodo_before,
+                    ),
+                ),
+            )
+            .filter(total__gt=0)
+            .order_by(
+                "total",
+            )
         )
+        resumo_categorias = moedas_serializers.CategoriaSerializer(
+            categorias,
+            with_total=True,
+            many=True,
+        )
+
         return Response(
             resumo_categorias.data,
             status=200,
         )
+
+    def _get_filtro_movimentacoes_por_periodo(self, periodo_after, periodo_before) -> Q:
+        qs = Q()
+        if periodo_after:
+            qs &= Q(movimentacao__data__gte=periodo_after)
+        if periodo_before:
+            qs &= Q(movimentacao__data__lte=periodo_before)
+        if not periodo_after and not periodo_before:
+            hoje = date.today()
+            qs &= Q(
+                movimentacao__data__month=hoje.month,
+                movimentacao__data__year=hoje.year,
+            )
+        return qs
 
 
 class ReceitaViewSet(viewsets.ModelViewSet):
