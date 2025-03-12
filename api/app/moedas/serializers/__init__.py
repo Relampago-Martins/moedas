@@ -1,5 +1,5 @@
 from moedas.serializers.carteira import CarteiraSerializer
-from moedas.serializers.categoria import CategoriaSerializer, ResumoMinhasCategorias
+from moedas.serializers.categoria import CategoriaSerializer
 from moedas.serializers.movimentacao import (
     DespesaSerializer,
     MovimentacaoSerializer,
@@ -12,5 +12,4 @@ __all__ = [
     "DespesaSerializer",
     "MovimentacaoSerializer",
     "ReceitaSerializer",
-    "ResumoMinhasCategorias",
 ]

@@ -17,10 +17,6 @@ class CarteiraSerializer(serializers.Serializer):
     - Total
     """
 
-    saldo_em_conta = serializers.DecimalField(max_digits=10, decimal_places=2)
-    total_despesas = serializers.DecimalField(max_digits=10, decimal_places=2)
-    total_receitas = serializers.DecimalField(max_digits=10, decimal_places=2)
-
     def __init__(
         self,
         user: User,
