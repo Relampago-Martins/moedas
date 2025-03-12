@@ -36,6 +36,8 @@ export const categoria = z.object({
     icone: z.string(),
     is_base: z.boolean(),
     tipo: z.string(),
+    total_gastos: z.number(),
+    total_receitas: z.number(),
 });
 
 export const despesa = z.object({

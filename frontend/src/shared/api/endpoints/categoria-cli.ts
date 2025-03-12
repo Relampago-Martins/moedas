@@ -14,16 +14,16 @@ export async function getCategorias(tipo?: "D" | "R") {
         `/categorias/?${urlParams}`, 
         { next: { revalidate: 60, tags: ['categorias'] } }
     );
-    return resp.data;
+    return resp.data.sort((a, b) => a.total_gastos - b.total_gastos)
 }
 
-export async function getResumoCategorias() {
-    const resp = await ApiClient.getInstance().get<Categoria[]>(
-        `/categorias/meu-resumo/`, 
-        { next: { revalidate: 60, tags: ['meu-resumo-categorias'] } }
-    );
-    return resp.data.sort((a, b) => a.total_gastos - b.total_gastos);
-};
+// export async function getResumoCategorias() {
+//     const resp = await ApiClient.getInstance().get<Categoria[]>(
+//         `/categorias/meu-resumo/`, 
+//         { next: { revalidate: 60, tags: ['meu-resumo-categorias'] } }
+//     );
+//     return resp.data.sort((a, b) => a.total_gastos - b.total_gastos);
+// };
 
 
 

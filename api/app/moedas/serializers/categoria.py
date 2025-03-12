@@ -33,9 +33,9 @@ class ResumoMinhasCategorias(serializers.Serializer):
             .annotate(
                 total=Sum("movimentacao__valor"),
             )
-            .filter(otal__gt=0)
+            .filter(total__gt=0)
             .order_by(
-                "nome",
+                "total",
             )
         )
         super().__init__(
