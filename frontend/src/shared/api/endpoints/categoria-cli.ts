@@ -27,7 +27,7 @@ export async function getCategoriasTotalMovs(params: ResumoCategoriasProps) {
     const urlParams = obj2SearchParams(params);
     const resp = await ApiClient.getInstance().get<CategoriaTotalMov[]>(
         `/categorias/total-movimentacoes/?${urlParams}`, 
-        { next: { revalidate: 60, tags: ['categorias-total-movimentacoes'] } }
+        // { next: { revalidate: 60, tags: ['categorias-total-movimentacoes'] } }
     );
     return resp.data;
 };

@@ -2,8 +2,8 @@ import { getCategoriasTotalMovs } from '@/shared/api/endpoints/categoria-cli';
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { PieChart02Icon } from '@/shared/ui/huge-icons';
 import { TFiltroPeriodo } from '@/types/filters';
-import { GraficoPizza } from './GraficoPizza';
-import { SelectCategoria } from './SelectCategoria';
+import { GraficoPizza } from './grafico-pizza';
+import { ListaCategorias } from './lista-categorias';
 import { GastosContext } from './utils/GastosContext';
 
 type CardGastosProps = {
@@ -28,25 +28,7 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
             <CardContent className="mb-8 flex h-full flex-wrap items-center justify-center gap-4">
                 <GastosContext>
                     <GraficoPizza categorias={categorias} />
-                    <div className="flex w-[200px] flex-col gap-4">
-                        <SelectCategoria categorias={categorias} />
-                        {categorias.map((categoria) => (
-                            <div
-                                className="flex items-center gap-2"
-                                key={categoria.sigla}
-                            >
-                                <div
-                                    className="h-4 w-4 rounded-full"
-                                    style={{
-                                        backgroundColor: categoria.cor,
-                                    }}
-                                />
-                                <span className="text-sm font-medium">
-                                    {categoria.nome}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
+                    <ListaCategorias categorias={categorias} />
                 </GastosContext>
             </CardContent>
         </Card>

@@ -20,13 +20,11 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
     const [activeIndex, setActiveIndex] = useState(-1);
 
     useEffect(() => {
-        let indexSelected = -1;
         categorias.forEach((entry, index) => {
             if (entry.sigla === categoriaSelecionada?.sigla) {
-                indexSelected = index;
+                setActiveIndex(index);
             }
         });
-        setActiveIndex(indexSelected);
     }, [categoriaSelecionada]);
 
     const onPieClick = useCallback(
@@ -87,12 +85,16 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     className=" text-sm font-bold text-gray-500"
                 >
                     {activeIndex < 0 ? (
-                        numberToCurrency(
-                            categorias.reduce(
-                                (acc, curr) => acc + curr.total_movimentacoes,
-                                0,
-                            ),
-                        )
+                        <div className="flex flex-col items-center">
+                            <span className="text-xl">Total</span>
+                            {numberToCurrency(
+                                categorias.reduce(
+                                    (acc, curr) =>
+                                        acc + curr.total_movimentacoes,
+                                    0,
+                                ),
+                            )}
+                        </div>
                     ) : (
                         <div className="flex flex-col items-center gap-1">
                             <i

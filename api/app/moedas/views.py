@@ -95,7 +95,7 @@ class CategoriaViewSet(viewsets.ModelViewSet):
             )
             .filter(total__gt=0)
             .order_by(
-                "total",
+                "-total",
             )
         )
         resumo_categorias = moedas_serializers.CategoriaSerializer(
