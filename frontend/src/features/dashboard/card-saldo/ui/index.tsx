@@ -11,7 +11,7 @@ type CardSaldoProps = {
 };
 
 export async function CardSaldo({ className, params }: CardSaldoProps) {
-    const { saldo } = await getCarteira(params);
+    const { saldo, diff_percentual } = await getCarteira(params);
 
     return (
         <Card className={className}>
@@ -19,7 +19,7 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
                 <FiltroPeriodo />
             </div>
             <div className="flex h-full flex-col justify-between gap-4 px-6 py-3">
-                <Saldo valor={saldo} />
+                <Saldo valor={saldo} diffPercentual={diff_percentual} />
             </div>
         </Card>
     );

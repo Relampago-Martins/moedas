@@ -161,15 +161,13 @@ class MovimentacaoViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class CarteiraView(views.APIView):
-    """
-    View para retornar o saldo da carteira
-    """
+    """View para retornar o saldo da carteira."""
 
-    def get(self, request):
-        """
-        View responsável por agregar em um local as informações da
-        financeiras gerais de um usuário
+    def get(self, request: Request) -> Response:
+        """Agregar em um local as informações financeiras de um usuário.
+
         - Saldo em conta
+        - Diferença percentual do saldo em conta em relação ao mês anterior
         - Total de despesas
         - Total de receitas
         """
