@@ -32,7 +32,7 @@ export function ItemMovimentacao({
                     className={`relative flex h-16 w-14 shrink-0 items-center justify-center`}
                 >
                     <i
-                        className={`${movimentacao.categoria.icone} z-10 text-2xl 
+                        className={`${movimentacao.categoria.icone} z-[1] text-2xl 
                             ${movimentacao.tipo === 'R' ? 'text-success-foreground' : 'text-destructive-foreground'}
                         `}
                     ></i>

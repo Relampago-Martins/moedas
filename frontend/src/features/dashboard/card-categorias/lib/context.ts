@@ -1,9 +1,9 @@
-import { Categoria, CategoriaTotalMov } from "@/types/models/categoria";
+import { CategoriaTotalMov } from "@/types/models/categoria";
 import { createContext } from "react";
 
 type GastosContext = {
     categoriaSelecionada: CategoriaTotalMov | undefined;
-    setCategoriaSelecionada: (categoria?: Categoria) => void;
+    setCategoriaSelecionada: (categoria?: CategoriaTotalMov) => void;
 }
 
 export const GastosContext = createContext<GastosContext>({

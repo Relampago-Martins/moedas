@@ -15,11 +15,15 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
         0,
     );
     return (
-        <div className="flex h-[250px] w-full flex-col gap-4">
+        <div className="flex h-[130x] w-full flex-col gap-2 ">
             {categorias.map((categoria) => (
                 <CardCategoria
                     onClick={() => {
-                        setCategoriaSelecionada(categoria);
+                        if (categoriaSelecionada?.sigla === categoria.sigla) {
+                            setCategoriaSelecionada();
+                        } else {
+                            setCategoriaSelecionada(categoria);
+                        }
                     }}
                     key={categoria.sigla}
                     categoria={categoria}

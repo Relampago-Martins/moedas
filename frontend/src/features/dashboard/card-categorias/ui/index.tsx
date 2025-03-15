@@ -1,6 +1,5 @@
 import { getCategoriasTotalMovs } from '@/shared/api/endpoints/categoria-cli';
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
-import { PieChart02Icon } from '@/shared/ui/huge-icons';
 import { TFiltroPeriodo } from '@/types/filters';
 import { GraficoPizza } from './grafico-pizza';
 import { ListaCategorias } from './lista-categorias';
@@ -19,17 +18,24 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
 
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
-            <CardHeader className="flex flex-row items-center gap-2 space-y-0 opacity-70">
-                <PieChart02Icon className="h-5 w-5" />
-                <span className="text-base font-medium">
-                    Despesas por Categoria
-                </span>
+            <CardHeader className="flex flex-row items-center gap-2 space-y-0 pb-2 opacity-70">
+                <i className="ph ph-chart-pie text-xl" />
+                <span className="text-lg">Categorias</span>
             </CardHeader>
-            <CardContent className="mb-8 flex h-full flex-wrap items-center justify-center gap-4">
-                <GastosContext>
-                    <GraficoPizza categorias={categorias} />
-                    <ListaCategorias categorias={categorias} />
-                </GastosContext>
+            <CardContent className="flex h-full flex-col items-center gap-4">
+                {categorias.length > 0 ? (
+                    <GastosContext>
+                        <GraficoPizza categorias={categorias.toReversed()} />
+                        <ListaCategorias categorias={categorias} />
+                    </GastosContext>
+                ) : (
+                    <div className="flex h-full flex-col items-center justify-center gap-2 text-muted">
+                        <i className="ph ph-chart-pie-slice text-6xl" />
+                        <span className="text-sm ">
+                            Nenhuma despesa registrada
+                        </span>
+                    </div>
+                )}
             </CardContent>
         </Card>
     );

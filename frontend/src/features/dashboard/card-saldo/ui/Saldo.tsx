@@ -33,23 +33,25 @@ export function Saldo(props: SaldoProps) {
                         className={`ph ${show ? 'ph-eye-slash' : 'ph-eye'} flex text-lg text-muted`}
                     ></i>
                 </button>
-                <div
-                    className="flex w-full items-center justify-end gap-1 text-end"
-                    style={{
-                        color: evoluiuPatrimonio
-                            ? 'var(--success-foreground)'
-                            : 'var(--destructive-foreground)',
-                    }}
-                >
-                    {evoluiuPatrimonio ? (
-                        <i className="ph ph-arrow-fat-line-up flex text-lg"></i>
-                    ) : (
-                        <i className="ph ph-arrow-fat-line-down flex text-lg"></i>
-                    )}
-                    <span className="text-sm">
-                        {props.diffPercentual.toFixed(1).replace('.', ',')}%
-                    </span>
-                </div>
+                {props.diffPercentual ? (
+                    <div
+                        className="flex w-full items-center justify-end gap-1 text-end"
+                        style={{
+                            color: evoluiuPatrimonio
+                                ? 'var(--success-foreground)'
+                                : 'var(--destructive-foreground)',
+                        }}
+                    >
+                        {evoluiuPatrimonio ? (
+                            <i className="ph ph-arrow-fat-line-up flex text-lg"></i>
+                        ) : (
+                            <i className="ph ph-arrow-fat-line-down flex text-lg"></i>
+                        )}
+                        <span className="text-sm">
+                            {props.diffPercentual.toFixed(0).replace('.', ',')}%
+                        </span>
+                    </div>
+                ) : null}
             </div>
         </div>
     );

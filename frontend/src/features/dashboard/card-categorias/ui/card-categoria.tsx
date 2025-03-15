@@ -15,13 +15,13 @@ export function CardCategoria({
 }: CardCategoriaProps) {
     return (
         <button
-            onClick={selecionado ? undefined : onClick}
+            onClick={onClick}
             className="relative flex items-center gap-2 rounded-md border transition-transform hover:scale-105"
             key={categoria.sigla}
         >
             <ReadableTextColorDiv
                 color={categoria.cor}
-                className="flex items-center gap-2 px-3 py-2"
+                className="flex items-center gap-2 px-2 py-1"
             >
                 {selecionado ? (
                     <i className="ph-bold ph-check text-2xl"></i>

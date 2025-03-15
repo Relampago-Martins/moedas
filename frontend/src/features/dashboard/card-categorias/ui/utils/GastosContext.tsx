@@ -1,5 +1,5 @@
 'use client';
-import { Categoria } from '@/types/models/categoria';
+import { CategoriaTotalMov } from '@/types/models/categoria';
 import { ReactNode, useState } from 'react';
 import { GastosContext as Context } from '../../lib/context';
 
@@ -9,7 +9,7 @@ type GastosConteudoProps = {
 
 export function GastosContext({ children }: GastosConteudoProps) {
     const [categoriaSelecionada, setCategoriaSelecionada] =
-        useState<Categoria>();
+        useState<CategoriaTotalMov>();
 
     return (
         <Context.Provider

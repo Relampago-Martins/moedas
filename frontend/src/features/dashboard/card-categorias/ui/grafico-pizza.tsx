@@ -24,6 +24,9 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
             if (entry.sigla === categoriaSelecionada?.sigla) {
                 setActiveIndex(index);
             }
+            if (categoriaSelecionada === undefined) {
+                setActiveIndex(-1);
+            }
         });
     }, [categoriaSelecionada]);
 
@@ -40,8 +43,13 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
         [activeIndex],
     );
     return (
-        <div className="relative h-fit">
-            <PieChart width={250} height={250} className="z-[1] -mx-3">
+        <div className="relative">
+            <PieChart
+                width={200}
+                height={200}
+                className="z-[1] -mx-3"
+                margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+            >
                 <Pie
                     data={categorias}
                     dataKey="total_movimentacoes"
