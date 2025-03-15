@@ -180,6 +180,8 @@ class CarteiraSerializer(serializers.Serializer):
     def _get_diff_percentual(self, saldo_atual: float, saldo_anterior: float) -> float:
         """Retorna a diferença percentual do saldo em relação ao mês anterior."""
         if saldo_anterior:
-            perceltual = (saldo_atual - saldo_anterior) / saldo_anterior * 100
-            return round(perceltual, 2)
+            percentual = (saldo_atual - saldo_anterior) / saldo_anterior * 100
+            if saldo_anterior < 0 and saldo_atual < 0:
+                percentual = abs(percentual)
+            return round(percentual, 2)
         return 0
