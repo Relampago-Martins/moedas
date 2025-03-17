@@ -49,7 +49,7 @@ export default function Dashboard({
             >
                 <CardCategorias
                     params={searchParams}
-                    className="col-span-12 lg:col-span-3 lg:col-end-11 lg:row-span-4 lg:row-start-2 xl:col-end-13"
+                    className="col-span-12 lg:col-span-3 lg:row-span-2 lg:row-start-2 "
                 />
             </Suspense>
         </div>

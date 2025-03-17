@@ -1,5 +1,6 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
+import { ReadableTextColorDiv } from '@/shared/ui/custom/readable-text-color-div';
 import { CategoriaTotalMov } from '@/types/models/categoria';
 import { motion } from 'framer-motion';
 import { useCallback, useContext, useEffect, useState } from 'react';
@@ -42,6 +43,11 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
         },
         [activeIndex],
     );
+
+    useEffect(() => {
+        setCategoriaSelecionada();
+    }, [categorias]);
+
     return (
         <div className="relative">
             <PieChart
@@ -104,14 +110,17 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                             )}
                         </div>
                     ) : (
-                        <div className="flex flex-col items-center gap-1">
+                        <ReadableTextColorDiv
+                            color={categoriaSelecionada?.cor || 'unset'}
+                            className="flex flex-col items-center gap-1"
+                        >
                             <i
                                 className={`${categoriaSelecionada?.icone} text-4xl`}
                             />
                             {numberToCurrency(
                                 categoriaSelecionada?.total_movimentacoes || 0,
                             )}
-                        </div>
+                        </ReadableTextColorDiv>
                     )}
                 </motion.span>
             </div>
