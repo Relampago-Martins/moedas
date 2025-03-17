@@ -15,7 +15,7 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
         0,
     );
     return (
-        <div className="flex h-[140px] w-full flex-col gap-2 overflow-y-scroll p-2">
+        <div className="flex w-full flex-wrap gap-2">
             {categorias.map((categoria) => (
                 <CardCategoria
                     onClick={() => {

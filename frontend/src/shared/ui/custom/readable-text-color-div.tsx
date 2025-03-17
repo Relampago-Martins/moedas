@@ -20,7 +20,7 @@ export function ReadableTextColorDiv({
                 {children}
             </div>
             <div
-                className={`${className} absolute inset-0 text-black opacity-30`}
+                className={`${className} absolute inset-0 text-black opacity-30 dark:text-white`}
             >
                 {children}
             </div>

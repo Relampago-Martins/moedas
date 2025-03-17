@@ -16,24 +16,21 @@ export function CardCategoria({
     return (
         <button
             onClick={onClick}
-            className="relative flex items-center gap-2 rounded-md border transition-transform hover:scale-105"
+            className="relative h-10 rounded-md border transition-transform hover:scale-105"
+            style={{
+                width: `${porcentualDoTotal}%`,
+            }}
             key={categoria.sigla}
         >
             <ReadableTextColorDiv
                 color={categoria.cor}
-                className="flex items-center gap-2 px-2 py-1"
+                className="flex items-center justify-center gap-2 px-2 py-1"
             >
                 {selecionado ? (
                     <i className="ph-bold ph-check text-2xl"></i>
                 ) : (
                     <i className={`${categoria.icone} text-2xl`}></i>
                 )}
-                <span className={`text-sm ${selecionado ? 'font-bold' : ''}`}>
-                    {categoria.nome}
-                </span>
-                <span className="w-full text-end text-sm">
-                    {porcentualDoTotal.toFixed(1).replace('.', ',')}%
-                </span>
             </ReadableTextColorDiv>
             <div
                 className="absolute inset-0 opacity-20"

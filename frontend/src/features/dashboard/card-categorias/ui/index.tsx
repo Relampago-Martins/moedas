@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { TFiltroPeriodo } from '@/types/filters';
 import { GraficoPizza } from './grafico-pizza';
 import { ListaCategorias } from './lista-categorias';
+import { TotalDespesas } from './total-despesas';
 import { GastosContext } from './utils/GastosContext';
 
 type CardGastosProps = {
@@ -16,16 +17,22 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
         tipo: 'D',
     });
 
+    const totalDespesas = categorias.reduce(
+        (acc, categoria) => acc + categoria.total_movimentacoes,
+        0,
+    );
+
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
             <CardHeader className="flex flex-row items-center gap-2 space-y-0 border-b py-1 opacity-70">
                 <i className="ph ph-chart-pie text-xl" />
                 <span className="">Categorias</span>
             </CardHeader>
-            <CardContent className="flex h-full flex-col items-center gap-0 px-4 pt-2">
+            <CardContent className="flex h-full flex-col items-center gap-3 px-4 pt-2">
                 {categorias.length > 0 ? (
                     <GastosContext>
                         <GraficoPizza categorias={categorias.toReversed()} />
+                        <TotalDespesas total={totalDespesas} />
                         <ListaCategorias categorias={categorias} />
                     </GastosContext>
                 ) : (

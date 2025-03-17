@@ -1,5 +1,4 @@
 'use client';
-import { numberToCurrency } from '@/shared/lib/utils';
 import { ReadableTextColorDiv } from '@/shared/ui/custom/readable-text-color-div';
 import { CategoriaTotalMov } from '@/types/models/categoria';
 import { motion } from 'framer-motion';
@@ -101,25 +100,28 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     {activeIndex < 0 ? (
                         <div className="flex flex-col items-center">
                             <span className="text-xl">Total</span>
-                            {numberToCurrency(
+                            {/* {numberToCurrency(
                                 categorias.reduce(
                                     (acc, curr) =>
                                         acc + curr.total_movimentacoes,
                                     0,
                                 ),
-                            )}
+                            )} */}
                         </div>
                     ) : (
                         <ReadableTextColorDiv
                             color={categoriaSelecionada?.cor || 'unset'}
-                            className="flex flex-col items-center gap-1"
+                            className="flex flex-col items-center"
                         >
                             <i
                                 className={`${categoriaSelecionada?.icone} text-4xl`}
                             />
-                            {numberToCurrency(
+                            <span className="text-sm">
+                                {categoriaSelecionada?.nome}
+                            </span>
+                            {/* {numberToCurrency(
                                 categoriaSelecionada?.total_movimentacoes || 0,
-                            )}
+                            )} */}
                         </ReadableTextColorDiv>
                     )}
                 </motion.span>
