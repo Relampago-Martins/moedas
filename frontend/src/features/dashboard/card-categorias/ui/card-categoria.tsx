@@ -28,7 +28,7 @@ export function CardCategoria({
                 className="flex items-center justify-center gap-2 px-2 py-1"
             >
                 <i
-                    className={`${categoria.icone} text-2xl ${hide ? 'opacity-25' : null}`}
+                    className={`${categoria.icone} text-2xl ${hide ? 'opacity-30' : null}`}
                 ></i>
             </ReadableTextColorDiv>
             <div

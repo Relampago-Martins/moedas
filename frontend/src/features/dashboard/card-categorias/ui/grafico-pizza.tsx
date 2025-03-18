@@ -18,7 +18,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
     const { categoriaSelecionada, setCategoriaSelecionada } =
         useContext(GastosContext);
     const [activeIndex, setActiveIndex] = useState(-1);
-
+    const activeIndexList = [activeIndex];
     useEffect(() => {
         categorias.forEach((entry, index) => {
             if (entry.sigla === categoriaSelecionada?.sigla) {
@@ -58,7 +58,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                 <Pie
                     data={categorias}
                     dataKey="total_movimentacoes"
-                    activeIndex={activeIndex}
+                    activeIndex={activeIndexList}
                     activeShape={FatiaAtiva}
                     inactiveShape={FatiaInativa}
                     shapeRendering={'geometricPrecision'}
@@ -81,47 +81,39 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                                 entry.cor,
                                 activeIndex >= 0 && activeIndex !== index,
                             )}
+                            // stroke={entry.cor}
+                            // strokeWidth={4}
+                            // strokeOpacity={1}
                         />
                     ))}
                 </Pie>
             </PieChart>
+
             <div className="absolute inset-0 z-[0] flex select-none flex-col items-center justify-center gap-1">
                 <motion.span
-                    key={`total-gastos-${activeIndex}`}
+                    key={`total-gastos-${categoriaSelecionada?.sigla}`}
                     transition={{
                         type: 'spring',
                         duration: 0.3,
-                        bounce: 0,
+                        bounce: 0.2,
                     }}
                     initial={{ opacity: 0.9, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     className=" text-sm font-bold text-gray-500"
                 >
                     {activeIndex < 0 ? (
                         <div className="flex flex-col items-center">
                             <i className="ph-bold ph-trend-down text-3xl text-foreground" />
-                            {/* {numberToCurrency(
-                                categorias.reduce(
-                                    (acc, curr) =>
-                                        acc + curr.total_movimentacoes,
-                                    0,
-                                ),
-                            )} */}
                         </div>
                     ) : (
                         <ReadableTextColorDiv
                             color={categoriaSelecionada?.cor || 'unset'}
                             className="flex flex-col items-center"
                         >
-                            {/* <i
-                                className={`${categoriaSelecionada?.icone} text-4xl`}
-                            /> */}
-                            <span className="text-xl">
-                                {categoriaSelecionada?.percentual.toFixed(0)}%
-                            </span>
-                            {/* {numberToCurrency(
-                                categoriaSelecionada?.total_movimentacoes || 0,
-                            )} */}
+                            <div className="text-2xl">
+                                {categoriaSelecionada?.percentual.toFixed(0)}
+                                <span className="ml-[2px] text-sm">%</span>
+                            </div>
                         </ReadableTextColorDiv>
                     )}
                 </motion.span>
