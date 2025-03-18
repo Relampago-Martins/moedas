@@ -4,17 +4,21 @@ import { CategoriaTotalMov } from '@/types/models/categoria';
 type CardCategoriaProps = {
     categoria: CategoriaTotalMov;
     onClick: () => void;
+    percentualDoTotal: number;
     selecionado?: boolean;
+    hide?: boolean;
 };
 export function CardCategoria({
     categoria,
     onClick,
+    percentualDoTotal,
     selecionado,
+    hide,
 }: CardCategoriaProps) {
     return (
         <button
             onClick={onClick}
-            className="relative h-10 rounded-md border transition-transform hover:scale-105"
+            className="relative h-12 rounded-md transition-transform hover:scale-105"
             key={categoria.sigla}
         >
             <ReadableTextColorDiv
@@ -22,13 +26,17 @@ export function CardCategoria({
                 className="flex items-center justify-center gap-2 px-2 py-1"
             >
                 {selecionado ? (
-                    <i className="ph-bold ph-check text-2xl"></i>
+                    <span className="font-semibold">
+                        {percentualDoTotal.toFixed(0)}%
+                    </span>
                 ) : (
-                    <i className={`${categoria.icone} text-2xl`}></i>
+                    <i
+                        className={`${categoria.icone} text-2xl ${hide ? 'opacity-20' : null}`}
+                    ></i>
                 )}
             </ReadableTextColorDiv>
             <div
-                className="absolute inset-0 opacity-20"
+                className="absolute inset-0 rounded-md opacity-20"
                 style={{
                     backgroundColor: categoria.cor,
                 }}

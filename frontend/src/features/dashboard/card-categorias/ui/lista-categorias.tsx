@@ -19,23 +19,15 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
     const percentualDoTotal = categoriaSelecionada
         ? (categoriaSelecionada?.total_movimentacoes / gastosTotais) * 100
         : 100;
+
+    const valorTotal = numberToCurrency(
+        categoriaSelecionada?.total_movimentacoes ?? gastosTotais,
+    )
+        .replace('R$', '')
+        .trim();
+
     return (
         <div className="grid w-full grid-cols-4 gap-2">
-            <ReadableTextColorDiv
-                outerClassName="h-full col-span-2 row-span-2 px-2 "
-                className="flex w-full flex-col text-center"
-                color={categoriaSelecionada?.cor ?? 'var(--muted)'}
-            >
-                <span className="font-semibold">
-                    {percentualDoTotal.toFixed(0)}%
-                </span>
-                <span className="text-lg">
-                    {numberToCurrency(
-                        categoriaSelecionada?.total_movimentacoes ??
-                            gastosTotais,
-                    )}
-                </span>
-            </ReadableTextColorDiv>
             {categorias.map((categoria) => (
                 <CardCategoria
                     onClick={() => {
@@ -45,19 +37,36 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
                             setCategoriaSelecionada(categoria);
                         }
                     }}
+                    percentualDoTotal={percentualDoTotal}
                     key={categoria.sigla}
                     categoria={categoria}
                     selecionado={
                         categoriaSelecionada?.sigla === categoria.sigla
                     }
+                    hide={
+                        categoriaSelecionada &&
+                        categoria.sigla !== categoriaSelecionada.sigla
+                    }
                 />
             ))}
+
+            <ReadableTextColorDiv
+                color={categoriaSelecionada?.cor ?? 'var(--foreground)'}
+                className="flex h-full w-full flex-col"
+                outerClassName="col-start-2 col-span-2  row-start-1 rounded-md"
+            >
+                <span className="w-full text-center text-sm ">
+                    {categoriaSelecionada?.nome ?? 'Total'}
+                </span>
+                <div className="-mt-1 flex h-full items-center justify-center ">
+                    <span className="mr-1 mt-1 text-sm">R$</span>
+                    <div className="shrink-0 text-xl font-semibold">
+                        {valorTotal}
+                    </div>
+                </div>
+            </ReadableTextColorDiv>
             {categorias.length % 2 !== 0 && (
-                <>
-                    <div className="h-10 rounded-md border border-dashed"></div>
-                    <div className="h-10 rounded-md border border-dashed"></div>
-                    <div className="h-10 rounded-md border border-dashed"></div>
-                </>
+                <div className=" h-12 rounded-md border border-dashed"></div>
             )}
         </div>
     );

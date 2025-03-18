@@ -50,8 +50,8 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
     return (
         <div className="relative">
             <PieChart
-                width={200}
-                height={200}
+                width={180}
+                height={180}
                 className="z-[1] -mx-3"
                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
@@ -62,8 +62,8 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     activeShape={FatiaAtiva}
                     inactiveShape={FatiaInativa}
                     shapeRendering={'geometricPrecision'}
-                    innerRadius={60}
-                    outerRadius={90}
+                    innerRadius={45}
+                    outerRadius={80}
                     startAngle={90}
                     endAngle={-270}
                     isAnimationActive={true}
@@ -99,7 +99,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                 >
                     {activeIndex < 0 ? (
                         <div className="flex flex-col items-center">
-                            <span className="text-xl">Total</span>
+                            <i className="ph ph-trend-down text-3xl text-foreground" />
                             {/* {numberToCurrency(
                                 categorias.reduce(
                                     (acc, curr) =>
@@ -116,9 +116,9 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                             <i
                                 className={`${categoriaSelecionada?.icone} text-4xl`}
                             />
-                            <span className="text-sm">
+                            {/* <span className="text-sm">
                                 {categoriaSelecionada?.nome}
-                            </span>
+                            </span> */}
                             {/* {numberToCurrency(
                                 categoriaSelecionada?.total_movimentacoes || 0,
                             )} */}

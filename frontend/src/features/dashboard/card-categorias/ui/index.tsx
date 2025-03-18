@@ -23,11 +23,11 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
 
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
-            <CardHeader className="flex flex-row items-center gap-2 space-y-0 border-b py-1 opacity-70">
+            <CardHeader className="flex h-10 shrink-0 flex-row items-center gap-2 border-b py-0 text-muted">
                 <i className="ph ph-chart-pie text-xl" />
                 <span className="">Categorias</span>
             </CardHeader>
-            <CardContent className="flex h-full flex-col items-center gap-3 px-4 pt-2">
+            <CardContent className="flex h-full flex-col items-center gap-2 px-4 pt-2">
                 {categorias.length > 0 ? (
                     <GastosContext>
                         <GraficoPizza categorias={categorias.toReversed()} />
