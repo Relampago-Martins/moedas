@@ -4,22 +4,17 @@ import { CategoriaTotalMov } from '@/types/models/categoria';
 type CardCategoriaProps = {
     categoria: CategoriaTotalMov;
     onClick: () => void;
-    porcentualDoTotal: number;
     selecionado?: boolean;
 };
 export function CardCategoria({
     categoria,
     onClick,
-    porcentualDoTotal,
     selecionado,
 }: CardCategoriaProps) {
     return (
         <button
             onClick={onClick}
             className="relative h-10 rounded-md border transition-transform hover:scale-105"
-            style={{
-                width: `${porcentualDoTotal}%`,
-            }}
             key={categoria.sigla}
         >
             <ReadableTextColorDiv

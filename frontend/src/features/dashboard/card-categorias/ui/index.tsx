@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { TFiltroPeriodo } from '@/types/filters';
 import { GraficoPizza } from './grafico-pizza';
 import { ListaCategorias } from './lista-categorias';
-import { TotalDespesas } from './total-despesas';
 import { GastosContext } from './utils/GastosContext';
 
 type CardGastosProps = {
@@ -32,7 +31,6 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
                 {categorias.length > 0 ? (
                     <GastosContext>
                         <GraficoPizza categorias={categorias.toReversed()} />
-                        <TotalDespesas total={totalDespesas} />
                         <ListaCategorias categorias={categorias} />
                     </GastosContext>
                 ) : (
