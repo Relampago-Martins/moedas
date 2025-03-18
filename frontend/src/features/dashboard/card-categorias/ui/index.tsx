@@ -16,11 +16,6 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
         tipo: 'D',
     });
 
-    const totalDespesas = categorias.reduce(
-        (acc, categoria) => acc + categoria.total_movimentacoes,
-        0,
-    );
-
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
             <CardHeader className="flex h-10 shrink-0 flex-row items-center gap-2 border-b py-0 text-muted">

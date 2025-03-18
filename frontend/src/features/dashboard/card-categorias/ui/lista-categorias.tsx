@@ -16,11 +16,8 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
         (acc, categoria) => acc + categoria.total_movimentacoes,
         0,
     );
-    const percentualDoTotal = categoriaSelecionada
-        ? (categoriaSelecionada?.total_movimentacoes / gastosTotais) * 100
-        : 100;
 
-    const valorTotal = numberToCurrency(
+    const valorTotalSelecionado = numberToCurrency(
         categoriaSelecionada?.total_movimentacoes ?? gastosTotais,
     )
         .replace('R$', '')
@@ -37,7 +34,6 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
                             setCategoriaSelecionada(categoria);
                         }
                     }}
-                    percentualDoTotal={percentualDoTotal}
                     key={categoria.sigla}
                     categoria={categoria}
                     selecionado={
@@ -61,7 +57,7 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
                 <div className="-mt-1 flex h-full items-center justify-center ">
                     <span className="mr-1 mt-1 text-sm">R$</span>
                     <div className="shrink-0 text-xl font-semibold">
-                        {valorTotal}
+                        {valorTotalSelecionado}
                     </div>
                 </div>
             </ReadableTextColorDiv>

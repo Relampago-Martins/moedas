@@ -99,7 +99,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                 >
                     {activeIndex < 0 ? (
                         <div className="flex flex-col items-center">
-                            <i className="ph ph-trend-down text-3xl text-foreground" />
+                            <i className="ph-bold ph-trend-down text-3xl text-foreground" />
                             {/* {numberToCurrency(
                                 categorias.reduce(
                                     (acc, curr) =>
@@ -113,12 +113,12 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                             color={categoriaSelecionada?.cor || 'unset'}
                             className="flex flex-col items-center"
                         >
-                            <i
+                            {/* <i
                                 className={`${categoriaSelecionada?.icone} text-4xl`}
-                            />
-                            {/* <span className="text-sm">
-                                {categoriaSelecionada?.nome}
-                            </span> */}
+                            /> */}
+                            <span className="text-xl">
+                                {categoriaSelecionada?.percentual.toFixed(0)}%
+                            </span>
                             {/* {numberToCurrency(
                                 categoriaSelecionada?.total_movimentacoes || 0,
                             )} */}

@@ -27,9 +27,10 @@ export async function getCategoriasTotalMovs(params: ResumoCategoriasProps) {
     const urlParams = obj2SearchParams(params);
     const resp = await ApiClient.getInstance().get<CategoriaTotalMov[]>(
         `/categorias/total-movimentacoes/?${urlParams}`, 
-        // { next: { revalidate: 60, tags: ['categorias-total-movimentacoes'] } }
     );
-    return resp.data;
+    const total = resp.data.reduce((acc, categoria) => acc + categoria.total_movimentacoes, 0);
+    return resp.data.map(categoria => ({...categoria, percentual: (categoria.total_movimentacoes / total) * 100}));
+
 };
 
 

@@ -8,4 +8,5 @@ export type Categoria = Omit<z.infer<typeof categoria>, 'tipo'> & {
 
 export type CategoriaTotalMov = Categoria & {
     total_movimentacoes: number;
+    percentual: number;
 };
