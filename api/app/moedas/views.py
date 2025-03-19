@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from datetime import date
 from urllib.request import Request
 
@@ -23,9 +24,7 @@ from moedas.models import Categoria, Despesa, Movimentacao, Receita
 
 # Create your views here.
 class GoogleLogin(SocialLoginView):
-    """
-    Google Login View (login social)
-    """
+    """Google Login View (login social)."""
 
     adapter_class = GoogleOAuth2Adapter
     client_class = OAuth2Client

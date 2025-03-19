@@ -14,7 +14,9 @@ urlpatterns = [
     path("dj-rest-auth/", include("dj_rest_auth.urls"), name="dj-rest-auth"),
     path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     path(
-        "dj-rest-auth/social/google/", views.GoogleLogin.as_view(), name="google_login"
+        "dj-rest-auth/social/google/",
+        views.GoogleLogin.as_view(),
+        name="google_login",
     ),
     path("carteira/", views.CarteiraView.as_view(), name="carteira"),
 ]

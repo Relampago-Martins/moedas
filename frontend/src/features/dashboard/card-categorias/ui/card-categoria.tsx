@@ -1,4 +1,3 @@
-import { ReadableTextColorDiv } from '@/shared/ui/custom/readable-text-color-div';
 import { CategoriaTotalMov } from '@/types/models/categoria';
 
 type CardCategoriaProps = {
@@ -16,27 +15,22 @@ export function CardCategoria({
     return (
         <button
             onClick={onClick}
-            className="selecionado:scale-110 selecionado:border relative h-12 rounded-md transition-transform hover:scale-105"
+            className="relative h-12 rounded-md transition-transform hover:scale-105 selecionado:scale-110"
             data-selecionado={selecionado}
             style={{
-                borderColor: categoria.cor ?? 'transpatent',
+                backgroundColor: categoria.cor_fundo,
+                opacity: hide ? 0.5 : 1,
             }}
             key={categoria.sigla}
         >
-            <ReadableTextColorDiv
-                color={categoria.cor}
-                className="flex items-center justify-center gap-2 px-2 py-1"
-            >
-                <i
-                    className={`${categoria.icone} text-2xl ${hide ? 'opacity-30' : null}`}
-                ></i>
-            </ReadableTextColorDiv>
             <div
-                className="absolute inset-0 rounded-md opacity-20"
+                className="flex items-center justify-center gap-2 px-2 py-1"
                 style={{
-                    backgroundColor: categoria.cor,
+                    color: categoria.cor_texto,
                 }}
-            />
+            >
+                <i className={`${categoria.icone} text-2xl`}></i>
+            </div>
         </button>
     );
 }

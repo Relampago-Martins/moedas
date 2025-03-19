@@ -16,6 +16,8 @@ class CategoriaSerializer(serializers.ModelSerializer):
             "sigla",
             "nome",
             "cor",
+            "cor_texto",
+            "cor_fundo",
             "icone",
             "is_base",
             "tipo",

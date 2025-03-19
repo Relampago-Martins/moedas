@@ -33,6 +33,8 @@ export const categoria = z.object({
     sigla: z.string(),
     nome: z.string(),
     cor: z.string(),
+    cor_texto: z.string(),
+    cor_fundo: z.string(),
     icone: z.string(),
     is_base: z.boolean(),
     tipo: z.string(),
