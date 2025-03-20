@@ -1,8 +1,8 @@
 """Classes utilitárias."""
 
-from moedas.utils.colors import ColorManager, ContrastTextColorStrategy
+from moedas.utils.colors import ColorManager, ContrastColorStrategy
 
 __all__ = [
     "ColorManager",
-    "ContrastTextColorStrategy",
+    "ContrastColorStrategy",
 ]

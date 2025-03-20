@@ -1,7 +1,7 @@
 'use client';
 import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
-import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { StepFormDespesa } from '@/features/modal-novo/ui/steps/step-form-despesa';
+import { StepListaCategorias } from '@/features/modal-novo/ui/steps/step-lista-categorias';
 import { StepSelectDate } from '@/features/modal-novo/ui/steps/step-select-date';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { useEvent } from '@/shared/lib/use-event';
@@ -60,7 +60,7 @@ export function DespesaContent({ id }: DespesaContentProps) {
                 level={2}
                 className="md:w-[25rem]"
             >
-                <ListaCategorias />
+                <StepListaCategorias />
             </StepperContent>
 
             <StepSelectDate />

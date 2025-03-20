@@ -1,6 +1,5 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
-import { ReadableTextColorDiv } from '@/shared/ui/custom/readable-text-color-div';
 import { CategoriaTotalMov } from '@/types/models/categoria';
 import { useContext } from 'react';
 import { GastosContext } from '../lib/context';
@@ -46,10 +45,12 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
                 />
             ))}
 
-            <ReadableTextColorDiv
-                color={categoriaSelecionada?.cor ?? 'var(--foreground)'}
-                className="flex h-full w-full flex-col"
-                outerClassName="col-start-2 col-span-2  row-start-1 rounded-md"
+            <div
+                style={{
+                    color:
+                        categoriaSelecionada?.cor.texto ?? 'var(--foreground)',
+                }}
+                className="col-span-2 col-start-2 row-start-1 flex h-full w-full flex-col rounded-md"
             >
                 <span className="w-full text-center text-sm ">
                     {categoriaSelecionada?.nome ?? 'Total'}
@@ -60,7 +61,7 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
                         {valorTotalSelecionado}
                     </div>
                 </div>
-            </ReadableTextColorDiv>
+            </div>
             {categorias.length % 2 !== 0 && (
                 <div className=" h-12 rounded-md border border-dashed"></div>
             )}

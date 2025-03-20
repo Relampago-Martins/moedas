@@ -39,7 +39,7 @@ class Despesa(Movimentacao):
         Movimentacao, on_delete=models.CASCADE, parent_link=True, primary_key=True
     )
     forma_pagamento = models.CharField(max_length=4, choices=FORMAS_PAGAMENTO)
-    pago = models.BooleanField(default=False)
+    pago = models.BooleanField(default=True)
 
     def __str__(self):
         return self.descricao

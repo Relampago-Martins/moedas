@@ -4,9 +4,9 @@ import { FormInvestimento } from '../../../entities/movimentacoes/forms/form-inv
 import { FormTransferencia } from '../../../entities/movimentacoes/forms/form-transferencia';
 import { Stepper, StepperContent } from '../../../entities/stepper/ui/stepper';
 import { useModalNovoStore } from '../lib/modal-novo-store';
-import { ListaCategorias } from './steps/lista-categorias';
 import { StepFormDespesa } from './steps/step-form-despesa';
 import { StepFormReceita } from './steps/step-form-receita';
+import { StepListaCategorias } from './steps/step-lista-categorias';
 import { StepMenu } from './steps/step-menu';
 import { StepSelectDate } from './steps/step-select-date';
 
@@ -61,14 +61,14 @@ export function ModalNovo() {
                     level={2}
                     className="md:w-[25rem]"
                 >
-                    <ListaCategorias />
+                    <StepListaCategorias />
                 </StepperContent>
                 <StepperContent
                     value="lista-categorias-receita"
                     level={2}
                     className="md:w-[25rem]"
                 >
-                    <ListaCategorias tipoCategoria="R" />
+                    <StepListaCategorias tipoCategoria="R" />
                 </StepperContent>
 
                 <StepSelectDate />

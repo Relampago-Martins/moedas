@@ -1,7 +1,7 @@
 'use client';
 import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
-import { ListaCategorias } from '@/features/modal-novo/ui/steps/lista-categorias';
 import { StepFormReceita } from '@/features/modal-novo/ui/steps/step-form-receita';
+import { StepListaCategorias } from '@/features/modal-novo/ui/steps/step-lista-categorias';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
 import { useEvent } from '@/shared/lib/use-event';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
@@ -58,7 +58,7 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
                 level={2}
                 className="md:w-[25rem]"
             >
-                <ListaCategorias tipoCategoria="R" />
+                <StepListaCategorias tipoCategoria="R" />
             </StepperContent>
         </Stepper>
     );

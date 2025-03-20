@@ -4,7 +4,12 @@ from colorfield.fields import ColorField
 from django.db import models
 
 from moedas.models.utils import TIPO
-from moedas.utils.colors import ColorConverter, ColorManager, ContrastTextColorStrategy
+from moedas.utils.colors import (
+    ColorConverter,
+    ColorManager,
+    ContrastColorStrategy,
+    OpacityColorStrategy,
+)
 
 
 class Categoria(models.Model):
@@ -39,18 +44,3 @@ class Categoria(models.Model):
     def __str__(self) -> str:
         """Retorna o nome verboso."""
         return self.nome
-
-    @property
-    def cor_texto(self) -> str:
-        """Retorna a cor do texto com base na cor de fundo."""
-        color_manager = ColorManager(
-            ContrastTextColorStrategy(),
-        )
-        return color_manager.get_text_color(self.cor)
-
-    def cor_fundo(self) -> str:
-        """Retorna a cor de fundo com base na cor."""
-        color_manager = ColorManager(
-            ContrastTextColorStrategy(),
-        )
-        return color_manager.get_background_color(self.cor)

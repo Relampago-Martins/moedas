@@ -1,11 +1,9 @@
 'use client';
-import { ReadableTextColorDiv } from '@/shared/ui/custom/readable-text-color-div';
 import { CategoriaTotalMov } from '@/types/models/categoria';
 import { motion } from 'framer-motion';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';
-import { calcColor } from '../lib/index';
 import './style.scss';
 import { FatiaAtiva, FatiaInativa } from './utils/GraphFatia';
 
@@ -77,13 +75,11 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     {categorias.map((entry, index) => (
                         <Cell
                             key={`cell-${index}`}
-                            fill={calcColor(
-                                entry.cor,
-                                activeIndex >= 0 && activeIndex !== index,
-                            )}
-                            // stroke={entry.cor}
-                            // strokeWidth={4}
-                            // strokeOpacity={1}
+                            fill={
+                                activeIndex >= 0 && activeIndex !== index
+                                    ? entry.cor.fundo_com_opacidade
+                                    : entry.cor.texto
+                            }
                         />
                     ))}
                 </Pie>
@@ -106,15 +102,17 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                             <i className="ph-bold ph-trend-down text-3xl text-foreground" />
                         </div>
                     ) : (
-                        <ReadableTextColorDiv
-                            color={categoriaSelecionada?.cor || 'unset'}
+                        <div
                             className="flex flex-col items-center"
+                            style={{
+                                color: categoriaSelecionada?.cor.texto,
+                            }}
                         >
                             <div className="text-2xl">
                                 {categoriaSelecionada?.percentual.toFixed(0)}
                                 <span className="ml-[2px] text-sm">%</span>
                             </div>
-                        </ReadableTextColorDiv>
+                        </div>
                     )}
                 </motion.span>
             </div>

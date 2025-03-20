@@ -1,9 +1,9 @@
 'use client';
 import { useStepper } from '@/entities/stepper/ui/stepper';
 import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
-import { ReadableTextColorDiv } from '@/shared/ui/custom/readable-text-color-div';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { Categoria } from '@/types/models/categoria';
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { DialogOrDrawerHeader } from '../step-header';
 
@@ -11,8 +11,11 @@ type ListaCategoriasProps = {
     tipoCategoria?: Categoria['tipo'];
 };
 
-export function ListaCategorias({ tipoCategoria = 'D' }: ListaCategoriasProps) {
+export function StepListaCategorias({
+    tipoCategoria = 'D',
+}: ListaCategoriasProps) {
     const { previous, events } = useStepper();
+    const isDarkMode = useTheme().theme === 'dark';
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     useEffect(() => {
         getCategorias(tipoCategoria).then((data) => {
@@ -30,17 +33,19 @@ export function ListaCategorias({ tipoCategoria = 'D' }: ListaCategoriasProps) {
                 {categorias.map((categoria) => (
                     <button
                         key={categoria.sigla}
-                        className="relative h-14 rounded-md border hover:shadow-md"
-                        style={{ color: categoria.cor }}
+                        className="h-14 rounded-md border hover:shadow-md"
+                        style={{
+                            color: isDarkMode
+                                ? categoria.cor.fundo
+                                : categoria.cor.texto,
+                            backgroundColor: categoria.cor.fundo_com_opacidade,
+                        }}
                         onClick={() => {
                             events.submit('onSelectCategoria', categoria);
                             previous();
                         }}
                     >
-                        <ReadableTextColorDiv
-                            color={categoria.cor}
-                            className="z-[1] flex items-center gap-2 px-4"
-                        >
+                        <div className="z-[1] flex items-center gap-2 px-4">
                             <div className="flex h-7 w-7 items-center justify-center rounded-full">
                                 <i
                                     className={`ph flex ${categoria.icone} text-2xl`}
@@ -49,11 +54,7 @@ export function ListaCategorias({ tipoCategoria = 'D' }: ListaCategoriasProps) {
                             <span className="text-base font-normal">
                                 {categoria.nome}
                             </span>
-                        </ReadableTextColorDiv>
-                        <div
-                            className="absolute inset-0 z-0 rounded-md opacity-15"
-                            style={{ backgroundColor: categoria.cor }}
-                        ></div>
+                        </div>
                     </button>
                 ))}
                 {categorias.length === 0 &&
