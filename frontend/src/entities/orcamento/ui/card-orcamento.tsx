@@ -1,7 +1,6 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Collapsible, CollapsibleContent } from '@/shared/ui/collapsible';
-import { SchoolBusIcon } from '@/shared/ui/huge-icons/categorias';
 import { Progress } from '@/shared/ui/progress';
 import { Categoria } from '@/types/models/categoria';
 import { ChevronDown } from 'lucide-react';
@@ -24,17 +23,16 @@ export function CardOrcamento({ categoria, ...props }: CardOrcamentoProps) {
             className="flex min-w-[280px] grow cursor-pointer flex-col gap-1 rounded-lg border-[1px] border-border bg-card px-4 py-2"
         >
             <div className="flex items-center gap-3">
-                <div className="relative overflow-hidden rounded-full p-2">
-                    <SchoolBusIcon
-                        className="h-6 w-6"
-                        style={{ color: categoria.cor }}
+                <div
+                    className="relative overflow-hidden rounded-full p-2"
+                    style={{
+                        backgroundColor: categoria.cor.fundo_com_opacidade,
+                    }}
+                >
+                    <i
+                        className={`${categoria.icone} flex text-2xl `}
+                        style={{ color: categoria.cor.texto }}
                     />
-                    <span
-                        className="absolute inset-0 opacity-20"
-                        style={{
-                            backgroundColor: categoria.cor,
-                        }}
-                    ></span>
                 </div>
                 <div className="flex flex-col">
                     <h1 className="text-base">{props.nome}</h1>

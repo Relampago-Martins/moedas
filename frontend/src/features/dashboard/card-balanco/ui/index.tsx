@@ -13,7 +13,7 @@ type CardBalancoProps = {
     params: TFiltroPeriodo;
 };
 export async function CardBalanco({ className, params }: CardBalancoProps) {
-    const { saldo, total_despesas, total_receitas } = await getCarteira(params);
+    const carteira = await getCarteira(params);
 
     return (
         <Card title="Balanço Mensal" className={className}>
@@ -25,35 +25,34 @@ export async function CardBalanco({ className, params }: CardBalancoProps) {
                 <span className="text-base">Balanço Mensal</span>
             </CardHeader>
             <CardContent className="flex flex-row justify-center gap-4 pb-0">
-                <GraficoBalanco
-                    carteira={{ saldo, total_despesas, total_receitas }}
-                />
+                <GraficoBalanco carteira={carteira} />
                 <div className="flex flex-col gap-1">
                     <CardTransacao className="gap-3 text-success-foreground">
                         <div className="flex flex-row items-center gap-2">
                             Receitas
                         </div>
-                        <div>{numberToCurrency(total_receitas)}</div>
+                        <div>{numberToCurrency(carteira.total_receitas)}</div>
                     </CardTransacao>
                     <CardTransacao className="gap-3 text-destructive-foreground">
                         <div className="flex flex-row items-center gap-2">
                             Despesas
                         </div>
-                        <div>{numberToCurrency(total_despesas)}</div>
+                        <div>{numberToCurrency(carteira.total_despesas)}</div>
                     </CardTransacao>
                     <Separator className="my-1" />
                     <CardTransacao className="gap-3 font-semibold opacity-70">
                         <div>Balanço</div>
                         <div>
-                            {numberToCurrency(total_receitas - total_despesas)}
+                            {numberToCurrency(
+                                carteira.total_receitas -
+                                    carteira.total_despesas,
+                            )}
                         </div>
                     </CardTransacao>
                 </div>
             </CardContent>
             <CardFooter className="flex flex-row justify-center pt-8">
-                <FooterContent
-                    carteira={{ saldo, total_despesas, total_receitas }}
-                />
+                <FooterContent carteira={carteira} />
             </CardFooter>
         </Card>
     );
