@@ -4,6 +4,12 @@ from colorfield.fields import ColorField
 from django.db import models
 
 from moedas.models.utils import TIPO
+from moedas.utils.colors import (
+    ColorConverter,
+    ColorManager,
+    ContrastColorStrategy,
+    OpacityColorStrategy,
+)
 
 
 class Categoria(models.Model):

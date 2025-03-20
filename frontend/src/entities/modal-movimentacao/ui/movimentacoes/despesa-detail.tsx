@@ -5,7 +5,7 @@ import { Button } from '@/shared/ui/button';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Despesa } from '@/types/models/despesa';
 import { motion } from 'framer-motion';
-import { CalendarIcon, CheckCheck, CreditCardIcon, XIcon } from 'lucide-react';
+import { CalendarIcon, CreditCardIcon } from 'lucide-react';
 import { DespesaSkeleton } from '../skeletons/despesa';
 
 type DespesaDetailContext = {
@@ -22,9 +22,9 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ opacity: { duration: 0.25 } }}
-                    className="flex flex-col gap-4 "
+                    className="grid grid-cols-3 gap-x-2 gap-y-6"
                 >
-                    <div className="mb-2 flex flex-col gap-2">
+                    <div className="col-span-3 flex flex-col gap-2">
                         <div className="flex items-center gap-2">
                             <div className="w-fit rounded-full bg-destructive p-1">
                                 <TradeDownIcon className="h-6 w-6 text-destructive-foreground" />
@@ -35,26 +35,26 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                             {numberToCurrency(despesa.valor)}
                         </h2>
                     </div>
-                    <CategoriaBadge categoria={despesa.categoria} />
-                    <div className="flex items-center gap-2">
+                    <div className="col-span-3">
+                        <CategoriaBadge categoria={despesa.categoria} />
+                    </div>
+                    <div className="col-span-1 flex items-center gap-2">
                         {despesa.pago ? (
-                            <>
-                                <CheckCheck className="h-6 w-6 text-green-700" />
-                                <span className="text-sm text-muted">Pago</span>
-                            </>
+                            <div className="flex items-center gap-2 rounded-md bg-success px-2 py-1 text-success-foreground">
+                                <i className="ph-bold ph-check text-lg"></i>
+                                <span className="">Pago</span>
+                            </div>
                         ) : (
-                            <>
-                                <XIcon className="h-6 w-6 text-destructive-foreground" />
-                                <span className="text-sm text-muted">
-                                    Não foi pago
-                                </span>
-                            </>
+                            <div className="flex items-center gap-2 rounded-md bg-destructive px-2 py-1 text-destructive-foreground">
+                                <i className="ph-bold ph-x text-lg"></i>
+                                <span className="">Não pago</span>
+                            </div>
                         )}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="col-span-3 flex items-center gap-2">
                         <CalendarIcon className="h-6 w-6" />
                         <div className="flex flex-col">
-                            <div className="text-xs text-muted">
+                            <div className="text-sm text-muted">
                                 Comprado em
                             </div>
                             <span className="text-base">
@@ -62,10 +62,10 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                             </span>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="col-span-3 flex items-center gap-2">
                         <CreditCardIcon className="h-6 w-6" />
                         <div className="flex flex-col">
-                            <div className="text-xs text-muted">
+                            <div className="text-sm text-muted">
                                 Forma de pagamento
                             </div>
                             <span className="text-base">
@@ -73,30 +73,30 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                             </span>
                         </div>
                     </div>
-                    <div className="mt-2 flex items-center justify-end gap-2">
-                        <Button
-                            variant={'outline'}
-                            onClick={() =>
-                                goToStep({
-                                    name: 'editar',
-                                    level: 1,
-                                })
-                            }
-                        >
-                            Editar
-                        </Button>
-                        <Button
-                            variant={'destructive'}
-                            onClick={() => {
-                                goToStep({
-                                    name: 'excluir',
-                                    level: 1,
-                                });
-                            }}
-                        >
-                            Excluir
-                        </Button>
-                    </div>
+                    <Button
+                        className="col-span-2"
+                        variant={'outline'}
+                        onClick={() =>
+                            goToStep({
+                                name: 'editar',
+                                level: 1,
+                            })
+                        }
+                    >
+                        Editar
+                    </Button>
+                    <Button
+                        className="col-span-1"
+                        variant={'destructive'}
+                        onClick={() => {
+                            goToStep({
+                                name: 'excluir',
+                                level: 1,
+                            });
+                        }}
+                    >
+                        Excluir
+                    </Button>
                 </motion.div>
             ) : (
                 <DespesaSkeleton />

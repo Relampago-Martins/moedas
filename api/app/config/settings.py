@@ -209,8 +209,8 @@ SOCIALACCOUNT_PROVIDERS = {
         "APP": {
             "client_id": env("GOOGLE_CLIENT_ID"),
             "secret": env("GOOGLE_SECRET_KEY"),
-        }
-    }
+        },
+    },
 }
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_AUTHENTICATION_METHOD = "username"

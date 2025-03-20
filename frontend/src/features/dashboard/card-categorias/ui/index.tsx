@@ -1,9 +1,8 @@
-import { getCategorias } from '@/shared/api/endpoints/categoria-cli';
+import { getCategoriasTotalMovs } from '@/shared/api/endpoints/categoria-cli';
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
-import { PieChart02Icon } from '@/shared/ui/huge-icons';
 import { TFiltroPeriodo } from '@/types/filters';
-import { GraficoPizza } from './GraficoPizza';
-import { SelectCategoria } from './SelectCategoria';
+import { GraficoPizza } from './grafico-pizza';
+import { ListaCategorias } from './lista-categorias';
 import { GastosContext } from './utils/GastosContext';
 
 type CardGastosProps = {
@@ -12,41 +11,31 @@ type CardGastosProps = {
 };
 
 export async function CardCategorias({ className, params }: CardGastosProps) {
-    const categorias = await getCategorias().then((categorias) =>
-        categorias.filter((c) => c.total_gastos > 0),
-    );
+    const categorias = await getCategoriasTotalMovs({
+        ...params,
+        tipo: 'D',
+    });
 
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
-            <CardHeader className="flex flex-row items-center gap-2 space-y-0 opacity-70">
-                <PieChart02Icon className="h-5 w-5" />
-                <span className="text-base font-medium">
-                    Despesas por Categoria
-                </span>
+            <CardHeader className="flex h-10 shrink-0 flex-row items-center gap-2 border-b py-0 text-muted">
+                <i className="ph ph-chart-pie text-xl" />
+                <span className="">Categorias</span>
             </CardHeader>
-            <CardContent className="mb-8 flex h-full flex-wrap items-center justify-center gap-4">
-                <GastosContext>
-                    <GraficoPizza categorias={categorias} />
-                    <div className="flex w-[200px] flex-col gap-4">
-                        <SelectCategoria categorias={categorias} />
-                        {categorias.map((categoria) => (
-                            <div
-                                className="flex items-center gap-2"
-                                key={categoria.sigla}
-                            >
-                                <div
-                                    className="h-4 w-4 rounded-full"
-                                    style={{
-                                        backgroundColor: categoria.cor,
-                                    }}
-                                />
-                                <span className="text-sm font-medium">
-                                    {categoria.nome}
-                                </span>
-                            </div>
-                        ))}
+            <CardContent className="flex h-full flex-col items-center gap-2 px-4 pt-2">
+                {categorias.length > 0 ? (
+                    <GastosContext>
+                        <GraficoPizza categorias={categorias.toReversed()} />
+                        <ListaCategorias categorias={categorias} />
+                    </GastosContext>
+                ) : (
+                    <div className="flex h-full flex-col items-center justify-center gap-2 text-muted">
+                        <i className="ph ph-chart-pie-slice text-6xl" />
+                        <span className="text-sm ">
+                            Nenhuma despesa registrada
+                        </span>
                     </div>
-                </GastosContext>
+                )}
             </CardContent>
         </Card>
     );
