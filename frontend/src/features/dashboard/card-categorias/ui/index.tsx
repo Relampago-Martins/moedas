@@ -1,6 +1,7 @@
 import { getCategoriasTotalMovs } from '@/shared/api/endpoints/categoria-cli';
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { TFiltroPeriodo } from '@/types/filters';
+import { CategoriaValue } from './categoria-value';
 import { GraficoPizza } from './grafico-pizza';
 import { ListaCategorias } from './lista-categorias';
 import { GastosContext } from './utils/GastosContext';
@@ -15,6 +16,10 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
         ...params,
         tipo: 'D',
     });
+    const gastosTotais = categorias.reduce(
+        (acc, categoria) => acc + categoria.total_movimentacoes,
+        0,
+    );
 
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
@@ -22,10 +27,11 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
                 <i className="ph ph-chart-pie text-xl" />
                 <span className="">Categorias</span>
             </CardHeader>
-            <CardContent className="flex h-full flex-col items-center gap-2 px-4 pt-2">
+            <CardContent className="flex h-full flex-col items-center gap-0 px-4 pt-2">
                 {categorias.length > 0 ? (
                     <GastosContext>
                         <GraficoPizza categorias={categorias.toReversed()} />
+                        <CategoriaValue gastosTotais={gastosTotais} />
                         <ListaCategorias categorias={categorias} />
                     </GastosContext>
                 ) : (
