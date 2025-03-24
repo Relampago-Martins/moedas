@@ -63,13 +63,17 @@ export function ListaMovimentacoes() {
                 </div>
             ))}
             {movimentacoes?.length === 0 && (
-                <p className="flex h-[25rem] max-w-[40rem] flex-col items-center justify-center gap-1 rounded-md border-[1px] border-dashed text-muted">
-                    <i className="ph ph-receipt-x text-5xl"></i>
-                    <span className="text-lg font-medium">
+                <p className="flex h-[25rem] max-w-[40rem] flex-col items-center justify-center gap-0 rounded-md border-[1px] border-dashed text-muted">
+                    <i className="ph-thin ph-receipt-x text-7xl"></i>
+                    <span className="text-base font-medium">
                         Nenhuma movimentação
                     </span>
-                    <Button variant={'link'} onClick={() => onOpenChange(true)}>
-                        Adicionar
+                    <Button
+                        type="button"
+                        variant={'link'}
+                        onClick={() => onOpenChange(true)}
+                    >
+                        Criar
                     </Button>
                 </p>
             )}

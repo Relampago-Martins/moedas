@@ -1,3 +1,4 @@
+'use client';
 import { Carteira } from '@/types/models';
 import { Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { getColor } from '../lib/utils';

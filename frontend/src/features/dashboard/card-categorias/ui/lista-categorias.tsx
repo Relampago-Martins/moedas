@@ -33,10 +33,6 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
                     }
                 />
             ))}
-
-            {categorias.length % 2 !== 0 && (
-                <div className=" h-12 rounded-md border border-dashed"></div>
-            )}
         </div>
     );
 }

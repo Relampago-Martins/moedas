@@ -21,12 +21,12 @@ export function CardCategoria({
     return (
         <button
             onClick={onClick}
-            className="h-12 rounded-md shadow transition-transform hover:scale-105 selecionado:scale-110 selecionado:border-2"
+            className="h-12 rounded border shadow transition-transform hover:scale-105 selecionado:scale-110"
             data-selecionado={selecionado}
             style={{
                 backgroundColor:
                     selecionado && !isDarkMode ? corTexto : corFundo,
-                borderColor: corFundo,
+                borderColor: hide ? categoria.cor.fundo : categoria.cor.texto,
             }}
             key={categoria.sigla}
         >

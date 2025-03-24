@@ -27,7 +27,7 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
                 <i className="ph ph-chart-pie text-xl" />
                 <span className="">Categorias</span>
             </CardHeader>
-            <CardContent className="flex h-full flex-col items-center gap-0 px-4 pt-2">
+            <CardContent className="flex h-full flex-col items-center gap-1 px-4 pt-2">
                 {categorias.length > 0 ? (
                     <GastosContext>
                         <GraficoPizza categorias={categorias.toReversed()} />
@@ -35,10 +35,10 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
                         <ListaCategorias categorias={categorias} />
                     </GastosContext>
                 ) : (
-                    <div className="flex h-full flex-col items-center justify-center gap-2 text-muted">
-                        <i className="ph ph-chart-pie-slice text-6xl" />
-                        <span className="text-sm ">
-                            Nenhuma despesa registrada
+                    <div className="flex h-full flex-col items-center justify-center gap-1 text-muted">
+                        <i className="ph-thin ph-chart-pie-slice text-7xl" />
+                        <span className="text-base font-medium">
+                            Nenhuma despesa
                         </span>
                     </div>
                 )}

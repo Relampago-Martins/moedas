@@ -48,8 +48,8 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
     return (
         <div className="relative">
             <PieChart
-                width={180}
-                height={180}
+                width={160}
+                height={160}
                 className="z-[1] -mx-3"
                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
@@ -60,8 +60,8 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     activeShape={FatiaAtiva}
                     inactiveShape={FatiaInativa}
                     shapeRendering={'geometricPrecision'}
-                    innerRadius={45}
-                    outerRadius={80}
+                    innerRadius={40}
+                    outerRadius={75}
                     startAngle={90}
                     endAngle={-270}
                     isAnimationActive={true}

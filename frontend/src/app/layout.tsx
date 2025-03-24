@@ -33,6 +33,11 @@ export default function RootLayout({
                     type="text/css"
                     href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css"
                 ></link>
+                <link
+                    rel="stylesheet"
+                    type="text/css"
+                    href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/thin/style.css"
+                ></link>
                 {/* <link rel="icon" href="/favicon.ico" /> */}
             </head>
             <body className={inter.className}>
