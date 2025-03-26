@@ -8,7 +8,7 @@ import { Carteira } from '@/types/models';
 import { Collapsible } from '@radix-ui/react-collapsible';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { GraficoEconomia } from './GraficoEconomia';
+import { GraficoEconomia } from './grafico-economia';
 import './ui.scss';
 
 type FooterContentProps = {

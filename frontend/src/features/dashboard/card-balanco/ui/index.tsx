@@ -1,12 +1,9 @@
-import { CardTransacao } from '@/features/dashboard/card-balanco/ui/CardTransacao';
 import { getCarteira } from '@/shared/api/endpoints';
-import { numberToCurrency } from '@/shared/lib/utils';
-import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
-import { AlignVerticalCenterIcon } from '@/shared/ui/huge-icons';
-import { Separator } from '@/shared/ui/separator';
 import { TFiltroPeriodo } from '@/types/filters';
-import { FooterContent } from './FooterContent';
-import { GraficoBalanco } from './GraficoBalanco';
+import { FlipCard } from './components/flip-card';
+import { WavesCup } from './components/waves-cup';
+import { DetalheEconomiaMensal } from './detalhe-economia-mensal';
+import { ResumoEconomiaMensal } from './resumo-economia-mensal';
 
 type CardBalancoProps = {
     className?: string;
@@ -15,45 +12,19 @@ type CardBalancoProps = {
 export async function CardBalanco({ className, params }: CardBalancoProps) {
     const carteira = await getCarteira(params);
 
+    const totalMovs = carteira.total_receitas + carteira.total_despesas;
+    const receitasPercent = carteira.total_receitas / totalMovs;
+    const despesasPercent = carteira.total_despesas / totalMovs;
+
     return (
-        <Card title="Balanço Mensal" className={className}>
-            <CardHeader
-                className="flex flex-row items-center gap-2 space-y-0
-                font-medium opacity-70 hover:cursor-pointer"
-            >
-                <AlignVerticalCenterIcon className="h-5 w-5" />
-                <span className="text-base">Balanço Mensal</span>
-            </CardHeader>
-            <CardContent className="flex flex-row justify-center gap-4 pb-0">
-                <GraficoBalanco carteira={carteira} />
-                <div className="flex flex-col gap-1">
-                    <CardTransacao className="gap-3 text-success-foreground">
-                        <div className="flex flex-row items-center gap-2">
-                            Receitas
-                        </div>
-                        <div>{numberToCurrency(carteira.total_receitas)}</div>
-                    </CardTransacao>
-                    <CardTransacao className="gap-3 text-destructive-foreground">
-                        <div className="flex flex-row items-center gap-2">
-                            Despesas
-                        </div>
-                        <div>{numberToCurrency(carteira.total_despesas)}</div>
-                    </CardTransacao>
-                    <Separator className="my-1" />
-                    <CardTransacao className="gap-3 font-semibold opacity-70">
-                        <div>Balanço</div>
-                        <div>
-                            {numberToCurrency(
-                                carteira.total_receitas -
-                                    carteira.total_despesas,
-                            )}
-                        </div>
-                    </CardTransacao>
-                </div>
-            </CardContent>
-            <CardFooter className="flex flex-row justify-center pt-8">
-                <FooterContent carteira={carteira} />
-            </CardFooter>
-        </Card>
+        <div className={`flex items-center gap-2 rounded-md ${className}`}>
+            <WavesCup value={receitasPercent} ehReceita />
+            <WavesCup value={despesasPercent} ehReceita={false} />
+            <FlipCard
+                className="min-h-[200px] w-full"
+                front={<ResumoEconomiaMensal carteira={carteira} />}
+                back={<DetalheEconomiaMensal carteira={carteira} />}
+            ></FlipCard>
+        </div>
     );
 }

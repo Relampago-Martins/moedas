@@ -58,9 +58,7 @@ export function StepFormDespesa({
                     <span className="flex items-center gap-2 text-xl text-destructive-foreground">
                         <i className="ph-bold ph-trend-down" />
 
-                        {formValues?.id
-                            ? 'Editar Despesa'
-                            : 'Adicionar Despesa'}
+                        {formValues?.id ? 'Editar Despesa' : 'Criar Despesa'}
                     </span>
                 }
                 onBack={() => {

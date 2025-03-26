@@ -52,9 +52,7 @@ export function StepFormReceita({
                 title={
                     <span className="flex items-center gap-2 text-xl text-success-foreground">
                         <i className="ph-bold ph-trend-up" />
-                        {formValues?.id
-                            ? 'Editar Receita'
-                            : 'Adicionar Receita'}
+                        {formValues?.id ? 'Editar Receita' : 'Criar Receita'}
                     </span>
                 }
                 onBack={() => {

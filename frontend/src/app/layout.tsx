@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { inter } from '@/shared/lib/fonts';
 import ReactQueryProvider from '@/shared/ui/react-query-provider';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -33,6 +34,11 @@ export default function RootLayout({
                     type="text/css"
                     href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css"
                 ></link>
+                <link
+                    rel="stylesheet"
+                    type="text/css"
+                    href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/thin/style.css"
+                ></link>
                 {/* <link rel="icon" href="/favicon.ico" /> */}
             </head>
             <body className={inter.className}>
@@ -45,6 +51,7 @@ export default function RootLayout({
                     <ReactQueryProvider>{children}</ReactQueryProvider>
                 </ThemeProvider>
                 <Analytics />
+                <SpeedInsights sampleRate={0.5} />
             </body>
         </html>
     );

@@ -8,7 +8,7 @@ type GraficoBalancoProps = {
 
 export function GraficoBalanco({ carteira }: GraficoBalancoProps) {
     return (
-        <ResponsiveContainer width={80} height={117} className="-mx-2">
+        <ResponsiveContainer width={240} height={117} className="-mx-2">
             <BarChart data={[carteira]}>
                 {/* <Legend radius={10} /> */}
                 <Bar

@@ -29,16 +29,17 @@ export function StepListaCategorias({
                 title={'Selecionar Categoria'}
                 onBack={() => previous()}
             />
-            <div className="grid max-h-[25rem] grid-cols-2 gap-4 overflow-y-scroll pr-4">
+            <div className="grid max-h-[25rem] grid-cols-2 gap-4 overflow-y-scroll p-2 pr-4">
                 {categorias.map((categoria) => (
                     <button
                         key={categoria.sigla}
-                        className="h-14 rounded-md border hover:shadow-md"
+                        className="h-10 rounded-md border shadow transition-transform hover:scale-105"
                         style={{
                             color: isDarkMode
                                 ? categoria.cor.fundo
                                 : categoria.cor.texto,
                             backgroundColor: categoria.cor.fundo_com_opacidade,
+                            borderColor: categoria.cor.texto,
                         }}
                         onClick={() => {
                             events.submit('onSelectCategoria', categoria);
