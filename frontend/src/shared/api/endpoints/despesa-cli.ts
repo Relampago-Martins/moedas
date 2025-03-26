@@ -1,49 +1,57 @@
 'use server';
-import { Despesa, DespesaConfig, DespesaSchema } from "@/types/models/despesa";
-import { revalidateTag } from "next/cache";
-import { ApiClient } from "../api-client";
+import { Despesa, DespesaConfig, DespesaSchema } from '@/types/models/despesa';
+import { revalidateTag } from 'next/cache';
+import { ApiClient } from '../api-client';
 
-export async function getDespesas(){
-    const resp = await ApiClient.getInstance().get<Despesa[]>("/despesas/");
+export async function getDespesas() {
+    const resp = await ApiClient.getInstance().get<Despesa[]>('/despesas/');
     return resp.data;
 }
 
-export async function getDespesa(id: number){
-    const resp = await ApiClient.getInstance().get<Despesa>(`/despesas/${id}/`, {
-        next: {
-            revalidate: 100,
-            tags: [`getDespesa${id}`],
-        }
-    });
+export async function getDespesa(id: number) {
+    const resp = await ApiClient.getInstance().get<Despesa>(
+        `/despesas/${id}/`,
+        {
+            next: {
+                revalidate: 100,
+                tags: [`getDespesa${id}`],
+            },
+        },
+    );
     return resp.data;
 }
 
-export async function criaDespesa(despesa: DespesaSchema){
-    const resp = await ApiClient.getInstance().post<Despesa>("/despesas/", {
+export async function criaDespesa(despesa: DespesaSchema) {
+    const resp = await ApiClient.getInstance().post<Despesa>('/despesas/', {
         ...despesa,
         categoria: despesa.categoria.sigla,
     });
     return resp;
 }
 
-export async function atualizaDespesa(id: number, despesa: DespesaSchema){
-    const resp = await ApiClient.getInstance().patch<Despesa>(`/despesas/${id}/`, {
-        ...despesa,
-        categoria: despesa.categoria.sigla,
-    });
+export async function atualizaDespesa(id: number, despesa: DespesaSchema) {
+    const resp = await ApiClient.getInstance().patch<Despesa>(
+        `/despesas/${id}/`,
+        {
+            ...despesa,
+            categoria: despesa.categoria.sigla,
+        },
+    );
     revalidateTag(`getDespesa${id}`);
     return resp;
 }
 
-
-export async function getDespesaConfigs(){
-    const resp = await ApiClient.getInstance().options<DespesaConfig>("/despesas/",{
-        cache: "force-cache",
-    });
+export async function getDespesaConfigs() {
+    const resp = await ApiClient.getInstance().options<DespesaConfig>(
+        '/despesas/',
+        {
+            cache: 'force-cache',
+        },
+    );
     return resp.data;
 }
 
-export async function deleteDespesa(id: number){
+export async function deleteDespesa(id: number) {
     const resp = await ApiClient.getInstance().delete(`/despesas/${id}/`);
     revalidateTag(`getDespesa${id}`);
     return resp;

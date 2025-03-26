@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { inter } from '@/shared/lib/fonts';
 import ReactQueryProvider from '@/shared/ui/react-query-provider';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -50,6 +51,7 @@ export default function RootLayout({
                     <ReactQueryProvider>{children}</ReactQueryProvider>
                 </ThemeProvider>
                 <Analytics />
+                <SpeedInsights sampleRate={0.5} />
             </body>
         </html>
     );

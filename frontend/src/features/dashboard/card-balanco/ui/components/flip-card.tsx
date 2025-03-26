@@ -1,3 +1,4 @@
+'use client';
 import styles from './flip.module.scss';
 
 type FlipCardProps = {
@@ -6,22 +7,37 @@ type FlipCardProps = {
     className?: string;
 };
 
+export function useFlipCard() {
+    return {
+        flip: () => {
+            const flipCard = document.getElementById('flip-card');
+            if (flipCard) {
+                const isFlipped =
+                    flipCard.getAttribute('data-flipped') === 'true';
+                flipCard.setAttribute(
+                    'data-flipped',
+                    isFlipped ? 'false' : 'true',
+                );
+            }
+        },
+    };
+}
+
 export function FlipCard({ front, back, className }: FlipCardProps) {
     return (
-        <div className={`${styles.flipCard} ${className}`}>
+        <div
+            id="flip-card"
+            className={`${styles.flipCard} ${className}`}
+            data-flipped="false"
+        >
             <div className={styles.flipCardInner}>
-                <div
-                    className={`${styles.flipCardFront} rounded-md border  px-4 py-2`}
-                >
+                <div className={`${styles.flipCardFront} rounded-md border`}>
                     {front}
                 </div>
-                <div
-                    className={`${styles.flipCardBack} rounded-md border px-4 py-2`}
-                >
+                <div className={`${styles.flipCardBack} rounded-md border`}>
                     {back}
                 </div>
             </div>
-            <div className=""></div>
         </div>
     );
 }

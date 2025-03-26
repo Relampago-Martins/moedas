@@ -17,7 +17,7 @@ export const FatiaAtiva = (props: PieSectorDataItem) => {
             <Sector
                 cx={cx}
                 cy={cy}
-                cornerRadius={3}
+                cornerRadius={5}
                 outerRadius={subtractIfExist(outerRadius, 5)}
                 innerRadius={subtractIfExist(innerRadius, 5)}
                 startAngle={subtractIfExist(startAngle, -2)}
@@ -37,7 +37,7 @@ export const FatiaInativa = (props: PieSectorDataItem) => {
             <Sector
                 cx={cx}
                 cy={cy}
-                cornerRadius={3}
+                cornerRadius={5}
                 outerRadius={outerRadius}
                 innerRadius={innerRadius}
                 startAngle={subtractIfExist(startAngle, -0.8)}
