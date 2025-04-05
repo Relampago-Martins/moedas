@@ -169,20 +169,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = [
-    "https://api.pharus.website",
-    "http://api.pharus.website",
     "http://localhost:8080",
     "http://13a79f5840b19f31d6d9eec16d02fc13.balena-devices.com",
     "https://13a79f5840b19f31d6d9eec16d02fc13.balena-devices.com",
     "http://pharus.sytes.net",
     "https://pharus.sytes.net",
+    "http://api.pharus.website",
+    "https://api.pharus.website",
 ]
 CORS_ORIGIN_WHITELIST = [
-    "https://moedas.app",
     "http://localhost",
-    "http://pharus.sytes.net",
-    "https://api.pharus.website",
-    "https://13a79f5840b19f31d6d9eec16d02fc13.balena-devices.com",
 ]
 
 # Default primary key field type
