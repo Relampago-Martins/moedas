@@ -1,9 +1,9 @@
 import { getCarteira } from '@/shared/api/endpoints';
 import { TFiltroPeriodo } from '@/types/filters';
-import { FlipCard } from './components/flip-card';
-import { WavesCup } from './components/waves-cup';
-import { DetalheEconomiaMensal } from './detalhe-economia-mensal';
-import { ResumoEconomiaMensal } from './resumo-economia-mensal';
+import { DetalheEconomiaMensal } from './flip-card/detalhe-economia-mensal';
+import { FlipCard } from './flip-card/flip-card';
+import { ResumoEconomiaMensal } from './flip-card/resumo-economia-mensal';
+import { WavesCup } from './waves/waves-cup';
 
 type CardBalancoProps = {
     className?: string;

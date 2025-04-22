@@ -1,6 +1,7 @@
 'use client';
 import { Carteira } from '@/types/models';
-import { Pie, PieChart, ResponsiveContainer } from 'recharts';
+import { Pie, PieChart, Sector } from 'recharts';
+import { PieSectorDataItem } from 'recharts/types/polar/Pie';
 import { getColor } from '../lib/utils';
 import './ui.scss';
 
@@ -17,23 +18,24 @@ export function GraficoEconomia({ carteira }: GraficoEconomiaProps) {
 
     return (
         <div className="relative shrink-0 grow">
-            <ResponsiveContainer width={80} height={80}>
-                <PieChart>
-                    <Pie
-                        data={[{ value: 100 }]}
-                        dataKey="value"
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={25}
-                        outerRadius={40}
-                        fill={getColor(percentual)}
-                        startAngle={startAngle}
-                        endAngle={endAngle}
-                        cornerRadius={5}
-                        isAnimationActive={false}
-                    ></Pie>
-                </PieChart>
-            </ResponsiveContainer>
+            <PieChart width={80} height={80}>
+                <Pie
+                    data={[{ value: 100 }]}
+                    dataKey="value"
+                    cx="50%"
+                    cy="50%"
+                    activeIndex={0}
+                    activeShape={Fatia}
+                    innerRadius={25}
+                    shapeRendering={'geometricPrecision'}
+                    outerRadius={40}
+                    fill={getColor(percentual)}
+                    startAngle={startAngle}
+                    endAngle={endAngle}
+                    cornerRadius={5}
+                    isAnimationActive
+                ></Pie>
+            </PieChart>
             <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-lg font-bold text-foreground">
                     {percentual.toFixed(0)}
@@ -43,3 +45,21 @@ export function GraficoEconomia({ carteira }: GraficoEconomiaProps) {
         </div>
     );
 }
+
+export const Fatia = (props: PieSectorDataItem) => {
+    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
+        props;
+
+    return (
+        <Sector
+            cx={cx}
+            cy={cy}
+            cornerRadius={5}
+            fill={fill}
+            outerRadius={outerRadius}
+            innerRadius={innerRadius}
+            startAngle={startAngle}
+            endAngle={endAngle}
+        />
+    );
+};
