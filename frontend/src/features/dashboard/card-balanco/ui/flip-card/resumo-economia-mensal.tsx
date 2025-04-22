@@ -1,8 +1,8 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Carteira } from '@/types/models';
-import { useFlipCard } from './components/flip-card';
-import { GraficoEconomia } from './grafico-economia';
+import { GraficoEconomia } from '../grafico-economia';
+import { useFlipCard } from './flip-card';
 type ResumoEconomiaMensalProps = {
     carteira: Carteira;
 };
@@ -10,7 +10,7 @@ export function ResumoEconomiaMensal({ carteira }: ResumoEconomiaMensalProps) {
     const economia = carteira.total_receitas - carteira.total_despesas;
     const { flip } = useFlipCard();
     return (
-        <div className="flex h-full w-full flex-col">
+        <button onClick={flip} className="flex h-full w-full flex-col">
             <div className="flex h-full w-full items-center justify-center gap-2 px-4 py-2">
                 <GraficoEconomia carteira={carteira} />
                 <div
@@ -25,13 +25,10 @@ export function ResumoEconomiaMensal({ carteira }: ResumoEconomiaMensalProps) {
                     }}
                 ></div>
             </div>
-            <button
-                onClick={flip}
-                className="flex w-full items-center justify-center gap-2 border-t py-2 text-sm text-muted"
-            >
+            <div className="flex w-full items-center justify-center gap-2 pb-4  text-sm text-muted ">
                 <i className="ph ph-arrow-bend-down-right text-base"></i>
-                Detalhes
-            </button>
-        </div>
+                <span className="hover:underline">Ver mais</span>
+            </div>
+        </button>
     );
 }
