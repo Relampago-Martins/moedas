@@ -12,7 +12,9 @@ export function ResumoEconomiaMensal({ carteira }: ResumoEconomiaMensalProps) {
     return (
         <button onClick={flip} className="flex h-full w-full flex-col">
             <div className="flex h-full w-full items-center justify-center gap-2 px-4 py-2">
-                <GraficoEconomia carteira={carteira} />
+                {Number.isFinite(carteira.percentualEconomia) ? (
+                    <GraficoEconomia carteira={carteira} />
+                ) : null}
                 <div
                     className="w-full shrink grow-0 text-wrap break-words text-center text-base"
                     dangerouslySetInnerHTML={{

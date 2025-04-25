@@ -10,11 +10,10 @@ type GraficoEconomiaProps = {
 };
 
 export function GraficoEconomia({ carteira }: GraficoEconomiaProps) {
-    const totalReceitas = carteira.total_receitas;
-    const saldoRestante = totalReceitas - carteira.total_despesas;
-    const percentual = (saldoRestante / totalReceitas) * 100;
     const [startAngle, endAngle] =
-        percentual > 100 ? [0, 360] : [90, 90 - (360 * percentual) / 100];
+        carteira.percentualEconomia > 100
+            ? [0, 360]
+            : [90, 90 - (360 * carteira.percentualEconomia) / 100];
 
     return (
         <div className="relative shrink-0 grow">
@@ -29,7 +28,7 @@ export function GraficoEconomia({ carteira }: GraficoEconomiaProps) {
                     innerRadius={25}
                     shapeRendering={'geometricPrecision'}
                     outerRadius={40}
-                    fill={getColor(percentual)}
+                    fill={getColor(carteira.percentualEconomia)}
                     startAngle={startAngle}
                     endAngle={endAngle}
                     cornerRadius={5}
@@ -38,7 +37,7 @@ export function GraficoEconomia({ carteira }: GraficoEconomiaProps) {
             </PieChart>
             <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-lg font-bold text-foreground">
-                    {percentual.toFixed(0)}
+                    {carteira.percentualEconomia.toFixed(0)}
                 </span>
                 <span className="ml-[2px] text-xs">%</span>
             </div>
