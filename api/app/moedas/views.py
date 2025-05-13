@@ -20,6 +20,7 @@ from moedas.filters import (
     ReceitaFilter,
 )
 from moedas.models import Categoria, Despesa, Movimentacao, Receita
+from moedas.models.estrategia import Estrategia
 
 
 # Create your views here.
@@ -32,9 +33,7 @@ class GoogleLogin(SocialLoginView):
 
 
 class DespesaViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet para Despesas
-    """
+    """ViewSet para Despesas"""
 
     queryset = Despesa.objects.all()
     serializer_class = moedas_serializers.DespesaSerializer
@@ -49,9 +48,7 @@ class DespesaViewSet(viewsets.ModelViewSet):
 
 
 class CategoriaViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet para Categorias
-    """
+    """ViewSet para Categorias"""
 
     queryset = Categoria.objects.all()
     serializer_class = moedas_serializers.CategoriaSerializer
@@ -59,8 +56,7 @@ class CategoriaViewSet(viewsets.ModelViewSet):
     # pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        """
-        Lista as categorias base do sistema +
+        """Lista as categorias base do sistema +
         as categorias criadas pelo usuário logado
         """
         return self.queryset.filter(is_base=True)
@@ -146,9 +142,7 @@ class ReceitaViewSet(viewsets.ModelViewSet):
 
 
 class MovimentacaoViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    ViewSet para Movimentações
-    """
+    """ViewSet para Movimentações"""
 
     queryset = Movimentacao.objects.all()
     serializer_class = moedas_serializers.MovimentacaoSerializer
@@ -165,10 +159,12 @@ class CarteiraView(views.APIView):
     def get(self, request: Request) -> Response:
         """Agregar em um local as informações financeiras de um usuário.
 
+        As informações são referente a um mês.
         - Saldo em conta
         - Diferença percentual do saldo em conta em relação ao mês anterior
         - Total de despesas
         - Total de receitas
+        - Econômia
         """
         periodo_after = request.query_params.get("periodo_after")
         periodo_before = request.query_params.get("periodo_before")
@@ -183,3 +179,16 @@ class CarteiraView(views.APIView):
             carteira_serializer.data,
             status=200,
         )
+
+
+class EstrategiaViewSet(viewsets.ModelViewSet):
+    """ViewSet para Estratégia de economia."""
+
+    queryset = Estrategia.objects.all()
+    serializer_class = moedas_serializers.EstrategiaSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)

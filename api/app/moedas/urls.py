@@ -1,6 +1,7 @@
 from django.urls import include, path
 from django.utils.translation import gettext as _
 from rest_framework import routers
+
 from moedas import views
 
 router = routers.DefaultRouter()
@@ -8,6 +9,7 @@ router.register(r"despesas", views.DespesaViewSet, basename="despesas")
 router.register(r"receitas", views.ReceitaViewSet, basename="receitas")
 router.register(r"categorias", views.CategoriaViewSet, basename="categorias")
 router.register(r"movimentacoes", views.MovimentacaoViewSet, basename="movimentacoes")
+router.register(r"estrategias", views.EstrategiaViewSet, basename="estrategias")
 
 urlpatterns = [
     path("", include(router.urls)),

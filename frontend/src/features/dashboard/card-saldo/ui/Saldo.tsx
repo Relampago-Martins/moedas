@@ -1,7 +1,7 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { useState } from 'react';
-import { MoneyTile } from '../../card-balanco/ui/money-tile';
+import { MoneyTile } from '../../../../shared/ui/custom/money-tile';
 import './ui.scss';
 
 type SaldoProps = {

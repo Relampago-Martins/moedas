@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import calendar
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import TYPE_CHECKING
 
 from django.db.models import Q
+
+from moedas.models.estrategia import Estrategia
 
 if TYPE_CHECKING:
     from django.contrib.auth.models import User
@@ -48,6 +50,10 @@ class CarteiraSerializer(serializers.Serializer):
             self.user,
             *self.get_periodo_anterior(self.periodo_after, self.periodo_before),
         )
+        try:
+            percentual_economia = carteira_periodo["saldo"] / carteira_periodo["total_receitas"]
+        except ZeroDivisionError:
+            percentual_economia = 0
 
         return {
             "saldo": carteira_periodo["saldo"],
@@ -57,6 +63,13 @@ class CarteiraSerializer(serializers.Serializer):
             ),
             "total_despesas": carteira_periodo["total_despesas"],
             "total_receitas": carteira_periodo["total_receitas"],
+            "economia": {
+                "valor": carteira_periodo["saldo"],
+                "percentual": round(percentual_economia, 2),
+                "mensagem": self.get_mensagem_economia(
+                    carteira_periodo["saldo"],
+                ),
+            },
         }
 
     def get_carteira_periodo(
@@ -185,3 +198,20 @@ class CarteiraSerializer(serializers.Serializer):
                 percentual = abs(percentual)
             return round(percentual, 2)
         return 0
+
+    def get_mensagem_economia(self, saldo: float) -> str:
+        """Retorna uma mensagem de economia."""
+        estrategia = Estrategia.objects.filter(user=self.user).first()
+
+        desempenho = ""
+        if estrategia:
+            desempenho: str = estrategia.get_desempenho_economia(saldo)
+
+        map_mensagens = {
+            "muito_bom": "Parabéns! Você está economizando muito bem.",
+            "bom": "Bom trabalho! Você está economizando bem.",
+            "razoavel": "Você está economizando de forma razoável.",
+            "ruim": "Você precisa melhorar sua economia.",
+        }
+
+        return map_mensagens.get(desempenho, "Estratégia não encontrada.")

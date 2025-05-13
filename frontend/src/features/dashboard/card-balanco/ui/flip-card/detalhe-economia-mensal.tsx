@@ -1,7 +1,7 @@
 'use client';
 import { Separator } from '@/shared/ui/separator';
 import { Carteira } from '@/types/models';
-import { MoneyTile } from '../money-tile';
+import { MoneyTile } from '../../../../../shared/ui/custom/money-tile';
 import { useFlipCard } from './flip-card';
 
 type DetalheEconomiaMensalProps = {
@@ -18,7 +18,7 @@ export function DetalheEconomiaMensal({
             onClick={flip}
             className="flex h-full w-full flex-col justify-between gap-1 "
         >
-            <div className="flex h-full flex-col items-center justify-center gap-2 px-8">
+            <div className="flex h-full flex-col items-center justify-center gap-2 px-4">
                 <div className="flex w-full items-center justify-between">
                     <MoneyTile
                         title="Receitas"
