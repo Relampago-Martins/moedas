@@ -1,6 +1,7 @@
 'use client';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { useState } from 'react';
+import { MoneyTile } from '../../card-balanco/ui/money-tile';
 import './ui.scss';
 
 type SaldoProps = {
@@ -20,10 +21,11 @@ export function Saldo(props: SaldoProps) {
                 Saldo
             </div>
             <div className="flex items-center text-primary">
-                <span className="mr-1 mt-0 text-base">R$</span>
-                <div className="shrink-0 text-2xl font-semibold">
-                    {show ? valorShow : valorShow.replace(/\d/g, '*')}
-                </div>
+                <MoneyTile
+                    className="shrink-0 text-start text-primary"
+                    value={props.valor}
+                />
+
                 <button
                     className="ml-3"
                     onClick={() => setShow(!show)}

@@ -27,7 +27,7 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
                 <i className="ph ph-chart-pie text-xl" />
                 <span className="">Categorias</span>
             </CardHeader>
-            <CardContent className="flex h-full flex-col items-center gap-1 px-4 pt-2">
+            <CardContent className="flex h-full flex-col items-center gap-2 px-4 pt-2">
                 {categorias.length > 0 ? (
                     <GastosContext>
                         <GraficoPizza categorias={categorias.toReversed()} />

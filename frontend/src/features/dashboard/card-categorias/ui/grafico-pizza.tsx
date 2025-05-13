@@ -102,12 +102,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                             <i className="ph-bold ph-trend-down text-3xl text-foreground" />
                         </div>
                     ) : (
-                        <div
-                            className="flex flex-col items-center"
-                            style={{
-                                color: categoriaSelecionada?.cor.texto,
-                            }}
-                        >
+                        <div className="flex flex-col items-center text-foreground">
                             <div className="text-2xl">
                                 {categoriaSelecionada?.percentual.toFixed(0)}
                                 <span className="ml-[2px] text-sm">%</span>
