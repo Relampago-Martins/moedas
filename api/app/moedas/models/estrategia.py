@@ -96,12 +96,12 @@ class Estrategia(models.Model):
             Percentual de economia do usuário.
 
         """
-        meta_parcial = Decimal("2.5")
+        coeficiente = 0.4
         meta_economia = self.percentual_reserva + self.percentual_investimentos
         if economia >= meta_economia:
             return "muito_bom"
-        if economia < meta_economia and economia >= meta_economia / meta_parcial:
+        if economia < meta_economia and economia >= meta_economia * coeficiente:
             return "bom"
-        if economia > 0 and economia < meta_economia / meta_parcial:
+        if economia > 0 and economia < meta_economia * coeficiente:
             return "regular"
         return "ruim"
