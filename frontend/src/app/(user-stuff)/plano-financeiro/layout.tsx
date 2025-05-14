@@ -31,6 +31,12 @@ export default function RootLayout({
                     >
                         Metas
                     </TabsItem>
+                    <TabsItem
+                        active={path === '/plano-financeiro/estrategias'}
+                        path="/plano-financeiro/estrategias"
+                    >
+                        Estratégias
+                    </TabsItem>
                     <h1 className="text-lg text-muted">Dívidas</h1>
                     <h1 className="text-lg text-muted">Fundos</h1>
                 </div>

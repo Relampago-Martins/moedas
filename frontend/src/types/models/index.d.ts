@@ -2,6 +2,11 @@ export type Carteira = {
     saldo: number;
     total_despesas: number;
     total_receitas: number;
-    percentualEconomia: number;
     diff_percentual: number;
+    percentualEconomia: number;
+    economia: {
+        valor: number;
+        percentual: number;
+        mensagem: string;
+    };
 };

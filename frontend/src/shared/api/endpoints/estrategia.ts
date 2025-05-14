@@ -3,10 +3,10 @@
 import { Estrategia } from '@/types/models/estrategia';
 import { ApiClient } from '../api-client';
 
-export async function getEstrategias() {
+export async function getEstrategia() {
     const resp =
         await ApiClient.getInstance().get<Estrategia[]>('/estrategias/');
-    return resp.data;
+    return resp.data[0];
 }
 
 export async function criarEstrategia(estrategia: Estrategia) {

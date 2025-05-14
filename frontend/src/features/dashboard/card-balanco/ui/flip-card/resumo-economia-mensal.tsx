@@ -1,5 +1,4 @@
 'use client';
-import { numberToCurrency } from '@/shared/lib/utils';
 import { Carteira } from '@/types/models';
 import { GraficoEconomia } from '../grafico-economia';
 import { useFlipCard } from './flip-card';
@@ -17,15 +16,17 @@ export function ResumoEconomiaMensal({ carteira }: ResumoEconomiaMensalProps) {
                 ) : null}
                 <div
                     className="w-full shrink grow-0 text-wrap break-words text-center text-base"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                        Parabéns! Você economizou  
-                        <b class="text-success-foreground text-sm">R$</b>
-                        <b class="text-success-foreground">
-                            ${numberToCurrency(economia).replace('R$', '').trim()}
-                        </b> este mês.`,
-                    }}
-                ></div>
+                    // dangerouslySetInnerHTML={{
+                    //     __html: `
+                    //     Parabéns! Você economizou
+                    //     <b class="text-success-foreground text-sm">R$</b>
+                    //     <b class="text-success-foreground">
+                    //         ${numberToCurrency(economia).replace('R$', '').trim()}
+                    //     </b> este mês.`,
+                    // }}
+                >
+                    {carteira.economia.mensagem}
+                </div>
             </div>
             <div className="flex w-full items-center justify-center gap-2 pb-4  text-sm text-muted ">
                 <i className="ph ph-arrow-bend-down-right text-base"></i>
