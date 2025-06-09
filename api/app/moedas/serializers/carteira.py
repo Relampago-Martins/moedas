@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import calendar
 from datetime import datetime
+from random import choice
 from typing import TYPE_CHECKING
 
 from django.db.models import Q
@@ -208,10 +209,23 @@ class CarteiraSerializer(serializers.Serializer):
             desempenho: str = estrategia.get_desempenho_economia(saldo)
 
         map_mensagens = {
-            "muito_bom": "Parabéns! Você está economizando muito bem.",
-            "bom": "Bom trabalho! Você está economizando bem.",
-            "razoavel": "Você está economizando de forma razoável.",
-            "ruim": "Você precisa melhorar sua economia.",
+            "muito_bom": [
+                "Parabéns! Você superou sua meta!",
+                "Excelente! Continue assim!",
+                "Incrível! Rumo ao sucesso!",
+            ],
+            "bom": [
+                "Está indo bem! Só mais um pouco!",
+                "Bom trabalho! Quase lá!",
+            ],
+            "razoavel": ["Dá para melhorar! Vamos lá!", "Você consegue! Faltou pouco!"],
+            "ruim": [
+                "Não desanime, você pode virar esse jogo!",
+                "Vamos ajustar e melhorar!",
+                "Ajuste sua estratégia e siga em frente!",
+            ],
         }
 
-        return map_mensagens.get(desempenho, "Estratégia não encontrada.")
+        possiveis_mensagnes: list = map_mensagens.get(desempenho, "Estratégia não encontrada.")
+
+        return choice(possiveis_mensagnes)
