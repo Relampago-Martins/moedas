@@ -20,13 +20,13 @@ export function Saldo(props: SaldoProps) {
                 <i className="ph ph-wallet flex text-lg"></i>
                 Saldo
             </div>
-            <div className="flex items-center text-primary">
+            <div className="flex items-center justify-between">
                 <MoneyTile
                     className="shrink-0 text-start text-primary"
                     value={props.valor}
                 />
 
-                <button
+                {/* <button
                     className="ml-3"
                     onClick={() => setShow(!show)}
                     aria-label="Mostrar saldo"
@@ -34,23 +34,30 @@ export function Saldo(props: SaldoProps) {
                     <i
                         className={`ph ${show ? 'ph-eye-slash' : 'ph-eye'} flex text-lg text-muted`}
                     ></i>
-                </button>
+                </button> */}
                 {props.diffPercentual ? (
                     <div
-                        className="flex w-full items-center justify-end gap-1 text-end"
+                        className="flex w-fit items-center gap-1 rounded-md p-1"
                         style={{
                             color: evoluiuPatrimonio
                                 ? 'var(--success-foreground)'
                                 : 'var(--destructive-foreground)',
+                            backgroundColor: evoluiuPatrimonio
+                                ? 'var(--success)'
+                                : 'var(--destructive)',
                         }}
                     >
                         {evoluiuPatrimonio ? (
-                            <i className="ph ph-arrow-fat-line-up flex text-lg"></i>
+                            <i className="ph ph-arrow-up flex text-lg"></i>
                         ) : (
-                            <i className="ph ph-arrow-fat-line-down flex text-lg"></i>
+                            <i className="ph ph-arrow-down flex text-lg"></i>
                         )}
                         <span className="text-sm">
-                            {props.diffPercentual.toFixed(0).replace('.', ',')}%
+                            {props.diffPercentual
+                                .toFixed(0)
+                                .replace('.', ',')
+                                .replace('-', '')}
+                            %
                         </span>
                     </div>
                 ) : null}
