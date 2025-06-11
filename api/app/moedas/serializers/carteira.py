@@ -225,7 +225,6 @@ class CarteiraSerializer(serializers.Serializer):
                 "Ajuste sua estratégia e siga em frente!",
             ],
         }
-
-        possiveis_mensagnes: list = map_mensagens.get(desempenho, "Estratégia não encontrada.")
+        possiveis_mensagnes: list = map_mensagens.get(desempenho, ["Estratégia não encontrada."])
 
         return choice(possiveis_mensagnes)
