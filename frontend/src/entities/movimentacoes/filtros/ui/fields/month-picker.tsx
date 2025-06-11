@@ -34,10 +34,10 @@ export function MonthPicker({ formControl, className }: DatePickerProps) {
               }
             : getMonthRange(new Date()),
     );
-
+    const { month, year } = formatDate(periodo.after);
     return (
         <div
-            className={`flex h-10 w-full items-center justify-between ${className}`}
+            className={`flex h-14 w-full items-center justify-between ${className}`}
         >
             <button
                 onClick={() => {
@@ -60,9 +60,12 @@ export function MonthPicker({ formControl, className }: DatePickerProps) {
                     setPeriodo({ before, after });
                 }}
             >
-                <i className="ph ph-caret-left ml-2"></i>
+                <i className="ph ph-caret-left ml-2 text-xl"></i>
             </button>
-            {formatDate(periodo.before)}
+            <div className="flex flex-col items-center justify-center">
+                <span className="text-sm opacity-80">{year}</span>
+                <span className="text-lg font-medium">{month}</span>
+            </div>
             <button
                 onClick={() => {
                     const after = new Date(
@@ -84,7 +87,7 @@ export function MonthPicker({ formControl, className }: DatePickerProps) {
                     setPeriodo({ before, after });
                 }}
             >
-                <i className="ph ph-caret-right mr-2"></i>
+                <i className="ph ph-caret-right mr-2 text-xl"></i>
             </button>
         </div>
     );

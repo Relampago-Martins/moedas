@@ -15,18 +15,14 @@ export function Saldo(props: SaldoProps) {
     const valorShow = numberToCurrency(props.valor).replace('R$', '').trim();
     const evoluiuPatrimonio = props.diffPercentual > 0;
     return (
-        <div className="flex flex-col gap-1">
-            <div className="align-center flex gap-1 text-sm text-muted">
-                <i className="ph ph-wallet flex text-lg"></i>
-                Saldo
-            </div>
-            <div className="flex items-center justify-between">
-                <MoneyTile
-                    className="shrink-0 text-start text-primary"
-                    value={props.valor}
-                />
+        <div className="flex items-center justify-between">
+            <MoneyTile
+                className="shrink-0 text-start text-primary"
+                size="xl"
+                value={props.valor}
+            />
 
-                {/* <button
+            {/* <button
                     className="ml-3"
                     onClick={() => setShow(!show)}
                     aria-label="Mostrar saldo"
@@ -35,33 +31,32 @@ export function Saldo(props: SaldoProps) {
                         className={`ph ${show ? 'ph-eye-slash' : 'ph-eye'} flex text-lg text-muted`}
                     ></i>
                 </button> */}
-                {props.diffPercentual ? (
-                    <div
-                        className="flex w-fit items-center gap-1 rounded-md p-1"
-                        style={{
-                            color: evoluiuPatrimonio
-                                ? 'var(--success-foreground)'
-                                : 'var(--destructive-foreground)',
-                            backgroundColor: evoluiuPatrimonio
-                                ? 'var(--success)'
-                                : 'var(--destructive)',
-                        }}
-                    >
-                        {evoluiuPatrimonio ? (
-                            <i className="ph ph-arrow-up flex text-lg"></i>
-                        ) : (
-                            <i className="ph ph-arrow-down flex text-lg"></i>
-                        )}
-                        <span className="text-sm">
-                            {props.diffPercentual
-                                .toFixed(0)
-                                .replace('.', ',')
-                                .replace('-', '')}
-                            %
-                        </span>
-                    </div>
-                ) : null}
-            </div>
+            {props.diffPercentual ? (
+                <div
+                    className="flex w-fit items-center gap-1 rounded-md p-1"
+                    style={{
+                        color: evoluiuPatrimonio
+                            ? 'var(--success-foreground)'
+                            : 'var(--destructive-foreground)',
+                        backgroundColor: evoluiuPatrimonio
+                            ? 'var(--success)'
+                            : 'var(--destructive)',
+                    }}
+                >
+                    {evoluiuPatrimonio ? (
+                        <i className="ph ph-arrow-up flex text-lg"></i>
+                    ) : (
+                        <i className="ph ph-arrow-down flex text-lg"></i>
+                    )}
+                    <span className="text-sm">
+                        {props.diffPercentual
+                            .toFixed(0)
+                            .replace('.', ',')
+                            .replace('-', '')}
+                        %
+                    </span>
+                </div>
+            ) : null}
         </div>
     );
 }

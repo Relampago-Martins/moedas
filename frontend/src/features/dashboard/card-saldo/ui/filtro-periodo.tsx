@@ -32,7 +32,10 @@ export function FiltroPeriodo() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
-                <MonthPicker formControl={form.control} />
+                <MonthPicker
+                    formControl={form.control}
+                    className="bg-primary text-primary-foreground"
+                />
             </form>
         </Form>
     );
