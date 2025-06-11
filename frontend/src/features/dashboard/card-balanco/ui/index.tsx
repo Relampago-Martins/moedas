@@ -1,6 +1,7 @@
 import { getCarteira } from '@/shared/api/endpoints';
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import { TFiltroPeriodo } from '@/types/filters';
+import { EconomiaChart } from './economia-char';
 import { DetalheEconomiaMensal } from './flip-card/detalhe-economia-mensal';
 
 type CardBalancoProps = {
@@ -21,6 +22,7 @@ export async function CardBalanco({ className, params }: CardBalancoProps) {
                 <span className=" text-sm">Economia</span>
             </CardHeader>
             <CardContent className="flex h-full items-center justify-end gap-2">
+                <EconomiaChart carteira={carteira} />
                 <DetalheEconomiaMensal carteira={carteira} />
             </CardContent>
         </Card>
