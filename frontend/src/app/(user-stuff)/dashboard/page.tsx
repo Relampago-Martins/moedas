@@ -28,7 +28,7 @@ export default function Dashboard({
                     <Skeleton className="col-span-12 flex flex-col gap-2 lg:col-span-7 lg:row-start-2 xl:col-start-2" />
                 }
             >
-                <div className="col-span-12 flex flex-col gap-2 lg:col-span-7 lg:row-start-2 xl:col-start-2">
+                <div className="col-span-12 flex flex-col gap-2 lg:col-span-10 lg:row-start-2 xl:col-start-2">
                     <div className="overflow-hidden rounded-lg border bg-card shadow-sm">
                         <FiltroPeriodo />
                     </div>
@@ -41,7 +41,7 @@ export default function Dashboard({
             >
                 <CardSaldo
                     params={searchParams}
-                    className="col-span-12 row-span-1 gap-2 lg:col-span-4 lg:row-start-3 xl:col-start-2"
+                    className="col-span-12 row-span-1 gap-2 lg:col-span-5 lg:row-start-3 xl:col-span-4 xl:col-start-2"
                 />
             </Suspense>
             <Suspense
@@ -51,7 +51,7 @@ export default function Dashboard({
             >
                 <CardBalanco
                     params={searchParams}
-                    className="col-span-12 lg:col-span-4 lg:row-start-4 xl:col-start-2"
+                    className="col-span-12 lg:col-span-5 lg:row-start-4 xl:col-span-4 xl:col-start-2"
                 />
             </Suspense>
             <Suspense
@@ -61,7 +61,7 @@ export default function Dashboard({
             >
                 <CardCategorias
                     params={searchParams}
-                    className="col-span-12 lg:col-span-3 lg:row-span-2 lg:row-start-3"
+                    className="col-span-12 lg:col-span-5 lg:row-span-2 lg:row-start-3 xl:col-span-3"
                 />
             </Suspense>
         </div>

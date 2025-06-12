@@ -22,8 +22,7 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
     );
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
-            <CardHeader className="flex h-10 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
-                <i className="ph ph-chart-pie text-lg" />
+            <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
                 <span className=" text-sm">Gastos</span>
             </CardHeader>
             <CardContent className="flex h-full flex-col items-center gap-2 px-4">

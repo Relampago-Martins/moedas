@@ -14,8 +14,7 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
 
     return (
         <Card className={`${className} flex flex-col`}>
-            <CardHeader className="flex h-10 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
-                <i className="ph ph-wallet text-lg" />
+            <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
                 <span className=" text-sm">Saldo</span>
             </CardHeader>
             <CardContent className="flex h-full flex-col justify-center">
