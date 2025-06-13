@@ -4,11 +4,11 @@ import { MoneyTile } from '@/shared/ui/custom/money-tile';
 import { TFiltroPeriodo } from '@/types/filters';
 import { EconomiaChart } from './economia-chart';
 
-type CardBalancoProps = {
+type CardEconomiaProps = {
     className?: string;
     params: TFiltroPeriodo;
 };
-export async function CardBalanco({ className, params }: CardBalancoProps) {
+export async function CardEconomia({ className, params }: CardEconomiaProps) {
     const carteira = await getCarteira(params);
 
     const totalMovs = carteira.total_receitas + carteira.total_despesas;
@@ -18,7 +18,8 @@ export async function CardBalanco({ className, params }: CardBalancoProps) {
     return (
         <Card className={`${className} flex grow flex-col`}>
             <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
-                <span className=" text-sm">Economia</span>
+                <i className="ph ph-scales flex text-lg text-muted " />
+                <span className="text-sm">Economia</span>
             </CardHeader>
             <CardContent className="flex h-full flex-col items-center justify-end gap-0">
                 <EconomiaChart carteira={carteira} />

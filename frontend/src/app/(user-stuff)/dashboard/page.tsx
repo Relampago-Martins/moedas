@@ -1,5 +1,5 @@
-import { CardBalanco } from '@/features/dashboard/card-balanco/ui';
 import { CardCategorias } from '@/features/dashboard/card-categorias/ui';
+import { CardEconomia } from '@/features/dashboard/card-economia/ui';
 import { CardSaldo } from '@/features/dashboard/card-saldo/ui';
 import { FiltroPeriodo } from '@/features/dashboard/card-saldo/ui/filtro-periodo';
 import { Saudacao } from '@/features/month-picker/ui/Saudacao';
@@ -34,7 +34,7 @@ export default function Dashboard({
                     className="col-span-12 row-span-1 gap-2 lg:col-span-5 lg:row-start-3 xl:col-span-4 xl:col-start-2"
                 />
 
-                <CardBalanco
+                <CardEconomia
                     params={searchParams}
                     className="col-span-12 lg:col-span-5 lg:row-start-4 xl:col-span-4 xl:col-start-2"
                 />
