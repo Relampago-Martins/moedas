@@ -46,10 +46,10 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
     }, [categorias]);
 
     return (
-        <div className="relative">
+        <div className="relative ml-1 flex">
             <PieChart
-                width={160}
-                height={160}
+                width={140}
+                height={140}
                 className="z-[1] -mx-3"
                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
@@ -61,7 +61,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     inactiveShape={FatiaInativa}
                     shapeRendering={'geometricPrecision'}
                     innerRadius={40}
-                    outerRadius={75}
+                    outerRadius={60}
                     startAngle={90}
                     endAngle={-270}
                     isAnimationActive={true}
@@ -95,18 +95,16 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     }}
                     initial={{ opacity: 0.9, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className=" text-sm font-bold text-gray-500"
+                    className=" flex h-[80px] w-[80px] items-center justify-center rounded-full bg-background text-sm font-bold text-muted"
                 >
                     {activeIndex < 0 ? (
                         <div className="flex flex-col items-center">
-                            <i className="ph-bold ph-trend-down text-3xl text-foreground" />
+                            <i className="ph ph-trend-down text-3xl " />
                         </div>
                     ) : (
-                        <div className="flex flex-col items-center text-foreground">
-                            <div className="text-2xl">
-                                {categoriaSelecionada?.percentual.toFixed(0)}
-                                <span className="ml-[2px] text-sm">%</span>
-                            </div>
+                        <div className="text-xl">
+                            {categoriaSelecionada?.percentual.toFixed(0)}
+                            <span className="ml-[2px] text-sm">%</span>
                         </div>
                     )}
                 </motion.span>

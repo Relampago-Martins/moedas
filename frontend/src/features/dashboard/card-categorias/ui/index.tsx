@@ -30,8 +30,12 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
             <CardContent className="flex h-full flex-col items-center gap-2 px-4">
                 {categorias.length > 0 ? (
                     <GastosContext>
-                        <GraficoPizza categorias={categorias.toReversed()} />
-                        <CategoriaValue gastosTotais={gastosTotais} />
+                        <div className="flex w-full items-center gap-4">
+                            <GraficoPizza
+                                categorias={categorias.toReversed()}
+                            />
+                            <CategoriaValue gastosTotais={gastosTotais} />
+                        </div>
                         <ListaCategorias categorias={categorias} />
                     </GastosContext>
                 ) : (

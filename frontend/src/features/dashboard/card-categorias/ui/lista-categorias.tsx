@@ -27,10 +27,6 @@ export function ListaCategorias({ categorias }: ListaCategoriasProps) {
                     selecionado={
                         categoriaSelecionada?.sigla === categoria.sigla
                     }
-                    hide={
-                        categoriaSelecionada &&
-                        categoria.sigla !== categoriaSelecionada.sigla
-                    }
                 />
             ))}
         </div>

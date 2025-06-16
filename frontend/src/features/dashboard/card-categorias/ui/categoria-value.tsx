@@ -21,17 +21,19 @@ export function CategoriaValue({ gastosTotais }: CategoriaValueProps) {
 
     return (
         <div
-            className="col-span-2 col-start-2 row-start-1 mb-2 flex w-full flex-col justify-center rounded-md"
+            className="col-span-2 col-start-2 row-start-1 mb-2 flex w-fit flex-col justify-center rounded-md"
             style={{
                 color: 'var(--foreground)',
             }}
         >
-            <span className="w-full text-center text-base font-normal">
+            <span className="w-full text-sm font-normal text-muted">
                 {categoriaSelecionada?.nome ?? 'Total'}
             </span>
             <div className="flex items-center justify-center ">
-                <span className="mr-1 mt-1 text-base font-normal">R$</span>
-                <div className="shrink-0 text-2xl font-semibold">
+                <span className="mr-1 mt-1 text-sm font-normal text-muted">
+                    R$
+                </span>
+                <div className="shrink-0 text-xl font-semibold">
                     {valorTotalSelecionado}
                 </div>
             </div>

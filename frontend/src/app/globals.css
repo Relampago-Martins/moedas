@@ -11,7 +11,7 @@
     --primary: #001675;
     --primary-foreground: #fff7ed;
     
-    --secondary: #DEDCFF;
+    --secondary: rgb(241, 132, 72);
     --secondary-foreground: #AC85F0;
 
     --card: #ffffff;
@@ -49,10 +49,10 @@
     --background:	#18181b;
     --foreground: #ffffff;
     
-    --primary: 	#a78bfa;
+    --primary: 	rgb(241, 132, 72);
     --primary-foreground: #f9fafb;
 
-    --secondary:	#e2e8f0;
+    --secondary:	rgb(57,106,178);
     --secondary-foreground: #f9fafb;
 
     --card:	#27272a;
