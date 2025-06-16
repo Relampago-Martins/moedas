@@ -4,9 +4,10 @@ export type Carteira = {
     total_receitas: number;
     diff_percentual: number;
     percentualEconomia: number;
-    economia: {
-        valor: number;
-        percentual: number;
+    economia: number;
+    orcamento: {
+        limite_gastos: number;
+        percentual_gastos: number;
         mensagem: string;
     };
 };

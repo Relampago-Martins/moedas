@@ -24,11 +24,12 @@ const chartConfig = {
 
 export function EconomiaChart({ carteira }: EconomiaChartProps) {
     const economia = carteira.total_receitas - carteira.total_despesas;
+    const totalReceitas = carteira.total_receitas - carteira.total_despesas;
 
     const chartData = [
         {
             name: 'Economia',
-            receitas: carteira.total_receitas,
+            receitas: totalReceitas < 0 ? 0 : totalReceitas,
             despesas: carteira.total_despesas,
         },
     ];

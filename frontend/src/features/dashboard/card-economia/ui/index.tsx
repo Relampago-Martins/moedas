@@ -11,10 +11,6 @@ type CardEconomiaProps = {
 export async function CardEconomia({ className, params }: CardEconomiaProps) {
     const carteira = await getCarteira(params);
 
-    const totalMovs = carteira.total_receitas + carteira.total_despesas;
-    const receitasPercent = carteira.total_receitas / totalMovs;
-    const despesasPercent = carteira.total_despesas / totalMovs;
-
     return (
         <Card className={`${className} flex grow flex-col`}>
             <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
@@ -33,8 +29,6 @@ export async function CardEconomia({ className, params }: CardEconomiaProps) {
                     <span className="mr-auto text-sm text-muted">Despesa</span>
                     <MoneyTile value={carteira.total_despesas} />
                 </div>
-
-                {/* <DetalheEconomiaMensal carteira={carteira} /> */}
             </CardContent>
         </Card>
     );
