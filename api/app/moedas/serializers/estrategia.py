@@ -20,17 +20,18 @@ class EstrategiaSerializer(serializers.ModelSerializer):
         coerce_to_string=False,
     )
 
+    percentual_dividas = serializers.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        coerce_to_string=False,
+    )
+
     percentual_reserva = serializers.DecimalField(
         max_digits=5,
         decimal_places=2,
         coerce_to_string=False,
     )
     percentual_investimentos = serializers.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        coerce_to_string=False,
-    )
-    percentual_dividas = serializers.DecimalField(
         max_digits=10,
         decimal_places=2,
         coerce_to_string=False,

@@ -81,27 +81,38 @@ class Estrategia(models.Model):
             )
             raise ValidationError(msg)
 
-    def get_desempenho_economia(self, economia: Decimal) -> str:
-        """Avaliar se a economia está dentro do esperado.
+    def get_desempenho_orcamento(self, percentual_gastos: Decimal) -> str:
+        """Avaliar se os gastos do usuário estão dentro do esperado.
 
-        Retorna uma palavra que representa o desempenho da economia do usuário.
-        - muito_bom
-        - bom
-        - regular
-        - ruim
+        Retorna uma palavra que representa o desempenho do usuário em seu orçamento:
+        - "economico" se os gastos estão abaixo do esperado,
+        - "limite" se os gastos estão exatamente no limite,
+        - "passou_do_limite" se os gastos estão acima do limite, mas ainda dentro de uma folga,
+        - "gastou_muito" se os gastos estão muito acima do limite,
+        - "gastou_tudo" se os gastos estão acima de 100%.
+
 
         Parameters
         ----------
-        economia : float
-            Percentual de economia do usuário.
+        percentual_gastos : float
+            Percentual de gastos do usuário.
 
         """
-        coeficiente = Decimal("0.4")
-        meta_economia = self.percentual_reserva + self.percentual_investimentos
-        if economia >= meta_economia:
-            return "muito_bom"
-        if economia < meta_economia and economia >= meta_economia * coeficiente:
-            return "bom"
-        if economia > 0 and economia < meta_economia * coeficiente:
-            return "regular"
-        return "ruim"
+        gastos = round(
+            percentual_gastos,
+            2,
+        )
+        coeficiente = Decimal("1.40")
+        limite_gastos = self.percentual_dividas + self.percentual_gastos
+        limite_com_folga = limite_gastos * coeficiente
+
+        if gastos < limite_gastos:
+            return "economico"
+        if gastos == limite_gastos:
+            return "limite"
+        if gastos >= limite_gastos and gastos < limite_com_folga:
+            return "passou_do_limite"
+        if gastos >= limite_com_folga and gastos < 1:
+            return "gastou_muito"
+
+        return "gastou_tudo"

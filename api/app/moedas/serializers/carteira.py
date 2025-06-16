@@ -52,9 +52,11 @@ class CarteiraSerializer(serializers.Serializer):
             *self.get_periodo_anterior(self.periodo_after, self.periodo_before),
         )
         try:
-            percentual_economia = carteira_periodo["saldo"] / carteira_periodo["total_receitas"]
+            percentual_gastos = (
+                carteira_periodo["total_despesas"] / carteira_periodo["total_receitas"]
+            )
         except ZeroDivisionError:
-            percentual_economia = 0
+            percentual_gastos = 1
 
         return {
             "saldo": carteira_periodo["saldo"],
@@ -64,11 +66,15 @@ class CarteiraSerializer(serializers.Serializer):
             ),
             "total_despesas": carteira_periodo["total_despesas"],
             "total_receitas": carteira_periodo["total_receitas"],
-            "economia": {
-                "valor": carteira_periodo["saldo"],
-                "percentual": round(percentual_economia, 2),
-                "mensagem": self.get_mensagem_economia(
-                    carteira_periodo["saldo"],
+            "economia": carteira_periodo["economia"],
+            "orcamento": {
+                "limite_gastos": self.get_limite_gastos(),
+                "percentual_gastos": round(
+                    percentual_gastos,
+                    2,
+                ),
+                "mensagem": self.get_mensagem_orcamento(
+                    percentual_gastos,
                 ),
             },
         }
@@ -83,25 +89,28 @@ class CarteiraSerializer(serializers.Serializer):
 
         ERRO: esse método está retornando balanço do mês atual, não o saldo.
         """
-        total_receitas = self.get_total_receitas(obj, periodo_after, periodo_before)
-        total_despesas = self.get_total_despesas(obj, periodo_after, periodo_before)
-        saldo = 0
-        if total_receitas:
-            saldo = total_receitas
-        if total_despesas:
-            saldo -= total_despesas
+        total_receitas = self.get_total_receitas(obj, None, periodo_before)
+        total_despesas = self.get_total_despesas(obj, None, periodo_after)
+        receitas_periodo = self.get_total_receitas(obj, periodo_after, periodo_before)
+        despesas_periodo = self.get_total_despesas(obj, periodo_after, periodo_before)
+        economia = 0
+        if receitas_periodo:
+            economia = receitas_periodo
+        if despesas_periodo:
+            economia -= despesas_periodo
 
         return {
-            "saldo": saldo,
-            "total_despesas": total_despesas,
-            "total_receitas": total_receitas,
+            "saldo": total_receitas - total_despesas,
+            "economia": economia,
+            "total_despesas": despesas_periodo,
+            "total_receitas": receitas_periodo,
         }
 
     def get_total_receitas(
         self,
         user: User,
-        periodo_after: str,
-        periodo_before: str,
+        periodo_after: str | None,
+        periodo_before: str | None,
     ) -> float:
         """Retorna o total de receitas do usuário."""
         queryset = user.movimentacoes.filter(tipo="R")
@@ -113,8 +122,8 @@ class CarteiraSerializer(serializers.Serializer):
     def get_total_despesas(
         self,
         user: User,
-        periodo_after: str,
-        periodo_before: str,
+        periodo_after: str | None,
+        periodo_before: str | None,
     ) -> float:
         """Retorna o total de despesas do usuário."""
         queryset = user.movimentacoes.filter(tipo="D")
@@ -176,7 +185,7 @@ class CarteiraSerializer(serializers.Serializer):
             )
         return None, None
 
-    def _get_filtro_periodo(self, periodo_after: str, periodo_before: str) -> Q:
+    def _get_filtro_periodo(self, periodo_after: str | None, periodo_before: str | None) -> Q:
         """Retorna um filtro de período."""
         qs = Q()
         if periodo_after:
@@ -200,31 +209,52 @@ class CarteiraSerializer(serializers.Serializer):
             return round(percentual, 2)
         return 0
 
-    def get_mensagem_economia(self, saldo: float) -> str:
+    def get_mensagem_orcamento(self, percentual_gasto: float) -> str:
         """Retorna uma mensagem de economia."""
         estrategia = Estrategia.objects.filter(user=self.user).first()
 
         desempenho = ""
         if estrategia:
-            desempenho: str = estrategia.get_desempenho_economia(saldo)
+            desempenho: str = estrategia.get_desempenho_orcamento(percentual_gasto)
 
-        map_mensagens = {
-            "muito_bom": [
-                "Parabéns! Você superou sua meta!",
-                "Excelente! Continue assim!",
-                "Incrível! Rumo ao sucesso!",
+        mensagens_desempenho = {
+            "economico": [
+                "Você gastou menos do que o previsto. Parabéns!",
+                "Excelente! Seus gastos ficaram abaixo do orçamento.",
+                "Muito bem, sobrou dinheiro no fim do mês.",
             ],
-            "bom": [
-                "Está indo bem! Só mais um pouco!",
-                "Bom trabalho! Quase lá!",
+            "limite": [
+                "Você usou exatamente o que planejou. Equilíbrio alcançado.",
+                "Seu orçamento foi seguido à risca. Boa gestão!",
+                "No limite, mas sem ultrapassar. Mantenha o foco.",
             ],
-            "razoavel": ["Dá para melhorar! Vamos lá!", "Você consegue! Faltou pouco!"],
-            "ruim": [
-                "Não desanime, você pode virar esse jogo!",
-                "Vamos ajustar e melhorar!",
-                "Ajuste sua estratégia e siga em frente!",
+            "passou_do_limite": [
+                "Você ultrapassou um pouco o orçamento. Atenção nos próximos dias.",
+                "Gastos ligeiramente acima do ideal. Pequenos ajustes já ajudam.",
+                "Quase lá! Com um pouco mais de controle, você volta ao plano.",
+            ],
+            "gastou_muito": [
+                "Os gastos passaram bastante do ideal. Hora de reavaliar prioridades.",
+                "Seu orçamento foi comprometido. Cuidado com os excessos.",
+                "Gastos elevados este mês. Tente compensar no próximo.",
+            ],
+            "gastou_tudo": [
+                "Você extrapolou totalmente o orçamento. É importante revisar seus hábitos.",
+                "Todos os recursos planejados foram usados. Vamos repensar o próximo mês?",
+                "Gastos acima de 100%. Um novo plano pode ajudar a retomar o controle.",
             ],
         }
-        possiveis_mensagnes: list = map_mensagens.get(desempenho, ["Estratégia não encontrada."])
+
+        possiveis_mensagnes: list = mensagens_desempenho.get(
+            desempenho,
+            ["Estratégia não encontrada."],
+        )
 
         return choice(possiveis_mensagnes)
+
+    def get_limite_gastos(self) -> float:
+        """Retorna o limite de economia."""
+        estrategia = Estrategia.objects.filter(user=self.user).first()
+        if estrategia:
+            return estrategia.percentual_gastos + estrategia.percentual_dividas
+        return 0.0
