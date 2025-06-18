@@ -10,7 +10,7 @@ import './ui.scss';
 export default function Page() {
     return (
         <div className="px-6 py-6 md:px-8 xl:px-36">
-            <h1 className="mb-6 flex items-center gap-2 text-xl font-semibold leading-10 text-primary">
+            <h1 className="mb-4 flex items-center gap-2 text-xl font-semibold leading-10 text-primary">
                 <i className="ph ph-arrows-down-up flex text-2xl"></i>
                 Movimentações
             </h1>
