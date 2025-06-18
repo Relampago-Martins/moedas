@@ -1,5 +1,7 @@
 'use client';
 import { FiltroPeriodo } from '@/features/dashboard/card-saldo/ui/filtro-periodo';
+import { ModalLimiteGastos } from '@/features/plano-financeiro/modal-limite-gastos';
+import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -11,33 +13,50 @@ export default function RootLayout({
     const path = usePathname();
 
     return (
-        <div className="h-screen px-6 py-6 md:px-8 xl:px-36">
-            <div className="mb-4 flex items-center gap-2 text-primary ">
+        <div className="flex h-screen flex-col gap-4 px-6 py-6 md:px-8 xl:px-36">
+            <div className="flex items-center gap-2 text-primary ">
                 <i className="ph ph-crosshair flex text-2xl" />
                 <h1 className="text-xl font-semibold leading-10">Orçamento</h1>
             </div>
 
             <FiltroPeriodo className="" />
 
-            <div className="flex h-full max-w-full flex-col gap-3 pt-4">
-                <div className="flex items-center gap-8">
-                    <TabsItem active={path === '/orcamento'} path="/orcamento">
-                        Gastos
-                    </TabsItem>
-                    <TabsItem
-                        active={path === '/orcamento/investimentos'}
-                        path="/orcamento/investimentos"
-                    >
-                        Investimentos
-                    </TabsItem>
-                    <TabsItem
-                        active={path === '/orcamento/estrategias'}
-                        path="/orcamento/estrategias"
-                    >
-                        Estratégias
-                    </TabsItem>
+            <div className="flex h-full flex-wrap justify-between gap-8 sm:flex-nowrap">
+                <div className="flex h-full w-full flex-col gap-4">
+                    <div className="flex items-center gap-8">
+                        <TabsItem
+                            active={path === '/orcamento'}
+                            path="/orcamento"
+                        >
+                            Gastos
+                        </TabsItem>
+                        <TabsItem
+                            active={path === '/orcamento/investimentos'}
+                            path="/orcamento/investimentos"
+                        >
+                            Investimentos
+                        </TabsItem>
+                        <TabsItem
+                            active={path === '/orcamento/estrategias'}
+                            path="/orcamento/estrategias"
+                        >
+                            Estratégias
+                        </TabsItem>
+                    </div>
+                    {children}
                 </div>
-                {children}
+
+                <Card className="sm:w-[400px] ">
+                    <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
+                        <span className="text-sm">Limite de gastos</span>
+                    </CardHeader>
+                    <CardContent className="flex h-full w-full items-center justify-center">
+                        <ModalLimiteGastos className="flex items-center gap-2 text-muted">
+                            <i className="ph ph-plus-circle text-2xl"></i>
+                            <span className="">Adicionar</span>
+                        </ModalLimiteGastos>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );
