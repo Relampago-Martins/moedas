@@ -29,17 +29,21 @@ export function ModalLimiteGastos({
     const [open, setOpen] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const criaOrcamento = () => {
+        criarOrcamento({
+            limite_gastos: novoLimite / 100,
+            salario: 0, // Assuming salario is not needed for this operation
+        }).then(() => setOpen(false));
+    };
     const onSalvar = () => {
+        //gambiarra para atualizar ou criar o orçamento
+        //hehe só altera isso aí bruno do futuro
+        //faz do jeito certo ;)
         getOrcamento().then((orcamento) => {
             if (orcamento) {
-                deletarOrcamento(orcamento.id!).then(() => {
-                    criarOrcamento({
-                        limite_gastos: novoLimite / 100,
-                        salario: 0, // Assuming salario is not needed for this operation
-                    }).then(() => setOpen(false));
-                });
+                deletarOrcamento(orcamento.id!).then(criaOrcamento);
             } else {
-                setError('Orçamento não encontrado');
+                criaOrcamento();
             }
         });
     };

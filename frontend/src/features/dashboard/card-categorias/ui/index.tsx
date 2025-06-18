@@ -40,9 +40,9 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
                     </GastosContext>
                 ) : (
                     <div className="flex h-full flex-col items-center justify-center gap-1 text-muted">
-                        <i className="ph-thin ph-chart-pie-slice text-7xl" />
+                        <i className="ph-thin ph-trend-down text-7xl" />
                         <span className="text-base font-medium">
-                            Nenhuma despesa
+                            Sem despesa registrada
                         </span>
                     </div>
                 )}
