@@ -20,7 +20,7 @@ from moedas.filters import (
     ReceitaFilter,
 )
 from moedas.models import Categoria, Despesa, Movimentacao, Receita
-from moedas.models.estrategia import Estrategia
+from moedas.models.estrategia import OrcamentoMensal
 
 
 # Create your views here.
@@ -181,11 +181,11 @@ class CarteiraView(views.APIView):
         )
 
 
-class EstrategiaViewSet(viewsets.ModelViewSet):
+class OrcamentoMensalViewSet(viewsets.ModelViewSet):
     """ViewSet para Estratégia de economia."""
 
-    queryset = Estrategia.objects.all()
-    serializer_class = moedas_serializers.EstrategiaSerializer
+    queryset = OrcamentoMensal.objects.all()
+    serializer_class = moedas_serializers.OrcamentoSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

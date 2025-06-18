@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 
 from django.db.models import Q
 
-from moedas.models.estrategia import Estrategia
+from moedas.models.estrategia import OrcamentoMensal
 
 if TYPE_CHECKING:
     from django.contrib.auth.models import User
@@ -211,11 +211,11 @@ class CarteiraSerializer(serializers.Serializer):
 
     def get_mensagem_orcamento(self, percentual_gasto: float) -> str:
         """Retorna uma mensagem de economia."""
-        estrategia = Estrategia.objects.filter(user=self.user).first()
+        orcamento = OrcamentoMensal.objects.filter(user=self.user).first()
 
         desempenho = ""
-        if estrategia:
-            desempenho: str = estrategia.get_desempenho_orcamento(percentual_gasto)
+        if orcamento:
+            desempenho: str = orcamento.get_desempenho_orcamento(percentual_gasto)
 
         mensagens_desempenho = {
             "economico": [
@@ -254,7 +254,7 @@ class CarteiraSerializer(serializers.Serializer):
 
     def get_limite_gastos(self) -> float:
         """Retorna o limite de economia."""
-        estrategia = Estrategia.objects.filter(user=self.user).first()
-        if estrategia:
-            return estrategia.percentual_gastos + estrategia.percentual_dividas
+        orcamento = OrcamentoMensal.objects.filter(user=self.user).first()
+        if orcamento:
+            return orcamento.limite_gastos
         return 0.0

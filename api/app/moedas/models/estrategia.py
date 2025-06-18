@@ -116,3 +116,77 @@ class Estrategia(models.Model):
             return "gastou_muito"
 
         return "gastou_tudo"
+
+
+class OrcamentoMensal(models.Model):
+    """Model para armazenar o orçamento mensal de um usuário."""
+
+    user = models.ForeignKey(
+        "auth.User",
+        on_delete=models.CASCADE,
+        related_name="orcamento_mensal",
+    )
+
+    limite_gastos = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(1)],
+        verbose_name="Percentual de Limite de gastos",
+    )
+
+    salario = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0)],
+        verbose_name="Salário",
+    )
+
+    class Meta:
+        """Meta class para o modelo de orçamento mensal."""
+
+        db_table = "orcamento_mensal"
+        verbose_name = "Orçamento Mensal"
+        verbose_name_plural = "Orçamentos Mensais"
+        ordering: typing.ClassVar = ["user"]
+
+    def __str__(self) -> str:
+        """Retorna uma representação em string do objeto."""
+        return f"Orçamento mensal de {self.user.username}"
+
+    def get_desempenho_orcamento(self, percentual_gastos: Decimal) -> str:
+        """Avaliar se os gastos do usuário estão dentro do esperado.
+
+        Retorna uma palavra que representa o desempenho do usuário em seu orçamento:
+        - "economico" se os gastos estão abaixo do esperado,
+        - "limite" se os gastos estão exatamente no limite,
+        - "passou_do_limite" se os gastos estão acima do limite, mas ainda dentro de uma folga,
+        - "gastou_muito" se os gastos estão muito acima do limite,
+        - "gastou_tudo" se os gastos estão acima de 100%.
+
+
+        Parameters
+        ----------
+        percentual_gastos : float
+            Percentual de gastos do usuário.
+
+        """
+        gastos = round(
+            percentual_gastos,
+            2,
+        )
+        coeficiente = Decimal("1.40")
+        limite_gastos = Decimal(self.limite_gastos)
+        limite_com_folga = limite_gastos * coeficiente
+
+        if gastos < limite_gastos:
+            return "economico"
+        if gastos == limite_gastos:
+            return "limite"
+        if gastos >= limite_gastos and gastos < limite_com_folga:
+            return "passou_do_limite"
+        if gastos >= limite_com_folga and gastos < 1:
+            return "gastou_muito"
+
+        return "gastou_tudo"

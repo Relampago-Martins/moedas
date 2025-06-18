@@ -9,7 +9,7 @@ router.register(r"despesas", views.DespesaViewSet, basename="despesas")
 router.register(r"receitas", views.ReceitaViewSet, basename="receitas")
 router.register(r"categorias", views.CategoriaViewSet, basename="categorias")
 router.register(r"movimentacoes", views.MovimentacaoViewSet, basename="movimentacoes")
-router.register(r"estrategias", views.EstrategiaViewSet, basename="estrategias")
+router.register(r"orcamento", views.OrcamentoMensalViewSet, basename="orcamento")
 
 urlpatterns = [
     path("", include(router.urls)),

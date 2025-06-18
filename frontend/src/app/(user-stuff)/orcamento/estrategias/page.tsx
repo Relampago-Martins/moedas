@@ -1,6 +1,5 @@
 'use client';
 
-import { CardEstrategia } from '@/features/plano-financeiro/card-estrategia';
 import { getEstrategia } from '@/shared/api/endpoints/estrategia';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { Estrategia } from '@/types/models/estrategia';
@@ -38,14 +37,6 @@ export default function EstrategiasPage() {
             <p className="text-muted">
                 Aqui você pode visualizar e editar sua estratégia financeira.
             </p>
-            {loading ? (
-                <CardEstrategiaSkeleton />
-            ) : (
-                <CardEstrategia
-                    estrategia={estrategia}
-                    onEstrategiaUpdate={handleEstrategiaUpdate}
-                />
-            )}
         </div>
     );
 }

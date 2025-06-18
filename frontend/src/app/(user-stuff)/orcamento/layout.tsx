@@ -36,12 +36,6 @@ export default function RootLayout({
                         >
                             Investimentos
                         </TabsItem>
-                        <TabsItem
-                            active={path === '/orcamento/estrategias'}
-                            path="/orcamento/estrategias"
-                        >
-                            Estratégias
-                        </TabsItem>
                     </div>
                     {children}
                 </div>

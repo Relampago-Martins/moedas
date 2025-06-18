@@ -2,36 +2,25 @@ import typing
 
 from rest_framework import serializers
 
-from moedas.models.estrategia import Estrategia
+from moedas.models.estrategia import OrcamentoMensal
 
 
-class EstrategiaSerializer(serializers.ModelSerializer):
-    """Serializer para a estratégia de economia."""
+class OrcamentoSerializer(serializers.ModelSerializer):
+    """Serializer para o orçamento."""
 
     class Meta:
-        """Meta class para o serializer de estratégia."""
+        """Meta class para o serializer."""
 
-        model = Estrategia
+        model = OrcamentoMensal
         exclude: typing.ClassVar = ["user"]
 
-    percentual_gastos = serializers.DecimalField(
+    limite_gastos = serializers.DecimalField(
         max_digits=5,
         decimal_places=2,
         coerce_to_string=False,
     )
 
-    percentual_dividas = serializers.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        coerce_to_string=False,
-    )
-
-    percentual_reserva = serializers.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-        coerce_to_string=False,
-    )
-    percentual_investimentos = serializers.DecimalField(
+    salario = serializers.DecimalField(
         max_digits=10,
         decimal_places=2,
         coerce_to_string=False,
