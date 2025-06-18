@@ -22,9 +22,7 @@ export default function Dashboard({
                 </div>
 
                 <div className="col-span-12 flex flex-col gap-2 lg:col-span-10 lg:row-start-2 xl:col-start-2">
-                    <div className="overflow-hidden rounded-lg border bg-card shadow-sm">
-                        <FiltroPeriodo />
-                    </div>
+                    <FiltroPeriodo />
                 </div>
 
                 <CardSaldo

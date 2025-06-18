@@ -17,7 +17,7 @@ export async function CardOrcamento({ className, params }: CardOrcamentoProps) {
             <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
                 <i className="ph ph-crosshair text-lg text-muted" />
                 <span className="text-sm">Orçamento</span>
-                <Link className="ml-auto" href="/plano-financeiro">
+                <Link className="ml-auto" href="/orcamento">
                     <i className="ph  ph-arrow-right flex text-lg text-muted" />
                 </Link>
             </CardHeader>

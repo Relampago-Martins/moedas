@@ -41,7 +41,7 @@ export function ListaMovimentacoes() {
         <ul className="flex flex-col gap-2">
             {movimentacoesPorDatas.map((movimentacoesPorData) => (
                 <div
-                    className="flex max-w-[40rem] flex-col gap-2"
+                    className="flex max-w-full flex-col gap-2"
                     key={movimentacoesPorData.data}
                 >
                     <span className="text-muted">
@@ -63,7 +63,7 @@ export function ListaMovimentacoes() {
                 </div>
             ))}
             {movimentacoes?.length === 0 && (
-                <p className="flex h-[25rem] max-w-[40rem] flex-col items-center justify-center gap-0 rounded-md border-[1px] border-dashed text-muted">
+                <p className="flex h-[25rem] max-w-full flex-col items-center justify-center gap-0 rounded-md border-[1px] border-dashed text-muted">
                     <i className="ph-thin ph-receipt-x text-7xl"></i>
                     <span className="text-base font-medium">
                         Nenhuma movimentação
@@ -80,7 +80,7 @@ export function ListaMovimentacoes() {
             {isLoading &&
                 [1, 2].map((_, index) => (
                     <div
-                        className="flex h-full max-w-[40rem] flex-col gap-2"
+                        className="flex h-full max-w-full flex-col gap-2"
                         key={index}
                     >
                         <Skeleton className="h-4 w-20" />

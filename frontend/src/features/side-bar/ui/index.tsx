@@ -41,20 +41,22 @@ export function SideBar() {
                         Início
                     </NavBarItem>
                     <NavBarItem
-                        icon={<i className="ph ph-list-dashes ml-1 text-xl" />}
+                        icon={
+                            <i className="ph ph-arrows-down-up ml-1 flex text-xl"></i>
+                        }
                         component={<Link href="/movimentacoes" />}
                         activeName="/movimentacoes"
                     >
                         Movimentações
                     </NavBarItem>
                     <NavBarItem
-                        activeName="/plano-financeiro"
+                        activeName="/orcamento"
                         icon={
-                            <i className="ph ph-rocket-launch ml-1 text-xl" />
+                            <i className="ph ph-crosshair ml-1 flex text-xl" />
                         }
-                        component={<Link href="/plano-financeiro" />}
+                        component={<Link href="/orcamento" />}
                     >
-                        Plano financeiro
+                        Orçamento
                     </NavBarItem>
                     {/* <NavBarItem
                         icon={<Blocks className="ml-1 h-4 w-4" />}

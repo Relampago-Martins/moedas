@@ -4,14 +4,14 @@ import { CardDespesas } from '@/entities/movimentacoes/card-despesas/ui';
 import { CardReceitas } from '@/entities/movimentacoes/card-receitas/ui';
 import { Filtros } from '@/entities/movimentacoes/filtros/ui';
 import { ListaMovimentacoes } from '@/entities/movimentacoes/lista-movimentacoes/ui';
-import { LeftToRightListDashIcon } from '@/shared/ui/huge-icons';
+import { Card } from '@/shared/ui/card';
 import './ui.scss';
 
 export default function Page() {
     return (
-        <div className="px-6 py-6 md:px-8">
+        <div className="px-6 py-6 md:px-8 xl:px-36">
             <h1 className="mb-6 flex items-center gap-2 text-xl font-semibold leading-10 text-primary">
-                <LeftToRightListDashIcon className="h-4 w-4" />
+                <i className="ph ph-arrows-down-up flex text-2xl"></i>
                 Movimentações
             </h1>
             {/* <p className="mb-6 text-muted">
@@ -19,14 +19,19 @@ export default function Page() {
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p> */}
             <Filtros />
-            <MovimentacaoProvider>
-                <div className="scroll-horizontal mb-4 flex max-w-[40rem] gap-6">
-                    <CardDespesas />
-                    <CardReceitas />
+            <div className="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
+                <div className="flex w-full flex-col gap-4">
+                    <MovimentacaoProvider>
+                        <div className="scroll-horizontal flex max-w-full gap-6">
+                            <CardDespesas />
+                            <CardReceitas />
+                        </div>
+                        <ListaMovimentacoes />
+                        <ModalMovimentacao />
+                    </MovimentacaoProvider>
                 </div>
-                <ListaMovimentacoes />
-                <ModalMovimentacao />
-            </MovimentacaoProvider>
+                <Card className="w-full sm:w-[400px] "></Card>
+            </div>
         </div>
     );
 }
