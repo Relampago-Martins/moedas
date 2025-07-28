@@ -55,7 +55,9 @@ export function MoneyTile({
                 </span>
                 <div className={tileVariantsValue({ size })}>{cleanedVal}</div>
                 {trailing && (
-                    <div className="ml-4 flex items-center">{trailing}</div>
+                    <div className="ml-4 flex w-full items-center justify-end">
+                        {trailing}
+                    </div>
                 )}
             </div>
         </div>

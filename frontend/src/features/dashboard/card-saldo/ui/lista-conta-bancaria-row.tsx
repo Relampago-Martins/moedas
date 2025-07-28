@@ -3,7 +3,7 @@ import { ContaBancaria } from '@/types/models/conta-bancaria';
 import styles from './styles.module.scss';
 
 type ListaContasBancariasProps = { contasBancarias: ContaBancaria[] };
-export function ListaContasBancarias({
+export function ListaContaBancariRow({
     contasBancarias,
 }: ListaContasBancariasProps) {
     return (

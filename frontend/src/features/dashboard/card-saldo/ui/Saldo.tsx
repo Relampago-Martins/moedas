@@ -10,22 +10,20 @@ type SaldoProps = {
 
 export function Saldo(props: SaldoProps) {
     return (
-        <div className="flex flex-col">
-            <div className="flex w-full items-end justify-between gap-2">
-                <MoneyTile
-                    title="Saldo Total"
-                    className="shrink-0 text-start text-primary"
-                    size="xl"
-                    value={props.valor}
-                    trailing={
-                        props.diffPercentual ? (
-                            <DiferencaSaldoBadge
-                                diffPercentual={props.diffPercentual}
-                            />
-                        ) : null
-                    }
-                />
-            </div>
+        <div className="flex w-full items-end justify-between gap-2">
+            <MoneyTile
+                title="Saldo Total"
+                className="w-full shrink-0 text-start text-primary"
+                size="xl"
+                value={props.valor}
+                trailing={
+                    props.diffPercentual ? (
+                        <DiferencaSaldoBadge
+                            diffPercentual={props.diffPercentual}
+                        />
+                    ) : null
+                }
+            />
         </div>
     );
 }
