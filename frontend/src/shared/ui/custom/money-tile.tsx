@@ -13,7 +13,7 @@ const tileVariantsValue = cva('shrink-0 text-2xl font-semibold', {
     },
 });
 
-const tileVariantsRS = cva('mr-1 mt-1 font-normal opacity-70', {
+const tileVariantsRS = cva('mr-1 mt-1 font-normal', {
     variants: {
         size: {
             md: 'text-sm',
@@ -30,10 +30,12 @@ export function MoneyTile({
     value,
     className,
     size = 'md',
+    trailing,
 }: {
     title?: string;
     value: number;
     className?: string;
+    trailing?: React.ReactNode;
     size?: 'md' | 'xl';
 }) {
     const negative = value < 0;
@@ -46,12 +48,15 @@ export function MoneyTile({
             {title && (
                 <span className="w-full text-base font-normal">{title}</span>
             )}
-            <div className="flex items-center ">
+            <div className="flex w-full items-center">
                 <span className={tileVariantsRS({ size })}>
                     {negative ? '- ' : ''}
                     R$
                 </span>
                 <div className={tileVariantsValue({ size })}>{cleanedVal}</div>
+                {trailing && (
+                    <div className="ml-4 flex items-center">{trailing}</div>
+                )}
             </div>
         </div>
     );

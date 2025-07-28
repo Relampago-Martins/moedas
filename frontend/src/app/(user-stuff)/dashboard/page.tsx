@@ -39,7 +39,7 @@ export default function Dashboard({
                     params={searchParams}
                     className="col-span-12 lg:col-span-5 lg:row-span-2 lg:row-start-3 xl:col-span-3"
                 />
-                <div className="col-span-12 row-span-2 lg:col-span-3 xl:col-span-3">
+                <div className="col-span-12 row-span-2 lg:col-span-5 xl:col-span-3">
                     <CardOrcamento params={searchParams} />
                 </div>
             </div>
