@@ -1,3 +1,4 @@
+from moedas.serializers.banco import ContaBancariaSerializer
 from moedas.serializers.carteira import CarteiraSerializer
 from moedas.serializers.categoria import CategoriaSerializer
 from moedas.serializers.estrategia import OrcamentoSerializer
@@ -10,6 +11,7 @@ from moedas.serializers.movimentacao import (
 __all__ = [
     "CarteiraSerializer",
     "CategoriaSerializer",
+    "ContaBancariaSerializer",
     "DespesaSerializer",
     "MovimentacaoSerializer",
     "OrcamentoSerializer",

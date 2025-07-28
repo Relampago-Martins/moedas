@@ -1,10 +1,9 @@
 from django.contrib import admin
-from moedas.models import Categoria, Despesa
+
+from moedas.models import Categoria, ContaBancaria, Despesa, OrcamentoMensal
+
 
 # Register your models here.
-# Adicione admin para o model de Categoria
-
-
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ("sigla", "nome", "cor", "icone", "is_base", "tipo")
     list_filter = ("tipo",)
@@ -17,8 +16,22 @@ class DespesaAdmin(admin.ModelAdmin):
     search_fields = ("descricao", "categoria__nome")
 
 
+class OrcamentoMensalAdmin(admin.ModelAdmin):
+    list_display = ("user",)
+    search_fields = ("user__username",)
+    list_filter = ("user",)
+
+
+class ContaBancariaAdmin(admin.ModelAdmin):
+    list_display = ("nome", "saldo", "user")
+    search_fields = ("nome", "user__username")
+    list_filter = ("user",)
+
+
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Despesa, DespesaAdmin)
+admin.site.register(OrcamentoMensal, OrcamentoMensalAdmin)
+admin.site.register(ContaBancaria, ContaBancariaAdmin)
 
 # Titulo da página do admin
 admin.site.site_header = "ProsperApp Admin"
