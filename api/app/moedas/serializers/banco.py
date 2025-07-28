@@ -12,9 +12,16 @@ class ContaBancariaSerializer(serializers.ModelSerializer):
             "apelido",
             "nome",
             "saldo",
+            "nome_banco",
         ]
 
     nome = serializers.CharField(
         max_length=100,
         source="get_nome_display",
+        read_only=True,
+    )
+    nome_banco = serializers.CharField(
+        max_length=100,
+        source="nome",
+        write_only=True,
     )
