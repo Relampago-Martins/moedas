@@ -19,7 +19,7 @@ from moedas.filters import (
     MovimentacaoFilter,
     ReceitaFilter,
 )
-from moedas.models import Categoria, ContaBancaria, Despesa, Movimentacao, Receita
+from moedas.models import Categoria, Despesa, Movimentacao, Receita
 from moedas.models.estrategia import OrcamentoMensal
 
 
@@ -186,19 +186,6 @@ class OrcamentoMensalViewSet(viewsets.ModelViewSet):
 
     queryset = OrcamentoMensal.objects.all()
     serializer_class = moedas_serializers.OrcamentoSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
-
-
-class ContaBancariaViewSet(viewsets.ModelViewSet):
-    """ViewSet para Contas Bancárias."""
-
-    queryset = ContaBancaria.objects.all()
-    serializer_class = moedas_serializers.ContaBancariaSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
