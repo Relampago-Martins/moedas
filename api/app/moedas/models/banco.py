@@ -23,9 +23,43 @@ class ContaBancaria(models.Model):
 
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     apelido = models.CharField(max_length=50)
-    nome = models.CharField(max_length=100, choices=BANCOS_CHOICES)
+    nome = models.CharField(
+        max_length=100,
+        choices=BANCOS_CHOICES,
+        default="001",
+        blank=True,
+    )
+    banco = models.ForeignKey(
+        "Banco",
+        on_delete=models.CASCADE,
+        related_name="contas_bancarias",
+        null=True,
+        blank=False,
+    )
     saldo = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self) -> str:
         """Retorna uma representação legível da conta bancária."""
         return f"{self.apelido} - {self.nome}"
+
+
+class Banco(models.Model):
+    """Modelo para representar um banco."""
+
+    ispb = models.CharField(
+        max_length=8,
+        unique=True,
+        help_text="Identificador do Sistema de Pagamentos Brasileiro",
+    )
+    nome = models.CharField(max_length=200)
+    abreviacao = models.CharField(max_length=100)
+    foto = models.ImageField(
+        upload_to="bancos/",
+        null=True,
+        blank=True,
+        help_text="Foto do banco, opcional.",
+    )
+
+    def __str__(self) -> str:
+        """Retorna o nome do banco."""
+        return self.nome

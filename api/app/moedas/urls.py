@@ -11,6 +11,7 @@ router.register(r"categorias", views.CategoriaViewSet, basename="categorias")
 router.register(r"movimentacoes", views.MovimentacaoViewSet, basename="movimentacoes")
 router.register(r"orcamento", views.OrcamentoMensalViewSet, basename="orcamento")
 router.register(r"contas-bancarias", views.ContaBancariaViewSet, basename="contas-bancarias")
+router.register(r"bancos", views.BancoViewSet, basename="bancos")
 
 urlpatterns = [
     path("", include(router.urls)),
