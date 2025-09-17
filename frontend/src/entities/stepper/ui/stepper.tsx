@@ -36,9 +36,6 @@ function useStepper<T extends string>() {
     return context as unknown as TStepperContext<T>;
 }
 
-// SliderAnimation modificado para usar level em vez de firstStep
-const DESLOC = 310;
-
 interface SliderAnimationProps {
     children: React.ReactNode;
     step: string;
@@ -48,35 +45,35 @@ interface SliderAnimationProps {
 
 type Direction = 'left' | 'right';
 function SliderAnimation({
-    step,
+    step: stepName,
     children,
     level,
     className,
 }: SliderAnimationProps) {
     const { currentStep, previousStep } = useStepper<string>();
-    const [showStep, setShowStep] = useState(currentStep?.name === step);
+    const [showStep, setShowStep] = useState(currentStep?.name === stepName);
     // Determina a direção com base na comparação de níveis
     let initFrom: Direction =
         (previousStep?.level || 0) > level ? 'left' : 'right';
     let exitTo: Direction =
         (previousStep?.level || 0) < level ? 'right' : 'left';
 
-    if (previousStep?.name == step && currentStep?.level < level) {
+    if (previousStep?.name == stepName && currentStep?.level < level) {
         exitTo = 'right';
     }
 
     useEffect(() => {
         setTimeout(() => {
-            setShowStep(currentStep.name === step);
+            setShowStep(currentStep.name === stepName);
         }, 0.5);
-    }, [currentStep, step]);
+    }, [currentStep, stepName]);
 
     return (
         <AnimatePresence mode="popLayout" initial={false}>
             {showStep && (
                 <motion.div
                     className={className}
-                    key={step}
+                    key={stepName}
                     transition={{
                         type: 'spring',
                         duration: 0.4,
@@ -84,7 +81,7 @@ function SliderAnimation({
                     }}
                     initial={{
                         opacity: 0,
-                        x: initFrom === 'left' ? -DESLOC : DESLOC,
+                        x: initFrom === 'left' ? '-110%' : '110%',
                     }}
                     animate={{
                         opacity: 1,
@@ -92,7 +89,7 @@ function SliderAnimation({
                     }}
                     exit={{
                         opacity: 0,
-                        x: exitTo === 'left' ? -DESLOC : DESLOC,
+                        x: exitTo === 'left' ? '-110%' : '110%',
                     }}
                 >
                     {children}
