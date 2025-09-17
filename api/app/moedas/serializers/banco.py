@@ -5,30 +5,6 @@ from rest_framework import serializers
 from moedas.models.banco import Banco, ContaBancaria
 
 
-class ContaBancariaSerializer(serializers.ModelSerializer):
-    """Serializador para crud de ContaBancaria de um usuário."""
-
-    class Meta:
-        model = ContaBancaria
-        fields: typing.ClassVar = [
-            "apelido",
-            "nome",
-            "saldo",
-            "nome_banco",
-        ]
-
-    nome = serializers.CharField(
-        max_length=100,
-        source="get_nome_display",
-        read_only=True,
-    )
-    nome_banco = serializers.CharField(
-        max_length=100,
-        source="nome",
-        write_only=True,
-    )
-
-
 class BancoSerializer(serializers.ModelSerializer):
     """Serializador para o modelo Banco.
 
@@ -41,6 +17,7 @@ class BancoSerializer(serializers.ModelSerializer):
 
         model = Banco
         fields: typing.ClassVar = [
+            "id",
             "ispb",
             "nome",
             "abreviacao",
@@ -48,3 +25,25 @@ class BancoSerializer(serializers.ModelSerializer):
         ]
 
     foto = serializers.ImageField(required=False, allow_null=True)
+
+
+class ContaBancariaSerializer(serializers.ModelSerializer):
+    """Serializador para crud de ContaBancaria de um usuário."""
+
+    class Meta:
+        model = ContaBancaria
+        fields: typing.ClassVar = [
+            "id",
+            "apelido",
+            "saldo",
+            "banco",
+            "banco_id",  # Usado para escrita
+        ]
+
+    banco = BancoSerializer(read_only=True)
+    banco_id = serializers.PrimaryKeyRelatedField(
+        source="banco",
+        queryset=Banco.objects.all(),
+        write_only=True,
+        required=True,
+    )

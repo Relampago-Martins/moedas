@@ -1,15 +1,15 @@
 import typing
+
 from rest_framework import serializers
-from moedas.serializers.utils import MyPrimaryKeyRelatedField
-from moedas.serializers.categoria import CategoriaSerializer
-from moedas.models import Despesa, Categoria, Receita, Movimentacao
+
+from moedas.models import Categoria, Despesa, Movimentacao, Receita
 from moedas.models.movimentacao import FORMAS_PAGAMENTO
+from moedas.serializers.categoria import CategoriaSerializer
+from moedas.serializers.utils import MyPrimaryKeyRelatedField
 
 
 class FormaPagSerializer(serializers.ChoiceField):
-    """
-    Serializer para Formas de Pagamento
-    """
+    """Serializer para Formas de Pagamento"""
 
     def to_representation(self, value):
         return {
@@ -19,16 +19,16 @@ class FormaPagSerializer(serializers.ChoiceField):
 
 
 class MovimentacaoSerializer(serializers.ModelSerializer):
-    """
-    Serializer para Movimentações
-    """
+    """Serializer para Movimentações"""
 
     class Meta:
         model = Movimentacao
         fields = "__all__"
 
     categoria = MyPrimaryKeyRelatedField(
-        queryset=Categoria.objects.all(), required=True, serializer=CategoriaSerializer
+        queryset=Categoria.objects.all(),
+        required=True,
+        serializer=CategoriaSerializer,
     )
     # tipo = serializers.CharField(source="get_tipo_display")
 
@@ -57,9 +57,7 @@ class DespesaSerializer(serializers.ModelSerializer):
 
 
 class ReceitaSerializer(serializers.ModelSerializer):
-    """
-    Serializer para Receitas
-    """
+    """Serializer para Receitas"""
 
     class Meta:
         model = Receita
@@ -67,5 +65,7 @@ class ReceitaSerializer(serializers.ModelSerializer):
         read_only_fields = ["user", "tipo"]
 
     categoria = MyPrimaryKeyRelatedField(
-        queryset=Categoria.objects.all(), required=True, serializer=CategoriaSerializer
+        queryset=Categoria.objects.all(),
+        required=True,
+        serializer=CategoriaSerializer,
     )
