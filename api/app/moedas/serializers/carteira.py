@@ -90,7 +90,7 @@ class CarteiraSerializer(serializers.Serializer):
         ERRO: esse método está retornando balanço do mês atual, não o saldo.
         """
         total_receitas = self.get_total_receitas(obj, None, periodo_before)
-        total_despesas = self.get_total_despesas(obj, None, periodo_after)
+        total_despesas = self.get_total_despesas(obj, None, periodo_before)
         receitas_periodo = self.get_total_receitas(obj, periodo_after, periodo_before)
         despesas_periodo = self.get_total_despesas(obj, periodo_after, periodo_before)
         economia = 0
