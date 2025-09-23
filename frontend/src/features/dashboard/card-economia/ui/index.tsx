@@ -22,18 +22,18 @@ export async function CardEconomia({ className, params }: CardEconomiaProps) {
                     <>
                         <EconomiaChart carteira={carteira} />
                         <div className="flex w-full items-center gap-2 px-10">
-                            <span className="h-3 w-3 rounded-sm bg-success-foreground"></span>
-                            <span className="mr-auto text-sm text-muted">
-                                Receita
-                            </span>
-                            <MoneyTile value={carteira.total_receitas} />
-                        </div>
-                        <div className="flex w-full items-center gap-2 px-10">
                             <span className="h-3 w-3 rounded-sm bg-destructive-foreground"></span>
                             <span className="mr-auto text-sm text-muted">
                                 Despesa
                             </span>
                             <MoneyTile value={carteira.total_despesas} />
+                        </div>
+                        <div className="flex w-full items-center gap-2 px-10">
+                            <span className="h-3 w-3 rounded-sm bg-success-foreground"></span>
+                            <span className="mr-auto text-sm text-muted">
+                                Receita
+                            </span>
+                            <MoneyTile value={carteira.total_receitas} />
                         </div>
                     </>
                 ) : (

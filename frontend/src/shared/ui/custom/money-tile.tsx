@@ -1,23 +1,11 @@
 import { numberToCurrency } from '@/shared/lib/utils';
 import { cva } from 'class-variance-authority';
 
-const tileVariantsValue = cva('shrink-0 text-2xl font-semibold', {
+const tileVariantsValue = cva('shrink-0 font-semibold', {
     variants: {
         size: {
             md: 'text-lg',
-            xl: 'text-2xl',
-        },
-    },
-    defaultVariants: {
-        size: 'md',
-    },
-});
-
-const tileVariantsRS = cva('mr-1 mt-1 font-normal', {
-    variants: {
-        size: {
-            md: 'text-sm',
-            xl: 'text-base',
+            xl: 'text-xl',
         },
     },
     defaultVariants: {
@@ -46,14 +34,13 @@ export function MoneyTile({
     return (
         <div className={`flex flex-col ${className}`}>
             {title && (
-                <span className="w-full text-base font-normal">{title}</span>
+                <span className={'w-full text-lg font-semibold'}>{title}</span>
             )}
             <div className="flex w-full items-center">
-                <span className={tileVariantsRS({ size })}>
-                    {negative ? '- ' : ''}
-                    R$
-                </span>
-                <div className={tileVariantsValue({ size })}>{cleanedVal}</div>
+                <div className={tileVariantsValue({ size })}>
+                    {`${negative ? '- ' : ''}R$ `}
+                    {cleanedVal}
+                </div>
                 {trailing && (
                     <div className="ml-4 flex w-full items-center justify-end">
                         {trailing}
