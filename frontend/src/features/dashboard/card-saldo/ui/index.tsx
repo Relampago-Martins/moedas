@@ -5,10 +5,13 @@ import { Card, CardContent } from '@/shared/ui/card';
 import { Dialog, DialogContent } from '@/shared/ui/dialog';
 import { TFiltroPeriodo } from '@/types/filters';
 import { DialogTrigger } from '@radix-ui/react-dialog';
-import { CadastroContaBancaria } from './cadastro-conta-bancaria';
-import { DetalheContaBancaria } from './detalhe-conta-bancaria';
+import { DiferencaSaldoBadge } from './diferenca-saldo-badge';
 import { ListaContaBancariaRow } from './lista-conta-bancaria-row';
-import { ListaContaBancariaCol } from './lista-contabancaria-col';
+import { StepDetalheContaBancaria } from './modal/detalhe-conta-bancaria';
+import { StepExcluirContaBancaria } from './modal/excluir-conta-bancaria';
+import { ListaBancos } from './modal/lista-bancos';
+import { ListaContaBancariaCol } from './modal/lista-contabancaria-col';
+import { StepFormContaBancaria } from './modal/step-form-conta-bancaria';
 import { Saldo } from './Saldo';
 import './ui.scss';
 
@@ -45,16 +48,33 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
                         level={0}
                         className="flex flex-col gap-5"
                     >
-                        <Saldo valor={saldo} diffPercentual={diff_percentual} />
+                        <Saldo valor={saldo} />
+                        <div className="flex items-center gap-2">
+                            <DiferencaSaldoBadge
+                                diffPercentual={diff_percentual}
+                            />
+                            <span className="text-muted">este mês</span>
+                        </div>
                         <ListaContaBancariaCol
                             contasBancarias={contasBancarias}
                         />
                     </StepperContent>
-                    <StepperContent value="cadastro-conta-bancaria" level={1}>
-                        <CadastroContaBancaria />
-                    </StepperContent>
-                    <StepperContent value="detalhe-conta-bancaria" level={2}>
-                        <DetalheContaBancaria />
+                    <StepFormContaBancaria
+                        step={{ name: 'cadastro-conta-bancaria', level: 1 }}
+                    />
+                    <StepDetalheContaBancaria
+                        value="detalhe-conta-bancaria"
+                        level={1}
+                    />
+                    <StepExcluirContaBancaria
+                        value="excluir-conta-bancaria"
+                        level={2}
+                    />
+                    <StepFormContaBancaria
+                        step={{ name: 'edit-conta-bancaria', level: 2 }}
+                    />
+                    <StepperContent value="lista-bancos" level={3}>
+                        <ListaBancos />
                     </StepperContent>
                 </Stepper>
             </DialogContent>
