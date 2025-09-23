@@ -4,9 +4,7 @@ import { Calendar } from '@/shared/ui/calendar';
 import { useEffect, useState } from 'react';
 import { DialogOrDrawerHeader } from '../step-header';
 
-type StepSelectDateProps = {};
-
-export function StepSelectDate({}: StepSelectDateProps) {
+export function StepSelectDate() {
     const { previous, events } = useStepper();
     const [selected, setSelected] = useState<Date | undefined>();
 
@@ -24,7 +22,6 @@ export function StepSelectDate({}: StepSelectDateProps) {
                 selected={selected}
                 onSelect={(date) => {
                     if (!date) return;
-                    console.log('date', date);
                     setSelected(date);
                     events.submit('onSelectDate', date);
                     previous();

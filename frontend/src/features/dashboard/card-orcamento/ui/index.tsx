@@ -10,7 +10,6 @@ type CardOrcamentoProps = {
 };
 export async function CardOrcamento({ className, params }: CardOrcamentoProps) {
     const { total_receitas, orcamento } = await getCarteira(params);
-    console.log('orcamento', orcamento);
     const limteGasto = orcamento.limite_gastos * 100;
     const gastos = orcamento.percentual_gastos * 100;
     const Mostrar = total_receitas > 0 && orcamento.limite_gastos > 0;

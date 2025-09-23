@@ -5,5 +5,4 @@ export const poppins = Poppins({
     weight: ['400', '500', '600', '700'],
 });
 
-
 export const inter = Inter({ subsets: ['latin'] });
