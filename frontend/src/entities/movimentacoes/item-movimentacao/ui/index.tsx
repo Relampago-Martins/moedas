@@ -16,6 +16,7 @@ export function ItemMovimentacao({
     onClick,
 }: ItemMovimentacaoProps) {
     const isSolid = getDateFromISO(movimentacao.data) < new Date();
+
     return (
         <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
@@ -61,7 +62,9 @@ export function ItemMovimentacao({
                         </div>
                         <Separator orientation="vertical" className="h-4" />
                         <div className="truncate text-start text-sm text-muted">
-                            Nubank - C.Corrente
+                            {movimentacao.conta_bancaria
+                                ? movimentacao.conta_bancaria?.banco.abreviacao
+                                : '---'}
                         </div>
                     </div>
                 </div>
