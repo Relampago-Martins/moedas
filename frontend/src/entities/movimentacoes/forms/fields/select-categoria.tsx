@@ -44,7 +44,9 @@ const SelectCategoria = React.forwardRef<
                     {value.nome}
                 </span>
             ) : (
-                <span className="ml-3 w-full text-start">Selecione</span>
+                <span className="ml-3 w-full text-start text-muted">
+                    Selecione
+                </span>
             )}
             <i className="ph ph-caret-right mx-3 justify-self-end"></i>
             <input {...props} type="hidden" />
