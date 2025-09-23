@@ -2,6 +2,7 @@ from datetime import date
 
 from django.db import models
 
+from moedas.models.banco import ContaBancaria
 from moedas.models.categoria import Categoria
 from moedas.models.utils import FORMAS_PAGAMENTO, TIPO
 
@@ -29,6 +30,13 @@ class Movimentacao(models.Model):
         null=True,
     )
     tipo = models.CharField(max_length=1, choices=TIPO, default="D")
+
+    conta_bancaria = models.ForeignKey(
+        ContaBancaria,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=False,
+    )
 
     def __str__(self):
         return self.descricao
