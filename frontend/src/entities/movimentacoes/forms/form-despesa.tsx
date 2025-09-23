@@ -21,6 +21,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeDespesaAleatoria } from '../../../features/modal-novo/lib/utils';
 import { SelectCategoria } from './fields/select-categoria';
+import { SelectContaBancaria } from './fields/select-conta-bancaria';
 import { SelectDate } from './fields/select-date';
 import { SelectFormaPagamento } from './fields/select-forma-pagamento';
 
@@ -56,7 +57,7 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
     return (
         <Form {...form}>
             <form
-                className="grid grid-cols-2 gap-5 "
+                className="grid grid-cols-2 gap-x-3 gap-y-5"
                 onSubmit={form.handleSubmit(onSubmit, console.error)}
             >
                 <FormField
@@ -104,6 +105,7 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
                         </FormItem>
                     )}
                 />
+
                 <FormField
                     name="data"
                     control={form.control}
@@ -112,6 +114,20 @@ export function FormDespesa({ onSucess, formState: form }: FormDespesaProps) {
                             <FormLabel>Data</FormLabel>
                             <FormControl>
                                 <SelectDate {...field} />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+
+                <FormField
+                    name="contaBancaria"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem className="col-span-2">
+                            <FormLabel>Conta Bancária</FormLabel>
+                            <FormControl>
+                                <SelectContaBancaria {...field} />
                             </FormControl>
                             <FormMessage></FormMessage>
                         </FormItem>

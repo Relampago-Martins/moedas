@@ -41,6 +41,17 @@ export function StepFormDespesa({
         events.subscribe('onSelectDate', (date) => {
             form.setValue('data', date.toISOString().split('T')[0]);
         });
+        events.subscribe('onSelectContaBancaria', (contaBancaria) => {
+            const conta = contaBancaria
+                ? {
+                      ...contaBancaria,
+                      saldo: Number(contaBancaria.saldo),
+                  }
+                : undefined;
+            if (conta) {
+                form.setValue('contaBancaria', conta);
+            }
+        });
     }, []);
 
     useEffect(() => {

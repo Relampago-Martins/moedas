@@ -25,6 +25,7 @@ export async function criaDespesa(despesa: DespesaSchema) {
     const resp = await ApiClient.getInstance().post<Despesa>('/despesas/', {
         ...despesa,
         categoria: despesa.categoria.sigla,
+        conta_bancaria_id: despesa.contaBancaria.id,
     });
     return resp;
 }
@@ -35,6 +36,7 @@ export async function atualizaDespesa(id: number, despesa: DespesaSchema) {
         {
             ...despesa,
             categoria: despesa.categoria.sigla,
+            conta_bancaria_id: despesa.contaBancaria.id,
         },
     );
     revalidateTag(`getDespesa${id}`);
@@ -49,6 +51,17 @@ export async function getDespesaConfigs() {
         },
     );
     return resp.data;
+}
+
+export async function getFormasPagamento() {
+    const resp = await ApiClient.getInstance().options<DespesaConfig>(
+        '/despesas/',
+        {
+            cache: 'force-cache',
+        },
+    );
+    const formasPag = resp.data.actions.POST.forma_pagamento.choices;
+    return formasPag;
 }
 
 export async function deleteDespesa(id: number) {
