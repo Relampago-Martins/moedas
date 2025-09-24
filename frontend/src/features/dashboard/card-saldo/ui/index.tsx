@@ -1,17 +1,17 @@
 import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
+import { StepDetalheContaBancaria } from '@/features/conta-bancaria/ui/steps/step-detalhe';
 import { getCarteira } from '@/shared/api/endpoints';
 import { getContasBancarias } from '@/shared/api/endpoints/conta-bancaria-cli';
 import { Card, CardContent } from '@/shared/ui/card';
 import { Dialog, DialogContent } from '@/shared/ui/dialog';
 import { TFiltroPeriodo } from '@/types/filters';
 import { DialogTrigger } from '@radix-ui/react-dialog';
+import { StepExcluirContaBancaria } from '../../../conta-bancaria/ui/steps/step-excluir';
+import { StepFormContaBancaria } from '../../../conta-bancaria/ui/steps/step-form';
 import { DiferencaSaldoBadge } from './diferenca-saldo-badge';
 import { ListaContaBancariaRow } from './lista-conta-bancaria-row';
-import { StepDetalheContaBancaria } from './modal/detalhe-conta-bancaria';
-import { StepExcluirContaBancaria } from './modal/excluir-conta-bancaria';
 import { ListaBancos } from './modal/lista-bancos';
 import { ListaContaBancariaCol } from './modal/lista-contabancaria-col';
-import { StepFormContaBancaria } from './modal/step-form-conta-bancaria';
 import { Saldo } from './Saldo';
 import './ui.scss';
 
