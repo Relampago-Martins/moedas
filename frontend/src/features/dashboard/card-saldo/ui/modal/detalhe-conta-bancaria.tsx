@@ -1,11 +1,11 @@
 'use client';
 import { StepperContent, useStepper } from '@/entities/stepper/ui/stepper';
+import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
+import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
 import { Button } from '@/shared/ui/button';
 import { MoneyTile } from '@/shared/ui/custom/money-tile';
 import { ContaBancaria } from '@/types/models/conta-bancaria';
 import { useEffect, useState } from 'react';
-import { AvatarBanco } from '../shared/avatar-banco';
-import { PreviousBtn } from '../shared/previous-btn';
 
 type StepDetalheContaBancariaProps = {
     value: string;

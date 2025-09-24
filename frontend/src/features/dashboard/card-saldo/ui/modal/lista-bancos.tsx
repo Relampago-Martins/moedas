@@ -1,12 +1,12 @@
 'use client';
 import { CardBanco, CardBancoSkeleton } from '@/entities/card-banco';
 import { useStepper } from '@/entities/stepper/ui/stepper';
+import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
 import { getBancos } from '@/shared/api/endpoints/conta-bancaria-cli';
 import { useDebounce } from '@/shared/lib/use-debounce';
 import { Input } from '@/shared/ui/input';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { PreviousBtn } from '../shared/previous-btn';
 import styles from './styles.module.scss';
 
 export function ListaBancos() {

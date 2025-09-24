@@ -1,6 +1,6 @@
+import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { ContaBancaria } from '@/types/models/conta-bancaria';
-import { AvatarBanco } from './shared/avatar-banco';
 import styles from './styles.module.scss';
 
 type ListaContasBancariasProps = { contasBancarias: ContaBancaria[] };

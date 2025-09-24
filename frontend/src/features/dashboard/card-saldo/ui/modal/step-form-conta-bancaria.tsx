@@ -1,6 +1,7 @@
 'use client';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { StepperContent, useStepper } from '@/entities/stepper/ui/stepper';
+import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,7 +9,6 @@ import {
     contaBancariaSchema,
     ContaBancariaSchema,
 } from '../../lib/cadastro-conta-bancaria';
-import { PreviousBtn } from '../shared/previous-btn';
 import { FormContaBancaria } from './form-conta-bancaria';
 
 type StepFormContaBancariaProps = {

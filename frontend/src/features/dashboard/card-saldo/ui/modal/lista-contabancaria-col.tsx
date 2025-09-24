@@ -1,9 +1,9 @@
 'use client';
 import { useStepper } from '@/entities/stepper/ui/stepper';
+import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { ContaBancaria } from '@/types/models/conta-bancaria';
-import { AvatarBanco } from '../shared/avatar-banco';
 
 type ListaContaBancariaColProps = { contasBancarias: ContaBancaria[] };
 export function ListaContaBancariaCol({

@@ -1,5 +1,5 @@
 'use client';
-import { AvatarBanco } from '@/features/dashboard/card-saldo/ui/shared/avatar-banco';
+import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { Banco } from '@/types/models/banco';
 

@@ -5,9 +5,9 @@ import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { toast } from 'sonner';
 
+import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
 import { ContaBancaria } from '@/types/models/conta-bancaria';
 import { useEffect, useRef, useState } from 'react';
-import { PreviousBtn } from '../shared/previous-btn';
 
 type StepExcluirContaBancariaProps = {
     value: string;
