@@ -14,8 +14,8 @@ import {
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { ContaBancaria } from '@/types/models/conta-bancaria';
-import { useEffect, useMemo, useRef } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { useEffect, useRef } from 'react';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 import { toast } from 'sonner';
 import { ContaBancariaSchema } from '../../lib/cadastro-conta-bancaria';
 import { SelectBancos } from './select-bancos';
@@ -28,7 +28,7 @@ export function FormContaBancaria({
     formState: form,
 }: CadastroContaBancariaProps) {
     const firstIputRef = useRef<HTMLInputElement>(null);
-    const formId = useMemo(() => form.getValues('id'), [form]);
+    const formId = useWatch({ control: form.control, name: 'id' });
 
     const { goToStep, events } = useStepper();
 

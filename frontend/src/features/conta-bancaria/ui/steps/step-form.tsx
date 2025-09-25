@@ -3,7 +3,7 @@ import { StepObject } from '@/entities/stepper/lib/types';
 import { StepperContent, useStepper } from '@/entities/stepper/ui/stepper';
 import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
     contaBancariaSchema,
@@ -34,7 +34,9 @@ export function StepFormContaBancaria({ step }: StepFormContaBancariaProps) {
             apelido: '',
         },
     });
-    const isCreate = useMemo(() => !form.getValues('id'), [form]);
+    const formId = form.watch('id');
+    const isCreate = !formId;
+
     useEffect(() => {
         events.subscribe('onSelectBanco', (banco) => {
             form.setValue('banco', banco);
