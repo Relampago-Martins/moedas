@@ -26,26 +26,52 @@ permitindo uma navegação fluida entre as etapas.
 
 #### Melhoria
 
+- Tipagem diretamente no hook:
+
+```tsx
+type MySteps = 'lista-conta-bancaria' | 'detalhe-conta-bancaria' | 'excluir-conta-bancaria' | 'form-conta-bancaria';
+type MyEvents = {
+    onSelectContaBancaria: ContaBancaria;
+    onSelectBanco: Banco;
+};
+const { goToStep } = useStepper<MySteps, MyEvents>();
+```
+
+
 - Enviar dados diretamente ao navegar entre steps
 - Não precisar informar o nível (level) do step ao navegar
 
 O código atual para navegar entre steps é assim:
 
 ```tsx
+const { previous, goToStep, events } = useStepper();
+
 goToStep({
     name: 'detalhe-conta-bancaria',
     level: 1,
 });
 events.submit('onSelectContaBancaria', conta);
+previous()
 ```
 
 O correto seria fazer algo assim:
 
 ```tsx
+const { previous, goToStep } = useStepper<MySteps, MyEvents>();
+
 goToStep({
-    name: 'detalhe-conta-bancaria',
-    data: conta,
+    stepName: 'detalhe-conta-bancaria', // validação presente em MySteps
+    submit: {
+        onSelectContaBancaria: conta, // validação presente em MyEvents
+    }
 });
+
+previous({
+    submit: {
+        onSelectContaBancaria: conta,
+    }
+});
+
 ```
 
 Outro problema está na hora de capturar o evento, pois:
@@ -56,6 +82,8 @@ Outro problema está na hora de capturar o evento, pois:
 Atualmente está assim:
 
 ```tsx
+const { events } = useStepper();
+
 events.subscribe('onSelectContaBancaria', (conta) => {
     form.setValue('contaBancaria', conta);
 });
@@ -64,7 +92,9 @@ events.subscribe('onSelectContaBancaria', (conta) => {
 O correto seria algo com tipagem dinâmica, como:
 
 ```tsx
-subscribe<ContaBancaria>('onSelectContaBancaria', (conta) => {
+const { subscribe } = useStepper<MySteps, MyEvents>();
+
+subscribe('onSelectContaBancaria', (conta) => { // tipo de dado de acordo com MyEvents
     form.setValue('contaBancaria', conta);
 });
 ```
