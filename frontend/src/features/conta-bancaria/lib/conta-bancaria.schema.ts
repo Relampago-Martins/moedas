@@ -1,12 +1,5 @@
 import * as z from 'zod';
-
-const bancoSchema = z.object({
-    id: z.number(),
-    ispb: z.string(),
-    nome: z.string(),
-    abreviacao: z.string(),
-    foto: z.string().url().optional(),
-});
+import { bancoSchema } from './banco.schema';
 
 export const contaBancariaSchema = z.object({
     id: z.number().optional(),

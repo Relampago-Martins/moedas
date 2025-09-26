@@ -1,4 +1,4 @@
-import { contaBancariaSchema } from '@/features/dashboard/card-saldo/lib/cadastro-conta-bancaria';
+import { contaBancariaSchema } from '@/features/conta-bancaria/lib/conta-bancaria.schema';
 import i18next from 'i18next';
 import * as z from 'zod';
 import { zodI18nMap } from 'zod-i18n-map';

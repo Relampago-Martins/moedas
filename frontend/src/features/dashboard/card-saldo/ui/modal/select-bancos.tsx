@@ -2,7 +2,7 @@ import { useStepper } from '@/entities/stepper/ui/stepper';
 import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
 import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
-import { ContaBancariaSchema } from '../../lib/cadastro-conta-bancaria';
+import { ContaBancariaSchema } from '../../../../conta-bancaria/lib/conta-bancaria.schema';
 
 type SelectBancosProps = Omit<
     ControllerRenderProps<ContaBancariaSchema, 'banco'>,
