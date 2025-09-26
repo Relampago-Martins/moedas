@@ -15,20 +15,21 @@ import {
 import { Input } from '@/shared/ui/input';
 import { ContaBancaria } from '@/types/models/conta-bancaria';
 import { useEffect, useRef } from 'react';
-import { UseFormReturn, useWatch } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
-import { ContaBancariaSchema } from '../../lib/cadastro-conta-bancaria';
+import { ContaBancariaSchema } from '../../../../conta-bancaria/lib/conta-bancaria.schema';
 import { SelectBancos } from './select-bancos';
 
 type CadastroContaBancariaProps = {
     formState: UseFormReturn<ContaBancariaSchema>;
+    isCreate: boolean;
 };
 
 export function FormContaBancaria({
     formState: form,
+    isCreate,
 }: CadastroContaBancariaProps) {
     const firstIputRef = useRef<HTMLInputElement>(null);
-    const formId = useWatch({ control: form.control, name: 'id' });
 
     const { goToStep, events } = useStepper();
 
@@ -39,7 +40,7 @@ export function FormContaBancaria({
     }, []);
 
     const onSubmit = async (data: ContaBancariaSchema) => {
-        createOrUpdateContaBancaria(formId, {
+        createOrUpdateContaBancaria(data.id, {
             banco_id: data.banco.id,
             saldo: data.saldo.toString(),
             apelido: data.apelido,
@@ -47,7 +48,7 @@ export function FormContaBancaria({
             .then((resp) => {
                 if ([200, 201].includes(resp.status)) {
                     goToStep(
-                        formId
+                        isCreate
                             ? {
                                   name: 'detalhe-conta-bancaria',
                                   level: 1,
@@ -57,7 +58,7 @@ export function FormContaBancaria({
                                   level: 0,
                               },
                     );
-                    const action = formId ? 'atualizada' : 'criada';
+                    const action = isCreate ? 'atualizada' : 'criada';
 
                     events.submit(
                         'onSelectContaBancaria',

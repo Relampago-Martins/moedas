@@ -5,11 +5,11 @@ import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { FormContaBancaria } from '../../../dashboard/card-saldo/ui/modal/form-conta-bancaria';
 import {
     contaBancariaSchema,
     ContaBancariaSchema,
-} from '../../../dashboard/card-saldo/lib/cadastro-conta-bancaria';
-import { FormContaBancaria } from '../../../dashboard/card-saldo/ui/modal/form-conta-bancaria';
+} from '../../lib/conta-bancaria.schema';
 
 type StepFormContaBancariaProps = {
     step: StepObject<string>;
@@ -39,7 +39,10 @@ export function StepFormContaBancaria({ step }: StepFormContaBancariaProps) {
 
     useEffect(() => {
         events.subscribe('onSelectBanco', (banco) => {
-            form.setValue('banco', banco);
+            form.setValue('banco', {
+                ...banco,
+                foto: banco.foto || '',
+            });
         });
         events.subscribe('onSelectContaBancaria', (contaBancaria) => {
             form.reset({
@@ -63,7 +66,7 @@ export function StepFormContaBancaria({ step }: StepFormContaBancariaProps) {
                     {isCreate ? 'Criar' : 'Editar'} conta bancária
                 </h2>
             </div>
-            <FormContaBancaria formState={form} />
+            <FormContaBancaria formState={form} isCreate={isCreate} />
         </StepperContent>
     );
 }
