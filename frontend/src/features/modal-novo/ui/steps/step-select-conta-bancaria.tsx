@@ -1,8 +1,8 @@
 'use client';
 import { StepperContent, useStepper } from '@/entities/stepper/ui/stepper';
+import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
 import { getContasBancarias } from '@/shared/api/endpoints/conta-bancaria-cli';
 import { useQuery } from '@tanstack/react-query';
-import Image from 'next/image';
 import { DialogOrDrawerHeader } from '../step-header';
 
 export function StepSelectContaBancaria() {
@@ -27,32 +27,34 @@ export function StepSelectContaBancaria() {
                 onBack={() => previous()}
             />
             <div className="flex w-full flex-col gap-2">
-                {contas.map((conta) => (
-                    <button
-                        key={conta.id}
-                        className="flex w-full items-center gap-4 rounded-md border p-2 hover:bg-muted-foreground"
-                        onClick={() => {
-                            events.submit('onSelectContaBancaria', conta);
-                            previous();
-                        }}
-                    >
-                        {conta.banco.foto && (
-                            <Image
-                                src={conta.banco.foto}
-                                alt={conta.banco.nome}
-                                width={40}
-                                height={40}
-                                className="h-8 w-8 rounded-full"
+                {contas.length > 0 ? (
+                    contas.map((conta) => (
+                        <button
+                            key={conta.id}
+                            className="flex w-full items-center gap-4 rounded-md border p-2 hover:bg-muted-foreground"
+                            onClick={() => {
+                                events.submit('onSelectContaBancaria', conta);
+                                previous();
+                            }}
+                        >
+                            <AvatarBanco
+                                banco={conta.banco}
+                                width={32}
+                                height={32}
                             />
-                        )}
-                        <div className="flex w-[85%] flex-col items-start justify-start">
-                            <span className="">{conta.apelido}</span>
-                            <span className="w-full truncate text-start text-muted">
-                                {conta.banco.abreviacao}
-                            </span>
-                        </div>
-                    </button>
-                ))}
+                            <div className="flex w-[85%] flex-col items-start justify-start">
+                                <span className="">{conta.apelido}</span>
+                                <span className="w-full truncate text-start text-muted">
+                                    {conta.banco.abreviacao}
+                                </span>
+                            </div>
+                        </button>
+                    ))
+                ) : (
+                    <span className="text-muted-foreground">
+                        Nenhuma conta bancária cadastrada.
+                    </span>
+                )}
             </div>
         </StepperContent>
     );

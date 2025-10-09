@@ -25,8 +25,8 @@ export function AvatarBanco({
                     className="h-full w-full rounded-full"
                 />
             ) : (
-                <span className="flex h-full w-full items-center justify-center rounded-full bg-primary text-xs font-normal">
-                    {banco.abreviacao.slice(0, 1)}
+                <span className="flex h-full w-full items-center justify-center rounded-full bg-primary text-xs font-bold ">
+                    {banco.abreviacao.slice(0, 2).toUpperCase()}
                 </span>
             )}
         </div>
