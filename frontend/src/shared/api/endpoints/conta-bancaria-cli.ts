@@ -5,17 +5,32 @@ import { Banco } from '@/types/models/banco';
 import {
     ContaBancaria,
     ContaBancariaForm,
+    ContaBancariaPreview,
 } from '@/types/models/conta-bancaria';
 import { revalidateTag } from 'next/cache';
 import { ApiClient } from '../api-client';
 
 export async function getContasBancarias() {
-    const resp = await ApiClient.getInstance().get<ContaBancaria[]>(
+    const resp = await ApiClient.getInstance().get<ContaBancariaPreview[]>(
         '/contas-bancarias/',
         {
             next: {
                 revalidate: 60,
                 tags: ['contas-bancarias'],
+            },
+        },
+    );
+
+    return resp;
+}
+
+export async function getContaBancariaById(id: number) {
+    const resp = await ApiClient.getInstance().get<ContaBancaria>(
+        `/contas-bancarias/${id}/`,
+        {
+            next: {
+                revalidate: 0,
+                tags: ['minha-conta-bancaria', id.toString()],
             },
         },
     );
@@ -34,7 +49,7 @@ export async function createOrUpdateContaBancaria(
 }
 
 export async function createContaBancaria(contaBancaria: ContaBancariaForm) {
-    const resp = await ApiClient.getInstance().post<ContaBancaria>(
+    const resp = await ApiClient.getInstance().post<ContaBancariaPreview>(
         '/contas-bancarias/',
         contaBancaria,
     );
@@ -46,7 +61,7 @@ export async function updateContaBancaria(
     id: number,
     contaBancaria: ContaBancariaForm,
 ) {
-    const resp = await ApiClient.getInstance().patch<ContaBancaria>(
+    const resp = await ApiClient.getInstance().patch<ContaBancariaPreview>(
         `/contas-bancarias/${id}/`,
         contaBancaria,
     );

@@ -1,9 +1,9 @@
 import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
 import { numberToCurrency } from '@/shared/lib/utils';
-import { ContaBancaria } from '@/types/models/conta-bancaria';
+import { ContaBancariaPreview } from '@/types/models/conta-bancaria';
 import styles from './styles.module.scss';
 
-type ListaContasBancariasProps = { contasBancarias: ContaBancaria[] };
+type ListaContasBancariasProps = { contasBancarias: ContaBancariaPreview[] };
 export function ListaContaBancariaRow({
     contasBancarias,
 }: ListaContasBancariasProps) {

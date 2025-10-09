@@ -1,5 +1,5 @@
 import { Categoria } from './categoria';
-import { ContaBancaria } from './conta-bancaria';
+import { ContaBancariaPreview } from './conta-bancaria';
 
 export type Movimentacao = {
     id: number;
@@ -9,5 +9,5 @@ export type Movimentacao = {
     valor: string;
     data: string;
     user: number;
-    conta_bancaria?: ContaBancaria;
+    conta_bancaria?: ContaBancariaPreview;
 };

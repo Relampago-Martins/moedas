@@ -13,7 +13,7 @@ import {
     FormMessage,
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { ContaBancaria } from '@/types/models/conta-bancaria';
+import { ContaBancariaPreview } from '@/types/models/conta-bancaria';
 import { useEffect, useRef } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -62,7 +62,7 @@ export function FormContaBancaria({
 
                     events.submit(
                         'onSelectContaBancaria',
-                        resp.data as ContaBancaria,
+                        resp.data as ContaBancariaPreview,
                     );
                     toast.success(`Conta bancária ${action} com sucesso!`, {
                         duration: 4000,

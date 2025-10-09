@@ -1,7 +1,7 @@
 // useEvent.ts
 import { Banco } from '@/types/models/banco';
 import { Categoria } from '@/types/models/categoria';
-import { ContaBancaria } from '@/types/models/conta-bancaria';
+import { ContaBancariaPreview } from '@/types/models/conta-bancaria';
 import { useCallback, useRef } from 'react';
 
 // Definindo os eventos disponíveis e seus tipos de dados correspondentes
@@ -10,8 +10,8 @@ export interface EventMap {
     onSelectDate: Date;
     onOpenDateStep: Date;
     onSelectBanco: Banco;
-    onSelectContaBancaria: ContaBancaria | null;
-    onExcluirContaBancaria: ContaBancaria;
+    onSelectContaBancaria: ContaBancariaPreview | null;
+    onExcluirContaBancaria: ContaBancariaPreview;
 }
 
 // Tipo para o callback de um evento

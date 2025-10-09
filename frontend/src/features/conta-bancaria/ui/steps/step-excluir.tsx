@@ -6,7 +6,7 @@ import { Input } from '@/shared/ui/input';
 import { toast } from 'sonner';
 
 import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
-import { ContaBancaria } from '@/types/models/conta-bancaria';
+import { ContaBancariaPreview } from '@/types/models/conta-bancaria';
 import { useEffect, useRef, useState } from 'react';
 
 type StepExcluirContaBancariaProps = {
@@ -17,7 +17,8 @@ export function StepExcluirContaBancaria({
     value,
     level,
 }: StepExcluirContaBancariaProps) {
-    const [contaBancaria, setContaBancaria] = useState<ContaBancaria | null>();
+    const [contaBancaria, setContaBancaria] =
+        useState<ContaBancariaPreview | null>();
     const [podeExcluir, setPodeExcluir] = useState(false);
     const { events, goToStep } = useStepper();
 
