@@ -31,6 +31,8 @@ class ContaBancariaSerializer(serializers.ModelSerializer):
     """Serializador para crud de ContaBancaria de um usuário."""
 
     class Meta:
+        """Meta informações do serializador."""
+
         model = ContaBancaria
         fields: typing.ClassVar = [
             "id",
@@ -47,3 +49,18 @@ class ContaBancariaSerializer(serializers.ModelSerializer):
         write_only=True,
         required=True,
     )
+
+
+class ContaBancariaSerializerDetail(ContaBancariaSerializer):
+    """Serializador detalhado para ContaBancaria, incluindo últimas transações."""
+
+    class Meta(ContaBancariaSerializer.Meta):
+        fields = ContaBancariaSerializer.Meta.fields + ["ultimas_transacoes"]
+
+    ultimas_transacoes = serializers.SerializerMethodField()
+
+    def get_ultimas_transacoes(self, obj):
+        query = obj.movimentacoes.order_by("-data")[:5]
+        from moedas.serializers import MovimentacaoSerializer
+
+        return MovimentacaoSerializer(query, many=True).data

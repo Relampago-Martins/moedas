@@ -1,6 +1,10 @@
 """Serializers para a aplicação moedas."""
 
-from moedas.serializers.banco import BancoSerializer, ContaBancariaSerializer
+from moedas.serializers.banco import (
+    BancoSerializer,
+    ContaBancariaSerializer,
+    ContaBancariaSerializerDetail,
+)
 from moedas.serializers.carteira import CarteiraSerializer
 from moedas.serializers.categoria import CategoriaSerializer
 from moedas.serializers.estrategia import OrcamentoSerializer
@@ -15,6 +19,7 @@ __all__ = [
     "CarteiraSerializer",
     "CategoriaSerializer",
     "ContaBancariaSerializer",
+    "ContaBancariaSerializerDetail",
     "DespesaSerializer",
     "MovimentacaoSerializer",
     "OrcamentoSerializer",

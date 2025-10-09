@@ -34,6 +34,7 @@ class Movimentacao(models.Model):
     conta_bancaria = models.ForeignKey(
         ContaBancaria,
         on_delete=models.CASCADE,
+        related_name="movimentacoes",
         null=True,
         blank=False,
     )

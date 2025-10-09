@@ -13,11 +13,16 @@ class ContaBancariaViewSet(viewsets.ModelViewSet):
     queryset = ContaBancaria.objects.all()
     serializer_class = moedas_serializers.ContaBancariaSerializer
 
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return moedas_serializers.ContaBancariaSerializerDetail
+        return super().get_serializer_class()
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter(user=self.request.user).order_by("-saldo")
 
 
 class BancoViewSet(viewsets.ReadOnlyModelViewSet):

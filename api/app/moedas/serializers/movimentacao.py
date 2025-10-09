@@ -5,7 +5,7 @@ from rest_framework import serializers
 from moedas.models import Categoria, Despesa, Movimentacao, Receita
 from moedas.models.banco import ContaBancaria
 from moedas.models.movimentacao import FORMAS_PAGAMENTO
-from moedas.serializers.banco import ContaBancariaSerializer
+from moedas.serializers import ContaBancariaSerializer
 from moedas.serializers.categoria import CategoriaSerializer
 from moedas.serializers.utils import MyPrimaryKeyRelatedField
 
@@ -61,7 +61,7 @@ class DespesaSerializer(MovimentacaoSerializer):
 
 
 class ReceitaSerializer(MovimentacaoSerializer):
-    """Serializer para Receitas"""
+    """Serializer para Receitas."""
 
     class Meta:
         model = Receita
