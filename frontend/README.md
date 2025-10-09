@@ -94,7 +94,7 @@ O correto seria algo com tipagem dinâmica, como:
 ```tsx
 const { subscribe } = useStepper<MySteps, MyEvents>();
 
-subscribe('onSelectContaBancaria', (conta) => { // tipo de dado de acordo com MyEvents
+subscribe('onSelectContaBancaria', (conta) => {
     form.setValue('contaBancaria', conta);
 });
 ```
