@@ -41,6 +41,10 @@ export function StepFormReceita({
             const conta = contaBancaria
                 ? {
                       ...contaBancaria,
+                      banco: {
+                          ...contaBancaria.banco,
+                          foto: contaBancaria.banco.foto || '',
+                      },
                       saldo: Number(contaBancaria.saldo),
                   }
                 : undefined;

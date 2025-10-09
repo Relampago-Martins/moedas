@@ -42,13 +42,15 @@ export function StepFormDespesa({
             form.setValue('data', date.toISOString().split('T')[0]);
         });
         events.subscribe('onSelectContaBancaria', (contaBancaria) => {
-            const conta = contaBancaria
-                ? {
-                      ...contaBancaria,
-                      saldo: Number(contaBancaria.saldo),
-                  }
-                : undefined;
-            if (conta) {
+            if (contaBancaria) {
+                const conta = {
+                    ...contaBancaria,
+                    banco: {
+                        ...contaBancaria.banco,
+                        foto: contaBancaria.banco.foto || '',
+                    },
+                    saldo: Number(contaBancaria.saldo),
+                };
                 form.setValue('contaBancaria', conta);
             }
         });
