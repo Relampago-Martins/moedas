@@ -48,6 +48,7 @@
         "react-pro-sidebar": "^1.1.0",
         "react-responsive": "^10.0.0",
         "react-spinners": "^0.13.8",
+        "react-use-measure": "^2.1.7",
         "recharts": "^2.15.3",
         "sass": "^1.70.0",
         "sonner": "^1.5.0",
