@@ -9,3 +9,10 @@ export const contaBancariaSchema = z.object({
 });
 
 export type ContaBancariaSchema = z.infer<typeof contaBancariaSchema>;
+
+export const contaBancariaEdit = z.object({
+    id: z.number(),
+    apelido: z.string().min(1, { message: 'Apelido é obrigatório' }),
+});
+
+export type ContaBancariaEditSchema = z.infer<typeof contaBancariaEdit>;
