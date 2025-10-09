@@ -2,6 +2,7 @@ import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
 import { StepDetalheContaBancaria } from '@/features/conta-bancaria/ui/steps/step-detalhe';
 import { getCarteira } from '@/shared/api/endpoints';
 import { getContasBancarias } from '@/shared/api/endpoints/conta-bancaria-cli';
+import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent } from '@/shared/ui/card';
 import { Dialog, DialogContent } from '@/shared/ui/dialog';
 import { TFiltroPeriodo } from '@/types/filters';
@@ -22,6 +23,7 @@ type CardSaldoProps = {
 
 export async function CardSaldo({ className, params }: CardSaldoProps) {
     const { saldo, diff_percentual } = await getCarteira(params);
+
     const { data: contasBancarias } = await getContasBancarias();
 
     return (
@@ -48,12 +50,19 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
                         level={0}
                         className="flex flex-col gap-5"
                     >
-                        <Saldo valor={saldo} />
-                        <div className="flex items-center gap-2">
-                            <DiferencaSaldoBadge
-                                diffPercentual={diff_percentual}
-                            />
-                            <span className="text-muted">este mês</span>
+                        <div className="flex flex-col items-center gap-1">
+                            <span className="text-muted">Saldo Total</span>
+                            <div className="text-3xl font-bold">
+                                {numberToCurrency(saldo)}
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                                <DiferencaSaldoBadge
+                                    diffPercentual={diff_percentual}
+                                />
+                                <span className="text-sm text-muted">
+                                    este mês
+                                </span>
+                            </div>
                         </div>
                         <ListaContaBancariaCol
                             contasBancarias={contasBancarias}

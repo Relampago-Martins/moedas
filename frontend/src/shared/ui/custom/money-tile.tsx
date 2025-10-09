@@ -6,6 +6,7 @@ const tileVariantsValue = cva('shrink-0 font-semibold', {
         size: {
             md: 'text-lg',
             xl: 'text-xl',
+            '2xl': 'text-2xl',
         },
     },
     defaultVariants: {
@@ -24,7 +25,7 @@ export function MoneyTile({
     value: number;
     className?: string;
     trailing?: React.ReactNode;
-    size?: 'md' | 'xl';
+    size?: 'md' | 'xl' | '2xl';
 }) {
     const negative = value < 0;
     const cleanedVal = numberToCurrency(Math.abs(value))

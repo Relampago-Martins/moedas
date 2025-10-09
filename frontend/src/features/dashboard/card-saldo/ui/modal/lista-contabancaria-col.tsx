@@ -3,9 +3,9 @@ import { useStepper } from '@/entities/stepper/ui/stepper';
 import { AvatarBanco } from '@/features/conta-bancaria/ui/shared/avatar-banco';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
-import { ContaBancaria } from '@/types/models/conta-bancaria';
+import { ContaBancariaPreview } from '@/types/models/conta-bancaria';
 
-type ListaContaBancariaColProps = { contasBancarias: ContaBancaria[] };
+type ListaContaBancariaColProps = { contasBancarias: ContaBancariaPreview[] };
 export function ListaContaBancariaCol({
     contasBancarias,
 }: ListaContaBancariaColProps) {
@@ -13,7 +13,7 @@ export function ListaContaBancariaCol({
 
     return (
         <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 px-2">
                 <span className="text-muted">Contas Bancárias</span>
             </div>
             {contasBancarias.map((conta) => (
@@ -27,19 +27,17 @@ export function ListaContaBancariaCol({
                         });
                         events.submit('onSelectContaBancaria', conta);
                     }}
-                    className="flex w-full items-center gap-3 rounded-md py-1 text-start"
+                    className="flex w-full items-center gap-3 rounded-md p-2 text-start hover:bg-accent"
                 >
                     <AvatarBanco banco={conta.banco} />
 
                     <div className="flex w-full flex-col">
-                        <span className="font-medium">
-                            {conta.apelido || '---'}
-                        </span>
+                        <span className="">{conta.apelido || '---'}</span>
                         <span className="shrink-0 text-sm text-muted">
-                            {conta.banco.nome}
+                            {conta.banco.abreviacao}
                         </span>
                     </div>
-                    <span className="flex justify-end">
+                    <span className="flex justify-end font-medium">
                         {numberToCurrency(conta.saldo)}
                     </span>
                 </button>
