@@ -1,6 +1,6 @@
 import typing
 
-from django.utils.timezone import now
+from django.utils.timezone import datetime
 from django_filters import rest_framework as filters
 
 from moedas import models as moedas_models
@@ -94,7 +94,7 @@ class MovimentacaoFilter(filters.FilterSet):
         periodo_before = request_params.get("periodo_before")
 
         if not periodo_after and not periodo_before:
-            hoje = now().date()
+            hoje = datetime.now()
             self.queryset = self.queryset.filter(
                 data__year=hoje.year,
                 data__month=hoje.month,

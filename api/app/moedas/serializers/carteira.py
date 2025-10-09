@@ -12,7 +12,7 @@ from moedas.models.estrategia import OrcamentoMensal
 if TYPE_CHECKING:
     from django.contrib.auth.models import User
 from django.db.models import Sum
-from django.utils.timezone import now
+from django.utils.timezone import datetime
 from rest_framework import serializers
 
 
@@ -141,7 +141,7 @@ class CarteiraSerializer(serializers.Serializer):
         OBS: não suporta períodos que abrangem mais de um mês.
         """
         if not periodo_after and not periodo_before:
-            mes_atual = now().date()
+            mes_atual = datetime.now().date()
 
             if mes_atual.month == 1:
                 _, ultimo_dia = calendar.monthrange(mes_atual.year - 1, 12)
@@ -193,10 +193,10 @@ class CarteiraSerializer(serializers.Serializer):
         if periodo_before:
             qs &= Q(data__lte=periodo_before)
         if not periodo_after and not periodo_before:
-            hoje = now().date()
+            hoje = datetime.now().date()
             qs &= Q(
-                data__month=hoje.month,
-                data__year=hoje.year,
+                data__month__lte=hoje.month,
+                data__year__lte=hoje.year,
             )
         return qs
 
