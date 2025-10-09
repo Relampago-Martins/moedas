@@ -2,6 +2,7 @@
 import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
 import { StepFormReceita } from '@/features/modal-novo/ui/steps/step-form-receita';
 import { StepListaCategorias } from '@/features/modal-novo/ui/steps/step-lista-categorias';
+import { StepSelectContaBancaria } from '@/features/modal-novo/ui/steps/step-select-conta-bancaria';
 import { deleteReceita, getReceita } from '@/shared/api/endpoints/receita-cli';
 import { useEvent } from '@/shared/lib/use-event';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
@@ -60,6 +61,7 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
             >
                 <StepListaCategorias tipoCategoria="R" />
             </StepperContent>
+            <StepSelectContaBancaria />
         </Stepper>
     );
 }

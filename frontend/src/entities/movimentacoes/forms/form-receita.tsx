@@ -21,6 +21,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 import { getNomeReceitaAleatoria } from '../../../features/modal-novo/lib/utils';
 import { SelectCategoria } from './fields/select-categoria';
+import { SelectContaBancaria } from './fields/select-conta-bancaria';
 
 type FormReceitaProps = {
     formState: UseFormReturn<ReceitaSchema>;
@@ -43,6 +44,7 @@ export function FormReceita({ formState: form, onSucess }: FormReceitaProps) {
             });
             onSucess();
         } else {
+            console.error(resp);
             toast.error('Erro ao criar receita, tente novamente mais tarde');
         }
     };
@@ -80,6 +82,19 @@ export function FormReceita({ formState: form, onSucess }: FormReceitaProps) {
                                     {...field}
                                     placeholder={`ex: ${randomName}`}
                                 />
+                            </FormControl>
+                            <FormMessage></FormMessage>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name="contaBancaria"
+                    control={form.control}
+                    render={({ field }) => (
+                        <FormItem className="col-span-2">
+                            <FormLabel>Conta Bancária</FormLabel>
+                            <FormControl>
+                                <SelectContaBancaria {...field} />
                             </FormControl>
                             <FormMessage></FormMessage>
                         </FormItem>

@@ -78,4 +78,5 @@ export const receita = z.object({
         .max(255),
     valor: z.number().min(0.01, { message: 'Valor deve ser maior que 0' }),
     categoria: categoria,
+    contaBancaria: contaBancariaSchema,
 });
