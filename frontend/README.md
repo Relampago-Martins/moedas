@@ -2,6 +2,21 @@
 
 Projeto para controlar rendas, despesas, dividas, etc
 
+## Como rodar o projeto
+
+...
+
+### Crie uma chave secreta
+
+No arquivo `.env`, você precisa definir a variável `NEXTAUTH_SECRET`.
+Para gerar uma chave secreta, você pode usar o comando abaixo:
+
+```bash
+npx auth secret
+```
+
+...
+
 ## Framer Motion
 
 Este projeto utiliza a biblioteca [Framer Motion](https://www.framer.com/motion/) para animações.
