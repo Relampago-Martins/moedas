@@ -47,7 +47,12 @@ export function StepFormContaBancaria({ step }: StepFormContaBancariaProps) {
         events.subscribe('onSelectContaBancaria', (contaBancaria) => {
             form.reset({
                 id: contaBancaria?.id,
-                banco: contaBancaria?.banco,
+                banco: contaBancaria?.banco
+                    ? {
+                          ...contaBancaria.banco,
+                          foto: contaBancaria.banco.foto || '',
+                      }
+                    : undefined,
                 saldo: Number(contaBancaria?.saldo || 0),
                 apelido: contaBancaria?.apelido,
             });
