@@ -1,4 +1,4 @@
-import { contaBancariaSchema } from '@/features/conta-bancaria/lib/conta-bancaria.schema';
+import { criarContaBancariaSchema } from '@/features/conta-bancaria/lib/conta-bancaria.schema';
 import i18next from 'i18next';
 import * as z from 'zod';
 import { zodI18nMap } from 'zod-i18n-map';
@@ -66,7 +66,7 @@ export const despesa = z.object({
     valor: z.number().min(0.01, { message: 'Valor deve ser maior que 0' }),
     categoria: categoria,
     forma_pagamento: z.string().min(1, { message: 'Categoria é obrigatória' }),
-    contaBancaria: contaBancariaSchema,
+    contaBancaria: criarContaBancariaSchema,
 });
 
 export const receita = z.object({
@@ -78,5 +78,5 @@ export const receita = z.object({
         .max(255),
     valor: z.number().min(0.01, { message: 'Valor deve ser maior que 0' }),
     categoria: categoria,
-    contaBancaria: contaBancariaSchema,
+    contaBancaria: criarContaBancariaSchema,
 });

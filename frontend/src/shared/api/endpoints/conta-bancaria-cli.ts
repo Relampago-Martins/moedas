@@ -59,13 +59,14 @@ export async function createContaBancaria(contaBancaria: ContaBancariaForm) {
 
 export async function updateContaBancaria(
     id: number,
-    contaBancaria: ContaBancariaForm,
+    contaBancaria: { apelido?: string; saldo?: string; banco_id?: number },
 ) {
     const resp = await ApiClient.getInstance().patch<ContaBancariaPreview>(
         `/contas-bancarias/${id}/`,
         contaBancaria,
     );
     revalidateTag('contas-bancarias');
+    revalidateTag('minha-conta-bancaria');
     return resp;
 }
 

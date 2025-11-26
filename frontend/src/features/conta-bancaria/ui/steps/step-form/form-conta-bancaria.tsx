@@ -1,7 +1,7 @@
 'use client';
 
 import { useStepper } from '@/entities/stepper/ui/stepper';
-import { createOrUpdateContaBancaria } from '@/shared/api/endpoints/conta-bancaria-cli';
+import { createContaBancaria } from '@/shared/api/endpoints/conta-bancaria-cli';
 import { Button } from '@/shared/ui/button';
 import { CurrencyInput } from '@/shared/ui/currency';
 import {
@@ -14,24 +14,57 @@ import {
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { ContaBancariaPreview } from '@/types/models/conta-bancaria';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useRef } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { ContaBancariaSchema } from '../../../../conta-bancaria/lib/conta-bancaria.schema';
-import { SelectBancos } from './select-bancos';
+import { SelectBancos } from '../../../../dashboard/card-saldo/ui/modal/select-bancos';
+import {
+    criarContaBancariaSchema,
+    CriarContaBancariaSchema,
+} from '../../../lib/conta-bancaria.schema';
 
-type CadastroContaBancariaProps = {
-    formState: UseFormReturn<ContaBancariaSchema>;
-    isCreate: boolean;
+type Props = {
+    banco?: ContaBancariaPreview['banco'];
+    contaBancaria?: ContaBancariaPreview | null;
 };
 
-export function FormContaBancaria({
-    formState: form,
-    isCreate,
-}: CadastroContaBancariaProps) {
+export function CriarContaBancaria({ banco, contaBancaria }: Props) {
     const firstIputRef = useRef<HTMLInputElement>(null);
-
     const { goToStep, events } = useStepper();
+    const form = useForm<CriarContaBancariaSchema>({
+        resolver: zodResolver(criarContaBancariaSchema),
+        defaultValues: {
+            id: undefined,
+            banco: undefined,
+            saldo: 0,
+            apelido: '',
+        },
+    });
+
+    useEffect(() => {
+        if (banco) {
+            form.setValue('banco', {
+                ...banco,
+                foto: banco.foto || '',
+            });
+        }
+    }, [banco]);
+
+    useEffect(() => {
+        console.log('contaBancaria', contaBancaria);
+        if (contaBancaria) {
+            form.reset({
+                id: contaBancaria.id,
+                banco: {
+                    ...contaBancaria.banco,
+                    foto: contaBancaria.banco.foto || '',
+                },
+                saldo: parseFloat(contaBancaria.saldo),
+                apelido: contaBancaria.apelido,
+            });
+        }
+    }, [contaBancaria]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -39,32 +72,24 @@ export function FormContaBancaria({
         }, 450);
     }, []);
 
-    const onSubmit = async (data: ContaBancariaSchema) => {
-        createOrUpdateContaBancaria(data.id, {
+    const onSubmit = async (data: CriarContaBancariaSchema) => {
+        createContaBancaria({
             banco_id: data.banco.id,
             saldo: data.saldo.toString(),
             apelido: data.apelido,
         })
             .then((resp) => {
                 if ([200, 201].includes(resp.status)) {
-                    goToStep(
-                        isCreate
-                            ? {
-                                  name: 'detalhe-conta-bancaria',
-                                  level: 1,
-                              }
-                            : {
-                                  name: 'saldo-e-contas',
-                                  level: 0,
-                              },
-                    );
-                    const action = isCreate ? 'atualizada' : 'criada';
+                    goToStep({
+                        name: 'detalhe-conta-bancaria',
+                        level: 1,
+                    });
 
                     events.submit(
                         'onSelectContaBancaria',
                         resp.data as ContaBancariaPreview,
                     );
-                    toast.success(`Conta bancária ${action} com sucesso!`, {
+                    toast.success(`Conta bancária criada com sucesso!`, {
                         duration: 4000,
                     });
                 } else {
@@ -126,7 +151,12 @@ export function FormContaBancaria({
                         <FormItem>
                             <FormLabel>Banco</FormLabel>
                             <FormControl>
-                                <SelectBancos {...field} />
+                                <SelectBancos
+                                    value={field.value}
+                                    onClick={() => {
+                                        console.log('Select banco clicked');
+                                    }}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
