@@ -9,7 +9,7 @@ export function PreviousBtn({ onPrevious: onClick }: PreviousBtnProps) {
     return (
         <button
             type="button"
-            className="flex w-full items-center justify-start gap-2 text-sm text-muted "
+            className="flex w-fit items-center justify-start gap-2 text-sm text-muted "
             onClick={() => {
                 previous();
                 onClick?.();

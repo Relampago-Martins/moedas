@@ -1,9 +1,9 @@
-import { useStepper } from '@/entities/stepper/ui/stepper';
+'use client';
+import { StepperContent, useStepper } from '@/entities/stepper/ui/stepper';
 import {
     alterarContaBancariaSchema,
     AlterarContaBancariaSchema,
 } from '@/features/conta-bancaria/lib/conta-bancaria.schema';
-import { SelectBancos } from '@/features/dashboard/card-saldo/ui/modal/select-bancos';
 import { updateContaBancaria } from '@/shared/api/endpoints/conta-bancaria-cli';
 import { Button } from '@/shared/ui/button';
 import {
@@ -21,37 +21,32 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import { PreviousBtn } from '../../shared/previous-btn';
 
-type Props = {
-    contaBancaria: ContaBancariaPreview;
-    banco?: ContaBancariaPreview['banco'];
-};
-
-export function AlterarContaBancaria({ contaBancaria, banco }: Props) {
+export function StepAlterarContaBancaria() {
     const { goToStep, events } = useStepper();
     const queryClient = useQueryClient();
     const form = useForm<AlterarContaBancariaSchema>({
         resolver: zodResolver(alterarContaBancariaSchema),
         defaultValues: {
-            id: contaBancaria.id,
-            apelido: contaBancaria.apelido,
-            banco: banco || contaBancaria.banco,
+            id: undefined,
+            apelido: '',
         },
     });
 
     useEffect(() => {
-        if (banco) {
-            form.setValue('banco', {
-                ...banco,
-                foto: banco.foto || '',
+        events.subscribe('onSelectContaBancaria', (contaBancaria) => {
+            if (!contaBancaria) return;
+            form.reset({
+                id: contaBancaria.id,
+                apelido: contaBancaria.apelido,
             });
-        }
-    }, [banco]);
+        });
+    }, []);
 
     const onSubmit = async (data: AlterarContaBancariaSchema) => {
         updateContaBancaria(data.id!, {
             apelido: data.apelido,
-            banco_id: data.banco.id,
         })
             .then((resp) => {
                 if ([200, 201].includes(resp.status)) {
@@ -84,48 +79,42 @@ export function AlterarContaBancaria({ contaBancaria, banco }: Props) {
     };
 
     return (
-        <Form {...form}>
-            <form
-                className="flex flex-col gap-4"
-                onSubmit={form.handleSubmit(onSubmit, console.error)}
-            >
-                <FormField
-                    control={form.control}
-                    name="apelido"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Apelido</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="Apelido da conta"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="banco"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Banco</FormLabel>
-                            <FormControl>
-                                <SelectBancos
-                                    value={field.value}
-                                    onClick={() => {
-                                        console.log('Select banco clicked');
-                                    }}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+        <StepperContent
+            value={'edit-conta-bancaria'}
+            level={2}
+            className="flex flex-col gap-2"
+        >
+            <div className="flex flex-col">
+                <PreviousBtn />
+                <h2 className="w-full  text-lg font-semibold">
+                    Alterar Apelido
+                </h2>
+            </div>
+            <Form {...form}>
+                <form
+                    className="flex flex-col gap-4"
+                    onSubmit={form.handleSubmit(onSubmit, console.error)}
+                >
+                    <FormField
+                        control={form.control}
+                        name="apelido"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Apelido</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Apelido da conta"
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                <Button className="w-full">Salvar</Button>
-            </form>
-        </Form>
+                    <Button className="w-full">Salvar</Button>
+                </form>
+            </Form>
+        </StepperContent>
     );
 }

@@ -5,8 +5,7 @@ import { PreviousBtn } from '@/features/conta-bancaria/ui/shared/previous-btn';
 import { ContaBancariaPreview } from '@/types/models/conta-bancaria';
 import { useEffect, useMemo, useState } from 'react';
 import { CriarContaBancariaSchema } from '../../../lib/conta-bancaria.schema';
-import { AlterarContaBancaria } from './alterar-conta-bancaria';
-import { CriarContaBancaria } from './form-conta-bancaria';
+import { CriarContaBancaria } from './criar-conta-bancaria';
 
 type StepFormContaBancariaProps = {
     step: StepObject<string>;
@@ -51,7 +50,7 @@ export function StepFormContaBancaria({ step }: StepFormContaBancariaProps) {
                     contaBancaria={contaBancaria}
                 />
             ) : (
-                <AlterarContaBancaria contaBancaria={contaBancaria!} />
+                <></>
             )}
         </StepperContent>
     );

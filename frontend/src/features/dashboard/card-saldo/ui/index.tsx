@@ -1,12 +1,13 @@
 import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
 import { StepDetalheContaBancaria } from '@/features/conta-bancaria/ui/steps/step-detalhe';
+import { StepAlterarContaBancaria } from '@/features/conta-bancaria/ui/steps/step-form/alterar-conta-bancaria';
 import { getCarteira } from '@/shared/api/endpoints';
 import { getContasBancarias } from '@/shared/api/endpoints/conta-bancaria-cli';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { Card, CardContent } from '@/shared/ui/card';
 import { Dialog, DialogContent } from '@/shared/ui/dialog';
 import { TFiltroPeriodo } from '@/types/filters';
-import { DialogTrigger } from '@radix-ui/react-dialog';
+import { DialogTitle, DialogTrigger } from '@radix-ui/react-dialog';
 import { StepExcluirContaBancaria } from '../../../conta-bancaria/ui/steps/step-excluir';
 import { StepFormContaBancaria } from '../../../conta-bancaria/ui/steps/step-form';
 import { DiferencaSaldoBadge } from './diferenca-saldo-badge';
@@ -38,7 +39,10 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
                     </CardContent>
                 </Card>
             </DialogTrigger>
-            <DialogContent className="overflow-hidden">
+            <DialogContent className="overflow-hidden" withoutClose>
+                <DialogTitle className="sr-only">
+                    Detalhes do saldo e contas bancárias
+                </DialogTitle>
                 <Stepper
                     defaultValue={{
                         name: 'saldo-e-contas',
@@ -79,9 +83,8 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
                         value="excluir-conta-bancaria"
                         level={2}
                     />
-                    <StepFormContaBancaria
-                        step={{ name: 'edit-conta-bancaria', level: 2 }}
-                    />
+                    <StepAlterarContaBancaria />
+
                     <StepperContent value="lista-bancos" level={3}>
                         <ListaBancos />
                     </StepperContent>

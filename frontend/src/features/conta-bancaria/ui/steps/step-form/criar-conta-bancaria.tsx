@@ -52,7 +52,6 @@ export function CriarContaBancaria({ banco, contaBancaria }: Props) {
     }, [banco]);
 
     useEffect(() => {
-        console.log('contaBancaria', contaBancaria);
         if (contaBancaria) {
             form.reset({
                 id: contaBancaria.id,
@@ -74,7 +73,7 @@ export function CriarContaBancaria({ banco, contaBancaria }: Props) {
 
     const onSubmit = async (data: CriarContaBancariaSchema) => {
         createContaBancaria({
-            banco_id: data.banco.id,
+            banco: data.banco.id,
             saldo: data.saldo.toString(),
             apelido: data.apelido,
         })

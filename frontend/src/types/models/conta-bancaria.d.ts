@@ -5,6 +5,8 @@ export interface ContaBancariaPreview {
     apelido: string;
     banco: Banco;
     saldo: string;
+    ativo: boolean;
+    criado_em: string;
 }
 export interface ContaBancaria extends ContaBancariaPreview {
     ultimas_transacoes: Movimentacao[];
