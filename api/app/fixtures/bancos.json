@@ -1555,7 +1555,7 @@
         "fields": {
             "ispb": "90400888",
             "nome": "Banco Santander (Brasil) S. A.",
-            "abreviacao": "Banco Santander (brasil) S.A.",
+            "abreviacao": "Santander",
             "foto": null
         }
     },
@@ -2115,7 +2115,7 @@
         "fields": {
             "ispb": "18236120",
             "nome": "Nu Pagamentos S.A.",
-            "abreviacao": "Nu Pagamentos S.A.",
+            "abreviacao": "Nubank",
             "foto": "bancos/nubank.png"
         }
     },
