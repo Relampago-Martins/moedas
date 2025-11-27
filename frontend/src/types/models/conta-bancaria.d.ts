@@ -12,6 +12,6 @@ export interface ContaBancaria extends ContaBancariaPreview {
 export interface ContaBancariaForm {
     id?: number;
     apelido: string;
-    banco_id: number; // ID do banco
+    banco: number; // ID do banco
     saldo: string;
 }

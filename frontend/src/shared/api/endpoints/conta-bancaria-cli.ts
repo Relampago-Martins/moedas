@@ -59,7 +59,7 @@ export async function createContaBancaria(contaBancaria: ContaBancariaForm) {
 
 export async function updateContaBancaria(
     id: number,
-    contaBancaria: { apelido?: string; saldo?: string; banco_id?: number },
+    contaBancaria: { apelido?: string; saldo?: string; banco?: number },
 ) {
     const resp = await ApiClient.getInstance().patch<ContaBancariaPreview>(
         `/contas-bancarias/${id}/`,

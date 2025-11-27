@@ -12,6 +12,7 @@ export type CriarContaBancariaSchema = z.infer<typeof criarContaBancariaSchema>;
 
 export const alterarContaBancariaSchema = criarContaBancariaSchema.omit({
     saldo: true,
+    banco: true,
 });
 
 export type AlterarContaBancariaSchema = z.infer<

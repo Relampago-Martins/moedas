@@ -27,6 +27,19 @@ class BancoSerializer(serializers.ModelSerializer):
     foto = serializers.ImageField(required=False, allow_null=True)
 
 
+class BancoSerializerField(BancoSerializer):
+    """Sobreescreve para fazer com que a entrada de dados seja apenas o ID."""
+
+    def to_internal_value(self, data: int) -> Banco:
+        """Convert o ID do banco em uma instância do modelo Banco."""
+        try:
+            banco = Banco.objects.get(id=data)
+        except Banco.DoesNotExist:
+            msg = "Banco com o ID fornecido não existe."
+            raise serializers.ValidationError(msg) from None
+        return banco
+
+
 class ContaBancariaSerializer(serializers.ModelSerializer):
     """Serializador para crud de ContaBancaria de um usuário."""
 
@@ -39,16 +52,11 @@ class ContaBancariaSerializer(serializers.ModelSerializer):
             "apelido",
             "saldo",
             "banco",
-            "banco_id",  # Usado para escrita
+            "ativo",
+            "criado_em",
         ]
 
-    banco = BancoSerializer(read_only=True)
-    banco_id = serializers.PrimaryKeyRelatedField(
-        source="banco",
-        queryset=Banco.objects.all(),
-        write_only=True,
-        required=True,
-    )
+    banco = BancoSerializerField()
 
 
 class ContaBancariaSerializerDetail(ContaBancariaSerializer):
