@@ -10,38 +10,40 @@ export function ListaContaBancariaCol({
     contasBancarias,
 }: ListaContaBancariaColProps) {
     const { goToStep, events } = useStepper();
-
     return (
         <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 px-2">
                 <span className="text-sm text-muted">Contas Bancárias</span>
-            </div>
-            {contasBancarias.map((conta) => (
-                <button
-                    type="button"
-                    key={conta.id}
-                    onClick={() => {
-                        goToStep({
-                            name: 'detalhe-conta-bancaria',
-                            level: 1,
-                        });
-                        events.submit('onSelectContaBancaria', conta);
-                    }}
-                    className="flex w-full items-center gap-3 rounded-md p-2 text-start hover:bg-accent"
-                >
-                    <AvatarBanco banco={conta.banco} />
+            </div> 
+            {contasBancarias.map((conta) => {
+                const isAtivo = conta.ativo;
+                return (
+                    <button
+                            type="button"
+                            key={conta.id}
+                            onClick={() => {
+                                goToStep({
+                                    name: 'detalhe-conta-bancaria',
+                                    level: 1,
+                                });
+                                events.submit('onSelectContaBancaria', conta);
+                            }}
+                            className={`flex w-full items-center gap-3 rounded-md p-2 text-start hover:bg-accent ${isAtivo ? '' : 'opacity-50 cursor-not-allowed'}`}
+                        >
+                            <AvatarBanco banco={conta.banco} />
 
-                    <div className="flex w-full flex-col">
-                        <span className="">{conta.apelido || '---'}</span>
-                        <span className="shrink-0 text-sm text-muted">
-                            {conta.banco.abreviacao}
-                        </span>
-                    </div>
-                    <span className="flex justify-end font-medium">
-                        {numberToCurrency(conta.saldo)}
-                    </span>
-                </button>
-            ))}
+                            <div className="flex w-full flex-col">
+                                <span className="">{conta.apelido || '---'}</span>
+                                <span className="shrink-0 text-sm text-muted">
+                                    {conta.banco.abreviacao}
+                                </span>
+                            </div>
+                            <span className="flex justify-end font-medium">
+                                {numberToCurrency(conta.saldo)}
+                            </span>
+                    </button>
+                )
+            })}
             <Button
                 className="flex w-full items-center gap-2 hover:no-underline hover:[&>span]:underline"
                 variant={`link`}
