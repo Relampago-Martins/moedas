@@ -2,6 +2,7 @@
 import { Stepper, StepperContent } from '@/entities/stepper/ui/stepper';
 import { StepFormDespesa } from '@/features/modal-novo/ui/steps/step-form-despesa';
 import { StepListaCategorias } from '@/features/modal-novo/ui/steps/step-lista-categorias';
+import { StepSelectContaBancaria } from '@/features/modal-novo/ui/steps/step-select-conta-bancaria';
 import { StepSelectDate } from '@/features/modal-novo/ui/steps/step-select-date';
 import { deleteDespesa, getDespesa } from '@/shared/api/endpoints/despesa-cli';
 import { useEvent } from '@/shared/lib/use-event';
@@ -64,6 +65,7 @@ export function DespesaContent({ id }: DespesaContentProps) {
             </StepperContent>
 
             <StepSelectDate />
+            <StepSelectContaBancaria />
         </Stepper>
     );
 }

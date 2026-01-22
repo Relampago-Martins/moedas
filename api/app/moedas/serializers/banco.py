@@ -1,0 +1,74 @@
+import typing
+
+from rest_framework import serializers
+
+from moedas.models.banco import Banco, ContaBancaria
+
+
+class BancoSerializer(serializers.ModelSerializer):
+    """Serializador para o modelo Banco.
+
+    Esse serializer não deve ser usado para criação ou atualização de bancos,
+    apenas para leitura.
+    """
+
+    class Meta:
+        """Meta informações do serializador."""
+
+        model = Banco
+        fields: typing.ClassVar = [
+            "id",
+            "ispb",
+            "nome",
+            "abreviacao",
+            "foto",
+        ]
+
+    foto = serializers.ImageField(required=False, allow_null=True)
+
+
+class BancoSerializerField(BancoSerializer):
+    """Sobreescreve para fazer com que a entrada de dados seja apenas o ID."""
+
+    def to_internal_value(self, data: int) -> Banco:
+        """Convert o ID do banco em uma instância do modelo Banco."""
+        try:
+            banco = Banco.objects.get(id=data)
+        except Banco.DoesNotExist:
+            msg = "Banco com o ID fornecido não existe."
+            raise serializers.ValidationError(msg) from None
+        return banco
+
+
+class ContaBancariaSerializer(serializers.ModelSerializer):
+    """Serializador para crud de ContaBancaria de um usuário."""
+
+    class Meta:
+        """Meta informações do serializador."""
+
+        model = ContaBancaria
+        fields: typing.ClassVar = [
+            "id",
+            "apelido",
+            "saldo",
+            "banco",
+            "ativo",
+            "criado_em",
+        ]
+
+    banco = BancoSerializerField()
+
+
+class ContaBancariaSerializerDetail(ContaBancariaSerializer):
+    """Serializador detalhado para ContaBancaria, incluindo últimas transações."""
+
+    class Meta(ContaBancariaSerializer.Meta):
+        fields = ContaBancariaSerializer.Meta.fields + ["ultimas_transacoes"]
+
+    ultimas_transacoes = serializers.SerializerMethodField()
+
+    def get_ultimas_transacoes(self, obj):
+        query = obj.movimentacoes.order_by("-data")[:5]
+        from moedas.serializers import MovimentacaoSerializer
+
+        return MovimentacaoSerializer(query, many=True).data

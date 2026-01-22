@@ -8,6 +8,7 @@ import { StepFormDespesa } from './steps/step-form-despesa';
 import { StepFormReceita } from './steps/step-form-receita';
 import { StepListaCategorias } from './steps/step-lista-categorias';
 import { StepMenu } from './steps/step-menu';
+import { StepSelectContaBancaria } from './steps/step-select-conta-bancaria';
 import { StepSelectDate } from './steps/step-select-date';
 
 export type ModalNovoSteps =
@@ -72,6 +73,7 @@ export function ModalNovo() {
                 </StepperContent>
 
                 <StepSelectDate />
+                <StepSelectContaBancaria />
             </Stepper>
         </DialogOrDrawer>
     );

@@ -1,7 +1,7 @@
 'use client';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { useEvent } from '@/shared/lib/use-event';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import React, {
     createContext,
     useContext,
@@ -9,6 +9,7 @@ import React, {
     useMemo,
     useState,
 } from 'react';
+import useMeasure from 'react-use-measure';
 import { StepNavigationTree } from '../lib/step-navigation-tree';
 
 interface TStepperContext<T = string> {
@@ -18,6 +19,7 @@ interface TStepperContext<T = string> {
     previous: () => void;
     hasPrevious: boolean;
     events: ReturnType<typeof useEvent>;
+    heightRef: (element: HTMLElement | SVGElement | null) => void;
 }
 
 // Contexto para gerenciar o estado do Stepper
@@ -36,9 +38,6 @@ function useStepper<T extends string>() {
     return context as unknown as TStepperContext<T>;
 }
 
-// SliderAnimation modificado para usar level em vez de firstStep
-const DESLOC = 310;
-
 interface SliderAnimationProps {
     children: React.ReactNode;
     step: string;
@@ -48,35 +47,35 @@ interface SliderAnimationProps {
 
 type Direction = 'left' | 'right';
 function SliderAnimation({
-    step,
+    step: stepName,
     children,
     level,
     className,
 }: SliderAnimationProps) {
     const { currentStep, previousStep } = useStepper<string>();
-    const [showStep, setShowStep] = useState(currentStep?.name === step);
+    const [showStep, setShowStep] = useState(currentStep?.name === stepName);
     // Determina a direção com base na comparação de níveis
     let initFrom: Direction =
         (previousStep?.level || 0) > level ? 'left' : 'right';
     let exitTo: Direction =
         (previousStep?.level || 0) < level ? 'right' : 'left';
 
-    if (previousStep?.name == step && currentStep?.level < level) {
+    if (previousStep?.name == stepName && currentStep?.level < level) {
         exitTo = 'right';
     }
 
     useEffect(() => {
         setTimeout(() => {
-            setShowStep(currentStep.name === step);
+            setShowStep(currentStep.name === stepName);
         }, 0.5);
-    }, [currentStep, step]);
+    }, [currentStep, stepName]);
 
     return (
         <AnimatePresence mode="popLayout" initial={false}>
             {showStep && (
                 <motion.div
                     className={className}
-                    key={step}
+                    key={stepName}
                     transition={{
                         type: 'spring',
                         duration: 0.4,
@@ -84,15 +83,18 @@ function SliderAnimation({
                     }}
                     initial={{
                         opacity: 0,
-                        x: initFrom === 'left' ? -DESLOC : DESLOC,
+                        x: initFrom === 'left' ? '-110%' : '110%',
+                        // scale: 0.5,
                     }}
                     animate={{
                         opacity: 1,
                         x: 0,
+                        // scale: 1,
                     }}
                     exit={{
                         opacity: 0,
-                        x: exitTo === 'left' ? -DESLOC : DESLOC,
+                        // scale: 0.5,
+                        x: exitTo === 'left' ? '-110%' : '110%',
                     }}
                 >
                     {children}
@@ -109,6 +111,7 @@ interface StepperProps<T extends string> {
 }
 
 function Stepper<T extends string>(props: StepperProps<T>) {
+    const [ref, bounds] = useMeasure();
     const events = useEvent();
     const [currentStep, setCurrentStep] = useState<StepObject<T>>(
         props.defaultValue,
@@ -140,7 +143,6 @@ function Stepper<T extends string>(props: StepperProps<T>) {
 
         return false;
     };
-
     const contextValue: TStepperContext<T> = {
         currentStep: currentStep,
         previousStep: previousStep,
@@ -148,10 +150,17 @@ function Stepper<T extends string>(props: StepperProps<T>) {
         previous: () => goToPrevious(),
         events,
         hasPrevious: navigationTree.hasPrevious(),
+        heightRef: ref,
     };
     return (
         <StepperContext.Provider value={contextValue}>
-            {props.children}
+            <MotionConfig
+                transition={{ duration: 0.5, type: 'spring', bounce: 0 }}
+            >
+                <motion.div animate={{ height: bounds.height }}>
+                    <div ref={ref}>{props.children}</div>
+                </motion.div>
+            </MotionConfig>
         </StepperContext.Provider>
     );
 }

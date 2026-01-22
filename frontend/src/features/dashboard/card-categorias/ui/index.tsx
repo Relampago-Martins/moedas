@@ -20,25 +20,29 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
         (acc, categoria) => acc + categoria.total_movimentacoes,
         0,
     );
-
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
-            <CardHeader className="flex h-10 shrink-0 flex-row items-center gap-2 border-b py-0 text-muted">
-                <i className="ph ph-chart-pie text-xl" />
-                <span className="">Categorias</span>
+            <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
+                <i className="ph ph-chart-donut flex text-lg text-muted" />
+
+                <span className="text-sm">Categorias</span>
             </CardHeader>
-            <CardContent className="flex h-full flex-col items-center gap-1 px-4 pt-2">
+            <CardContent className="flex h-full flex-col items-center gap-2 px-4">
                 {categorias.length > 0 ? (
                     <GastosContext>
-                        <GraficoPizza categorias={categorias.toReversed()} />
-                        <CategoriaValue gastosTotais={gastosTotais} />
+                        <div className="flex w-full items-center gap-4">
+                            <GraficoPizza
+                                categorias={categorias.toReversed()}
+                            />
+                            <CategoriaValue gastosTotais={gastosTotais} />
+                        </div>
                         <ListaCategorias categorias={categorias} />
                     </GastosContext>
                 ) : (
                     <div className="flex h-full flex-col items-center justify-center gap-1 text-muted">
-                        <i className="ph-thin ph-chart-pie-slice text-7xl" />
+                        <i className="ph-thin ph-trend-down text-7xl" />
                         <span className="text-base font-medium">
-                            Nenhuma despesa
+                            Sem despesa registrada
                         </span>
                     </div>
                 )}

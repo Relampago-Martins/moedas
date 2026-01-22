@@ -37,6 +37,21 @@ export function StepFormReceita({
         events.subscribe('onSelectCategoria', (categoria) => {
             form.setValue('categoria', categoria);
         });
+        events.subscribe('onSelectContaBancaria', (contaBancaria) => {
+            const conta = contaBancaria
+                ? {
+                      ...contaBancaria,
+                      banco: {
+                          ...contaBancaria.banco,
+                          foto: contaBancaria.banco.foto || '',
+                      },
+                      saldo: Number(contaBancaria.saldo),
+                  }
+                : undefined;
+            if (conta) {
+                form.setValue('contaBancaria', conta);
+            }
+        });
     }, []);
 
     useEffect(() => {

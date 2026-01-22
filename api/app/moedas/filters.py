@@ -1,4 +1,6 @@
-from django.utils.timezone import now
+import typing
+
+from django.utils.timezone import datetime
 from django_filters import rest_framework as filters
 
 from moedas import models as moedas_models
@@ -6,9 +8,7 @@ from moedas.models.utils import TIPO
 
 
 class DespesaFilter(filters.FilterSet):
-    """
-    Filtro para Despesas
-    """
+    """Filtro para Despesas"""
 
     class Meta:
         model = moedas_models.Despesa
@@ -27,9 +27,7 @@ class DespesaFilter(filters.FilterSet):
 
 
 class CategoriaFilter(filters.FilterSet):
-    """
-    Filtro para Categorias
-    """
+    """Filtro para Categorias"""
 
     class Meta:
         model = moedas_models.Categoria
@@ -37,9 +35,7 @@ class CategoriaFilter(filters.FilterSet):
 
 
 class ReceitaFilter(filters.FilterSet):
-    """
-    Filtro para Receitas
-    """
+    """Filtro para Receitas"""
 
     class Meta:
         model = moedas_models.Receita
@@ -56,9 +52,7 @@ class ReceitaFilter(filters.FilterSet):
 
 
 class MovimentacaoFilter(filters.FilterSet):
-    """
-    Filtro para Movimentações
-    """
+    """Filtro para Movimentações"""
 
     class Meta:
         model = moedas_models.Movimentacao
@@ -77,11 +71,13 @@ class MovimentacaoFilter(filters.FilterSet):
         fields=(
             ("data", "data"),
             ("valor", "valor"),
-        )
+        ),
     )
 
     periodo = filters.DateFromToRangeFilter(
-        method="filter_periodo", label="Período", field_name="data"
+        method="filter_periodo",
+        label="Período",
+        field_name="data",
     )
 
     def filter_pesquisa(self, queryset, name, value):
@@ -91,16 +87,28 @@ class MovimentacaoFilter(filters.FilterSet):
         return queryset.filter(data__range=(value.start, value.stop))
 
     def __init__(self, *args, **kwargs):
-        """
-        Filtra as movimentações para o mês corrente caso não seja passado um período.
-        """
+        """Filtra as movimentações para o mês corrente caso não seja passado um período."""
         super().__init__(*args, **kwargs)
         request_params = kwargs.get("data", {})
         periodo_after = request_params.get("periodo_after")
         periodo_before = request_params.get("periodo_before")
 
         if not periodo_after and not periodo_before:
-            hoje = now().date()
+            hoje = datetime.now()
             self.queryset = self.queryset.filter(
-                data__year=hoje.year, data__month=hoje.month
+                data__year=hoje.year,
+                data__month=hoje.month,
             )
+
+
+class BancoFilter(filters.FilterSet):
+    """Filtro para Bancos."""
+
+    class Meta:
+        """Configurações do filtro para o modelo Banco."""
+
+        model = moedas_models.Banco
+        fields: typing.ClassVar[dict[str, list[str]]] = {
+            "nome": ["icontains"],
+            "abreviacao": ["icontains"],
+        }

@@ -6,7 +6,7 @@ import { TFiltroPeriodo } from '@/types/filters';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-export function FiltroPeriodo() {
+export function FiltroPeriodo({ className }: { className?: string }) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -31,8 +31,14 @@ export function FiltroPeriodo() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)}>
-                <MonthPicker formControl={form.control} />
+            <form
+                onSubmit={form.handleSubmit(handleSubmit)}
+                className={className}
+            >
+                <MonthPicker
+                    formControl={form.control}
+                    className="overflow-hidden rounded-lg border bg-card text-foreground shadow-sm"
+                />
             </form>
         </Form>
     );

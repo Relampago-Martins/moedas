@@ -5,7 +5,7 @@ import { Button } from '@/shared/ui/button';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Despesa } from '@/types/models/despesa';
 import { motion } from 'framer-motion';
-import { CalendarIcon, CreditCardIcon } from 'lucide-react';
+import Image from 'next/image';
 import { DespesaSkeleton } from '../skeletons/despesa';
 
 type DespesaDetailContext = {
@@ -22,7 +22,7 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ opacity: { duration: 0.25 } }}
-                    className="grid grid-cols-3 gap-x-2 gap-y-6"
+                    className="grid grid-cols-3 gap-x-2 gap-y-6 sm:w-[400px]"
                 >
                     <div className="col-span-3 flex flex-col gap-2">
                         <div className="flex items-center gap-2">
@@ -38,6 +38,7 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                     <div className="col-span-3">
                         <CategoriaBadge categoria={despesa.categoria} />
                     </div>
+
                     <div className="col-span-1 flex items-center gap-2">
                         {despesa.pago ? (
                             <div className="flex items-center gap-2 rounded-md bg-success px-2 py-1 text-success-foreground">
@@ -51,8 +52,39 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                             </div>
                         )}
                     </div>
-                    <div className="col-span-3 flex items-center gap-2">
-                        <CalendarIcon className="h-6 w-6" />
+                    {despesa.conta_bancaria ? (
+                        <div className="col-span-3 flex items-center gap-2">
+                            {despesa.conta_bancaria?.banco?.foto && (
+                                <Image
+                                    src={despesa.conta_bancaria.banco.foto}
+                                    alt={despesa.conta_bancaria.banco.nome}
+                                    width={40}
+                                    height={40}
+                                    className="h-7 w-7 rounded-full object-cover"
+                                />
+                            )}
+                            <div className="flex flex-col">
+                                <div className="text-sm text-muted">
+                                    Conta bancária
+                                </div>
+                                <span className="text-base">
+                                    {despesa.conta_bancaria.apelido}
+                                </span>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="col-span-3 flex items-center gap-4">
+                            <i className="ph ph-bank text-2xl" />
+                            <div className="flex flex-col">
+                                <div className="text-sm text-muted">
+                                    Conta bancária
+                                </div>
+                                <span className="text-base">Nenhuma</span>
+                            </div>
+                        </div>
+                    )}
+                    <div className="col-span-3 flex items-center gap-4">
+                        <i className="ph ph-calendar text-2xl" />
                         <div className="flex flex-col">
                             <div className="text-sm text-muted">
                                 Comprado em
@@ -62,8 +94,8 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                             </span>
                         </div>
                     </div>
-                    <div className="col-span-3 flex items-center gap-2">
-                        <CreditCardIcon className="h-6 w-6" />
+                    <div className="col-span-3 flex items-center gap-4">
+                        <i className="ph ph-credit-card text-2xl" />
                         <div className="flex flex-col">
                             <div className="text-sm text-muted">
                                 Forma de pagamento

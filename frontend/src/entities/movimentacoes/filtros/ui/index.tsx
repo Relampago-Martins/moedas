@@ -30,10 +30,10 @@ export function Filtros() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="mb-4 ">
+            <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <MonthPicker
                     formControl={form.control}
-                    className="max-w-[40rem] rounded-md border-[1px] border-border bg-card"
+                    className="max-w-full rounded-md border-[1px] border-border bg-card"
                 />
             </form>
         </Form>

@@ -8,14 +8,17 @@ type ItemMovimentacaoProps = {
     gasto: Movimentacao;
     prefixLayoutId?: string;
     onClick?: () => void;
+    withBank?: boolean;
 };
 
 export function ItemMovimentacao({
     gasto: movimentacao,
     prefixLayoutId,
+    withBank = true,
     onClick,
 }: ItemMovimentacaoProps) {
     const isSolid = getDateFromISO(movimentacao.data) < new Date();
+
     return (
         <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
@@ -41,9 +44,9 @@ export function ItemMovimentacao({
                         className={`absolute inset-0 z-0 w-full opacity-70 dark:opacity-20 ${movimentacao.tipo === 'R' ? 'bg-success' : 'bg-destructive'}`}
                     ></div>
                 </div>
-                <div className="w-full">
+                <div className="flex w-full flex-col">
                     <div className="flex flex-row items-center justify-between gap-2">
-                        <div className="line-clamp-1 w-full overflow-hidden text-ellipsis text-start text-foreground sm:text-lg">
+                        <div className="line-clamp-1 w-full overflow-hidden text-ellipsis text-start text-base text-foreground">
                             {movimentacao.descricao}
                         </div>
                         <div
@@ -59,10 +62,20 @@ export function ItemMovimentacao({
                         <div className="text-start text-sm text-muted">
                             {movimentacao.categoria.nome}
                         </div>
-                        <Separator orientation="vertical" className="h-4" />
-                        <div className="truncate text-start text-sm text-muted">
-                            Nubank - C.Corrente
-                        </div>
+                        {withBank && (
+                            <>
+                                <Separator
+                                    orientation="vertical"
+                                    className="h-4"
+                                />
+                                <div className="truncate text-start text-sm text-muted">
+                                    {movimentacao.conta_bancaria
+                                        ? movimentacao.conta_bancaria?.banco
+                                              .abreviacao
+                                        : '---'}
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

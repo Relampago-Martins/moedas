@@ -1,37 +1,45 @@
 'use server';
-import { Receita, ReceitaSchema } from "@/types/models/receita";
-import { revalidateTag } from "next/cache";
-import { ApiClient } from "../api-client";
+import { Receita, ReceitaSchema } from '@/types/models/receita';
+import { revalidateTag } from 'next/cache';
+import { ApiClient } from '../api-client';
 
-export async function criaReceita(receita: ReceitaSchema){
-    const resp = await ApiClient.getInstance().post<Receita>("/receitas/", {
+export async function criaReceita(receita: ReceitaSchema) {
+    const resp = await ApiClient.getInstance().post<Receita>('/receitas/', {
         ...receita,
         categoria: receita.categoria.sigla,
+        conta_bancaria_id: receita.contaBancaria.id,
     });
     return resp;
 }
 
-export async function getReceita(id: number){
-    const resp = await ApiClient.getInstance().get<Receita>(`/receitas/${id}/`,{
-        next: {
-            revalidate: 100,
-            tags: [`getReceita${id}`],
-        }
-    });
+export async function getReceita(id: number) {
+    const resp = await ApiClient.getInstance().get<Receita>(
+        `/receitas/${id}/`,
+        {
+            next: {
+                revalidate: 100,
+                tags: [`getReceita${id}`],
+            },
+        },
+    );
     return resp.data;
 }
 
-export async function deleteReceita(id: number){
+export async function deleteReceita(id: number) {
     const resp = await ApiClient.getInstance().delete(`/receitas/${id}/`);
     revalidateTag(`getReceita${id}`);
     return resp;
 }
 
-export async function atualizaReceita(id: number, receita: ReceitaSchema){
-    const resp = await ApiClient.getInstance().patch<Receita>(`/receitas/${id}/`, {
-        ...receita,
-        categoria: receita.categoria.sigla,
-    });
+export async function atualizaReceita(id: number, receita: ReceitaSchema) {
+    const resp = await ApiClient.getInstance().patch<Receita>(
+        `/receitas/${id}/`,
+        {
+            ...receita,
+            categoria: receita.categoria.sigla,
+            conta_bancaria_id: receita.contaBancaria.id,
+        },
+    );
     revalidateTag(`getReceita${id}`);
     return resp;
 }

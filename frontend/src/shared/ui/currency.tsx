@@ -45,10 +45,10 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
                     defaultValue={value}
                     value={displayValue}
                     onInput={handleChange}
+                    ref={ref}
                     {...props}
                 />
                 <input
-                    ref={ref}
                     type="hidden"
                     name={props.name}
                     value={value}

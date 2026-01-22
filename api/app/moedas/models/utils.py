@@ -6,7 +6,7 @@ TIPO = [
 ]
 
 FORMAS_PAGAMENTO = [
-    ("din", "Dinheiro"),
+    # ("din", "Dinheiro"),
     ("deb", "Cartão de Débito"),
     ("cre", "Cartão de Crédito"),
     ("pix", "Pix"),

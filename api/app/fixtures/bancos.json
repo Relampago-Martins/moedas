@@ -1,0 +1,2942 @@
+[
+    {
+        "model": "moedas.banco",
+        "pk": 1,
+        "fields": {
+            "ispb": "01658426",
+            "nome": "Cooperforte - Cooperativa de Economia e Crédito Mútuo dos Funcionários de Instit",
+            "abreviacao": "CECM Cooperforte",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 2,
+        "fields": {
+            "ispb": "40303299",
+            "nome": "Portopar Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Portopar Dtvm Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 3,
+        "fields": {
+            "ispb": "58160789",
+            "nome": "Banco Safra S.A.",
+            "abreviacao": "Banco Safra S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 4,
+        "fields": {
+            "ispb": "27098060",
+            "nome": "Banco Digio S.A.",
+            "abreviacao": "Banco Digio",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 5,
+        "fields": {
+            "ispb": "40434681",
+            "nome": "AZUMI DISTRIBUIDORA DE TíTULOS E VALORES MOBILIáRIOS LTDA.",
+            "abreviacao": "AZUMI DTVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 6,
+        "fields": {
+            "ispb": "05841967",
+            "nome": "COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FABRICANTES DE CALÇADOS DE SAPIRANGA",
+            "abreviacao": "CECM FABRIC CALÇADOS SAPIRANGA",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 7,
+        "fields": {
+            "ispb": "00517645",
+            "nome": "Banco Ribeirão Preto S.A.",
+            "abreviacao": "Banco Ribeirao Preto S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 8,
+        "fields": {
+            "ispb": "58616418",
+            "nome": "Banco Fibra S.A.",
+            "abreviacao": "Banco Fibra S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 9,
+        "fields": {
+            "ispb": "09516419",
+            "nome": "Banco Original do Agronegócio S.A.",
+            "abreviacao": "Banco Original do Agro S/a",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 10,
+        "fields": {
+            "ispb": "62144175",
+            "nome": "Banco Pine S.A.",
+            "abreviacao": "Banco Pine S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 11,
+        "fields": {
+            "ispb": "04913711",
+            "nome": "Banco do Estado do Pará S.A.",
+            "abreviacao": "Banco do Est. do Pa S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 12,
+        "fields": {
+            "ispb": "81723108",
+            "nome": "Credicoamo Crédito Rural Cooperativa",
+            "abreviacao": "Credicoamo",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 13,
+        "fields": {
+            "ispb": "03012230",
+            "nome": "Hipercard Banco Múltiplo S.A.",
+            "abreviacao": "Hipercard Bm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 14,
+        "fields": {
+            "ispb": "07693858",
+            "nome": "HSCM - SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LT",
+            "abreviacao": "HSCM SCMEPP LTDA.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 15,
+        "fields": {
+            "ispb": "01800019",
+            "nome": "PortoCred S.A. Crédito Financiamento e Investimento",
+            "abreviacao": "Portocred S.A. - Cfi",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 16,
+        "fields": {
+            "ispb": "61820817",
+            "nome": "Banco Paulista S.A.",
+            "abreviacao": "Banco Paulista S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 17,
+        "fields": {
+            "ispb": "05684234",
+            "nome": "PLANNER SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR S.A.",
+            "abreviacao": "PLANNER SCM S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 18,
+        "fields": {
+            "ispb": "00250699",
+            "nome": "AGK Corretora de Câmbio S.A.",
+            "abreviacao": "Agk Cc S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 19,
+        "fields": {
+            "ispb": "62421979",
+            "nome": "Banco Cifra S.A.",
+            "abreviacao": "Banco Cifra",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 20,
+        "fields": {
+            "ispb": "00360305",
+            "nome": "Caixa Econômica Federal",
+            "abreviacao": "Caixa Economica Federal",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 21,
+        "fields": {
+            "ispb": "37880206",
+            "nome": "Cora Sociedade de Crédito Direto S.A",
+            "abreviacao": "Cora SCD",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 22,
+        "fields": {
+            "ispb": "61747085",
+            "nome": "Tullett Prebon Brasil Corretora de Valores e Câmbio Ltda.",
+            "abreviacao": "Tullett Prebon Brasil Cvc Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 23,
+        "fields": {
+            "ispb": "42272526",
+            "nome": "BNY Mellon Banco S.A.",
+            "abreviacao": "Bny Mellon Banco S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 24,
+        "fields": {
+            "ispb": "08561701",
+            "nome": "Pagseguro Internet S.A.",
+            "abreviacao": "Pagseguro",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 25,
+        "fields": {
+            "ispb": "08240446",
+            "nome": "Cooperativa de Credito Rural de Ibiam - Sulcredi/Ibiam",
+            "abreviacao": "CCR de Ibiam",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 26,
+        "fields": {
+            "ispb": "33264668",
+            "nome": "Banco XP S.A.",
+            "abreviacao": "Banco XP",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 27,
+        "fields": {
+            "ispb": "42047025",
+            "nome": "UNAVANTI SOCIEDADE DE CRÉDITO DIRETO S/A",
+            "abreviacao": "UNAVANTI SCD S/A",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 28,
+        "fields": {
+            "ispb": "61348538",
+            "nome": "Banco Ficsa S. A.",
+            "abreviacao": "Banco Ficsa S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 29,
+        "fields": {
+            "ispb": "74828799",
+            "nome": "Novo Banco Continental S.A. - Banco Múltiplo",
+            "abreviacao": "Novo Banco Continental S.A. - Bm",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 30,
+        "fields": {
+            "ispb": "26563270",
+            "nome": "Cooperativa de Crédito Rural de Primavera do Leste",
+            "abreviacao": "Ccr De Primavera do Leste",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 31,
+        "fields": {
+            "ispb": "09105360",
+            "nome": "ICAP do Brasil Corretora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Icap do Brasil Ctvm Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 32,
+        "fields": {
+            "ispb": "49336860",
+            "nome": "ING Bank N.V.",
+            "abreviacao": "Ing Bank N.v.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 33,
+        "fields": {
+            "ispb": "27652684",
+            "nome": "Genial Investimentos Corretora de Valores Mobiliários S.A.",
+            "abreviacao": "Genial Investimentos Cvm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 34,
+        "fields": {
+            "ispb": "92875780",
+            "nome": "Warren Corretora de Valores Mobiliários e Câmbio Ltda.",
+            "abreviacao": "Warren CVMC Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 35,
+        "fields": {
+            "ispb": "10398952",
+            "nome": "Confederação Nacional das Cooperativas Centrais de Crédito e Economia Familiar e",
+            "abreviacao": "Cresol Confederação",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 36,
+        "fields": {
+            "ispb": "40083667",
+            "nome": "CAPITAL CONSIG SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "CAPITAL CONSIG SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 37,
+        "fields": {
+            "ispb": "01023570",
+            "nome": "Banco Rabobank International Brasil S.A.",
+            "abreviacao": "Banco Rabobank Intl Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 38,
+        "fields": {
+            "ispb": "61533584",
+            "nome": "Banco Société Générale Brasil S.A.",
+            "abreviacao": "Banco Societe Generale Brasil",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 39,
+        "fields": {
+            "ispb": "00000208",
+            "nome": "Banco de Brasília S.A.",
+            "abreviacao": "Brb - Banco De Brasilia S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 40,
+        "fields": {
+            "ispb": "45246410",
+            "nome": "Plural S.A. Banco Múltiplo",
+            "abreviacao": "Plural Banco Bm",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 41,
+        "fields": {
+            "ispb": "92856905",
+            "nome": "Advanced Corretora de Câmbio Ltda.",
+            "abreviacao": "Advanced Cc Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 42,
+        "fields": {
+            "ispb": "17184037",
+            "nome": "Banco Mercantil do Brasil S.A.",
+            "abreviacao": "Banco Mercantil do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 43,
+        "fields": {
+            "ispb": "60498557",
+            "nome": "Banco MUFG Brasil S.A.",
+            "abreviacao": "Banco Mufg Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 44,
+        "fields": {
+            "ispb": "11758741",
+            "nome": "Banco Finaxis S.A.",
+            "abreviacao": "Banco Finaxis",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 45,
+        "fields": {
+            "ispb": "36586946",
+            "nome": "BÔNUSCRED SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "BÔNUSCRED SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 46,
+        "fields": {
+            "ispb": "34711571",
+            "nome": "Vitreo Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Vitreo DTVM S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 47,
+        "fields": {
+            "ispb": "36947229",
+            "nome": "COBUCCIO SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "COBUCCIO SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 48,
+        "fields": {
+            "ispb": "02398976",
+            "nome": "Uniprime Norte do Paraná - Cooperativa de Crédito Ltda.",
+            "abreviacao": "Uniprime Norte do Paraná - Cc",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 49,
+        "fields": {
+            "ispb": "08673569",
+            "nome": "F.D GOLD - DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+            "abreviacao": "F D GOLD DTVM LTDA",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 50,
+        "fields": {
+            "ispb": "00806535",
+            "nome": "Planner Corretora de Valores S.A.",
+            "abreviacao": "Planner Cv S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 51,
+        "fields": {
+            "ispb": "60746948",
+            "nome": "Banco Bradesco S.A.",
+            "abreviacao": "Banco Bradesco S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 52,
+        "fields": {
+            "ispb": "62331228",
+            "nome": "Deutsche Bank S.A. - Banco Alemão",
+            "abreviacao": "Deutsche Bank S.A.banco Alemao",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 53,
+        "fields": {
+            "ispb": "13370835",
+            "nome": "BPP Instituição de Pagamento S.A.",
+            "abreviacao": "Bpp Ip S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 54,
+        "fields": {
+            "ispb": "09210106",
+            "nome": "Socred S.A. - Sociedade de Crédito ao Microempreendedor e à Empresa de Pequeno P",
+            "abreviacao": "Socred Sa - Scmepp",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 55,
+        "fields": {
+            "ispb": "06271464",
+            "nome": "Banco Bradesco BBI S.A.",
+            "abreviacao": "Banco Bbi S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 56,
+        "fields": {
+            "ispb": "17351180",
+            "nome": "Banco Triângulo S.A.",
+            "abreviacao": "Banco Triangulo S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 57,
+        "fields": {
+            "ispb": "61186680",
+            "nome": "Banco BMG S.A.",
+            "abreviacao": "Banco Bmg S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 58,
+        "fields": {
+            "ispb": "48795256",
+            "nome": "Banco AndBank (Brasil) S.A.",
+            "abreviacao": "Banco Andbank S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 59,
+        "fields": {
+            "ispb": "16944141",
+            "nome": "Broker Brasil Corretora de Câmbio Ltda.",
+            "abreviacao": "Broker Brasil Cc Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 60,
+        "fields": {
+            "ispb": "33042953",
+            "nome": "Citibank N.A.",
+            "abreviacao": "Citibank N.a.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 61,
+        "fields": {
+            "ispb": "15111975",
+            "nome": "IUGU SERVICOS NA INTERNET S/A",
+            "abreviacao": "IUGU SERVICOS NA INTERNET S/A",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 62,
+        "fields": {
+            "ispb": "33885724",
+            "nome": "Banco Itaú Consignado S.A.",
+            "abreviacao": "Banco Itaú Consignado S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 63,
+        "fields": {
+            "ispb": "17453575",
+            "nome": "ICBC do Brasil Banco Múltiplo S.A.",
+            "abreviacao": "Icbc do Brasil Bm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 64,
+        "fields": {
+            "ispb": "87654321",
+            "nome": "Teste ispb em jds",
+            "abreviacao": "banco teste jds",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 65,
+        "fields": {
+            "ispb": "39669186",
+            "nome": "HEMERA DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+            "abreviacao": "HEMERA DTVM LTDA.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 66,
+        "fields": {
+            "ispb": "39343350",
+            "nome": "LAR COOPERATIVA DE CRÉDITO - LAR CREDI",
+            "abreviacao": "CC LAR CREDI",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 67,
+        "fields": {
+            "ispb": "07945233",
+            "nome": "Pólocred Sociedade de Crédito ao Microempreendedor e à Empresa de Pequeno Porte",
+            "abreviacao": "Pólocred Scmepp Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 68,
+        "fields": {
+            "ispb": "62285390",
+            "nome": "Socopa Sociedade Corretora Paulista S.A.",
+            "abreviacao": "Socopa SC Paulista S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 69,
+        "fields": {
+            "ispb": "94968518",
+            "nome": "Decyseo Corretora de Câmbio Ltda.",
+            "abreviacao": "Decyseo Cc Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 70,
+        "fields": {
+            "ispb": "07237373",
+            "nome": "Banco do Nordeste do Brasil S.A.",
+            "abreviacao": "Banco do Nordeste do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 71,
+        "fields": {
+            "ispb": "14511781",
+            "nome": "Barigui Companhia Hipotecária",
+            "abreviacao": "Barigui Ch",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 72,
+        "fields": {
+            "ispb": "61809182",
+            "nome": "Credit Suisse Hedging-Griffo Corretora de Valores S.A.",
+            "abreviacao": "C.suisse Hedging-griffo Cv S/a",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 73,
+        "fields": {
+            "ispb": "78632767",
+            "nome": "Banco Ourinvest S.A.",
+            "abreviacao": "Banco Ourinvest S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 74,
+        "fields": {
+            "ispb": "04307598",
+            "nome": "Fidúcia Sociedade de Crédito ao Microempreendedor e à Empresa de Pequeno Porte L",
+            "abreviacao": "Fiducia Scmepp Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 75,
+        "fields": {
+            "ispb": "50579044",
+            "nome": "Levycam - Corretora de Câmbio e Valores Ltda.",
+            "abreviacao": "Levycam Ccv Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 76,
+        "fields": {
+            "ispb": "60814191",
+            "nome": "Banco Mercedes-Benz do Brasil S.A.",
+            "abreviacao": "Banco Mercedes-Benz S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 77,
+        "fields": {
+            "ispb": "07853842",
+            "nome": "Cooperativa de Crédito Rural de Ouro Sulcredi/Ouro",
+            "abreviacao": "Ccr De Ouro",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 78,
+        "fields": {
+            "ispb": "59285411",
+            "nome": "Banco Pan S.A.",
+            "abreviacao": "Banco Pan",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 79,
+        "fields": {
+            "ispb": "08253539",
+            "nome": "Cooperativa de Crédito Rural de São Miguel do Oeste - Sulcredi/São Miguel",
+            "abreviacao": "Ccr De São Miguel do Oeste",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 80,
+        "fields": {
+            "ispb": "92894922",
+            "nome": "Banco Original S.A.",
+            "abreviacao": "Banco Original",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 81,
+        "fields": {
+            "ispb": "44189447",
+            "nome": "Banco de La Provincia de Buenos Aires",
+            "abreviacao": "Banco La Provincia B Aires Bce",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 82,
+        "fields": {
+            "ispb": "32997490",
+            "nome": "Creditas Sociedade de Crédito Direto S.A.",
+            "abreviacao": "Creditas Scd",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 83,
+        "fields": {
+            "ispb": "15173776",
+            "nome": "Banco Capital S. A.",
+            "abreviacao": "Banco Capital S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 84,
+        "fields": {
+            "ispb": "27302181",
+            "nome": "COOPERATIVA DE CREDITO DOS SERVIDORES DA UNIVERSIDADE FEDERAL DO ESPIRITO SANTO",
+            "abreviacao": "CRED-UFES",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 85,
+        "fields": {
+            "ispb": "02318507",
+            "nome": "Banco Keb Hana do Brasil S. A.",
+            "abreviacao": "Banco Keb Hana do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 86,
+        "fields": {
+            "ispb": "59109165",
+            "nome": "Banco Volkswagen S.A.",
+            "abreviacao": "Banco Volkswagen S.A",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 87,
+        "fields": {
+            "ispb": "35977097",
+            "nome": "UP.P Sociedade de Empréstimo Entre Pessoas S.A.",
+            "abreviacao": "UP.P SEP S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 88,
+        "fields": {
+            "ispb": "30306294",
+            "nome": "Banco BTG Pactual S.A.",
+            "abreviacao": "Banco Btg Pactual S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 89,
+        "fields": {
+            "ispb": "10664513",
+            "nome": "Banco Agibank S.A.",
+            "abreviacao": "Banco Agibank S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 90,
+        "fields": {
+            "ispb": "01181521",
+            "nome": "Banco Cooperativo Sicredi S. A.",
+            "abreviacao": "Banco Cooperativo Sicredi S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 91,
+        "fields": {
+            "ispb": "17826860",
+            "nome": "BMS SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "BMS SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 92,
+        "fields": {
+            "ispb": "24074692",
+            "nome": "Guitta Corretora de Câmbio Ltda.",
+            "abreviacao": "Guitta Cc Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 93,
+        "fields": {
+            "ispb": "05442029",
+            "nome": "Casa do Crédito S.A. Sociedade de Crédito ao Microempreendedor",
+            "abreviacao": "Casa Credito S.A. Scm",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 94,
+        "fields": {
+            "ispb": "91884981",
+            "nome": "Banco John Deere S.A.",
+            "abreviacao": "Banco John Deere S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 95,
+        "fields": {
+            "ispb": "01634601",
+            "nome": "Central de Cooperativas de Economia e Crédito Mútuo do Est RS - Unicred",
+            "abreviacao": "Cccm Unicred Central Rs",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 96,
+        "fields": {
+            "ispb": "01701201",
+            "nome": "Kirton Bank S.A. - Banco Múltiplo",
+            "abreviacao": "Kirton Bank",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 97,
+        "fields": {
+            "ispb": "22610500",
+            "nome": "Vortx Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Vortx Dtvm Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 98,
+        "fields": {
+            "ispb": "00460065",
+            "nome": "COLUNA S/A DISTRIBUIDORA DE TITULOS E VALORES MOBILIÁRIOS",
+            "abreviacao": "COLUNA S.A. DTVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 99,
+        "fields": {
+            "ispb": "32648370",
+            "nome": "Fair Corretora de Câmbio S.A.",
+            "abreviacao": "Fair Cc S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 100,
+        "fields": {
+            "ispb": "00329598",
+            "nome": "ÍNDIGO INVESTIMENTOS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+            "abreviacao": "ÍNDIGO INVESTIMENTOS DTVM LTDA.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 101,
+        "fields": {
+            "ispb": "03532415",
+            "nome": "Banco ABN Amro S.A.",
+            "abreviacao": "Banco Abn Amro S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 102,
+        "fields": {
+            "ispb": "71590442",
+            "nome": "Lastro RDV Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Lastro Rdv Dtvm Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 103,
+        "fields": {
+            "ispb": "54403563",
+            "nome": "Banco Arbi S.A.",
+            "abreviacao": "Banco Arbi S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 104,
+        "fields": {
+            "ispb": "13059145",
+            "nome": "Bexs Banco de Câmbio S.A.",
+            "abreviacao": "Bexs Banco De Cambio S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 105,
+        "fields": {
+            "ispb": "31880826",
+            "nome": "Banco Guanabara S.A.",
+            "abreviacao": "Banco Guanabara S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 106,
+        "fields": {
+            "ispb": "61024352",
+            "nome": "Banco Indusval S. A.",
+            "abreviacao": "Banco Indusval S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 107,
+        "fields": {
+            "ispb": "67030395",
+            "nome": "PLANNER TRUSTEE DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+            "abreviacao": "PLANNER TRUSTEE DTVM LTDA",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 108,
+        "fields": {
+            "ispb": "16927221",
+            "nome": "Amazônia Corretora de Câmbio Ltda.",
+            "abreviacao": "Amazônia CC Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 109,
+        "fields": {
+            "ispb": "17772370",
+            "nome": "Vips Corretora de Câmbio Ltda.",
+            "abreviacao": "Vips Cc Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 110,
+        "fields": {
+            "ispb": "01027058",
+            "nome": "Cielo S.A.",
+            "abreviacao": "Cielo S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 111,
+        "fields": {
+            "ispb": "59588111",
+            "nome": "Banco Votorantim S.A.",
+            "abreviacao": "Banco Votorantim S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 112,
+        "fields": {
+            "ispb": "71677850",
+            "nome": "Frente Corretora de Câmbio Ltda.",
+            "abreviacao": "Frente Cc Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 113,
+        "fields": {
+            "ispb": "18520834",
+            "nome": "UBS Brasil Banco de Investimento S.A.",
+            "abreviacao": "Ubs Brasil Bi S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 114,
+        "fields": {
+            "ispb": "60394079",
+            "nome": "Banco ItauBank S.A.",
+            "abreviacao": "Banco Itaubank S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 115,
+        "fields": {
+            "ispb": "09512542",
+            "nome": "Codepe Corretora de Valores e Câmbio S.A.",
+            "abreviacao": "Codepe Cvc S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 116,
+        "fields": {
+            "ispb": "60701190",
+            "nome": "Itaú UnibancoS.A.",
+            "abreviacao": "Itaú Unibanco S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 117,
+        "fields": {
+            "ispb": "00558456",
+            "nome": "Banco Cetelem S.A.",
+            "abreviacao": "Banco Cetelem S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 118,
+        "fields": {
+            "ispb": "59274605",
+            "nome": "Banco GM S.A.",
+            "abreviacao": "Banco GM S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 119,
+        "fields": {
+            "ispb": "32062580",
+            "nome": "Banco Credit Suisse (Brasil) S.A.",
+            "abreviacao": "Banco Credit Suisse S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 120,
+        "fields": {
+            "ispb": "32402502",
+            "nome": "QI Sociedade de Crédito Direto S.A.",
+            "abreviacao": "Qi Scd S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 121,
+        "fields": {
+            "ispb": "08357240",
+            "nome": "Banco CSF S.A.",
+            "abreviacao": "Banco CSF S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 122,
+        "fields": {
+            "ispb": "03973814",
+            "nome": "Servicoop - Cooperativa de Crédito dos Servidores Públicos Estaduais do Rio Gran",
+            "abreviacao": "Servicoop",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 123,
+        "fields": {
+            "ispb": "11476673",
+            "nome": "Banco Randon S.A.",
+            "abreviacao": "Banco Randon S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 124,
+        "fields": {
+            "ispb": "00315557",
+            "nome": "Confederação Nacional das Cooperativas Centrais Unicred Ltda – Unicred do Brasil",
+            "abreviacao": "Conf Nac Coop Centrais Unicred",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 125,
+        "fields": {
+            "ispb": "02992317",
+            "nome": "Treviso Corretora de Câmbio S.A.",
+            "abreviacao": "Treviso Cc S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 126,
+        "fields": {
+            "ispb": "02332886",
+            "nome": "XP Investimentos Corretora de Câmbio Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "XP Investimentos Cctvm S/a",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 127,
+        "fields": {
+            "ispb": "78626983",
+            "nome": "Banco VR S.A.",
+            "abreviacao": "Banco Vr S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 128,
+        "fields": {
+            "ispb": "00416968",
+            "nome": "Banco Inter S.A.",
+            "abreviacao": "Banco Inter",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 129,
+        "fields": {
+            "ispb": "13009717",
+            "nome": "Banco do Estado de Sergipe S.A.",
+            "abreviacao": "Banco do Est. De Se S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 130,
+        "fields": {
+            "ispb": "15581638",
+            "nome": "Facta Financeira S.A. - Crédito Financiamento e Investimento",
+            "abreviacao": "Facta S.A. Cfi",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 131,
+        "fields": {
+            "ispb": "33644196",
+            "nome": "Banco Fator S.A.",
+            "abreviacao": "Banco Fator S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 132,
+        "fields": {
+            "ispb": "07799277",
+            "nome": "VALOR SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "VALOR SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 133,
+        "fields": {
+            "ispb": "03017677",
+            "nome": "Banco J. Safra S.A.",
+            "abreviacao": "Banco. J.safra S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 134,
+        "fields": {
+            "ispb": "10264663",
+            "nome": "BancoSeguro S.A.",
+            "abreviacao": "Bancoseguro S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 135,
+        "fields": {
+            "ispb": "61444949",
+            "nome": "Sagitur Corretora de Câmbio Ltda.",
+            "abreviacao": "Sagitur Cc Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 136,
+        "fields": {
+            "ispb": "05463212",
+            "nome": "Cooperativa Central de Crédito - Ailos",
+            "abreviacao": "Coop Central Ailos",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 137,
+        "fields": {
+            "ispb": "60872504",
+            "nome": "Itaú Unibanco Holding S.A.",
+            "abreviacao": "Itaú Unibanco Holding S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 138,
+        "fields": {
+            "ispb": "21018182",
+            "nome": "Boletobancário.com Tecnologia de Pagamentos Ltda.",
+            "abreviacao": "Juno",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 139,
+        "fields": {
+            "ispb": "34088029",
+            "nome": "LISTO SOCIEDADE DE CREDITO DIRETO S.A.",
+            "abreviacao": "LISTO SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 140,
+        "fields": {
+            "ispb": "20155248",
+            "nome": "Parmetal Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Parmetal Dtvm Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 141,
+        "fields": {
+            "ispb": "39676772",
+            "nome": "CREDIFIT SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "CREDIFIT SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 142,
+        "fields": {
+            "ispb": "10690848",
+            "nome": "Banco da China Brasil S.A.",
+            "abreviacao": "Banco da China Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 143,
+        "fields": {
+            "ispb": "39416705",
+            "nome": "CREDIHOME SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "CREDIHOME SCD",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 144,
+        "fields": {
+            "ispb": "33147315",
+            "nome": "Banco Bradesco BERJ S.A.",
+            "abreviacao": "Banco Bradesco Berj S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 145,
+        "fields": {
+            "ispb": "17352220",
+            "nome": "Senso Corretora de Câmbio e Valores Mobiliários S.A.",
+            "abreviacao": "Senso Ccvm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 146,
+        "fields": {
+            "ispb": "34335592",
+            "nome": "Otimo Sociedade de Credito Direto S.A.",
+            "abreviacao": "Ótimo Scd S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 147,
+        "fields": {
+            "ispb": "34111187",
+            "nome": "Haitong Banco de Investimento do Brasil S.A.",
+            "abreviacao": "Haitong Bi do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 148,
+        "fields": {
+            "ispb": "61033106",
+            "nome": "Banco Crefisa S.A.",
+            "abreviacao": "Banco Crefisa S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 149,
+        "fields": {
+            "ispb": "03323840",
+            "nome": "Banco Alfa S.A.",
+            "abreviacao": "Banco Alfa S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 150,
+        "fields": {
+            "ispb": "19307785",
+            "nome": "MS Bank S.A. Banco de Câmbio",
+            "abreviacao": "Ms Bank S.A. Banco De Câmbio",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 151,
+        "fields": {
+            "ispb": "03046391",
+            "nome": "Uniprime Central – Central Interestadual de Cooperativas de Crédito Ltda.",
+            "abreviacao": "Uniprime Central Ccc Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 152,
+        "fields": {
+            "ispb": "53518684",
+            "nome": "HSBC Brasil S.A. Banco de Investimento",
+            "abreviacao": "Hsbc Banco De Investimento",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 153,
+        "fields": {
+            "ispb": "92874270",
+            "nome": "Banco A. J. Renner S.A.",
+            "abreviacao": "Banco A.j. Renner S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 154,
+        "fields": {
+            "ispb": "71027866",
+            "nome": "Banco BS2 S.A.",
+            "abreviacao": "Banco Bs2 S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 155,
+        "fields": {
+            "ispb": "40654622",
+            "nome": "TRINUS SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "TRINUS SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 156,
+        "fields": {
+            "ispb": "90400888",
+            "nome": "Banco Santander (Brasil) S. A.",
+            "abreviacao": "Santander",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 157,
+        "fields": {
+            "ispb": "11165756",
+            "nome": "GLOBAL FINANÇAS SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO",
+            "abreviacao": "GLOBAL SCM LTDA",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 158,
+        "fields": {
+            "ispb": "13293225",
+            "nome": "Órama Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Órama Dtvm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 159,
+        "fields": {
+            "ispb": "09274232",
+            "nome": "State Street Brasil S.A. - Banco Comercial",
+            "abreviacao": "State Street Br S.A. Banco Comercial",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 160,
+        "fields": {
+            "ispb": "04257795",
+            "nome": "Nova Futura Corretora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Nova Futura Ctvm Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 161,
+        "fields": {
+            "ispb": "40475846",
+            "nome": "J17 - SOCIEDADE DE CRÉDITO DIRETO S/A",
+            "abreviacao": "J17 - SCD S/A",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 162,
+        "fields": {
+            "ispb": "15357060",
+            "nome": "Banco Woori Bank do Brasil S.A.",
+            "abreviacao": "Banco Woori Bank do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 163,
+        "fields": {
+            "ispb": "28127603",
+            "nome": "Banestes S.A. Banco do Estado do Espírito Santo",
+            "abreviacao": "Banco Banestes S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 164,
+        "fields": {
+            "ispb": "29030467",
+            "nome": "Scotiabank Brasil S.A. Banco Múltiplo",
+            "abreviacao": "Scotiabank Brasil",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 165,
+        "fields": {
+            "ispb": "28195667",
+            "nome": "Banco ABC Brasil S.A.",
+            "abreviacao": "Banco Abc Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 166,
+        "fields": {
+            "ispb": "03215790",
+            "nome": "Banco Toyota do Brasil S.A.",
+            "abreviacao": "Banco Toyota do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 167,
+        "fields": {
+            "ispb": "16501555",
+            "nome": "Stone Pagamentos S.A.",
+            "abreviacao": "Stone Pagamentos S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 168,
+        "fields": {
+            "ispb": "29162769",
+            "nome": "Toro Corretora De Títulos e Valores Mobiliários Ltda",
+            "abreviacao": "Toro CTVM Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 169,
+        "fields": {
+            "ispb": "60889128",
+            "nome": "Banco Sofisa S. A.",
+            "abreviacao": "Banco Sofisa S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 170,
+        "fields": {
+            "ispb": "59118133",
+            "nome": "Banco Luso Brasileiro S.A.",
+            "abreviacao": "Banco Luso Brasileiro S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 171,
+        "fields": {
+            "ispb": "39664698",
+            "nome": "CRED-SYSTEM SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "CRED-SYSTEM SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 172,
+        "fields": {
+            "ispb": "10866788",
+            "nome": "Banco Bandepe S.A.",
+            "abreviacao": "Banco Bandepe S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 173,
+        "fields": {
+            "ispb": "11581339",
+            "nome": "Money Plus Sociedade de Crédito ao Microempreendedor e a Empresa de Pequeno Port",
+            "abreviacao": "Money Plus Scmepp Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 174,
+        "fields": {
+            "ispb": "07656500",
+            "nome": "Banco KDB do Brasil S.A.",
+            "abreviacao": "Banco Kdb Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 175,
+        "fields": {
+            "ispb": "01852137",
+            "nome": "BBC LEASING S.A. - ARRENDAMENTO MERCANTIL",
+            "abreviacao": "BBC LEASING",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 176,
+        "fields": {
+            "ispb": "44077014",
+            "nome": "BR-CAPITAL DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+            "abreviacao": "BR-CAPITAL DTVM S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 177,
+        "fields": {
+            "ispb": "01522368",
+            "nome": "Banco BNP Paribas Brasil S.A.",
+            "abreviacao": "Banco Bnp Paribas Brasil S A",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 178,
+        "fields": {
+            "ispb": "17298092",
+            "nome": "Banco Itaú BBA S.A.",
+            "abreviacao": "Banco Itaú Bba S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 179,
+        "fields": {
+            "ispb": "33862244",
+            "nome": "BGC Liquidez Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Bgc Liquidez Dtvm Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 180,
+        "fields": {
+            "ispb": "61723847",
+            "nome": "Magliano S.A. Corretora de Cambio e Valores Mobiliarios",
+            "abreviacao": "Magliano S.A. Ccvm",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 181,
+        "fields": {
+            "ispb": "02276653",
+            "nome": "Trinus Capital Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Trinus Capital DTVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 182,
+        "fields": {
+            "ispb": "10573521",
+            "nome": "MercadoPago.com Representações Ltda.",
+            "abreviacao": "Mercado Pago",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 183,
+        "fields": {
+            "ispb": "00204963",
+            "nome": "COOPERATIVA DE CREDITO RURAL SEARA - CREDISEARA",
+            "abreviacao": "CCR SEARA",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 184,
+        "fields": {
+            "ispb": "41592532",
+            "nome": "MÉRITO DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+            "abreviacao": "MÉRITO DTVM LTDA.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 185,
+        "fields": {
+            "ispb": "62232889",
+            "nome": "Banco Daycoval S.A.",
+            "abreviacao": "Banco Daycoval S.a",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 186,
+        "fields": {
+            "ispb": "76543115",
+            "nome": "Banco Sistema S.A.",
+            "abreviacao": "Banco Sistema",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 187,
+        "fields": {
+            "ispb": "62073200",
+            "nome": "Bank of America Merrill Lynch Banco Múltiplo S.A.",
+            "abreviacao": "Bofa Merrill Lynch Bm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 188,
+        "fields": {
+            "ispb": "68757681",
+            "nome": "Solidus S.A. Corretora de Cambio e Valores Mobiliarios",
+            "abreviacao": "Solidus S.A. CCVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 189,
+        "fields": {
+            "ispb": "00997185",
+            "nome": "Banco B3 S.A.",
+            "abreviacao": "Banco B3 S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 190,
+        "fields": {
+            "ispb": "13673855",
+            "nome": "Fram Capital Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Fram Capital Dtvm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 191,
+        "fields": {
+            "ispb": "04632856",
+            "nome": "Credisis - Central de Cooperativas de Crédito Ltda.",
+            "abreviacao": "Credisis Central De Cooperativas De Crédito Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 192,
+        "fields": {
+            "ispb": "11703662",
+            "nome": "Travelex Banco de Câmbio S.A.",
+            "abreviacao": "Travelex Banco De Câmbio S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 193,
+        "fields": {
+            "ispb": "10853017",
+            "nome": "Get Money Corretora de Câmbio S.A.",
+            "abreviacao": "Get Money Cc Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 194,
+        "fields": {
+            "ispb": "33603457",
+            "nome": "Banco Rodobens SA",
+            "abreviacao": "Banco Rodobens S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 195,
+        "fields": {
+            "ispb": "52937216",
+            "nome": "Bexs Corretora de Câmbio S/A",
+            "abreviacao": "Bexs Cc S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 196,
+        "fields": {
+            "ispb": "13486793",
+            "nome": "BRL Trust Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Brl Trust Dtvm Sa",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 197,
+        "fields": {
+            "ispb": "07450604",
+            "nome": "China Construction Bank (Brasil) Banco Múltiplo S/A",
+            "abreviacao": "Banco Ccb Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 198,
+        "fields": {
+            "ispb": "21332862",
+            "nome": "CARTOS SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "CARTOS SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 199,
+        "fields": {
+            "ispb": "87963450",
+            "nome": "MAGNETIS - DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA",
+            "abreviacao": "MAGNETIS - DTVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 200,
+        "fields": {
+            "ispb": "03751794",
+            "nome": "Terra Investimentos Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Terra Investimentos Dtvm",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 201,
+        "fields": {
+            "ispb": "37715993",
+            "nome": "ACCREDITO - SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "ACCREDITO SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 202,
+        "fields": {
+            "ispb": "14190547",
+            "nome": "Cambionet Corretora de Câmbio Ltda.",
+            "abreviacao": "Cambionet Cc Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 203,
+        "fields": {
+            "ispb": "00000000",
+            "nome": "Banco do Brasil S.A.",
+            "abreviacao": "Banco do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 204,
+        "fields": {
+            "ispb": "33479023",
+            "nome": "Banco Citibank S.A.",
+            "abreviacao": "Banco Citibank S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 205,
+        "fields": {
+            "ispb": "50585090",
+            "nome": "BCV - Banco de Crédito e Varejo S/A",
+            "abreviacao": "Bcv",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 206,
+        "fields": {
+            "ispb": "30723886",
+            "nome": "Banco Modal S.A.",
+            "abreviacao": "Banco Modal S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 207,
+        "fields": {
+            "ispb": "92702067",
+            "nome": "Banco do Estado do Rio Grande do Sul S.A.",
+            "abreviacao": "Banco do Estado do Rs S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 208,
+        "fields": {
+            "ispb": "31895683",
+            "nome": "Banco Industrial do Brasil S.A.",
+            "abreviacao": "Banco Industrial do Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 209,
+        "fields": {
+            "ispb": "07253654",
+            "nome": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+            "abreviacao": "HEDGE INVESTMENTS DTVM LTDA.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 210,
+        "fields": {
+            "ispb": "39908427",
+            "nome": "STARK SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "STARK SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 211,
+        "fields": {
+            "ispb": "65913436",
+            "nome": "Guide Investimentos S.A. Corretora de Valores",
+            "abreviacao": "Guide",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 212,
+        "fields": {
+            "ispb": "18236120",
+            "nome": "Nu Pagamentos S.A.",
+            "abreviacao": "Nubank",
+            "foto": "bancos/nubank.png"
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 213,
+        "fields": {
+            "ispb": "36266751",
+            "nome": "CAPTALYS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+            "abreviacao": "CAPTALYS DTVM LTDA.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 214,
+        "fields": {
+            "ispb": "01858774",
+            "nome": "BANCO BV S.A.",
+            "abreviacao": "BCO BV S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 215,
+        "fields": {
+            "ispb": "33172537",
+            "nome": "Banco J. P. Morgan S. A.",
+            "abreviacao": "Banco J.p. Morgan S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 216,
+        "fields": {
+            "ispb": "37241230",
+            "nome": "SUMUP SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "SUMUP SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 217,
+        "fields": {
+            "ispb": "76641497",
+            "nome": "DOURADA CORRETORA DE CÂMBIO LTDA.",
+            "abreviacao": "DOURADA CORRETORA",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 218,
+        "fields": {
+            "ispb": "16695922",
+            "nome": "ID CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+            "abreviacao": "ID CTVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 219,
+        "fields": {
+            "ispb": "04866275",
+            "nome": "Banco Inbursa S.A.",
+            "abreviacao": "Banco Inbursa",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 220,
+        "fields": {
+            "ispb": "04062902",
+            "nome": "Vision S.A. Corretora de Câmbio",
+            "abreviacao": "Vision S.A. Cc",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 221,
+        "fields": {
+            "ispb": "24537861",
+            "nome": "FFA Sociedade de Crédito ao Microempreendedor e à Empresa de Pequeno Porte Ltda.",
+            "abreviacao": "FFA SCMEPP Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 222,
+        "fields": {
+            "ispb": "37555231",
+            "nome": "DMCARD SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "DMCARD SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 223,
+        "fields": {
+            "ispb": "61182408",
+            "nome": "Banco Investcred Unibanco S.A.",
+            "abreviacao": "Banco Investcred Unibanco S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 224,
+        "fields": {
+            "ispb": "33132044",
+            "nome": "Banco Cédula S.A.",
+            "abreviacao": "Banco Cedula S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 225,
+        "fields": {
+            "ispb": "04184779",
+            "nome": "Banco Bradescard S.A.",
+            "abreviacao": "Banco Bradescard",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 226,
+        "fields": {
+            "ispb": "01330387",
+            "nome": "Cooperativa de Crédito Rural de Pequenos Agricultores e da Reforma Agrária do Ce",
+            "abreviacao": "Crehnor Laranjeiras",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 227,
+        "fields": {
+            "ispb": "92832176",
+            "nome": "Banco Teste Eventos",
+            "abreviacao": "Usando lib avro",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 228,
+        "fields": {
+            "ispb": "13203354",
+            "nome": "FITBANK PAGAMENTOS ELETRONICOS S.A.",
+            "abreviacao": "FITBANK PAGAMENTOS ELETRONICOS S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 229,
+        "fields": {
+            "ispb": "18188384",
+            "nome": "Crefaz Sociedade de Crédito ao Microempreendedor e a Empresa de Pequeno Porte Lt",
+            "abreviacao": "Crefaz Scmepp Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 230,
+        "fields": {
+            "ispb": "31749596",
+            "nome": "IDEAL CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+            "abreviacao": "IDEAL CTVM S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 231,
+        "fields": {
+            "ispb": "38224857",
+            "nome": "DELCRED SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "DELCRED SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 232,
+        "fields": {
+            "ispb": "09089356",
+            "nome": "Gerencianet Pagamentos do Brasil",
+            "abreviacao": "Gerencianet",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 233,
+        "fields": {
+            "ispb": "58497702",
+            "nome": "Banco Smartbank S.A.",
+            "abreviacao": "Smartbank",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 234,
+        "fields": {
+            "ispb": "52904364",
+            "nome": "Necton Investimentos S.A. Corretora de Valores Mobiliários e Commodities",
+            "abreviacao": "Necton Investimentos S.A CVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 235,
+        "fields": {
+            "ispb": "99999004",
+            "nome": "Banco Pagador LTDA",
+            "abreviacao": "Banco Pagador",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 236,
+        "fields": {
+            "ispb": "36864992",
+            "nome": "MAF DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+            "abreviacao": "MAF DTVM",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 237,
+        "fields": {
+            "ispb": "37526080",
+            "nome": "WORK SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "WORK SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 238,
+        "fields": {
+            "ispb": "71371686",
+            "nome": "Banco Olé Bonsucesso Consignado S.A.",
+            "abreviacao": "Banco Olé Bonsucesso Consignado S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 239,
+        "fields": {
+            "ispb": "11495073",
+            "nome": "OM Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Om Dtvm Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 240,
+        "fields": {
+            "ispb": "37414009",
+            "nome": "ZIPDIN SOLUÇÕES DIGITAIS SOCIEDADE DE CRÉDITO DIRETO S/A",
+            "abreviacao": "ZIPDIN SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 241,
+        "fields": {
+            "ispb": "76461557",
+            "nome": "Cooperativa de Crédito Rural Coopavel",
+            "abreviacao": "Ccr Coopavel",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 242,
+        "fields": {
+            "ispb": "62109566",
+            "nome": "Cooperativa de Crédito Rural da Região da Mogiana",
+            "abreviacao": "Ccr Reg Mogiana",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 243,
+        "fields": {
+            "ispb": "07207996",
+            "nome": "Banco Bradesco Financiamentos S.A.",
+            "abreviacao": "Banco Bradesco Financ. S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 244,
+        "fields": {
+            "ispb": "23522214",
+            "nome": "Commerzbank Brasil S.A. - Banco Múltiplo",
+            "abreviacao": "Commerzbank Brasil S.A. - Banco Múltiplo",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 245,
+        "fields": {
+            "ispb": "33042151",
+            "nome": "Banco de la Nacion Argentina",
+            "abreviacao": "Banco La Nacion Argentina",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 246,
+        "fields": {
+            "ispb": "00795423",
+            "nome": "Banco Semear S.A.",
+            "abreviacao": "Banco Semear",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 247,
+        "fields": {
+            "ispb": "09554480",
+            "nome": "Super Pagamentos e Administração de Meios Eletrônicos S.A.",
+            "abreviacao": "Super Pagamentos e Admin de Meios Eletronicos",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 248,
+        "fields": {
+            "ispb": "82096447",
+            "nome": "COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO BRF - CREDIBRF",
+            "abreviacao": "CECM BRF",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 249,
+        "fields": {
+            "ispb": "38129006",
+            "nome": "NUMBRS SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "NUMBRS SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 250,
+        "fields": {
+            "ispb": "02038232",
+            "nome": "Banco Cooperativo do Brasil S/A - Bancoob",
+            "abreviacao": "Bancoob (Sicoob)",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 251,
+        "fields": {
+            "ispb": "03609817",
+            "nome": "Banco Cargill S.A.",
+            "abreviacao": "Banco Cargill S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 252,
+        "fields": {
+            "ispb": "75647891",
+            "nome": "Banco Credit Agrícole Brasil S.A.",
+            "abreviacao": "Banco Crédit Agricole Br S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 253,
+        "fields": {
+            "ispb": "55230916",
+            "nome": "Intesa Sanpaolo Brasil S.A. - Banco Múltiplo",
+            "abreviacao": "Intesa Sanpaolo Brasil S.A. Bm",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 254,
+        "fields": {
+            "ispb": "13220493",
+            "nome": "BR Partners Banco de Investimento S.A.",
+            "abreviacao": "Br Partners Bi",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 255,
+        "fields": {
+            "ispb": "31597552",
+            "nome": "Banco Clássico S.A.",
+            "abreviacao": "Banco Classico S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 256,
+        "fields": {
+            "ispb": "33775974",
+            "nome": "Ativa Investimentos S.A. Corretora de Títulos Câmbio e Valores",
+            "abreviacao": "Ativa S.A. Investimentos Cctvm",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 257,
+        "fields": {
+            "ispb": "33466988",
+            "nome": "Banco Caixa Geral - Brasil S.A.",
+            "abreviacao": "Banco Caixa Geral Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 258,
+        "fields": {
+            "ispb": "61088183",
+            "nome": "Banco Mizuho do Brasil S.A.",
+            "abreviacao": "Banco Mizuho S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 259,
+        "fields": {
+            "ispb": "36113876",
+            "nome": "Oliveira Trust Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Oliveira Trust Dtvm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 260,
+        "fields": {
+            "ispb": "57839805",
+            "nome": "Banco Tricury S.A.",
+            "abreviacao": "Banco Tricury S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 261,
+        "fields": {
+            "ispb": "05790149",
+            "nome": "Central Cooperativa de Crédito no Estado do Espírito Santo - Cecoop",
+            "abreviacao": "Central Cooperativa de Crédito do Espírito Santo",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 262,
+        "fields": {
+            "ispb": "13140088",
+            "nome": "Acesso Soluções de Pagamento S.A.",
+            "abreviacao": "Acesso",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 263,
+        "fields": {
+            "ispb": "80271455",
+            "nome": "BANCO RNX S.A.",
+            "abreviacao": "BCO RNX S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 264,
+        "fields": {
+            "ispb": "15114366",
+            "nome": "Banco Bocom BBM S.A.",
+            "abreviacao": "Banco Bocom Bbm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 265,
+        "fields": {
+            "ispb": "31872495",
+            "nome": "Banco C6 S.A.",
+            "abreviacao": "Banco C6 S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 266,
+        "fields": {
+            "ispb": "04546162",
+            "nome": "COOPERATIVA DE CRÉDITO MÚTUO DE SERVIDORES PÚBLICOS DO ESTADO DE SÃO PAULO - CRE",
+            "abreviacao": "CCM SERV. PÚBLICOS SP",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 267,
+        "fields": {
+            "ispb": "19324634",
+            "nome": "LAMARA SOCIEDADE DE CRÉDITO DIRETO S.A.",
+            "abreviacao": "LAMARA SCD S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 268,
+        "fields": {
+            "ispb": "39587424",
+            "nome": "UY3 SOCIEDADE DE CRÉDITO DIRETO S/A",
+            "abreviacao": "UY3 SCD S/A",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 269,
+        "fields": {
+            "ispb": "02801938",
+            "nome": "Banco Morgan Stanley S. A.",
+            "abreviacao": "Banco Morgan Stanley S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 270,
+        "fields": {
+            "ispb": "62169875",
+            "nome": "Easynvest - Título Corretora de Valores SA",
+            "abreviacao": "Easynvest - Título Cv Sa",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 271,
+        "fields": {
+            "ispb": "19540550",
+            "nome": "ASAAS GESTÃO FINANCEIRA INSTITUIÇÃO DE PAGAMENTO S.A.",
+            "abreviacao": "ASAAS IP S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 272,
+        "fields": {
+            "ispb": "60518222",
+            "nome": "Banco Sumitomo Mitsui Brasileiro S.A.",
+            "abreviacao": "Banco Sumitomo Mitsui Brasil S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 273,
+        "fields": {
+            "ispb": "13884775",
+            "nome": "Hub Pagamentos S.A",
+            "abreviacao": "Hub Pagamentos",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 274,
+        "fields": {
+            "ispb": "68900810",
+            "nome": "Banco Rendimento S.A.",
+            "abreviacao": "Banco Rendimento S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 275,
+        "fields": {
+            "ispb": "33923798",
+            "nome": "Banco Máxima S.A.",
+            "abreviacao": "Banco Máxima S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 276,
+        "fields": {
+            "ispb": "73622748",
+            "nome": "BT Corretora de Câmbio Ltda.",
+            "abreviacao": "B&T Cc Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 277,
+        "fields": {
+            "ispb": "01073966",
+            "nome": "Cooperativa de Crédito Rural de Abelardo Luz - Sulcredi/Crediluz",
+            "abreviacao": "Ccr De Abelardo Luz",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 278,
+        "fields": {
+            "ispb": "14388334",
+            "nome": "Parana Banco S. A.",
+            "abreviacao": "Parana Banco S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 279,
+        "fields": {
+            "ispb": "03502968",
+            "nome": "PI Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Pi Dtvm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 280,
+        "fields": {
+            "ispb": "78157146",
+            "nome": "Credialiança Cooperativa de Crédito Rural",
+            "abreviacao": "Credialiança Ccr",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 281,
+        "fields": {
+            "ispb": "04332281",
+            "nome": "Goldman Sachs do BrasilBanco Múltiplo S. A.",
+            "abreviacao": "Goldman Sachs do Brasil Bm S.a",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 282,
+        "fields": {
+            "ispb": "00556603",
+            "nome": "Banco Bari de Investimentos e Financiamentos S.A",
+            "abreviacao": "Banco Bari S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 283,
+        "fields": {
+            "ispb": "22896431",
+            "nome": "PICPAY SERVICOS S.A.",
+            "abreviacao": "PICPAY",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 284,
+        "fields": {
+            "ispb": "62287735",
+            "nome": "Renascença Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Renascenca Dtvm Ltda",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 285,
+        "fields": {
+            "ispb": "28650236",
+            "nome": "BS2 Distribuidora de Títulos e Valores Mobiliários S.A.",
+            "abreviacao": "Bs2 Dtvm S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 286,
+        "fields": {
+            "ispb": "04715685",
+            "nome": "Coop de Créd. Mútuo dos Despachantes de Trânsito de SC e Rio Grande do Sul",
+            "abreviacao": "Ccm Desp Trâns Sc E Rs",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 287,
+        "fields": {
+            "ispb": "62237649",
+            "nome": "Carol Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Carol Dtvm Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 288,
+        "fields": {
+            "ispb": "04913129",
+            "nome": "Confidence Corretora de Câmbio S.A.",
+            "abreviacao": "Confidence Cc S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 289,
+        "fields": {
+            "ispb": "04902979",
+            "nome": "Banco da Amazônia S.A.",
+            "abreviacao": "Banco da Amazonia S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 290,
+        "fields": {
+            "ispb": "89960090",
+            "nome": "RB Capital Investimentos Distribuidora de Títulos e Valores Mobiliários Ltda.",
+            "abreviacao": "Rb Capital Investimentos Dtvm Ltda.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 291,
+        "fields": {
+            "ispb": "13720915",
+            "nome": "Banco Western Union do Brasil S.A.",
+            "abreviacao": "Banco Western Union",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 292,
+        "fields": {
+            "ispb": "08609934",
+            "nome": "Moneycorp Banco de Câmbio S.A.",
+            "abreviacao": "Moneycorp Banco De Câmbio S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 293,
+        "fields": {
+            "ispb": "60850229",
+            "nome": "Omni Banco S.A.",
+            "abreviacao": "Omni Banco S.A.",
+            "foto": null
+        }
+    },
+    {
+        "model": "moedas.banco",
+        "pk": 294,
+        "fields": {
+            "ispb": "07679404",
+            "nome": "Banco Topazio S.A.",
+            "abreviacao": "Banco Topázio S.A.",
+            "foto": null
+        }
+    }
+]
