@@ -10,6 +10,12 @@ const nextConfig = {
                 port: '8001',
                 pathname: '/**',
             },
+            {
+                protocol: 'http',
+                hostname: 'api.pharus.website',
+                port: '80',
+                pathname: '/**',
+            }
         ],
     },
 }
