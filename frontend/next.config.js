@@ -1,8 +1,3 @@
-const {
-    PHASE_PRODUCTION_BUILD,
-    PHASE_PRODUCTION_SERVER,
-} = require('next/constants');
-
 /**
  * @param {string} phase
  * @returns {import('next').NextConfig}
