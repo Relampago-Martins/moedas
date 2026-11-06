@@ -2,14 +2,17 @@
 
 import { Movimentacao } from '@/types/models/movimentacao';
 import { useState } from 'react';
-import { MovimentacaoContext } from '../lib/context';
+import {
+    MovimentacaoContext,
+    type MovimentacaoSelecionada,
+} from '../lib/context';
 
 type MovimentacaoProviderProps = {
     children?: React.ReactNode;
 };
 export function MovimentacaoProvider({ children }: MovimentacaoProviderProps) {
     const [movimentacaoSelecionada, setMovimentacaoSelecionada] = useState<
-        { id: number; tipo: string } | undefined
+        MovimentacaoSelecionada | undefined
     >(undefined);
     const [movimentacoes, setMovimentacoes] = useState<Movimentacao[]>([]);
 
