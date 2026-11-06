@@ -27,12 +27,13 @@ export type ModalNovoSteps =
  * para melhorar a performance da aplicação.
  */
 export function ModalNovo() {
-    const { defaultStep, isOpen, onOpenChange, setDefaultStep } =
+    const { defaultStep, isOpen, onOpenChange, setDefaultStep, origemId } =
         useModalNovoStore((state) => state);
 
     return (
         <DialogOrDrawer
             open={isOpen}
+            originId={origemId}
             onOpenChange={(v) => {
                 if (!v) {
                     setDefaultStep({ name: 'menu', level: 0 });
@@ -55,7 +56,7 @@ export function ModalNovo() {
                     <FormTransferencia />
                 </StepperContent>
                 <StepperContent value="investimento" level={1}>
-                    <FormInvestimento stepBack={{ name: 'menu', level: 0 }} />
+                    <FormInvestimento />
                 </StepperContent>
                 <StepperContent
                     value="lista-categorias"

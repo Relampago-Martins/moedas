@@ -1,16 +1,16 @@
 'use client';
 import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
+import { ModalNovoOrigin } from '@/features/modal-novo/ui/modal-novo-origin';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
 export function CardDespesas() {
     const { movimentacoes } = useMovimentacaoContext();
-    const openNovaDespesa = useModalNovoStore((state) => () => {
-        state.setDefaultStep({ name: 'gasto', level: 1 });
-        state.onOpenChange(true);
-    });
+    const abrir = useModalNovoStore((state) => state.abrir);
+    const openNovaDespesa = () =>
+        abrir('card-despesas', { name: 'gasto', level: 1 });
 
     const despesas = movimentacoes.filter(
         (movimentacao) => movimentacao.tipo === 'D',
@@ -73,10 +73,11 @@ export function CardDespesas() {
             </div>
             <button
                 onClick={openNovaDespesa}
-                className="flex items-center justify-center gap-2 pt-2 text-sm text-muted transition-transform hover:scale-110"
+                className="relative flex items-center justify-center gap-2 pt-2 text-sm text-muted transition-transform hover:scale-110"
             >
                 <i className="ph-bold ph-plus" />
                 <span className="hover:underline">Despesa</span>
+                <ModalNovoOrigin id="card-despesas" />
             </button>
         </div>
     );

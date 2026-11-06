@@ -1,6 +1,6 @@
 import { Logo } from '@/shared/ui/custom/logo';
 import { Separator } from '@/shared/ui/separator';
-import { MotionConfig } from 'framer-motion';
+import { MotionConfig } from 'motion/react';
 import { Menu, Settings } from 'lucide-react';
 import Link from 'next/link';
 import {
@@ -11,7 +11,6 @@ import {
     NavBarItem,
     NavBarTrigger,
 } from './NavBar';
-import { NovoBtn } from './NovoBtn';
 import { UserMenu } from './UserMenu';
 
 export function SideBar() {
@@ -31,8 +30,6 @@ export function SideBar() {
             <Separator className="w-[85%] self-center" />
             <NavBarContent>
                 <MotionConfig>
-                    <NovoBtn />
-
                     <NavBarItem
                         component={<Link href="/dashboard" />}
                         activeName="/dashboard"

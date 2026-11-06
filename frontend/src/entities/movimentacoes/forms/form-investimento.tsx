@@ -1,18 +1,16 @@
-import { StepObject } from '@/entities/stepper/lib/types';
 import { useStepper } from '@/entities/stepper/ui/stepper';
 import { DialogOrDrawerHeader } from '../../../features/modal-novo/ui/step-header';
 
-type FormInvestimentoProps = {
-    stepBack: StepObject<string>;
-};
-export function FormInvestimento({ stepBack }: FormInvestimentoProps) {
-    const { goToStep } = useStepper();
+export function FormInvestimento() {
+    // Aberto pela dock, o passo é a raiz e não tem para onde voltar.
+    const { previous, hasPrevious } = useStepper();
 
     return (
         <>
             <DialogOrDrawerHeader
                 title={'Criar investimento'}
-                onBack={() => goToStep(stepBack)}
+                withBackButton={hasPrevious}
+                onBack={previous}
             />
             <form></form>;
         </>
