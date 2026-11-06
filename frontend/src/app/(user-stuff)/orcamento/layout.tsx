@@ -15,9 +15,9 @@ export default function RootLayout({
 
     return (
         <div className="flex h-screen flex-col gap-4 px-6 py-6 md:px-8 xl:px-36">
-            <div className="flex items-center gap-2 text-primary ">
+            <div className="flex items-center gap-2 text-primary">
                 <i className="ph ph-crosshair flex text-2xl" />
-                <h1 className="text-xl font-semibold leading-10">Orçamento</h1>
+                <h1 className="text-xl leading-10 font-semibold">Orçamento</h1>
             </div>
 
             <Suspense>
@@ -43,15 +43,12 @@ export default function RootLayout({
                     {children}
                 </div>
 
-                <Card className="sm:w-[400px] ">
+                <Card className="sm:w-[400px]">
                     <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
                         <span className="text-sm">Limite de gastos</span>
                     </CardHeader>
                     <CardContent className="flex h-full w-full items-center justify-center">
-                        <ModalLimiteGastos className="flex items-center gap-2 text-muted">
-                            <i className="ph ph-plus-circle text-2xl"></i>
-                            <span className="">Adicionar</span>
-                        </ModalLimiteGastos>
+                        <ModalLimiteGastos className="flex items-center gap-2 px-2 py-1 text-muted hover:bg-accent" />
                     </CardContent>
                 </Card>
             </div>
