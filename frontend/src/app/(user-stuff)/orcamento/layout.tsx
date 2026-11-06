@@ -4,6 +4,7 @@ import { ModalLimiteGastos } from '@/features/plano-financeiro/modal-limite-gast
 import { Card, CardContent, CardHeader } from '@/shared/ui/card';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function RootLayout({
     children,
@@ -19,7 +20,9 @@ export default function RootLayout({
                 <h1 className="text-xl font-semibold leading-10">Orçamento</h1>
             </div>
 
-            <FiltroPeriodo className="" />
+            <Suspense>
+                <FiltroPeriodo className="" />
+            </Suspense>
 
             <div className="flex h-full flex-wrap justify-between gap-8 sm:flex-nowrap">
                 <div className="flex h-full w-full flex-col gap-4">

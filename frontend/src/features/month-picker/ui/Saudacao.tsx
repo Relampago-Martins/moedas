@@ -1,9 +1,7 @@
 import { getCurrentUser } from '@/shared/api/endpoints/auth';
 import { getBoasVindas } from '../lib/saudacao';
 
-type SaudacaoProps = {};
-
-export async function Saudacao({}: SaudacaoProps) {
+export async function Saudacao() {
     const user = await getCurrentUser();
 
     return (
