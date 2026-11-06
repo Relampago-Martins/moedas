@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/shared/ui/button';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { useState } from 'react';
 

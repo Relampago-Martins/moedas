@@ -2,7 +2,7 @@
 import { Button } from '@/shared/ui/button';
 import { Card } from '@/shared/ui/card';
 import { Flag01Icon, TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import { date2MesAno, incrementMonth } from '../lib/utils';

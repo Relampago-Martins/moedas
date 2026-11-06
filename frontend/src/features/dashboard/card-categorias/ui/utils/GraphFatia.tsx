@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Sector } from 'recharts';
 import { PieSectorDataItem } from 'recharts/types/polar/Pie';
 

@@ -1,5 +1,5 @@
 'use client';
-import { motion, MotionConfig } from 'framer-motion';
+import { motion, MotionConfig } from 'motion/react';
 import { useState } from 'react';
 
 const TABS = ['Despesas', 'Receitas', 'Resumo'];

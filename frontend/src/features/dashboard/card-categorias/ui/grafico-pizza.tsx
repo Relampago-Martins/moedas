@@ -1,6 +1,6 @@
 'use client';
 import { CategoriaTotalMov } from '@/types/models/categoria';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import { GastosContext } from '../lib/context';

@@ -4,7 +4,7 @@ import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Despesa } from '@/types/models/despesa';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import { DespesaSkeleton } from '../skeletons/despesa';
 
