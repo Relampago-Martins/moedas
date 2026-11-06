@@ -1,6 +1,6 @@
 'use server';
 import { Receita, ReceitaSchema } from '@/types/models/receita';
-import { revalidateTag } from 'next/cache';
+import { updateTag } from 'next/cache';
 import { ApiClient } from '../api-client';
 
 export async function criaReceita(receita: ReceitaSchema) {
@@ -27,7 +27,7 @@ export async function getReceita(id: number) {
 
 export async function deleteReceita(id: number) {
     const resp = await ApiClient.getInstance().delete(`/receitas/${id}/`);
-    revalidateTag(`getReceita${id}`);
+    updateTag(`getReceita${id}`);
     return resp;
 }
 
@@ -40,6 +40,6 @@ export async function atualizaReceita(id: number, receita: ReceitaSchema) {
             conta_bancaria_id: receita.contaBancaria.id,
         },
     );
-    revalidateTag(`getReceita${id}`);
+    updateTag(`getReceita${id}`);
     return resp;
 }

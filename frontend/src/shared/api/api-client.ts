@@ -73,7 +73,7 @@ export class ApiClient {
      * @template T Tipo do retorno da requisição
      */
     public async post<T>(url: string, body: RequestInit | object, init?: Omit<CustomFetchProps, 'body'>){
-        const csrf = cookies().get('csrftoken')?.value;
+        const csrf = (await cookies()).get('csrftoken')?.value;
 
         const resp = await fetch(
             `${this.apiUrl}${url}`,
@@ -92,7 +92,7 @@ export class ApiClient {
     }
 
     public async patch<T>(url: string, body: RequestInit | object, init?: Omit<CustomFetchProps, 'body'>){
-        const csrf = cookies().get('csrftoken')?.value;
+        const csrf = (await cookies()).get('csrftoken')?.value;
 
         const resp = await fetch(
             `${this.apiUrl}${url}`,

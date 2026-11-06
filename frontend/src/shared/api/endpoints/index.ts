@@ -6,7 +6,7 @@ import { Carteira } from '@/types/models';
 import { ApiClient } from '../api-client';
 
 export async function getCarteira(
-    params: TFiltroPeriodo | {},
+    params: TFiltroPeriodo,
 ): Promise<Carteira> {
     const urlParams = obj2SearchParams(params || {});
 

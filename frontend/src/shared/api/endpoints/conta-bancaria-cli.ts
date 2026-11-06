@@ -7,7 +7,7 @@ import {
     ContaBancariaForm,
     ContaBancariaPreview,
 } from '@/types/models/conta-bancaria';
-import { revalidateTag } from 'next/cache';
+import { updateTag } from 'next/cache';
 import { ApiClient } from '../api-client';
 
 export async function getContasBancarias() {
@@ -53,7 +53,7 @@ export async function createContaBancaria(contaBancaria: ContaBancariaForm) {
         '/contas-bancarias/',
         contaBancaria,
     );
-    revalidateTag('contas-bancarias');
+    updateTag('contas-bancarias');
     return resp;
 }
 
@@ -65,8 +65,8 @@ export async function updateContaBancaria(
         `/contas-bancarias/${id}/`,
         contaBancaria,
     );
-    revalidateTag('contas-bancarias');
-    revalidateTag('minha-conta-bancaria');
+    updateTag('contas-bancarias');
+    updateTag('minha-conta-bancaria');
     return resp;
 }
 
@@ -91,7 +91,7 @@ export async function deleteContaBancaria(id: number) {
     return ApiClient.getInstance()
         .delete(`/contas-bancarias/${id}/`)
         .then((resp) => {
-            revalidateTag('contas-bancarias');
+            updateTag('contas-bancarias');
             return resp;
         });
 }
