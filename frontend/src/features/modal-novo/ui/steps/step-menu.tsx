@@ -13,7 +13,7 @@ import {
 import { DialogOrDrawerHeader } from '../step-header';
 
 const cardClass =
-    'flex h-[5.5rem] w-full gap-1 cursor-pointer flex-col items-center justify-center transition-transform duration-300 hover:scale-105';
+    'flex h-22 w-full gap-1 cursor-pointer flex-col items-center justify-center transition-transform duration-300 hover:scale-105';
 
 export function StepMenu({ value, level }: { value: string; level: number }) {
     const { goToStep } = useStepper<ModalNovoSteps>();

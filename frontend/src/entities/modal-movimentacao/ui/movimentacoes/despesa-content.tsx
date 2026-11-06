@@ -59,7 +59,7 @@ export function DespesaContent({ id }: DespesaContentProps) {
             <StepperContent
                 value="lista-categorias"
                 level={2}
-                className="md:w-[25rem]"
+                className="md:w-100"
             >
                 <StepListaCategorias />
             </StepperContent>

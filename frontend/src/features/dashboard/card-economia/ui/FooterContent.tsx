@@ -28,8 +28,8 @@ export function FooterContent({ carteira }: FooterContentProps) {
             <CollapsibleContent className="CollapsibleMotion">
                 <div className="flex flex-row items-center justify-center gap-4">
                     <GraficoEconomia carteira={carteira} />
-                    <div className="flex flex-col break-words text-center text-xs text-gray-400">
-                        <span className="max-w-[11rem]">
+                    <div className="flex flex-col wrap-break-word text-center text-xs text-gray-400">
+                        <span className="max-w-44">
                             {`Parabéns! Você economizou 
                             ${numberToCurrency(totalEconomizado)} este mês.`}
                         </span>

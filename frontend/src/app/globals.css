@@ -1,96 +1,152 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
- 
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-@layer base {
-  :root {
-    --background: #f1f5f9;
-    --foreground: #0f172a;
-    
-    --primary: #001675;
-    --primary-foreground: #fff7ed;
-    
-    --secondary: rgb(241, 132, 72);
-    --secondary-foreground: #AC85F0;
+@custom-variant dark (&:is(.dark *));
+@custom-variant selecionado (&[data-selecionado='true']);
 
-    --card: #ffffff;
-    --card-foreground: #0f172a;
-    
-    --popover: #ffffff;
-    --popover-foreground: #0f172a;
-    
-    --muted:#6b7280;
-    --muted-foreground:#F3F4F6;
+:root {
+  --background: #f1f5f9;
+  --foreground: #0f172a;
 
-    --accent: #f5f5f5;
-    --accent-foreground: #2e1065;
+  --primary: #001675;
+  --primary-foreground: #fff7ed;
 
-    --destructive: 	#fee2e2;
-    --destructive-foreground: #b91c1c;
-    
-    --success: #dcfce7;
-    --success-foreground: #15803d;
+  --secondary: rgb(241, 132, 72);
+  --secondary-foreground: #AC85F0;
 
-    --border: #a3a3a3;
-    --input: #a3a3a3;
-    --ring: #fc420f9d;
-    
-    --radius: 0.5rem;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
 
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --muted:#6b7280;
+  --muted-foreground:#F3F4F6;
+
+  --accent: #f5f5f5;
+  --accent-foreground: #2e1065;
+
+  --destructive: 	#fee2e2;
+  --destructive-foreground: #b91c1c;
+
+  --success: #dcfce7;
+  --success-foreground: #15803d;
+
+  --border: #a3a3a3;
+  --input: #a3a3a3;
+  --ring: #fc420f9d;
+
+  --radius: 0.5rem;
+
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+}
+
+.dark {
+  --background:	#18181b;
+  --foreground: #ffffff;
+
+  --primary: 	rgb(241, 132, 72);
+  --primary-foreground: #f9fafb;
+
+  --secondary:	rgb(57,106,178);
+  --secondary-foreground: #f9fafb;
+
+  --card:	#27272a;
+  --card-foreground: #f9fafb;
+
+  --popover:	#27272a;
+  --popover-foreground: #f9fafb;
+
+  --muted:	#9ca3af;
+  --muted-foreground: 	#27272a;
+
+  --accent:	#18181b;
+  --accent-foreground: #f9fafb;
+
+  --destructive: 	#7f1d1d;
+  --destructive-foreground: #ef4444;
+
+  --success: #14532d;
+  --success-foreground: #22c55e;
+
+  --border:	#525252;
+  --input:	#525252;
+  --ring: #e2e8f0;
+
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
-   
-  .dark {
-    --background:	#18181b;
-    --foreground: #ffffff;
-    
-    --primary: 	rgb(241, 132, 72);
-    --primary-foreground: #f9fafb;
 
-    --secondary:	rgb(57,106,178);
-    --secondary-foreground: #f9fafb;
-
-    --card:	#27272a;
-    --card-foreground: #f9fafb;
-
-    --popover:	#27272a;
-    --popover-foreground: #f9fafb;
-
-    --muted:	#9ca3af;
-    --muted-foreground: 	#27272a;
-
-    --accent:	#18181b;
-    --accent-foreground: #f9fafb;
-
-    --destructive: 	#7f1d1d;
-    --destructive-foreground: #ef4444;
-
-    --success: #14532d;
-    --success-foreground: #22c55e;
-  
-    --border:	#525252;
-    --input:	#525252;
-    --ring: #e2e8f0;
-
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
 }
-  
- 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
   }
 }

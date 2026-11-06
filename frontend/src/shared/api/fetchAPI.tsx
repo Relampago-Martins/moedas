@@ -36,7 +36,7 @@ export async function loginGoogle(data: LoginGoogleData) {
 }
 
 export async function register(data: RegisterForm) {
-    let resposeData = {
+    const resposeData = {
         status: 0,
         erros: {},
     };

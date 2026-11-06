@@ -5,6 +5,7 @@ import { CardReceitas } from '@/entities/movimentacoes/card-receitas/ui';
 import { Filtros } from '@/entities/movimentacoes/filtros/ui';
 import { ListaMovimentacoes } from '@/entities/movimentacoes/lista-movimentacoes/ui';
 import { Card } from '@/shared/ui/card';
+import { Suspense } from 'react';
 import './ui.scss';
 
 export default function Page() {
@@ -18,7 +19,9 @@ export default function Page() {
                 Esta é a página de movimentações. Aqui você pode visualizar os
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p> */}
-            <Filtros />
+            <Suspense>
+                <Filtros />
+            </Suspense>
             <div className="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
                 <div className="flex w-full flex-col gap-4">
                     <MovimentacaoProvider>
@@ -26,7 +29,9 @@ export default function Page() {
                             <CardDespesas />
                             <CardReceitas />
                         </div>
-                        <ListaMovimentacoes />
+                        <Suspense>
+                            <ListaMovimentacoes />
+                        </Suspense>
                         <ModalMovimentacao />
                     </MovimentacaoProvider>
                 </div>

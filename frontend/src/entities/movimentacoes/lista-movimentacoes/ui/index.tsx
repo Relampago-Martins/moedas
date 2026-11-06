@@ -63,7 +63,7 @@ export function ListaMovimentacoes() {
                 </div>
             ))}
             {movimentacoes?.length === 0 && (
-                <p className="flex h-[25rem] max-w-full flex-col items-center justify-center gap-0 rounded-md border-[1px] border-dashed text-muted">
+                <p className="flex h-100 max-w-full flex-col items-center justify-center gap-0 rounded-md border border-dashed text-muted">
                     <i className="ph-thin ph-receipt-x text-7xl"></i>
                     <span className="text-base font-medium">
                         Nenhuma movimentação

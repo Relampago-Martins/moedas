@@ -60,14 +60,14 @@ export function ModalNovo() {
                 <StepperContent
                     value="lista-categorias"
                     level={2}
-                    className="md:w-[25rem]"
+                    className="md:w-100"
                 >
                     <StepListaCategorias />
                 </StepperContent>
                 <StepperContent
                     value="lista-categorias-receita"
                     level={2}
-                    className="md:w-[25rem]"
+                    className="md:w-100"
                 >
                     <StepListaCategorias tipoCategoria="R" />
                 </StepperContent>

@@ -72,7 +72,7 @@ export function ModalLimiteGastos({
 
                         <div className="absolute inset-0 flex w-full">
                             <div
-                                className="h-full w-[1px] border-r-2 border-dashed border-foreground"
+                                className="h-full w-px border-r-2 border-dashed border-foreground"
                                 style={{
                                     width: `${novoLimite}%`,
                                 }}

@@ -27,7 +27,7 @@ export function CardReceitas() {
     return (
         <div className="flex w-full min-w-[200px] flex-col ">
             <div className="relative w-full overflow-hidden rounded-md border bg-card pt-8">
-                <div className="absolute inset-0 z-[1] px-2 py-1">
+                <div className="absolute inset-0 z-1 px-2 py-1">
                     <div className="flex items-center gap-1">
                         <TradeUpIcon className="h-5 w-5" />
                         <h4 className="text-base">Receitas</h4>
@@ -59,7 +59,7 @@ export function CardReceitas() {
                     <span className="mr-1 mt-1 text-base text-success-foreground">
                         R$
                     </span>
-                    <span className="z-[1] text-2xl font-medium text-success-foreground">
+                    <span className="z-1 text-2xl font-medium text-success-foreground">
                         {numberToCurrency(totalDespesas)
                             .replace('R$', '')
                             .trim()}
@@ -67,7 +67,7 @@ export function CardReceitas() {
                 </div>
                 <div
                     className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white
-                [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
+                mask-[radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
                 ></div>
             </div>
             <button

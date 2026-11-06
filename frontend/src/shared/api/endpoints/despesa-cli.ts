@@ -1,6 +1,6 @@
 'use server';
 import { Despesa, DespesaConfig, DespesaSchema } from '@/types/models/despesa';
-import { revalidateTag } from 'next/cache';
+import { updateTag } from 'next/cache';
 import { ApiClient } from '../api-client';
 
 export async function getDespesas() {
@@ -39,7 +39,7 @@ export async function atualizaDespesa(id: number, despesa: DespesaSchema) {
             conta_bancaria_id: despesa.contaBancaria.id,
         },
     );
-    revalidateTag(`getDespesa${id}`);
+    updateTag(`getDespesa${id}`);
     return resp;
 }
 
@@ -66,6 +66,6 @@ export async function getFormasPagamento() {
 
 export async function deleteDespesa(id: number) {
     const resp = await ApiClient.getInstance().delete(`/despesas/${id}/`);
-    revalidateTag(`getDespesa${id}`);
+    updateTag(`getDespesa${id}`);
     return resp;
 }

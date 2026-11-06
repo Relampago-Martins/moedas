@@ -50,7 +50,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
             <PieChart
                 width={140}
                 height={140}
-                className="z-[1] -mx-3"
+                className="z-1 -mx-3"
                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
                 <Pie
@@ -85,7 +85,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                 </Pie>
             </PieChart>
 
-            <div className="absolute inset-0 z-[0] flex select-none flex-col items-center justify-center gap-1">
+            <div className="absolute inset-0 z-0 flex select-none flex-col items-center justify-center gap-1">
                 <motion.span
                     key={`total-gastos-${categoriaSelecionada?.sigla}`}
                     transition={{

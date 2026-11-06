@@ -27,7 +27,7 @@ export function ItemMovimentacao({
             layoutId={`${prefixLayoutId}-${movimentacao.id}`}
             onClick={onClick}
             className={`h-16 w-full overflow-hidden
-            rounded-md border-[1px] bg-card pr-4 shadow-sm hover:bg-accent
+            rounded-md border bg-card pr-4 shadow-xs hover:bg-accent
             ${isSolid ? 'border-solid' : 'border-dashed'}`}
         >
             <div className="flex w-full flex-row items-center gap-3">
@@ -35,7 +35,7 @@ export function ItemMovimentacao({
                     className={`relative flex h-16 w-14 shrink-0 items-center justify-center`}
                 >
                     <i
-                        className={`${movimentacao.categoria.icone} z-[1] text-2xl 
+                        className={`${movimentacao.categoria.icone} z-1 text-2xl 
                             ${movimentacao.tipo === 'R' ? 'text-success-foreground' : 'text-destructive-foreground'}
                         `}
                     ></i>

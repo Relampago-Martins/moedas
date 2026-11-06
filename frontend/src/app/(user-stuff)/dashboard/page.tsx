@@ -9,11 +9,10 @@ import { Suspense } from 'react';
 import { DashboardSkeleton } from './skeleton';
 import './ui.scss';
 
-export default function Dashboard({
-    searchParams,
-}: {
-    searchParams: TFiltroPeriodo | {};
+export default async function Dashboard(props: {
+    searchParams: Promise<TFiltroPeriodo>;
 }) {
+    const searchParams = await props.searchParams;
     return (
         <Suspense fallback={<DashboardSkeleton />}>
             <div className="grid grid-cols-12 gap-4 px-6 py-6 pt-4 md:px-8 lg:grid-cols-10 xl:grid-cols-12">

@@ -9,7 +9,7 @@ export function Notification({ children, className }: NotificationProps) {
     return (
         <div
             className={`rounded-full bg-primary px-[.5rem] text-[0.625rem]
-            text-primary-foreground shadow-sm ${className}`}
+            text-primary-foreground shadow-xs ${className}`}
         >
             {children}
         </div>
