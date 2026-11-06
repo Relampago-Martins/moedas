@@ -23,6 +23,8 @@ interface TStepperContext<T = string> {
 }
 
 // Contexto para gerenciar o estado do Stepper
+// O contexto é genérico; o tipo concreto é aplicado em useStepper<T>().
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const StepperContext = createContext<TStepperContext<any> | undefined>(
     undefined,
 );
@@ -55,7 +57,7 @@ function SliderAnimation({
     const { currentStep, previousStep } = useStepper<string>();
     const [showStep, setShowStep] = useState(currentStep?.name === stepName);
     // Determina a direção com base na comparação de níveis
-    let initFrom: Direction =
+    const initFrom: Direction =
         (previousStep?.level || 0) > level ? 'left' : 'right';
     let exitTo: Direction =
         (previousStep?.level || 0) < level ? 'right' : 'left';
