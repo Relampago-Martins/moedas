@@ -52,7 +52,7 @@ const DrawerContent = React.forwardRef<
             >
                 <ScrollArea className="overflow-y-auto">
                     <div className="mx-auto mb-2 mt-3 h-2 w-[100px] rounded-full bg-gray-200 dark:bg-gray-700" />
-                    <div className="flex-grow px-4">{children}</div>
+                    <div className="grow px-4">{children}</div>
                 </ScrollArea>
             </DrawerPrimitive.Content>
         </DrawerPortal>

@@ -18,10 +18,10 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
             `R$ ${formatador.format(value)}`,
         );
 
-        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
             // Remove todos os caracteres não numéricos
             const value = parseFloat(
-                event.target.value
+                event.currentTarget.value
                     .replace('.', '')
                     .replace(',', '')
                     .replace(/\D/g, ''),
@@ -38,7 +38,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
                 <input
                     className={cn(
                         `h-9 w-full rounded-none border-b border-primary bg-transparent py-1
-                        text-2xl focus:outline-none`,
+                        text-2xl focus:outline-hidden`,
                         className,
                     )}
                     inputMode="numeric"
