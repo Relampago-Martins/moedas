@@ -70,7 +70,7 @@ export function EconomiaChart({ carteira }: EconomiaChartProps) {
                     />
                 </RadialBarChart>
             </ChartContainer>
-            <div className="absolute bottom-4 left-0 z-[0] w-full">
+            <div className="absolute bottom-4 left-0 z-0 w-full">
                 <div className="flex flex-col items-center justify-center">
                     <span className="text-sm text-muted">
                         <i className="ph ph-scales text-3xl" />

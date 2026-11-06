@@ -37,7 +37,7 @@ export function FiltroPeriodo({ className }: { className?: string }) {
             >
                 <MonthPicker
                     formControl={form.control}
-                    className="overflow-hidden rounded-lg border bg-card text-foreground shadow-sm"
+                    className="overflow-hidden rounded-lg border bg-card text-foreground shadow-xs"
                 />
             </form>
         </Form>

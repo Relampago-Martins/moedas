@@ -19,7 +19,7 @@ export function CardCategoria({
     return (
         <button
             onClick={onClick}
-            className="h-12 rounded shadow transition-transform hover:scale-105 selecionado:scale-110"
+            className="h-12 rounded shadow-sm transition-transform hover:scale-105 selecionado:scale-110"
             data-selecionado={selecionado}
             style={{
                 backgroundColor:

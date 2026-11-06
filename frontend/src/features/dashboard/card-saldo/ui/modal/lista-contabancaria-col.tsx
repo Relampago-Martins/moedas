@@ -45,7 +45,7 @@ export function ListaContaBancariaCol({
                 )
             })}
             <Button
-                className="flex w-full items-center gap-2 hover:no-underline hover:[&>span]:underline"
+                className="flex w-full items-center gap-2 hover:no-underline [&>span]:hover:underline"
                 variant={`link`}
                 onClick={() => {
                     goToStep({ name: 'cadastro-conta-bancaria', level: 1 });

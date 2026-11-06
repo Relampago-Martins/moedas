@@ -7,7 +7,7 @@ export function DashboardSkeleton() {
                 <Skeleton className="h-6 w-32" />
             </div>
             <div className="col-span-12 flex flex-col gap-2 lg:col-span-10 lg:row-start-2 xl:col-start-2">
-                <Skeleton className="h-20 overflow-hidden rounded-lg border bg-card shadow-sm" />
+                <Skeleton className="h-20 overflow-hidden rounded-lg border bg-card shadow-xs" />
             </div>
             <Skeleton className="col-span-12 row-span-1 h-20 gap-2 lg:col-span-5 lg:row-start-3 xl:col-span-4 xl:col-start-2" />
             <Skeleton className="col-span-12 h-40 lg:col-span-4 lg:row-start-4 xl:col-start-2" />

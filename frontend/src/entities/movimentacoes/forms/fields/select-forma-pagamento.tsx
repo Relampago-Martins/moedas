@@ -34,7 +34,7 @@ const SelectFormaPagamento = React.forwardRef<
                                 </span>
                             </div>
                             <div
-                                className={`rounded-full border p-[1px] ${active ? 'border-primary bg-primary' : ''}`}
+                                className={`rounded-full border p-px ${active ? 'border-primary bg-primary' : ''}`}
                             >
                                 <i
                                     className={`ph ph-check flex text-xs text-primary-foreground ${active ? '' : 'opacity-0'}`}

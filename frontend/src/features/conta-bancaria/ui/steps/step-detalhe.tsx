@@ -90,7 +90,7 @@ export function StepDetalheContaBancaria({
                                 <p className="text-base text-muted">
                                     {contaBancaria.banco.abreviacao}
                                 </p>
-                                <span className="mx-1 h-5 w-[1px] bg-border"></span>
+                                <span className="mx-1 h-5 w-px bg-border"></span>
                                 <p className="text-base text-muted">
                                     {contaBancaria.apelido}
                                 </p>

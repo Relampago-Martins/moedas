@@ -20,7 +20,7 @@ export function StepSelectContaBancaria() {
         <StepperContent
             value="lista-contas-bancarias"
             level={2}
-            className="md:w-[25rem]"
+            className="md:w-100"
         >
             <DialogOrDrawerHeader
                 title={'Selecionar Conta Bancária'}

@@ -57,7 +57,7 @@ export function ReceitaContent({ id }: ReceitaContentProps) {
             <StepperContent
                 value="lista-categorias-receita"
                 level={2}
-                className="md:w-[25rem]"
+                className="md:w-100"
             >
                 <StepListaCategorias tipoCategoria="R" />
             </StepperContent>

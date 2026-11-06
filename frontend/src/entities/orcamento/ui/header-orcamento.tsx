@@ -23,7 +23,7 @@ export function HeaderOrcamento({
     });
     return (
         <Card>
-            <div className="flex flex-row items-center justify-between border-b-[1px] px-4 py-0">
+            <div className="flex flex-row items-center justify-between border-b px-4 py-0">
                 <Button
                     variant={'ghost'}
                     onClick={() =>

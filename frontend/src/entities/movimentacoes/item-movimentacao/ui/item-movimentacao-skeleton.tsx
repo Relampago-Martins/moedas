@@ -3,7 +3,7 @@ import { Skeleton } from '@/shared/ui/skeleton';
 
 export function ItemMovimentacaoSkeleton() {
     return (
-        <div className="flex h-16 w-full items-center gap-3 overflow-hidden rounded-md border-[1px] bg-card">
+        <div className="flex h-16 w-full items-center gap-3 overflow-hidden rounded-md border bg-card">
             <div className="flex h-16 w-14 shrink-0 items-center justify-center">
                 <Skeleton className="h-8 w-8 rounded-full" />
             </div>

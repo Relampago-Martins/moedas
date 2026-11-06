@@ -2,7 +2,7 @@ import { SparklesIcon } from 'lucide-react';
 
 export function AnaliseCard() {
     return (
-        <div className="rounded-lg border-[1px] border-[#FC440F] bg-card px-2 py-2 shadow-sm shadow-orange-500">
+        <div className="rounded-lg border border-[#FC440F] bg-card px-2 py-2 shadow-xs shadow-orange-500">
             <h4 className="text-base ">Análise de gastos</h4>
             <div className="text-sm text-muted">
                 O aumento no Lazer em 47% e em Alimentação em 50% indica que o
