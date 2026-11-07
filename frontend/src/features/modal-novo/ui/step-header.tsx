@@ -1,3 +1,4 @@
+import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { DialogClose, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
 import { DrawerHeader, DrawerTitle } from '@/shared/ui/drawer';
@@ -8,18 +9,26 @@ type DialogOrDrawerHeaderProps = {
     title: React.ReactNode;
     onBack?: () => void;
     withBackButton?: boolean;
+    /** Classes do título, para trocar a cor (ex.: sobre um header colorido). */
+    titleClassName?: string;
 };
 
 export function DialogOrDrawerHeader({
     title,
     withBackButton = true,
     onBack,
+    titleClassName,
 }: DialogOrDrawerHeaderProps) {
     const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
 
     return isMobile ? (
         <DrawerHeader className="px-0 pt-1">
-            <DrawerTitle className="mb-2 flex justify-between text-xl text-primary">
+            <DrawerTitle
+                className={cn(
+                    'mb-2 flex justify-between text-xl text-primary',
+                    titleClassName,
+                )}
+            >
                 <div className="w-6">
                     {withBackButton && (
                         <Button
@@ -37,7 +46,12 @@ export function DialogOrDrawerHeader({
         </DrawerHeader>
     ) : (
         <DialogHeader>
-            <DialogTitle className="mb-2 flex items-center justify-between pb-4 text-xl text-primary">
+            <DialogTitle
+                className={cn(
+                    'mb-2 flex items-center justify-between pb-4 text-xl text-primary',
+                    titleClassName,
+                )}
+            >
                 <div className="w-5">
                     {withBackButton && (
                         <Button

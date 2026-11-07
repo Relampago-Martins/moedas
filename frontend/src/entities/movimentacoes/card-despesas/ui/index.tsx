@@ -1,7 +1,6 @@
 'use client';
 import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
-import { ModalNovoOrigin } from '@/features/modal-novo/ui/modal-novo-origin';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeDownIcon } from '@/shared/ui/huge-icons/gasto';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
@@ -10,7 +9,8 @@ export function CardDespesas() {
     const { movimentacoes } = useMovimentacaoContext();
     const abrir = useModalNovoStore((state) => state.abrir);
     const openNovaDespesa = () =>
-        abrir('card-despesas', { name: 'gasto', level: 1 });
+        // Modal simples: aqui o morph do botão pequeno não acrescenta nada.
+        abrir(null, { name: 'gasto', level: 1 });
 
     const despesas = movimentacoes.filter(
         (movimentacao) => movimentacao.tipo === 'D',
@@ -56,8 +56,8 @@ export function CardDespesas() {
                         />
                     </AreaChart>
                 </ResponsiveContainer>
-                <div className="flex w-full items-center justify-end bg-destructive px-2 pb-1 pt-1">
-                    <span className="mr-1 mt-1 text-base text-destructive-foreground">
+                <div className="flex w-full items-center justify-end bg-destructive px-2 pt-1 pb-1">
+                    <span className="mt-1 mr-1 text-base text-destructive-foreground">
                         R$
                     </span>
                     <span className="z-1 text-2xl font-medium text-destructive-foreground">
@@ -66,18 +66,14 @@ export function CardDespesas() {
                             .trim()}
                     </span>
                 </div>
-                <div
-                    className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white
-                mask-[radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
-                ></div>
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white mask-[radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"></div>
             </div>
             <button
                 onClick={openNovaDespesa}
-                className="relative flex items-center justify-center gap-2 pt-2 text-sm text-muted transition-transform hover:scale-110"
+                className="flex items-center justify-center gap-2 pt-2 text-sm text-muted-foreground transition-transform hover:scale-110"
             >
                 <i className="ph-bold ph-plus" />
                 <span className="hover:underline">Despesa</span>
-                <ModalNovoOrigin id="card-despesas" />
             </button>
         </div>
     );

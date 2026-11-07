@@ -3,7 +3,7 @@ export default function PatrimonioPage() {
         <div className="flex h-full w-full flex-col items-center justify-center">
             <i className="ph ph-hand-coins text-6xl text-primary" />
             <h1 className="text-2xl font-bold">Página de Patrimônio</h1>
-            <p className="text-lg text-muted">
+            <p className="text-lg text-muted-foreground">
                 Aqui você verá sua evolução patrimonial ao longo do tempo.
             </p>
         </div>

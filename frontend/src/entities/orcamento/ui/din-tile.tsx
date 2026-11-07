@@ -10,9 +10,11 @@ export function DinTile({ label, valor, icon }: DinTileProps) {
         <div className="flex items-center gap-4">
             {icon}
             <div className="flex flex-col">
-                <span className="text-sm text-muted">{label}</span>
+                <span className="text-sm text-muted-foreground">{label}</span>
                 <div className="flex items-center">
-                    <span className="mr-1 text-sm text-muted">R$</span>
+                    <span className="mr-1 text-sm text-muted-foreground">
+                        R$
+                    </span>
                     <span className="text-lg">
                         {numberToCurrency(valor).replace('R$', '').trim()}
                     </span>

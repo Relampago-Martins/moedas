@@ -75,7 +75,7 @@ export function StepDetalheContaBancaria({
                     <div className="flex items-center justify-between">
                         <PreviousBtn />
                         <ConfigContaBancaria onEvent={handdleConfigEvent}>
-                            <i className="ph ph-gear flex text-lg text-muted" />
+                            <i className="ph ph-gear flex text-lg text-muted-foreground" />
                         </ConfigContaBancaria>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -87,11 +87,11 @@ export function StepDetalheContaBancaria({
                             />
 
                             <div className="flex items-center gap-2">
-                                <p className="text-base text-muted">
+                                <p className="text-base text-muted-foreground">
                                     {contaBancaria.banco.abreviacao}
                                 </p>
                                 <span className="mx-1 h-5 w-px bg-border"></span>
-                                <p className="text-base text-muted">
+                                <p className="text-base text-muted-foreground">
                                     {contaBancaria.apelido}
                                 </p>
                                 {contaBancaria.ativo ? (
@@ -108,7 +108,7 @@ export function StepDetalheContaBancaria({
                         <div className="flex flex-col gap-2">
                             {contaBancaria.ultimas_transacoes.length === 0 ? (
                                 <div className="flex h-28 flex-col items-center justify-center rounded-md border border-dashed">
-                                    <span className="text-sm text-muted">
+                                    <span className="text-sm text-muted-foreground">
                                         Nenhuma movimentação encontrada
                                     </span>
                                     <Button
@@ -121,7 +121,7 @@ export function StepDetalheContaBancaria({
                                 </div>
                             ) : (
                                 <>
-                                    <h3 className="text-sm text-muted">
+                                    <h3 className="text-sm text-muted-foreground">
                                         Últimas movimentações
                                     </h3>
                                     {contaBancaria.ultimas_transacoes.map(
@@ -133,8 +133,8 @@ export function StepDetalheContaBancaria({
                                             />
                                         ),
                                     )}
-                                    <div className="flex cursor-pointer items-center justify-end gap-1 text-sm text-muted">
-                                        <span className=" hover:underline">
+                                    <div className="flex cursor-pointer items-center justify-end gap-1 text-sm text-muted-foreground">
+                                        <span className="hover:underline">
                                             ver mais
                                         </span>
                                         <i className="ph ph-arrow-right flex"></i>

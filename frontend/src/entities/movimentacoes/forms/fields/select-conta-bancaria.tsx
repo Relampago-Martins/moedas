@@ -29,7 +29,7 @@ const SelectContaBancaria = forwardRef<
                     {value.apelido}
                 </span>
             ) : (
-                <span className="text-muted">Selecione</span>
+                <span className="text-muted-foreground">Selecione</span>
             )}
             <i className="ph ph-caret-right justify-self-end"></i>
         </button>

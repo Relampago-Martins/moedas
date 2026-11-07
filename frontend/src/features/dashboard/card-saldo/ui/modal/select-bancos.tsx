@@ -16,7 +16,7 @@ const SelectBancos = ({
     return (
         <button
             type="button"
-            className={`flex items-center justify-between rounded-lg border bg-muted-foreground px-3 py-1 ${className}`}
+            className={`flex items-center justify-between rounded-lg border bg-muted px-3 py-1 ${className}`}
             onClick={(e) => {
                 onClick?.(e);
                 goToStep({ name: 'lista-bancos', level: 3 });

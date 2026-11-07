@@ -30,10 +30,10 @@ export default function EstrategiasPage() {
 
     return (
         <div className="flex flex-col gap-4">
-            <h1 className="text-lg font-semibold leading-10 text-primary">
+            <h1 className="text-lg leading-10 font-semibold text-primary">
                 Estratégias
             </h1>
-            <p className="text-muted">
+            <p className="text-muted-foreground">
                 Aqui você pode visualizar e editar sua estratégia financeira.
             </p>
         </div>

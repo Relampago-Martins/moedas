@@ -40,7 +40,7 @@ export function StepReceitaDetail({ receita }: ReceitaDetailContext) {
                     <div className="flex items-center gap-2">
                         <CalendarIcon className="h-6 w-6" />
                         <div className="flex flex-col">
-                            <div className="text-xs text-muted">
+                            <div className="text-xs text-muted-foreground">
                                 Recebido em
                             </div>
                             <span className="text-base">

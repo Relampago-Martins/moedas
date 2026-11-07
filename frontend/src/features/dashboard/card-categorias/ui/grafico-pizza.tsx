@@ -85,7 +85,7 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                 </Pie>
             </PieChart>
 
-            <div className="absolute inset-0 z-0 flex select-none flex-col items-center justify-center gap-1">
+            <div className="absolute inset-0 z-0 flex flex-col items-center justify-center gap-1 select-none">
                 <motion.span
                     key={`total-gastos-${categoriaSelecionada?.sigla}`}
                     transition={{
@@ -95,11 +95,11 @@ export function GraficoPizza({ categorias }: GraficoPizzaProps) {
                     }}
                     initial={{ opacity: 0.9, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className=" flex h-[80px] w-[80px] items-center justify-center rounded-full bg-background text-sm font-bold text-muted"
+                    className="flex h-[80px] w-[80px] items-center justify-center rounded-full bg-background text-sm font-bold text-muted-foreground"
                 >
                     {activeIndex < 0 ? (
                         <div className="flex flex-col items-center">
-                            <i className="ph ph-trend-down text-3xl " />
+                            <i className="ph ph-trend-down text-3xl" />
                         </div>
                     ) : (
                         <div className="text-xl">

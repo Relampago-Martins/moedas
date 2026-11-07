@@ -15,10 +15,7 @@ export default async function Login() {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-background">
-            <Card
-                className="flex h-fit w-full justify-center bg-opacity-10 px-10
-            py-6 backdrop-blur-md sm:w-124"
-            >
+            <Card className="bg-opacity-10 flex h-fit w-full justify-center px-10 py-6 backdrop-blur-md sm:w-124">
                 <div className="flex w-full flex-col gap-4">
                     <div className="flex justify-center text-3xl font-semibold text-primary">
                         <Logo comNome className="w-56" />
@@ -26,14 +23,14 @@ export default async function Login() {
                     <LoginForm />
                     <div className="flex flex-row items-center justify-center gap-6">
                         <Separator className="w-4 grow" />
-                        <span className="text-sm font-semibold text-muted">
+                        <span className="text-sm font-semibold text-muted-foreground">
                             OU
                         </span>
                         <Separator className="w-4 grow" />
                     </div>
                     <GoogleSignInButton />
                     <div className="mt-4 flex items-center justify-between">
-                        <span className="text-sm text-muted">
+                        <span className="text-sm text-muted-foreground">
                             Não possui cadastro?
                             <Link href="/signin">
                                 <em className="text-primary"> Cadastre-se</em>

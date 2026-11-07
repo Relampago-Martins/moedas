@@ -44,7 +44,7 @@ const SelectCategoria = React.forwardRef<
                     {value.nome}
                 </span>
             ) : (
-                <span className="ml-3 w-full text-start text-muted">
+                <span className="ml-3 w-full text-start text-muted-foreground">
                     Selecione
                 </span>
             )}

@@ -50,7 +50,7 @@ export function StepExcluirContaBancaria({
                     <h2 className="text-lg font-semibold">
                         Excluir Conta Bancária
                     </h2>
-                    <p className="text-base text-muted">
+                    <p className="text-base text-muted-foreground">
                         Escreva &apos;
                         <strong>{contaBancaria.apelido}</strong>&apos; para
                         confirmar a exclusão.

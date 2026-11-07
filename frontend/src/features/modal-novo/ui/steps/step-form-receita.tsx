@@ -10,6 +10,7 @@ import {
     StepperContent,
     useStepper,
 } from '../../../../entities/stepper/ui/stepper';
+import { HeaderTipoMovimentacao } from '../header-tipo-movimentacao';
 import { DialogOrDrawerHeader } from '../step-header';
 
 type StepFormReceitaProps = {
@@ -62,19 +63,24 @@ export function StepFormReceita({
 
     return (
         <StepperContent value={step.name} level={step.level}>
-            <DialogOrDrawerHeader
-                withBackButton={hasPrevious}
-                title={
-                    <span className="flex items-center gap-2 text-xl text-success-foreground">
-                        <i className="ph-bold ph-trend-up" />
-                        {formValues?.id ? 'Editar Receita' : 'Criar Receita'}
-                    </span>
-                }
-                onBack={() => {
-                    form.reset(formValues?.id ? formValues : emptyForm);
-                    previous();
-                }}
-            />
+            <HeaderTipoMovimentacao tipo="receita">
+                <DialogOrDrawerHeader
+                    titleClassName="mb-0 text-current"
+                    withBackButton={hasPrevious}
+                    title={
+                        <span className="flex items-center gap-2 text-xl">
+                            <i className="ph-bold ph-trend-up" />
+                            {formValues?.id
+                                ? 'Editar Receita'
+                                : 'Criar Receita'}
+                        </span>
+                    }
+                    onBack={() => {
+                        form.reset(formValues?.id ? formValues : emptyForm);
+                        previous();
+                    }}
+                />
+            </HeaderTipoMovimentacao>
             <FormReceita
                 formState={form}
                 onSucess={() => {

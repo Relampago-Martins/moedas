@@ -116,6 +116,13 @@ function Stepper<T extends string>(props: StepperProps<T>) {
     // `offsetSize`: medir pelo layout e não pelo `getBoundingClientRect`, que
     // inclui o `scale` do modal no meio do morph e travaria a altura pequena.
     const [ref, bounds] = useMeasure({ offsetSize: true });
+    // A primeira medida chega no meio do morph do modal. Animar de `auto` para
+    // ela faz o Motion ler o `auto` com o `scale` do morph (a caixa abria
+    // achatada e crescia devagar), então ela é aplicada sem animação.
+    const [hasMeasured, setHasMeasured] = useState(false);
+    useEffect(() => {
+        if (bounds.height > 0) setHasMeasured(true);
+    }, [bounds.height]);
     const events = useEvent();
     const [currentStep, setCurrentStep] = useState<StepObject<T>>(
         props.defaultValue,
@@ -163,8 +170,16 @@ function Stepper<T extends string>(props: StepperProps<T>) {
             >
                 {/* Antes da primeira medida a altura fica `auto`: animar de 0
                     faria o modal abrir achatado e crescer depois. */}
-                <motion.div animate={{ height: bounds.height || 'auto' }}>
-                    <div ref={ref}>{props.children}</div>
+                <motion.div
+                    animate={{ height: bounds.height || 'auto' }}
+                    transition={hasMeasured ? undefined : { duration: 0 }}
+                >
+                    {/* `flow-root` impede a margem do primeiro passo de vazar
+                        para fora da medida (o header colorido usa margem
+                        negativa) e a altura medida bater com a ocupada. */}
+                    <div ref={ref} className="flow-root">
+                        {props.children}
+                    </div>
                 </motion.div>
             </MotionConfig>
         </StepperContext.Provider>

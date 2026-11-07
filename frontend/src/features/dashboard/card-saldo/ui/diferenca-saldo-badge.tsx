@@ -13,12 +13,12 @@ export function DiferencaSaldoBadge({
                 color: evoluiuPatrimonio
                     ? 'var(--success-foreground)'
                     : mantevePatrimonio
-                      ? 'var(--muted)'
+                      ? 'var(--muted-foreground)'
                       : 'var(--destructive-foreground)',
                 backgroundColor: evoluiuPatrimonio
                     ? 'var(--success)'
                     : mantevePatrimonio
-                      ? 'var(--muted-foreground)'
+                      ? 'var(--muted)'
                       : 'var(--destructive)',
             }}
         >

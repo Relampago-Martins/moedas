@@ -382,7 +382,7 @@ function ExpandableDialogContent({
                                 layoutDependency={CONTENT_LAYOUT_DEPENDENCY}
                                 style={{ borderRadius: radius, ...style }}
                                 className={cn(
-                                    'pointer-events-auto relative flex max-h-[calc(100dvh-2rem)] w-full max-w-lg flex-col gap-4 overflow-y-auto border bg-popover p-6',
+                                    'pointer-events-auto relative flex max-h-[calc(100dvh-2rem)] w-full max-w-lg flex-col gap-4 overflow-y-auto border bg-popover p-6 outline-none',
                                     className,
                                 )}
                                 {...props}
@@ -453,7 +453,7 @@ function ExpandableDialogDescription({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className={cn('text-sm text-muted', className)}
+                className={cn('text-sm text-muted-foreground', className)}
                 {...props}
             />
         </DialogPrimitive.Description>
@@ -476,6 +476,32 @@ function ExpandableDialogBody({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, delay: 0.1 }}
             className={cn('flex min-h-0 flex-col gap-4', className)}
+            {...props}
+        />
+    );
+}
+
+/**
+ * Conteúdo que só aparece depois do morph: texto dentro de uma caixa escalada
+ * estica e deforma. Na volta some logo no começo, antes de a caixa encolher.
+ *
+ * A opacidade segue o `open` do contexto, e não um `exit`: ao fechar, o
+ * `AnimatePresence` mantém a árvore antiga montada, e só o contexto chega até
+ * ela com o valor novo.
+ */
+function ExpandableDialogDeferredContent(
+    props: React.ComponentProps<typeof motion.div>,
+) {
+    const { open } = useExpandableDialog('ExpandableDialogDeferredContent');
+
+    return (
+        <motion.div
+            data-slot="expandable-dialog-deferred-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: open ? 1 : 0 }}
+            transition={
+                open ? { duration: 0.15, delay: 0.28 } : { duration: 0.06 }
+            }
             {...props}
         />
     );
@@ -504,6 +530,7 @@ export {
     ExpandableDialogBody,
     ExpandableDialogClose,
     ExpandableDialogContent,
+    ExpandableDialogDeferredContent,
     ExpandableDialogDescription,
     ExpandableDialogFooter,
     ExpandableDialogHeader,

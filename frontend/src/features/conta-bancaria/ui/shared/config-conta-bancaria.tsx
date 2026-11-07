@@ -8,10 +8,7 @@ import { PopoverTrigger } from '@radix-ui/react-popover';
 import { useState } from 'react';
 
 export type ConfigEventName =
-    | 'onEditarApelido'
-    | 'onCorrigirSaldo'
-    | 'onDesativar'
-    | 'onExcluir';
+    'onEditarApelido' | 'onCorrigirSaldo' | 'onDesativar' | 'onExcluir';
 
 type Props = {
     children?: React.ReactNode;
@@ -54,7 +51,7 @@ export function ConfigContaBancaria({ children, className, onEvent }: Props) {
                         <DropdownMenuSeparator />
 
                         <CommandItem
-                            className="gap-2 text-muted"
+                            className="gap-2 text-muted-foreground"
                             onSelect={handleClick.bind(null, 'onDesativar')}
                         >
                             <i className="ph ph-lock-key flex text-base" />

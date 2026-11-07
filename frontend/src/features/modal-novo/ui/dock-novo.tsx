@@ -18,7 +18,7 @@ export function DockNovo() {
             aria-label="Criar movimentação"
             className="fixed bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1 rounded-2xl border bg-popover/90 p-1.5 shadow-lg backdrop-blur-sm"
         >
-            {OPCOES_NOVO.map(({ step, label, Icon, className }) => {
+            {OPCOES_NOVO.map(({ step, label, phosphor, className }) => {
                 const origemId = `dock-${step}`;
                 return (
                     <button
@@ -32,7 +32,10 @@ export function DockNovo() {
                         style={{ borderRadius: RAIO_BOTAO }}
                         className="relative flex size-12 cursor-pointer items-center justify-center transition-colors hover:bg-accent"
                     >
-                        <Icon className={`size-6 ${className}`} />
+                        <i
+                            aria-hidden
+                            className={`ph ${phosphor} text-2xl ${className}`}
+                        />
                         <ModalNovoOrigin id={origemId} radius={RAIO_BOTAO} />
                     </button>
                 );

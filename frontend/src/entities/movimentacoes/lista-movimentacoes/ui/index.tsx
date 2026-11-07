@@ -51,7 +51,7 @@ export function ListaMovimentacoes() {
                     className="flex max-w-full flex-col gap-2"
                     key={movimentacoesPorData.data}
                 >
-                    <span className="text-muted">
+                    <span className="text-muted-foreground">
                         {cleanDate(movimentacoesPorData.data)}
                     </span>
                     {movimentacoesPorData.movimentacoes.map((despesa) => {
@@ -81,7 +81,7 @@ export function ListaMovimentacoes() {
                 </div>
             ))}
             {movimentacoes?.length === 0 && (
-                <p className="flex h-100 max-w-full flex-col items-center justify-center gap-0 rounded-md border border-dashed text-muted">
+                <p className="flex h-100 max-w-full flex-col items-center justify-center gap-0 rounded-md border border-dashed text-muted-foreground">
                     <i className="ph-thin ph-receipt-x text-7xl"></i>
                     <span className="text-base font-medium">
                         Nenhuma movimentação
@@ -110,7 +110,7 @@ export function ListaMovimentacoes() {
                     </div>
                 ))}
             {isError && (
-                <p className="flex h-full flex-col gap-2 text-muted">
+                <p className="flex h-full flex-col gap-2 text-muted-foreground">
                     <i className="ph ph-x-circle"></i>
                     Erro ao carregar movimentações
                 </p>
