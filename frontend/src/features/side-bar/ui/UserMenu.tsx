@@ -22,7 +22,7 @@ export async function UserMenu() {
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="rounded-full border border-muted">
+            <DropdownMenuTrigger className="rounded-full border border-muted-foreground">
                 <Avatar>
                     <AvatarImage src={session?.user?.image || undefined} />
                     <AvatarFallback>{siglaNome}</AvatarFallback>

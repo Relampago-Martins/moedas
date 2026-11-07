@@ -86,10 +86,10 @@ export function ModalLimiteGastos({ className }: ModalLimiteGastosProps) {
     return (
         <ExpandableDialog id="limite-gastos" open={open} onOpenChange={setOpen}>
             <ExpandableDialogTrigger className={className}>
-                <ExpandableDialogIcon className="size-7 bg-transparent text-muted">
+                <ExpandableDialogIcon className="size-7 bg-transparent text-muted-foreground">
                     <i className="ph ph-plus-circle text-2xl" />
                 </ExpandableDialogIcon>
-                <ExpandableDialogTriggerText className="font-normal text-muted">
+                <ExpandableDialogTriggerText className="font-normal text-muted-foreground">
                     Adicionar
                 </ExpandableDialogTriggerText>
             </ExpandableDialogTrigger>

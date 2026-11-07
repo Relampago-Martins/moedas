@@ -32,7 +32,7 @@ export function HeaderOrcamento({
                         )
                     }
                 >
-                    <ChevronLeft className="h-5 w-5 text-muted" />
+                    <ChevronLeft className="h-5 w-5 text-muted-foreground" />
                 </Button>
                 <AnimatePresence mode="wait" initial={false}>
                     <motion.div
@@ -56,7 +56,7 @@ export function HeaderOrcamento({
                         setData((prev) => incrementMonth(prev.mes, prev.ano, 1))
                     }
                 >
-                    <ChevronRight className="h-5 w-5 text-muted" />
+                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
                 </Button>
             </div>
             <div className="flex flex-wrap items-center gap-4 px-4 py-1 sm:justify-between sm:gap-4">
@@ -77,7 +77,7 @@ export function HeaderOrcamento({
                     valor={totalLimite}
                     icon={
                         <div className="w-fit rounded-full bg-border p-1">
-                            <Flag01Icon className="h-6 w-6 text-muted" />
+                            <Flag01Icon className="h-6 w-6 text-muted-foreground" />
                         </div>
                     }
                 />

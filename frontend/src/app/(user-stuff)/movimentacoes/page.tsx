@@ -11,11 +11,11 @@ import './ui.scss';
 export default function Page() {
     return (
         <div className="px-6 py-6 md:px-8 xl:px-36">
-            <h1 className="mb-4 flex items-center gap-2 text-xl font-semibold leading-10 text-primary">
+            <h1 className="mb-4 flex items-center gap-2 text-xl leading-10 font-semibold text-primary">
                 <i className="ph ph-arrows-down-up flex text-2xl"></i>
                 Movimentações
             </h1>
-            {/* <p className="mb-6 text-muted">
+            {/* <p className="mb-6 text-muted-foreground">
                 Esta é a página de movimentações. Aqui você pode visualizar os
                 seus gastos, ganhos, aplicações e outras movimentações.
             </p> */}
@@ -35,7 +35,7 @@ export default function Page() {
                         <ModalMovimentacao />
                     </MovimentacaoProvider>
                 </div>
-                <Card className="w-full sm:w-[400px] "></Card>
+                <Card className="w-full sm:w-[400px]"></Card>
             </div>
         </div>
     );

@@ -44,11 +44,11 @@ export default function RootLayout({
                 </div>
 
                 <Card className="sm:w-[400px]">
-                    <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
+                    <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted-foreground">
                         <span className="text-sm">Limite de gastos</span>
                     </CardHeader>
                     <CardContent className="flex h-full w-full items-center justify-center">
-                        <ModalLimiteGastos className="flex items-center gap-2 px-2 py-1 text-muted hover:bg-accent" />
+                        <ModalLimiteGastos className="flex items-center gap-2 px-2 py-1 text-muted-foreground hover:bg-accent" />
                     </CardContent>
                 </Card>
             </div>
@@ -65,7 +65,7 @@ type TabsItemProps = {
 function TabsItem({ children, active, path }: TabsItemProps) {
     if (!active) {
         return (
-            <Link href={path} className="text-lg text-muted">
+            <Link href={path} className="text-lg text-muted-foreground">
                 {children}
             </Link>
         );

@@ -13,7 +13,7 @@ export function ListaContaBancariaRow({
                 {contasBancarias.map((conta) => (
                     <div
                         key={conta.id}
-                        className="flex items-center rounded-full bg-muted-foreground"
+                        className="flex items-center rounded-full bg-muted"
                     >
                         <AvatarBanco banco={conta.banco} />
                         <span className="px-2 text-sm text-foreground">

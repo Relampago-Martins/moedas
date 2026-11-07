@@ -72,7 +72,7 @@ export function EconomiaChart({ carteira }: EconomiaChartProps) {
             </ChartContainer>
             <div className="absolute bottom-4 left-0 z-0 w-full">
                 <div className="flex flex-col items-center justify-center">
-                    <span className="text-sm text-muted">
+                    <span className="text-sm text-muted-foreground">
                         <i className="ph ph-scales text-3xl" />
                     </span>
                     <span className="flex w-full items-center justify-center gap-2">

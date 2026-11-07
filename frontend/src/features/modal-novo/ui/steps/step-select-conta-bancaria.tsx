@@ -31,7 +31,7 @@ export function StepSelectContaBancaria() {
                     contas.map((conta) => (
                         <button
                             key={conta.id}
-                            className="flex w-full items-center gap-4 rounded-md border p-2 hover:bg-muted-foreground"
+                            className="flex w-full items-center gap-4 rounded-md border p-2 hover:bg-muted"
                             onClick={() => {
                                 events.submit('onSelectContaBancaria', conta);
                                 previous();
@@ -44,7 +44,7 @@ export function StepSelectContaBancaria() {
                             />
                             <div className="flex w-[85%] flex-col items-start justify-start">
                                 <span className="">{conta.apelido}</span>
-                                <span className="w-full truncate text-start text-muted">
+                                <span className="w-full truncate text-start text-muted-foreground">
                                     {conta.banco.abreviacao}
                                 </span>
                             </div>

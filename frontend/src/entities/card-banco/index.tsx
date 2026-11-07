@@ -12,12 +12,12 @@ export function CardBanco({ banco, onClick }: CardBancoProps) {
     return (
         <button
             onClick={() => onClick(banco)}
-            className="flex w-full items-center gap-4 rounded-xl border bg-muted-foreground px-4 py-2 transition duration-200 hover:scale-[1.02]"
+            className="flex w-full items-center gap-4 rounded-xl border bg-muted px-4 py-2 transition duration-200 hover:scale-[1.02]"
         >
             <AvatarBanco banco={banco} />
             <div className="flex w-full flex-col text-start">
                 <span className="text-sm font-medium">{banco.abreviacao}</span>
-                <span className="w-[380px] truncate text-nowrap text-sm text-muted">
+                <span className="w-[380px] truncate text-sm text-nowrap text-muted-foreground">
                     {banco.nome}
                 </span>
             </div>
@@ -27,7 +27,7 @@ export function CardBanco({ banco, onClick }: CardBancoProps) {
 
 export function CardBancoSkeleton() {
     return (
-        <div className="flex w-full items-center gap-4 rounded-xl border bg-muted-foreground px-4 py-2">
+        <div className="flex w-full items-center gap-4 rounded-xl border bg-muted px-4 py-2">
             <Skeleton className="h-8 w-8 rounded-full" />
             <div className="flex w-full flex-col gap-2">
                 <Skeleton className="h-4 w-20" />

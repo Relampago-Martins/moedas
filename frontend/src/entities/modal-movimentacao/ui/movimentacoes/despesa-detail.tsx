@@ -64,7 +64,7 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                                 />
                             )}
                             <div className="flex flex-col">
-                                <div className="text-sm text-muted">
+                                <div className="text-sm text-muted-foreground">
                                     Conta bancária
                                 </div>
                                 <span className="text-base">
@@ -76,7 +76,7 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                         <div className="col-span-3 flex items-center gap-4">
                             <i className="ph ph-bank text-2xl" />
                             <div className="flex flex-col">
-                                <div className="text-sm text-muted">
+                                <div className="text-sm text-muted-foreground">
                                     Conta bancária
                                 </div>
                                 <span className="text-base">Nenhuma</span>
@@ -86,7 +86,7 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                     <div className="col-span-3 flex items-center gap-4">
                         <i className="ph ph-calendar text-2xl" />
                         <div className="flex flex-col">
-                            <div className="text-sm text-muted">
+                            <div className="text-sm text-muted-foreground">
                                 Comprado em
                             </div>
                             <span className="text-base">
@@ -97,7 +97,7 @@ export function DespesaDetail({ despesa }: DespesaDetailContext) {
                     <div className="col-span-3 flex items-center gap-4">
                         <i className="ph ph-credit-card text-2xl" />
                         <div className="flex flex-col">
-                            <div className="text-sm text-muted">
+                            <div className="text-sm text-muted-foreground">
                                 Forma de pagamento
                             </div>
                             <span className="text-base">

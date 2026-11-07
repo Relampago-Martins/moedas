@@ -48,7 +48,9 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
                     className="flex flex-col gap-5"
                 >
                     <div className="flex flex-col items-center gap-1">
-                        <span className="text-muted">Saldo Total</span>
+                        <span className="text-muted-foreground">
+                            Saldo Total
+                        </span>
                         <div className="text-3xl font-bold">
                             {numberToCurrency(saldo)}
                         </div>
@@ -56,7 +58,9 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
                             <DiferencaSaldoBadge
                                 diffPercentual={diff_percentual}
                             />
-                            <span className="text-sm text-muted">este mês</span>
+                            <span className="text-sm text-muted-foreground">
+                                este mês
+                            </span>
                         </div>
                     </div>
                     <ListaContaBancariaCol contasBancarias={contasBancarias} />

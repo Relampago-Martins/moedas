@@ -26,11 +26,11 @@ export function CategoriaValue({ gastosTotais }: CategoriaValueProps) {
                 color: 'var(--foreground)',
             }}
         >
-            <span className="w-full text-sm font-normal text-muted">
+            <span className="w-full text-sm font-normal text-muted-foreground">
                 {categoriaSelecionada?.nome ?? 'Total'}
             </span>
-            <div className="flex items-center justify-center ">
-                <span className="mr-1 mt-1 text-sm font-normal text-muted">
+            <div className="flex items-center justify-center">
+                <span className="mt-1 mr-1 text-sm font-normal text-muted-foreground">
                     R$
                 </span>
                 <div className="shrink-0 text-xl font-semibold">

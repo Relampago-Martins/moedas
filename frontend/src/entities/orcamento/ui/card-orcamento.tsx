@@ -30,22 +30,22 @@ export function CardOrcamento({ categoria, ...props }: CardOrcamentoProps) {
                     }}
                 >
                     <i
-                        className={`${categoria.icone} flex text-2xl `}
+                        className={`${categoria.icone} flex text-2xl`}
                         style={{ color: categoria.cor.texto }}
                     />
                 </div>
                 <div className="flex flex-col">
                     <h1 className="text-base">{props.nome}</h1>
-                    <h4 className="text-sm text-muted">
+                    <h4 className="text-sm text-muted-foreground">
                         Restam{' '}
                         {numberToCurrency(props.valorLimite - props.valorGasto)}
                     </h4>
                 </div>
-                <ChevronDown className="ml-auto h-5 w-5 text-muted" />
+                <ChevronDown className="ml-auto h-5 w-5 text-muted-foreground" />
             </div>
-            <div className="flex items-center gap-4 ">
+            <div className="flex items-center gap-4">
                 <Progress value={progressoPorcentagem} className="h-2" />
-                <span className="text-sm text-muted">
+                <span className="text-sm text-muted-foreground">
                     {progressoPorcentagem}%
                 </span>
             </div>
@@ -54,7 +54,9 @@ export function CardOrcamento({ categoria, ...props }: CardOrcamentoProps) {
                     <div className="flex flex-row justify-between">
                         <span>Gasto</span>
                         <div className="flex items-center">
-                            <span className="mr-1 text-sm text-muted">R$</span>
+                            <span className="mr-1 text-sm text-muted-foreground">
+                                R$
+                            </span>
                             <span className="text-base">
                                 {numberToCurrency(props.valorGasto)
                                     .replace('R$', '')
@@ -65,7 +67,9 @@ export function CardOrcamento({ categoria, ...props }: CardOrcamentoProps) {
                     <div className="flex flex-row justify-between">
                         <span>Limite</span>
                         <div className="flex items-center">
-                            <span className="mr-1 text-sm text-muted">R$</span>
+                            <span className="mr-1 text-sm text-muted-foreground">
+                                R$
+                            </span>
                             <span className="text-base">
                                 {numberToCurrency(props.valorLimite)
                                     .replace('R$', '')

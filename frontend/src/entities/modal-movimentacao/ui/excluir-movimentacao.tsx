@@ -24,7 +24,7 @@ export function ExcluirMovimentacao({
             <h1 className="text-xl font-semibold">
                 Deseja excluir essa {tipoMovimentacao}?
             </h1>
-            <h3 className="mb-4 text-base text-muted">
+            <h3 className="mb-4 text-base text-muted-foreground">
                 Essa ação não poderá ser desfeita.
             </h3>
             <div className="flex justify-end gap-2">

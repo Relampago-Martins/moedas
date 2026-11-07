@@ -22,8 +22,8 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
     );
     return (
         <Card title="Despesas" className={`flex flex-col ${className}`}>
-            <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted">
-                <i className="ph ph-chart-donut flex text-lg text-muted" />
+            <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted-foreground">
+                <i className="ph ph-chart-donut flex text-lg text-muted-foreground" />
 
                 <span className="text-sm">Categorias</span>
             </CardHeader>
@@ -39,7 +39,7 @@ export async function CardCategorias({ className, params }: CardGastosProps) {
                         <ListaCategorias categorias={categorias} />
                     </GastosContext>
                 ) : (
-                    <div className="flex h-full flex-col items-center justify-center gap-1 text-muted">
+                    <div className="flex h-full flex-col items-center justify-center gap-1 text-muted-foreground">
                         <i className="ph-thin ph-trend-down text-7xl" />
                         <span className="text-base font-medium">
                             Sem despesa registrada

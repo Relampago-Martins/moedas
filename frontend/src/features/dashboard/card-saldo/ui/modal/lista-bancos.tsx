@@ -61,7 +61,7 @@ export function ListaBancos() {
                     ))
                 ) : bancos.length === 0 ? (
                     <div className="flex h-full items-center justify-center">
-                        <div className="mx-4 text-center text-sm text-muted">
+                        <div className="mx-4 text-center text-sm text-muted-foreground">
                             Nenhum banco encontrado.
                         </div>
                     </div>
