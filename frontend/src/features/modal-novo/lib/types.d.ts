@@ -10,8 +10,11 @@ export type ModalNovoStore = {
      * desktop. Fica guardado depois de fechar, para o modal voltar a ele.
      */
     origemId?: string;
-    /** Abre o modal a partir de um botão, opcionalmente já em um passo. */
-    abrir: (origemId: string, defaultStep?: StepObject) => void;
+    /**
+     * Abre o modal, opcionalmente já em um passo. Com `origemId` ele sai do
+     * botão (expandable); com `null` entra simples, em escala e opacidade.
+     */
+    abrir: (origemId: string | null, defaultStep?: StepObject) => void;
 };
 
 

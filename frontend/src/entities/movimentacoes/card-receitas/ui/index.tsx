@@ -1,7 +1,6 @@
 'use client';
 import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
-import { ModalNovoOrigin } from '@/features/modal-novo/ui/modal-novo-origin';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
@@ -10,7 +9,8 @@ export function CardReceitas() {
     const { movimentacoes } = useMovimentacaoContext();
     const abrir = useModalNovoStore((state) => state.abrir);
     const openNovaReceita = () =>
-        abrir('card-receitas', { name: 'receita', level: 1 });
+        // Modal simples: aqui o morph do botão pequeno não acrescenta nada.
+        abrir(null, { name: 'receita', level: 1 });
 
     const receitas = movimentacoes.filter(
         (movimentacao) => movimentacao.tipo === 'R',
@@ -25,7 +25,7 @@ export function CardReceitas() {
         value: Number(receita.valor),
     }));
     return (
-        <div className="flex w-full min-w-[200px] flex-col ">
+        <div className="flex w-full min-w-[200px] flex-col">
             <div className="relative w-full overflow-hidden rounded-md border bg-card pt-8">
                 <div className="absolute inset-0 z-1 px-2 py-1">
                     <div className="flex items-center gap-1">
@@ -55,8 +55,8 @@ export function CardReceitas() {
                         />
                     </AreaChart>
                 </ResponsiveContainer>
-                <div className="flex w-full items-center justify-end bg-success px-2 pb-1 pt-1">
-                    <span className="mr-1 mt-1 text-base text-success-foreground">
+                <div className="flex w-full items-center justify-end bg-success px-2 pt-1 pb-1">
+                    <span className="mt-1 mr-1 text-base text-success-foreground">
                         R$
                     </span>
                     <span className="z-1 text-2xl font-medium text-success-foreground">
@@ -65,18 +65,14 @@ export function CardReceitas() {
                             .trim()}
                     </span>
                 </div>
-                <div
-                    className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white
-                mask-[radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"
-                ></div>
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white mask-[radial-gradient(ellipse_at_center,transparent_40%,black)] dark:bg-black"></div>
             </div>
             <button
                 onClick={openNovaReceita}
-                className="relative flex items-center justify-center gap-2  pt-2 text-sm text-muted transition-transform hover:scale-110"
+                className="flex items-center justify-center gap-2 pt-2 text-sm text-muted-foreground transition-transform hover:scale-110"
             >
                 <i className="ph-bold ph-plus" />
                 <span className="hover:underline">Receita</span>
-                <ModalNovoOrigin id="card-receitas" />
             </button>
         </div>
     );
