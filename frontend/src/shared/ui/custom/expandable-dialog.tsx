@@ -481,6 +481,32 @@ function ExpandableDialogBody({
     );
 }
 
+/**
+ * Conteúdo que só aparece depois do morph: texto dentro de uma caixa escalada
+ * estica e deforma. Na volta some logo no começo, antes de a caixa encolher.
+ *
+ * A opacidade segue o `open` do contexto, e não um `exit`: ao fechar, o
+ * `AnimatePresence` mantém a árvore antiga montada, e só o contexto chega até
+ * ela com o valor novo.
+ */
+function ExpandableDialogDeferredContent(
+    props: React.ComponentProps<typeof motion.div>,
+) {
+    const { open } = useExpandableDialog('ExpandableDialogDeferredContent');
+
+    return (
+        <motion.div
+            data-slot="expandable-dialog-deferred-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: open ? 1 : 0 }}
+            transition={
+                open ? { duration: 0.15, delay: 0.28 } : { duration: 0.06 }
+            }
+            {...props}
+        />
+    );
+}
+
 function ExpandableDialogFooter({
     className,
     ...props
@@ -504,6 +530,7 @@ export {
     ExpandableDialogBody,
     ExpandableDialogClose,
     ExpandableDialogContent,
+    ExpandableDialogDeferredContent,
     ExpandableDialogDescription,
     ExpandableDialogFooter,
     ExpandableDialogHeader,
