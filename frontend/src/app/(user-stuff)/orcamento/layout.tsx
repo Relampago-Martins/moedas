@@ -24,8 +24,8 @@ export default function RootLayout({
                 <FiltroPeriodo className="" />
             </Suspense>
 
-            <div className="flex h-full flex-wrap justify-between gap-8 sm:flex-nowrap">
-                <div className="flex h-full w-full flex-col gap-4">
+            <div className="flex flex-col gap-4 sm:h-full sm:flex-row sm:justify-between sm:gap-8">
+                <div className="flex w-full flex-col gap-4 sm:h-full">
                     <div className="flex items-center gap-8">
                         <TabsItem
                             active={path === '/orcamento'}
@@ -43,11 +43,12 @@ export default function RootLayout({
                     {children}
                 </div>
 
-                <Card className="sm:w-[400px]">
+                {/* no celular o limite vem antes da lista, para não ficar escondido no fim da página */}
+                <Card className="order-first flex w-full flex-col sm:order-none sm:w-[400px] sm:shrink-0">
                     <CardHeader className="flex h-8 shrink-0 flex-row items-center gap-1.5 border-b px-4 py-0 text-muted-foreground">
                         <span className="text-sm">Limite de gastos</span>
                     </CardHeader>
-                    <CardContent className="flex h-full w-full items-center justify-center">
+                    <CardContent className="flex w-full items-center justify-center py-4 sm:h-full">
                         <ModalLimiteGastos className="flex items-center gap-2 px-2 py-1 text-muted-foreground hover:bg-accent" />
                     </CardContent>
                 </Card>
