@@ -13,4 +13,10 @@ export const useModalNovoStore = create<ModalNovoStore>((set) => ({
     },
     defaultStep: { name: 'menu', level: 0 },
     setDefaultStep: (defaultStep) => set({ defaultStep }),
+    abrir: (origemId, defaultStep) =>
+        set((state) => ({
+            isOpen: true,
+            origemId,
+            defaultStep: defaultStep ?? state.defaultStep,
+        })),
 }));

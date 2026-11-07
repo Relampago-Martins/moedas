@@ -1,20 +1,27 @@
 'use client';
 import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
+import { ModalNovoOrigin } from '@/features/modal-novo/ui/modal-novo-origin';
 import { getMovimentacoes } from '@/shared/api/endpoints/movimentacao-cli';
 import { Button } from '@/shared/ui/button';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
-import { ItemMovimentacao } from '../../item-movimentacao/ui';
+import {
+    getItemMovimentacaoOrigemId,
+    ItemMovimentacao,
+} from '../../item-movimentacao/ui';
 import { ItemMovimentacaoSkeleton } from '../../item-movimentacao/ui/item-movimentacao-skeleton';
 import { cleanDate, separarPorDatas } from '../lib';
 
 export function ListaMovimentacoes() {
     const searchParams = useSearchParams();
-    const onOpenChange = useModalNovoStore((state) => state.onOpenChange);
-    const { setMovimentacaoSelecionada, setMovimentacoes } =
-        useMovimentacaoContext();
+    const abrirModalNovo = useModalNovoStore((state) => state.abrir);
+    const {
+        movimentacaoSelecionada,
+        setMovimentacaoSelecionada,
+        setMovimentacoes,
+    } = useMovimentacaoContext();
 
     const {
         data: movimentacoes,
@@ -47,19 +54,30 @@ export function ListaMovimentacoes() {
                     <span className="text-muted">
                         {cleanDate(movimentacoesPorData.data)}
                     </span>
-                    {movimentacoesPorData.movimentacoes.map((despesa) => (
-                        <ItemMovimentacao
-                            key={despesa.id}
-                            gasto={despesa}
-                            prefixLayoutId={'lista-mov'}
-                            onClick={() =>
-                                setMovimentacaoSelecionada({
-                                    id: despesa.id,
-                                    tipo: despesa.tipo,
-                                })
-                            }
-                        />
-                    ))}
+                    {movimentacoesPorData.movimentacoes.map((despesa) => {
+                        const origemId = getItemMovimentacaoOrigemId(
+                            'lista-mov',
+                            despesa.id,
+                        );
+                        return (
+                            <ItemMovimentacao
+                                key={despesa.id}
+                                gasto={despesa}
+                                prefixLayoutId={'lista-mov'}
+                                expanded={
+                                    movimentacaoSelecionada?.origemId ===
+                                    origemId
+                                }
+                                onClick={() =>
+                                    setMovimentacaoSelecionada({
+                                        id: despesa.id,
+                                        tipo: despesa.tipo,
+                                        origemId,
+                                    })
+                                }
+                            />
+                        );
+                    })}
                 </div>
             ))}
             {movimentacoes?.length === 0 && (
@@ -71,9 +89,11 @@ export function ListaMovimentacoes() {
                     <Button
                         type="button"
                         variant={'link'}
-                        onClick={() => onOpenChange(true)}
+                        className="relative"
+                        onClick={() => abrirModalNovo('lista-movimentacoes')}
                     >
                         Criar
+                        <ModalNovoOrigin id="lista-movimentacoes" />
                     </Button>
                 </p>
             )}

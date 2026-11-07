@@ -1,15 +1,10 @@
 import { Card } from '@/shared/ui/card';
-import {
-    ArrowDataTransferHorizontalIcon,
-    MoneySend01Icon,
-} from '@/shared/ui/huge-icons';
-import { GastoIcon } from '@/shared/ui/huge-icons/gasto';
-import { ReceitaIcon } from '@/shared/ui/huge-icons/receita';
 import { ModalNovoSteps } from '..';
 import {
     StepperContent,
     useStepper,
 } from '../../../../entities/stepper/ui/stepper';
+import { OPCOES_NOVO } from '../../lib/opcoes-novo';
 import { DialogOrDrawerHeader } from '../step-header';
 
 const cardClass =
@@ -24,54 +19,16 @@ export function StepMenu({ value, level }: { value: string; level: number }) {
                 withBackButton={false}
             />
             <div className="grid w-full grid-cols-2 gap-4">
-                <Card
-                    onClick={() =>
-                        goToStep({
-                            name: 'gasto',
-                            level: 1,
-                        })
-                    }
-                    className={`${cardClass}`}
-                >
-                    <GastoIcon className="h-8 w-8 text-red-600" />
-                    <span className="text-base font-medium">Despesa</span>
-                </Card>
-                <Card
-                    onClick={() =>
-                        goToStep({
-                            name: 'receita',
-                            level: 1,
-                        })
-                    }
-                    className={`${cardClass}`}
-                >
-                    <ReceitaIcon className="h-8 w-8 text-green-600" />
-                    <span className="text-base font-medium">Receita</span>
-                </Card>
-                <Card
-                    onClick={() =>
-                        goToStep({
-                            name: 'transferencia',
-                            level: 1,
-                        })
-                    }
-                    className={`${cardClass}`}
-                >
-                    <ArrowDataTransferHorizontalIcon className="h-8 w-8 text-blue-600" />
-                    <span className="text-base font-medium">Transferência</span>
-                </Card>
-                <Card
-                    onClick={() =>
-                        goToStep({
-                            name: 'investimento',
-                            level: 1,
-                        })
-                    }
-                    className={`${cardClass}`}
-                >
-                    <MoneySend01Icon className="h-8 w-8 text-purple-600" />
-                    <span className="text-base font-medium">Investimento</span>
-                </Card>
+                {OPCOES_NOVO.map(({ step, label, Icon, className }) => (
+                    <Card
+                        key={step}
+                        onClick={() => goToStep({ name: step, level: 1 })}
+                        className={cardClass}
+                    >
+                        <Icon className={`h-8 w-8 ${className}`} />
+                        <span className="text-base font-medium">{label}</span>
+                    </Card>
+                ))}
             </div>
         </StepperContent>
     );

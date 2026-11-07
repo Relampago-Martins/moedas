@@ -1,7 +1,7 @@
 'use client';
 import { StepObject } from '@/entities/stepper/lib/types';
 import { useEvent } from '@/shared/lib/use-event';
-import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
+import { AnimatePresence, motion, MotionConfig } from 'motion/react';
 import React, {
     createContext,
     useContext,
@@ -113,7 +113,9 @@ interface StepperProps<T extends string> {
 }
 
 function Stepper<T extends string>(props: StepperProps<T>) {
-    const [ref, bounds] = useMeasure();
+    // `offsetSize`: medir pelo layout e não pelo `getBoundingClientRect`, que
+    // inclui o `scale` do modal no meio do morph e travaria a altura pequena.
+    const [ref, bounds] = useMeasure({ offsetSize: true });
     const events = useEvent();
     const [currentStep, setCurrentStep] = useState<StepObject<T>>(
         props.defaultValue,
@@ -159,7 +161,9 @@ function Stepper<T extends string>(props: StepperProps<T>) {
             <MotionConfig
                 transition={{ duration: 0.5, type: 'spring', bounce: 0 }}
             >
-                <motion.div animate={{ height: bounds.height }}>
+                {/* Antes da primeira medida a altura fica `auto`: animar de 0
+                    faria o modal abrir achatado e crescer depois. */}
+                <motion.div animate={{ height: bounds.height || 'auto' }}>
                     <div ref={ref}>{props.children}</div>
                 </motion.div>
             </MotionConfig>

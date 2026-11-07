@@ -1,16 +1,16 @@
 'use client';
 import { useMovimentacaoContext } from '@/entities/modal-movimentacao/lib/use-movimentacao-context';
 import { useModalNovoStore } from '@/features/modal-novo/lib/modal-novo-store';
+import { ModalNovoOrigin } from '@/features/modal-novo/ui/modal-novo-origin';
 import { numberToCurrency } from '@/shared/lib/utils';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
 export function CardReceitas() {
     const { movimentacoes } = useMovimentacaoContext();
-    const openNovaReceita = useModalNovoStore((state) => () => {
-        state.setDefaultStep({ name: 'receita', level: 1 });
-        state.onOpenChange(true);
-    });
+    const abrir = useModalNovoStore((state) => state.abrir);
+    const openNovaReceita = () =>
+        abrir('card-receitas', { name: 'receita', level: 1 });
 
     const receitas = movimentacoes.filter(
         (movimentacao) => movimentacao.tipo === 'R',
@@ -72,10 +72,11 @@ export function CardReceitas() {
             </div>
             <button
                 onClick={openNovaReceita}
-                className="flex items-center justify-center gap-2  pt-2 text-sm text-muted transition-transform hover:scale-110"
+                className="relative flex items-center justify-center gap-2  pt-2 text-sm text-muted transition-transform hover:scale-110"
             >
                 <i className="ph-bold ph-plus" />
                 <span className="hover:underline">Receita</span>
+                <ModalNovoOrigin id="card-receitas" />
             </button>
         </div>
     );

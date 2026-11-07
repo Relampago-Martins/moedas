@@ -4,7 +4,7 @@ import { numberToCurrency, toLocalDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { TradeUpIcon } from '@/shared/ui/huge-icons/receita';
 import { Receita } from '@/types/models/receita';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { CalendarIcon } from 'lucide-react';
 import { ReceitaSkeleton } from '../skeletons/receita';
 

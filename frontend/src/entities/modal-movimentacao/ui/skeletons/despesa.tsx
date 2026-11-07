@@ -1,5 +1,5 @@
 import { Skeleton } from '@/shared/ui/skeleton';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { CalendarIcon, CreditCardIcon } from 'lucide-react';
 
 export function DespesaSkeleton() {
@@ -28,14 +28,14 @@ export function DespesaSkeleton() {
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <CalendarIcon className="h-6 w-6 animate-pulse text-border " />
+                <CalendarIcon className="h-6 w-6 animate-pulse text-border" />
                 <div className="flex flex-col gap-1">
                     <Skeleton className="h-2 w-20" />
                     <Skeleton className="h-4 w-24" />
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <CreditCardIcon className="h-6 w-6 animate-pulse text-border " />
+                <CreditCardIcon className="h-6 w-6 animate-pulse text-border" />
                 <div className="flex flex-col gap-1">
                     <Skeleton className="h-2 w-20" />
                     <Skeleton className="h-4 w-24" />

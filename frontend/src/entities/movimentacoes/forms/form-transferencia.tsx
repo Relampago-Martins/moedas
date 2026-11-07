@@ -1,15 +1,16 @@
-import { ModalNovoSteps } from '../../../features/modal-novo/ui';
 import { DialogOrDrawerHeader } from '../../../features/modal-novo/ui/step-header';
 import { useStepper } from '../../stepper/ui/stepper';
 
 export function FormTransferencia() {
-    const { goToStep } = useStepper<ModalNovoSteps>();
+    // Aberto pela dock, o passo é a raiz e não tem para onde voltar.
+    const { previous, hasPrevious } = useStepper();
 
     return (
         <>
             <DialogOrDrawerHeader
                 title={'Criar transferência'}
-                onBack={() => goToStep({ name: 'menu', level: 0 })}
+                withBackButton={hasPrevious}
+                onBack={previous}
             />
             <form></form>;
         </>

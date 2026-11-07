@@ -1,114 +1,112 @@
 'use client';
-import {
-    criarOrcamento,
-    deletarOrcamento,
-    getOrcamento,
-} from '@/shared/api/endpoints/orcamento';
 import { Button } from '@/shared/ui/button';
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from '@/shared/ui/dialog';
-import { Progress } from '@/shared/ui/progress';
+    ExpandableDialog,
+    ExpandableDialogBody,
+    ExpandableDialogContent,
+    ExpandableDialogDescription,
+    ExpandableDialogHeader,
+    ExpandableDialogIcon,
+    ExpandableDialogTitle,
+    ExpandableDialogTrigger,
+    ExpandableDialogTriggerText,
+} from '@/shared/ui/custom/expandable-dialog';
+import {
+    Drawer,
+    DrawerContent,
+    DrawerDescription,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from '@/shared/ui/drawer';
+import { Form } from '@/shared/ui/form';
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { LimiteGastosField } from './limite-gastos-field';
+import { useLimiteGastosForm } from './use-limite-gastos-form';
+
+const TITULO = 'Limite de gastos';
+const DESCRICAO =
+    'Defina quanto da sua renda pode ser gasto no mês. Dá para mudar quando quiser.';
 
 type ModalLimiteGastosProps = {
-    children?: React.ReactNode;
     className?: string;
 };
 
-export function ModalLimiteGastos({
-    children,
-    className,
-}: ModalLimiteGastosProps) {
-    const [novoLimite, setNovoLimite] = useState(0);
+/** Dialog that grows from its trigger on desktop, bottom drawer on mobile. */
+export function ModalLimiteGastos({ className }: ModalLimiteGastosProps) {
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
     const [open, setOpen] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const { form, onSubmit } = useLimiteGastosForm(open, () => setOpen(false));
+    const { isSubmitting } = form.formState;
 
-    const criaOrcamento = () => {
-        criarOrcamento({
-            limite_gastos: novoLimite / 100,
-            salario: 0, // Assuming salario is not needed for this operation
-        }).then(() => setOpen(false));
-    };
-    const onSalvar = () => {
-        //gambiarra para atualizar ou criar o orçamento
-        //hehe só altera isso aí bruno do futuro
-        //faz do jeito certo ;)
-        getOrcamento().then((orcamento) => {
-            if (orcamento) {
-                deletarOrcamento(orcamento.id!).then(criaOrcamento);
-            } else {
-                criaOrcamento();
-            }
-        });
-    };
-
-    return (
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger className={className}>{children}</DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Cadastrar limite de gastos</DialogTitle>
-                </DialogHeader>
-                <div className="flex items-center gap-4">
+    const content = (
+        <Form {...form}>
+            <form onSubmit={onSubmit} className="flex flex-col gap-6">
+                <LimiteGastosField control={form.control} />
+                <div className="flex flex-col-reverse gap-2 sm:flex-row">
                     <Button
-                        variant="ghost"
-                        onClick={() =>
-                            setNovoLimite((prev) => Math.max(prev - 1, 0))
-                        }
-                    >
-                        <i className="ph ph-minus text-lg" />
-                    </Button>
-                    <div className="relative flex w-full items-center">
-                        <Progress
-                            value={0}
-                            className="my-2 w-full bg-muted opacity-40"
-                        />
-
-                        <div className="absolute inset-0 flex w-full">
-                            <div
-                                className="h-full w-px border-r-2 border-dashed border-foreground"
-                                style={{
-                                    width: `${novoLimite}%`,
-                                }}
-                            ></div>
-                        </div>
-                    </div>
-                    <Button
-                        variant="ghost"
-                        onClick={() =>
-                            setNovoLimite((prev) => Math.min(prev + 1, 100))
-                        }
-                    >
-                        <i className="ph ph-plus text-lg" />
-                    </Button>
-                </div>
-                <span className="font-medium text-muted">
-                    Limite de gastos: {novoLimite.toFixed(0)}%
-                </span>
-                {error && (
-                    <div className="mt-2 text-red-500">
-                        <i className="ph ph-warning" /> {error}
-                    </div>
-                )}
-                <DialogFooter>
-                    <Button
+                        type="button"
                         variant="outline"
-                        className="shrink-0"
+                        className="sm:w-32"
                         onClick={() => setOpen(false)}
                     >
                         Cancelar
                     </Button>
-                    <Button className="w-full" onClick={onSalvar}>
-                        Salvar
+                    <Button
+                        type="submit"
+                        className="sm:flex-1"
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting ? 'Salvando...' : 'Salvar limite'}
                     </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
+                </div>
+            </form>
+        </Form>
+    );
+
+    if (isMobile) {
+        return (
+            <Drawer open={open} onOpenChange={setOpen} repositionInputs={false}>
+                <DrawerTrigger className={className}>
+                    <i className="ph ph-plus-circle text-2xl" />
+                    <span className="font-normal">Adicionar</span>
+                </DrawerTrigger>
+                <DrawerContent className="bg-popover">
+                    <DrawerHeader className="px-0 text-left">
+                        <DrawerTitle>{TITULO}</DrawerTitle>
+                        <DrawerDescription>{DESCRICAO}</DrawerDescription>
+                    </DrawerHeader>
+                    <div className="pb-6">{content}</div>
+                </DrawerContent>
+            </Drawer>
+        );
+    }
+
+    return (
+        <ExpandableDialog id="limite-gastos" open={open} onOpenChange={setOpen}>
+            <ExpandableDialogTrigger className={className}>
+                <ExpandableDialogIcon className="size-7 bg-transparent text-muted">
+                    <i className="ph ph-plus-circle text-2xl" />
+                </ExpandableDialogIcon>
+                <ExpandableDialogTriggerText className="font-normal text-muted">
+                    Adicionar
+                </ExpandableDialogTriggerText>
+            </ExpandableDialogTrigger>
+            <ExpandableDialogContent>
+                <ExpandableDialogHeader className="flex-row items-start gap-3">
+                    <ExpandableDialogIcon>
+                        <i className="ph ph-crosshair text-2xl" />
+                    </ExpandableDialogIcon>
+                    <div className="flex flex-col gap-1">
+                        <ExpandableDialogTitle>{TITULO}</ExpandableDialogTitle>
+                        <ExpandableDialogDescription>
+                            {DESCRICAO}
+                        </ExpandableDialogDescription>
+                    </div>
+                </ExpandableDialogHeader>
+                <ExpandableDialogBody>{content}</ExpandableDialogBody>
+            </ExpandableDialogContent>
+        </ExpandableDialog>
     );
 }

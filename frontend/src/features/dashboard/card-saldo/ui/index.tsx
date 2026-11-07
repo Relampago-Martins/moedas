@@ -4,12 +4,11 @@ import { StepAlterarContaBancaria } from '@/features/conta-bancaria/ui/steps/ste
 import { getCarteira } from '@/shared/api/endpoints';
 import { getContasBancarias } from '@/shared/api/endpoints/conta-bancaria-cli';
 import { numberToCurrency } from '@/shared/lib/utils';
-import { Card, CardContent } from '@/shared/ui/card';
-import { Dialog, DialogContent } from '@/shared/ui/dialog';
+import { CardContent } from '@/shared/ui/card';
 import { TFiltroPeriodo } from '@/types/filters';
-import { DialogTitle, DialogTrigger } from '@radix-ui/react-dialog';
 import { StepExcluirContaBancaria } from '../../../conta-bancaria/ui/steps/step-excluir';
 import { StepFormContaBancaria } from '../../../conta-bancaria/ui/steps/step-form';
+import { CardSaldoDialog } from './card-saldo-dialog';
 import { DiferencaSaldoBadge } from './diferenca-saldo-badge';
 import { ListaContaBancariaRow } from './lista-conta-bancaria-row';
 import { ListaBancos } from './modal/lista-bancos';
@@ -28,68 +27,57 @@ export async function CardSaldo({ className, params }: CardSaldoProps) {
     const { data: contasBancarias } = await getContasBancarias();
 
     return (
-        <Dialog>
-            <DialogTrigger className={`${className} flex flex-col`}>
-                <Card>
-                    <CardContent className="flex h-full flex-col justify-center gap-3">
-                        <Saldo valor={saldo} diffPercentual={diff_percentual} />
-                        <ListaContaBancariaRow
-                            contasBancarias={contasBancarias}
-                        />
-                    </CardContent>
-                </Card>
-            </DialogTrigger>
-            <DialogContent className="overflow-hidden" withoutClose>
-                <DialogTitle className="sr-only">
-                    Detalhes do saldo e contas bancárias
-                </DialogTitle>
-                <Stepper
-                    defaultValue={{
-                        name: 'saldo-e-contas',
-                        level: 0,
-                    }}
+        <CardSaldoDialog
+            className={className}
+            trigger={
+                <CardContent className="flex h-full flex-col justify-center gap-3">
+                    <Saldo valor={saldo} diffPercentual={diff_percentual} />
+                    <ListaContaBancariaRow contasBancarias={contasBancarias} />
+                </CardContent>
+            }
+        >
+            <Stepper
+                defaultValue={{
+                    name: 'saldo-e-contas',
+                    level: 0,
+                }}
+            >
+                <StepperContent
+                    value="saldo-e-contas"
+                    level={0}
+                    className="flex flex-col gap-5"
                 >
-                    <StepperContent
-                        value="saldo-e-contas"
-                        level={0}
-                        className="flex flex-col gap-5"
-                    >
-                        <div className="flex flex-col items-center gap-1">
-                            <span className="text-muted">Saldo Total</span>
-                            <div className="text-3xl font-bold">
-                                {numberToCurrency(saldo)}
-                            </div>
-                            <div className="flex items-center gap-1.5">
-                                <DiferencaSaldoBadge
-                                    diffPercentual={diff_percentual}
-                                />
-                                <span className="text-sm text-muted">
-                                    este mês
-                                </span>
-                            </div>
+                    <div className="flex flex-col items-center gap-1">
+                        <span className="text-muted">Saldo Total</span>
+                        <div className="text-3xl font-bold">
+                            {numberToCurrency(saldo)}
                         </div>
-                        <ListaContaBancariaCol
-                            contasBancarias={contasBancarias}
-                        />
-                    </StepperContent>
-                    <StepFormContaBancaria
-                        step={{ name: 'cadastro-conta-bancaria', level: 1 }}
-                    />
-                    <StepDetalheContaBancaria
-                        value="detalhe-conta-bancaria"
-                        level={1}
-                    />
-                    <StepExcluirContaBancaria
-                        value="excluir-conta-bancaria"
-                        level={2}
-                    />
-                    <StepAlterarContaBancaria />
+                        <div className="flex items-center gap-1.5">
+                            <DiferencaSaldoBadge
+                                diffPercentual={diff_percentual}
+                            />
+                            <span className="text-sm text-muted">este mês</span>
+                        </div>
+                    </div>
+                    <ListaContaBancariaCol contasBancarias={contasBancarias} />
+                </StepperContent>
+                <StepFormContaBancaria
+                    step={{ name: 'cadastro-conta-bancaria', level: 1 }}
+                />
+                <StepDetalheContaBancaria
+                    value="detalhe-conta-bancaria"
+                    level={1}
+                />
+                <StepExcluirContaBancaria
+                    value="excluir-conta-bancaria"
+                    level={2}
+                />
+                <StepAlterarContaBancaria />
 
-                    <StepperContent value="lista-bancos" level={3}>
-                        <ListaBancos />
-                    </StepperContent>
-                </Stepper>
-            </DialogContent>
-        </Dialog>
+                <StepperContent value="lista-bancos" level={3}>
+                    <ListaBancos />
+                </StepperContent>
+            </Stepper>
+        </CardSaldoDialog>
     );
 }
