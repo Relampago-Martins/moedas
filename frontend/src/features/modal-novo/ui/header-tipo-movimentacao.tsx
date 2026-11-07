@@ -2,10 +2,16 @@ import { cn } from '@/shared/lib/utils';
 
 type TipoMovimentacao = 'despesa' | 'receita';
 
-/** Cores que despesa e receita já usam no app, agora como fundo sólido. */
+/** Cores que despesa e receita já usam no app: fundo fraco, texto forte. */
 const ESTILO: Record<TipoMovimentacao, { fundo: string; seta: string }> = {
-    despesa: { fundo: 'bg-destructive-foreground', seta: 'ph-trend-down' },
-    receita: { fundo: 'bg-success-foreground', seta: 'ph-trend-up' },
+    despesa: {
+        fundo: 'bg-destructive text-destructive-foreground',
+        seta: 'ph-trend-down',
+    },
+    receita: {
+        fundo: 'bg-success text-success-foreground',
+        seta: 'ph-trend-up',
+    },
 };
 
 /**
@@ -33,7 +39,9 @@ type HeaderTipoMovimentacaoProps = {
 /**
  * Faixa de cor sólida no topo do modal de despesa ou receita, encostada nas
  * bordas, para o usuário reconhecer o contexto de relance. As margens
- * negativas desfazem o padding do modal (`p-6`) e do drawer (`px-4`).
+ * negativas desfazem o padding do modal (`p-6`) e do drawer (`px-4`). No
+ * drawer ela sobe também por baixo da alça (`-mt-7`, os 28px da alça), para a
+ * cor ocupar o topo inteiro.
  */
 export function HeaderTipoMovimentacao({
     tipo,
@@ -45,9 +53,9 @@ export function HeaderTipoMovimentacao({
     return (
         <div
             className={cn(
-                'relative -mx-4 mb-4 overflow-hidden px-4 pt-4 text-white lg:-mx-6 lg:-mt-6 lg:px-6 lg:pt-6',
+                'relative -mx-4 -mt-7 mb-4 overflow-hidden px-4 pt-8 lg:-mx-6 lg:-mt-6 lg:px-6 lg:pt-6',
                 // Botões de voltar e fechar continuam legíveis sobre a cor.
-                '[&_button]:hover:bg-white/15 [&_button]:hover:text-white',
+                '[&_button]:hover:bg-black/5 [&_button]:hover:text-current',
                 fundo,
                 className,
             )}

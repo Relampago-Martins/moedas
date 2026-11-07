@@ -65,7 +65,7 @@ export function StepFormReceita({
         <StepperContent value={step.name} level={step.level}>
             <HeaderTipoMovimentacao tipo="receita">
                 <DialogOrDrawerHeader
-                    titleClassName="mb-0 text-white"
+                    titleClassName="mb-0 text-current"
                     withBackButton={hasPrevious}
                     title={
                         <span className="flex items-center gap-2 text-xl">

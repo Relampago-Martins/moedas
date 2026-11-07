@@ -68,7 +68,7 @@ export function StepFormDespesa({
         <StepperContent value={step.name} level={step.level}>
             <HeaderTipoMovimentacao tipo="despesa">
                 <DialogOrDrawerHeader
-                    titleClassName="mb-0 text-white"
+                    titleClassName="mb-0 text-current"
                     withBackButton={hasPrevious}
                     title={
                         <span className="flex items-center gap-2 text-xl">

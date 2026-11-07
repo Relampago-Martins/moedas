@@ -51,7 +51,8 @@ const DrawerContent = React.forwardRef<
                 {...props}
             >
                 <ScrollArea className="overflow-y-auto">
-                    <div className="mx-auto mb-2 mt-3 h-2 w-[100px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                    {/* `relative z-10`: fica por cima de um header colorido que suba até o topo. */}
+                    <div className="relative z-10 mx-auto mb-2 mt-3 h-2 w-[100px] rounded-full bg-gray-200 dark:bg-gray-700" />
                     <div className="grow px-4">{children}</div>
                 </ScrollArea>
             </DrawerPrimitive.Content>
