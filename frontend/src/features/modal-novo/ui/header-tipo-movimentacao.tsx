@@ -5,11 +5,11 @@ type TipoMovimentacao = 'despesa' | 'receita';
 /** Cores que despesa e receita já usam no app: fundo fraco, texto forte. */
 const ESTILO: Record<TipoMovimentacao, { fundo: string; seta: string }> = {
     despesa: {
-        fundo: 'bg-destructive text-destructive-foreground',
+        fundo: 'text-destructive-foreground border-b bg-destructive/20',
         seta: 'ph-trend-down',
     },
     receita: {
-        fundo: 'bg-success text-success-foreground',
+        fundo: 'text-success-foreground border-b bg-success/20',
         seta: 'ph-trend-up',
     },
 };
