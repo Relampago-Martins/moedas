@@ -19,13 +19,16 @@ export function StepMenu({ value, level }: { value: string; level: number }) {
                 withBackButton={false}
             />
             <div className="grid w-full grid-cols-2 gap-4">
-                {OPCOES_NOVO.map(({ step, label, Icon, className }) => (
+                {OPCOES_NOVO.map(({ step, label, phosphor, className }) => (
                     <Card
                         key={step}
                         onClick={() => goToStep({ name: step, level: 1 })}
                         className={cardClass}
                     >
-                        <Icon className={`h-8 w-8 ${className}`} />
+                        <i
+                            aria-hidden
+                            className={`ph ${phosphor} text-[2rem] ${className}`}
+                        />
                         <span className="text-base font-medium">{label}</span>
                     </Card>
                 ))}

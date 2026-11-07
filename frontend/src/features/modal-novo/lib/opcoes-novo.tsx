@@ -1,9 +1,3 @@
-import {
-    ArrowDataTransferHorizontalIcon,
-    MoneySend01Icon,
-} from '@/shared/ui/huge-icons';
-import { GastoIcon } from '@/shared/ui/huge-icons/gasto';
-import { ReceitaIcon } from '@/shared/ui/huge-icons/receita';
 import type { ModalNovoSteps } from '../ui';
 
 type OpcaoNovo = {
@@ -12,7 +6,8 @@ type OpcaoNovo = {
         'gasto' | 'receita' | 'transferencia' | 'investimento'
     >;
     label: string;
-    Icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactNode;
+    /** Classe do ícone do Phosphor. */
+    phosphor: string;
     /** Cor do ícone. */
     className: string;
 };
@@ -21,26 +16,26 @@ type OpcaoNovo = {
 export const OPCOES_NOVO: OpcaoNovo[] = [
     {
         step: 'gasto',
+        phosphor: 'ph-trend-down',
         label: 'Despesa',
-        Icon: GastoIcon,
         className: 'text-red-600',
     },
     {
         step: 'receita',
+        phosphor: 'ph-trend-up',
         label: 'Receita',
-        Icon: ReceitaIcon,
         className: 'text-green-600',
     },
     {
         step: 'transferencia',
+        phosphor: 'ph-arrows-left-right',
         label: 'Transferência',
-        Icon: ArrowDataTransferHorizontalIcon,
         className: 'text-blue-600',
     },
     {
         step: 'investimento',
+        phosphor: 'ph-piggy-bank',
         label: 'Investimento',
-        Icon: MoneySend01Icon,
         className: 'text-purple-600',
     },
 ];
