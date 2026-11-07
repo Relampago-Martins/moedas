@@ -26,6 +26,7 @@ export function ModalMovimentacao() {
             className="overflow-hidden md:w-auto md:min-w-[20rem]"
             open={!!movimentacaoSelecionada?.id}
             originId={ultimaSelecionada?.origemId}
+            deferContent
             onOpenChange={(val) => {
                 if (!val) {
                     setMovimentacaoSelecionada(undefined);

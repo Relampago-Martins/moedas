@@ -382,7 +382,7 @@ function ExpandableDialogContent({
                                 layoutDependency={CONTENT_LAYOUT_DEPENDENCY}
                                 style={{ borderRadius: radius, ...style }}
                                 className={cn(
-                                    'pointer-events-auto relative flex max-h-[calc(100dvh-2rem)] w-full max-w-lg flex-col gap-4 overflow-y-auto border bg-popover p-6',
+                                    'pointer-events-auto relative flex max-h-[calc(100dvh-2rem)] w-full max-w-lg flex-col gap-4 overflow-y-auto border bg-popover p-6 outline-none',
                                     className,
                                 )}
                                 {...props}
@@ -453,7 +453,7 @@ function ExpandableDialogDescription({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className={cn('text-sm text-muted', className)}
+                className={cn('text-sm text-muted-foreground', className)}
                 {...props}
             />
         </DialogPrimitive.Description>

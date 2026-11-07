@@ -54,9 +54,24 @@ export function ItemMovimentacao({
             // Raio em `style` para o Motion contra-escalar as quinas no morph.
             style={{ borderRadius: 6 }}
             onClick={onClick}
-            className={`h-16 w-full overflow-hidden border bg-card pr-4 shadow-xs hover:bg-accent ${isSolid ? 'border-solid' : 'border-dashed'}`}
+            className={`h-16 w-full overflow-hidden border bg-card pr-4 hover:bg-accent ${isSolid ? 'border-solid' : 'border-dashed'}`}
         >
-            <div className="flex w-full flex-row items-center gap-3">
+            {/* O conteúdo da linha some enquanto ela vira o modal e volta só
+                quando a caixa já está quase no lugar: escalado, o texto
+                deformava. O `layout` contra-escala o que ainda aparece. */}
+            <motion.div
+                layout
+                layoutDependency={triggerLayoutDependency(expanded)}
+                initial={false}
+                animate={{ opacity: expanded ? 0 : 1 }}
+                transition={{
+                    ...EXPANSION_TRANSITION,
+                    opacity: expanded
+                        ? { duration: 0.08 }
+                        : { duration: 0.15, delay: 0.2 },
+                }}
+                className="flex w-full flex-row items-center gap-3"
+            >
                 <div
                     className={`relative flex h-16 w-14 shrink-0 items-center justify-center`}
                 >
@@ -81,7 +96,7 @@ export function ItemMovimentacao({
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="text-start text-sm text-muted">
+                        <div className="text-start text-sm text-muted-foreground">
                             {movimentacao.categoria.nome}
                         </div>
                         {withBank && (
@@ -90,7 +105,7 @@ export function ItemMovimentacao({
                                     orientation="vertical"
                                     className="h-4"
                                 />
-                                <div className="truncate text-start text-sm text-muted">
+                                <div className="truncate text-start text-sm text-muted-foreground">
                                     {movimentacao.conta_bancaria
                                         ? movimentacao.conta_bancaria?.banco
                                               .abreviacao
@@ -100,7 +115,7 @@ export function ItemMovimentacao({
                         )}
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </motion.button>
     );
 }

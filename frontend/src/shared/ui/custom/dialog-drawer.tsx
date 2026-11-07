@@ -1,5 +1,6 @@
 'use client';
 import { cn } from '@/shared/lib/utils';
+import { motion } from 'motion/react';
 import { useId } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Drawer, DrawerContent } from '../drawer';
@@ -16,6 +17,21 @@ type DialogDrawerProps = {
      * o modal entra sozinho, em escala e opacidade.
      */
     originId?: string;
+    /**
+     * Esconde o conteúdo durante o morph e só o mostra quando a caixa já
+     * cresceu: texto dentro de uma caixa escalada estica e deforma.
+     */
+    deferContent?: boolean;
+};
+
+/**
+ * Conteúdo que só aparece depois do morph. Na volta some logo no começo, antes
+ * de a caixa começar a encolher.
+ */
+const DEFERRED_CONTENT_ANIMATION = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.15, delay: 0.28 } },
+    exit: { opacity: 0, transition: { duration: 0.06 } },
 };
 
 /** Entrada de quando o modal não tem um item de origem na tela. */
@@ -31,6 +47,7 @@ export function DialogOrDrawer({
     children: Content,
     className,
     originId,
+    deferContent = false,
 }: DialogDrawerProps) {
     const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
     const fallbackId = useId();
@@ -54,7 +71,13 @@ export function DialogOrDrawer({
                 showCloseButton={false}
                 {...(originId ? {} : STANDALONE_ANIMATION)}
             >
-                {Content}
+                {deferContent ? (
+                    <motion.div {...DEFERRED_CONTENT_ANIMATION}>
+                        {Content}
+                    </motion.div>
+                ) : (
+                    Content
+                )}
             </ExpandableDialogContent>
         </ExpandableDialog>
     );
